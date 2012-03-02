@@ -15,5 +15,15 @@ namespace Backoffice
         {
             InitializeComponent();
         }
+
+        private void beendenToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void hilfeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
