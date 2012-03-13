@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
+
 namespace Backoffice
 {
     public partial class MainForm : Form
@@ -14,7 +15,11 @@ namespace Backoffice
         public MainForm()
         {
             InitializeComponent();
+            test.Text = "hallo";
+            LocalDB hilf = new LocalDB();
+            test.Text = hilf.buildconnection().ToString();
         }
+
 
         private void beendenToolStripMenuItem_Click(object sender, EventArgs e)
         {

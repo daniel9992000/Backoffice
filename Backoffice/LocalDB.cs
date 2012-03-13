@@ -7,35 +7,44 @@ using System.Windows.Forms;
 
 namespace Backoffice
 {
-    class LocalDB
+    public class LocalDB
     {
-        public void buildconnection ()
+        public int buildconnection ()
         {
+            int text = 0;
             try
             {
                 // PostgeSQL-style connection string
                 string connstring = String.Format("Server={0};Port={1};" +
                     "User Id={2};Password={3};Database={4};",
                     "localhost", 5432, "swe",
-                    "swe2", "postgres");
+                    "swe", "EPU_SWE2");
                 // Making connection with Npgsql provider
                 NpgsqlConnection conn = new NpgsqlConnection(connstring);
                 conn.Open();
-                // quite complex sql statement
-                string sql = "SELECT * FROM simple_table";
+                
+                string sql = "SELECT * FROM Kunden;";
                 // data adapter making request from our connection
                 NpgsqlDataAdapter da = new NpgsqlDataAdapter(sql, conn);
-                // i always reset DataSet before i do
-                // something with it.... i don't know why :-)
-                MessageBox.Show("hello");
+                NpgsqlCommand allausrg = new NpgsqlCommand(sql,conn);
+                allausrg.CommandType = System.Data.CommandType.Text;
+                NpgsqlDataReader readausgrg;
+                readausgrg = allausrg.ExecuteReader();
+                while (readausgrg.HasRows)
+                {
+                    text++;
+                    readausgrg.Read();
+                }
                 conn.Close();
             }
             catch (Exception msg)
             {
-                // something went wrong, and you wanna know why
+                MessageBox.Show(msg.Message);
+               
                
                
             }
+            return text;
         }
        
     }
