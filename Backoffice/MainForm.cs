@@ -15,9 +15,8 @@ namespace Backoffice
         public MainForm()
         {
             InitializeComponent();
-            test.Text = "hallo";
             LocalDB hilf = new LocalDB();
-            test.Text = hilf.buildconnection().ToString();
+            test.Text = hilf.testabfrage().ToString();
         }
 
 

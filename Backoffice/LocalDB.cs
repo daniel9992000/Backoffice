@@ -7,11 +7,11 @@ using System.Windows.Forms;
 
 namespace Backoffice
 {
-    public class LocalDB
-    {
-        public int buildconnection ()
+    public class LocalDB:IDAL
+    {   
+        NpgsqlConnection conn;
+        public void buildconnection()
         {
-            int text = 0;
             try
             {
                 // PostgeSQL-style connection string
@@ -20,32 +20,102 @@ namespace Backoffice
                     "localhost", 5432, "swe",
                     "swe", "EPU_SWE2");
                 // Making connection with Npgsql provider
-                NpgsqlConnection conn = new NpgsqlConnection(connstring);
+                conn = new NpgsqlConnection(connstring);
                 conn.Open();
-                
+            }catch (Exception exp)
+            {
+                MessageBox .Show(exp.Message.ToString());
+            }
+        }
+
+        public string testabfrage ()
+        {   
+            string ergebnis = "";  
+            try 
+            {
+                buildconnection();
                 string sql = "SELECT * FROM Kunden;";
                 // data adapter making request from our connection
-                NpgsqlDataAdapter da = new NpgsqlDataAdapter(sql, conn);
                 NpgsqlCommand allausrg = new NpgsqlCommand(sql,conn);
                 allausrg.CommandType = System.Data.CommandType.Text;
                 NpgsqlDataReader readausgrg;
                 readausgrg = allausrg.ExecuteReader();
-                while (readausgrg.HasRows)
+                while (readausgrg.Read())
                 {
-                    text++;
-                    readausgrg.Read();
+                    ergebnis = readausgrg["nachname"].ToString();
+                   
                 }
                 conn.Close();
-            }
+            }  
             catch (Exception msg)
             {
-                MessageBox.Show(msg.Message);
-               
-               
+                MessageBox.Show(msg.Message.ToString());  
                
             }
-            return text;
+            return ergebnis;
         }
-       
+
+
+
+        public void saveKunde(Kunde k)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void deleteKunde(Kunde k)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Kunde> getKundeViewList()
+        {
+            buildconnection();
+            List<Kunde> klist = new List<Kunde>();
+            NpgsqlCommand comm = null;
+            NpgsqlDataReader reader = null;
+            try
+            {
+                string sql = "Select * from Kunde;";
+                comm = new NpgsqlCommand(sql, conn);             
+                reader = comm.ExecuteReader();
+                while (reader.Read())
+                {
+                    Kunde k = new Kunde();
+                    k.Kundenid = reader.GetInt32(0);
+                    k.Vorname = reader["vorname"].ToString();
+                    k.Nachname = reader["nachname"].ToString();
+                    klist.Add(k);
+                }
+               
+            }
+            catch (NpgsqlException exp)
+            {
+                MessageBox.Show(exp.Message.ToString());
+            }
+            finally
+            {
+                reader.Close();
+                comm.Dispose() ;
+                conn.Close();
+            }
+
+            return klist;
+ 
+        }
+
+        public void saveProjekt(Projekte p)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void deleteProjekt(Projekte p)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Projekte> getProjektViewList()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
