@@ -5,10 +5,17 @@ using System.Text;
 
 namespace Backoffice
 {
-    public class Projekte
+    public class Projekt
     {
         int projektid;
         string name;
+        ObjectStates status;
+
+        public Projekt(int projektid, string name)
+        {
+            this.projektid = projektid;
+            this.name = name;
+        }
 
         public string Name
         {

@@ -12,13 +12,24 @@ namespace Backoffice
 {
     public partial class MainForm : Form
     {
+        UserControls.UCKundenAnzeigen ka;
+
         public MainForm()
         {
             InitializeComponent();
-            LocalDB hilf = new LocalDB();
-            test.Text = hilf.testabfrage().ToString();
+
+            ka = new UserControls.UCKundenAnzeigen();
+            this.Controls.Add(ka);
         }
 
+        void DisplayUserControl(UserControl uc)
+        {
+            foreach (var item in this.Controls)
+            {
+                Type t = item.GetType();
+                MessageBox.Show(t.ToString());
+            }
+        }
 
         private void beendenToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -28,6 +39,11 @@ namespace Backoffice
         private void hilfeToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void alleKundenAnzeigenToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DisplayUserControl(ka);
         }
     }
 }

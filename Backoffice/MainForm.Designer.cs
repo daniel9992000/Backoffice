@@ -38,7 +38,7 @@
             this.rechnungenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.berichteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hilfeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.test = new System.Windows.Forms.TextBox();
+            this.alleKundenAnzeigenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -77,6 +77,8 @@
             // 
             // kundenToolStripMenuItem
             // 
+            this.kundenToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.alleKundenAnzeigenToolStripMenuItem});
             this.kundenToolStripMenuItem.Name = "kundenToolStripMenuItem";
             this.kundenToolStripMenuItem.Size = new System.Drawing.Size(60, 20);
             this.kundenToolStripMenuItem.Text = "Kunden";
@@ -118,19 +120,18 @@
             this.hilfeToolStripMenuItem.Text = "Hilfe";
             this.hilfeToolStripMenuItem.Click += new System.EventHandler(this.hilfeToolStripMenuItem_Click);
             // 
-            // test
+            // alleKundenAnzeigenToolStripMenuItem
             // 
-            this.test.Location = new System.Drawing.Point(157, 177);
-            this.test.Name = "test";
-            this.test.Size = new System.Drawing.Size(100, 20);
-            this.test.TabIndex = 1;
+            this.alleKundenAnzeigenToolStripMenuItem.Name = "alleKundenAnzeigenToolStripMenuItem";
+            this.alleKundenAnzeigenToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
+            this.alleKundenAnzeigenToolStripMenuItem.Text = "Alle Kunden anzeigen";
+            this.alleKundenAnzeigenToolStripMenuItem.Click += new System.EventHandler(this.alleKundenAnzeigenToolStripMenuItem_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(933, 515);
-            this.Controls.Add(this.test);
             this.Controls.Add(this.menuStrip1);
             this.Name = "MainForm";
             this.Text = "Backoffice";
@@ -153,7 +154,7 @@
         private System.Windows.Forms.ToolStripMenuItem rechnungenToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem berichteToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem hilfeToolStripMenuItem;
-        private System.Windows.Forms.TextBox test;
+        private System.Windows.Forms.ToolStripMenuItem alleKundenAnzeigenToolStripMenuItem;
 
     }
 }

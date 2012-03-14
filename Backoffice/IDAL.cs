@@ -14,9 +14,9 @@ namespace Backoffice
         void deleteKunde(Kunde k);
         List<Kunde> getKundeViewList();
 
-        void saveProjekt(Projekte p);
-        void deleteProjekt(Projekte p);
-        List<Projekte> getProjektViewList();
+        void saveProjekt(Projekt p);
+        void deleteProjekt(Projekt p);
+        List<Projekt> getProjektViewList();
 
 
     }

@@ -1,4 +1,4 @@
-﻿using System;
+﻿/*using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -103,19 +103,19 @@ namespace Backoffice
  
         }
 
-        public void saveProjekt(Projekte p)
+        public void saveProjekt(Projekt p)
         {
             throw new NotImplementedException();
         }
 
-        public void deleteProjekt(Projekte p)
+        public void deleteProjekt(Projekt p)
         {
             throw new NotImplementedException();
         }
 
-        public List<Projekte> getProjektViewList()
+        public List<Projekt> getProjektViewList()
         {
             throw new NotImplementedException();
         }
     }
-}
+}*/

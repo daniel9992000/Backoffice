@@ -7,10 +7,11 @@ namespace Backoffice
 {
     public enum ObjectStates
     {
-        New, modified, unmodified, delete 
+        New, Modified, Unmodified, Deleted 
 
     }
-    class Business_Layer
+
+    class BL
     {
 
     }
