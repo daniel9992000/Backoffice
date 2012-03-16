@@ -37,5 +37,10 @@ namespace Backoffice
         {
             DisplayUserControl(uc_kundenAnzeigen);
         }
+
+        private void neuerKundeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

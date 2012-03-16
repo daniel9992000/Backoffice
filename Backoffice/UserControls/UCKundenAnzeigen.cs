@@ -24,7 +24,8 @@ namespace Backoffice.UserControls
                 ListViewItem i = lv_kunden.Items.Add(tmp.Kundenid.ToString());
                 i.Tag = tmp;
                 i.SubItems.Add(tmp.Vorname);
-                i.SubItems.Add(tmp.Nachname);                
+                i.SubItems.Add(tmp.Nachname);
+                i.SubItems.Add(tmp.Email);
             }
         }
 

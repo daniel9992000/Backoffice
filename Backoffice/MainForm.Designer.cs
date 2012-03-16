@@ -40,6 +40,7 @@
             this.hilfeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.uc_kundenAnzeigen = new Backoffice.UserControls.UCKundenAnzeigen();
+            this.neuerKundeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -62,7 +63,8 @@
             // kundenToolStripMenuItem
             // 
             this.kundenToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.alleKundenAnzeigenToolStripMenuItem});
+            this.alleKundenAnzeigenToolStripMenuItem,
+            this.neuerKundeToolStripMenuItem});
             this.kundenToolStripMenuItem.Name = "kundenToolStripMenuItem";
             this.kundenToolStripMenuItem.Size = new System.Drawing.Size(60, 20);
             this.kundenToolStripMenuItem.Text = "Kunden";
@@ -133,8 +135,16 @@
             this.uc_kundenAnzeigen.Dock = System.Windows.Forms.DockStyle.Fill;
             this.uc_kundenAnzeigen.Location = new System.Drawing.Point(0, 24);
             this.uc_kundenAnzeigen.Name = "uc_kundenAnzeigen";
+            this.uc_kundenAnzeigen.Padding = new System.Windows.Forms.Padding(10);
             this.uc_kundenAnzeigen.Size = new System.Drawing.Size(933, 491);
             this.uc_kundenAnzeigen.TabIndex = 1;
+            // 
+            // neuerKundeToolStripMenuItem
+            // 
+            this.neuerKundeToolStripMenuItem.Name = "neuerKundeToolStripMenuItem";
+            this.neuerKundeToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
+            this.neuerKundeToolStripMenuItem.Text = "Neuer Kunde";
+            this.neuerKundeToolStripMenuItem.Click += new System.EventHandler(this.neuerKundeToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -166,6 +176,7 @@
         private System.Windows.Forms.ToolStripMenuItem hilfeToolStripMenuItem;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private UserControls.UCKundenAnzeigen uc_kundenAnzeigen;
+        private System.Windows.Forms.ToolStripMenuItem neuerKundeToolStripMenuItem;
 
 
     }

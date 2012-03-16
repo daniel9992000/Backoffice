@@ -33,9 +33,10 @@
             this.vorname = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.nachname = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.bn_new = new System.Windows.Forms.Button();
-            this.bn_edit = new System.Windows.Forms.Button();
             this.bn_delete = new System.Windows.Forms.Button();
+            this.bn_edit = new System.Windows.Forms.Button();
+            this.bn_new = new System.Windows.Forms.Button();
+            this.email = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -47,7 +48,8 @@
             this.lv_kunden.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.id,
             this.vorname,
-            this.nachname});
+            this.nachname,
+            this.email});
             this.lv_kunden.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lv_kunden.FullRowSelect = true;
             this.lv_kunden.GridLines = true;
@@ -97,15 +99,15 @@
             this.splitContainer1.SplitterDistance = 31;
             this.splitContainer1.TabIndex = 1;
             // 
-            // bn_new
+            // bn_delete
             // 
-            this.bn_new.Location = new System.Drawing.Point(3, 3);
-            this.bn_new.Name = "bn_new";
-            this.bn_new.Size = new System.Drawing.Size(75, 23);
-            this.bn_new.TabIndex = 0;
-            this.bn_new.Text = "Neu";
-            this.bn_new.UseVisualStyleBackColor = true;
-            this.bn_new.Click += new System.EventHandler(this.bn_new_Click);
+            this.bn_delete.Location = new System.Drawing.Point(165, 3);
+            this.bn_delete.Name = "bn_delete";
+            this.bn_delete.Size = new System.Drawing.Size(75, 23);
+            this.bn_delete.TabIndex = 2;
+            this.bn_delete.Text = "Löschen";
+            this.bn_delete.UseVisualStyleBackColor = true;
+            this.bn_delete.Click += new System.EventHandler(this.bn_delete_Click);
             // 
             // bn_edit
             // 
@@ -117,15 +119,19 @@
             this.bn_edit.UseVisualStyleBackColor = true;
             this.bn_edit.Click += new System.EventHandler(this.bn_edit_Click);
             // 
-            // bn_delete
+            // bn_new
             // 
-            this.bn_delete.Location = new System.Drawing.Point(165, 3);
-            this.bn_delete.Name = "bn_delete";
-            this.bn_delete.Size = new System.Drawing.Size(75, 23);
-            this.bn_delete.TabIndex = 2;
-            this.bn_delete.Text = "Löschen";
-            this.bn_delete.UseVisualStyleBackColor = true;
-            this.bn_delete.Click += new System.EventHandler(this.bn_delete_Click);
+            this.bn_new.Location = new System.Drawing.Point(3, 3);
+            this.bn_new.Name = "bn_new";
+            this.bn_new.Size = new System.Drawing.Size(75, 23);
+            this.bn_new.TabIndex = 0;
+            this.bn_new.Text = "Neu";
+            this.bn_new.UseVisualStyleBackColor = true;
+            this.bn_new.Click += new System.EventHandler(this.bn_new_Click);
+            // 
+            // email
+            // 
+            this.email.Text = "Email";
             // 
             // UCKundenAnzeigen
             // 
@@ -154,5 +160,6 @@
         private System.Windows.Forms.Button bn_delete;
         private System.Windows.Forms.Button bn_edit;
         private System.Windows.Forms.Button bn_new;
+        private System.Windows.Forms.ColumnHeader email;
     }
 }

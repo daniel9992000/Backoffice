@@ -27,8 +27,8 @@ namespace Backoffice
         private Mockdb()
         {
             kunden = new List<Kunde>();
-            kunden.Add(new Kunde(1, "Daniel", "Herzog", ObjectStates.Unmodified));
-            kunden.Add(new Kunde(2, "Christoph", "Lindmaier", ObjectStates.Unmodified));
+            kunden.Add(new Kunde(1, "Daniel", "Herzog", "danielherzog@gmx.at", ObjectStates.Unmodified));
+            kunden.Add(new Kunde(2, "Christoph", "Lindmaier", "christoph.lindmaier@gmx.at", ObjectStates.Unmodified));
 
             projekte = new List<Projekt>();
             projekte.Add(new Projekt(1, "Testprojekt", ObjectStates.Unmodified));
@@ -52,6 +52,13 @@ namespace Backoffice
                 kunden[index].Kundenid = k.Kundenid;
                 kunden[index].Vorname = k.Vorname;
                 kunden[index].Nachname = k.Nachname;
+                kunden[index].Email = k.Email;
+                kunden[index].Adresse = k.Adresse;
+                kunden[index].Hausnummer = k.Hausnummer;
+                kunden[index].Plz = k.Plz;
+                kunden[index].Ort = k.Ort;
+                kunden[index].Telefon = k.Telefon;
+                kunden[index].Bemerkungen = k.Bemerkungen;
                 kunden[index].Status = ObjectStates.Unmodified;
             }
         }
