@@ -12,11 +12,23 @@ namespace Backoffice
         string nachname;
         ObjectStates status;
 
+        public Kunde()
+        {
+        }
+
         public Kunde(int kundenid, string vorname, string nachname)
         {
             this.kundenid = kundenid;
             this.vorname = vorname;
             this.nachname = nachname;
+        }
+
+        public Kunde(int kundenid, string vorname, string nachname, ObjectStates status)
+        {
+            this.kundenid = kundenid;
+            this.vorname = vorname;
+            this.nachname = nachname;
+            this.status = status;
         }
        
         public int Kundenid

@@ -28,36 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.dateiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.beendenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.kundenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.alleKundenAnzeigenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.kontakteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.angeboteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.projekteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rechnungenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.berichteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hilfeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.alleKundenAnzeigenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.uc_kundenAnzeigen = new Backoffice.UserControls.UCKundenAnzeigen();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // menuStrip1
-            // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.dateiToolStripMenuItem,
-            this.kundenToolStripMenuItem,
-            this.kontakteToolStripMenuItem,
-            this.angeboteToolStripMenuItem,
-            this.projekteToolStripMenuItem,
-            this.rechnungenToolStripMenuItem,
-            this.berichteToolStripMenuItem,
-            this.hilfeToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(933, 24);
-            this.menuStrip1.TabIndex = 0;
-            this.menuStrip1.Text = "menuStrip1";
             // 
             // dateiToolStripMenuItem
             // 
@@ -82,6 +66,13 @@
             this.kundenToolStripMenuItem.Name = "kundenToolStripMenuItem";
             this.kundenToolStripMenuItem.Size = new System.Drawing.Size(60, 20);
             this.kundenToolStripMenuItem.Text = "Kunden";
+            // 
+            // alleKundenAnzeigenToolStripMenuItem
+            // 
+            this.alleKundenAnzeigenToolStripMenuItem.Name = "alleKundenAnzeigenToolStripMenuItem";
+            this.alleKundenAnzeigenToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
+            this.alleKundenAnzeigenToolStripMenuItem.Text = "Alle Kunden anzeigen";
+            this.alleKundenAnzeigenToolStripMenuItem.Click += new System.EventHandler(this.alleKundenAnzeigenToolStripMenuItem_Click);
             // 
             // kontakteToolStripMenuItem
             // 
@@ -120,18 +111,37 @@
             this.hilfeToolStripMenuItem.Text = "Hilfe";
             this.hilfeToolStripMenuItem.Click += new System.EventHandler(this.hilfeToolStripMenuItem_Click);
             // 
-            // alleKundenAnzeigenToolStripMenuItem
+            // menuStrip1
             // 
-            this.alleKundenAnzeigenToolStripMenuItem.Name = "alleKundenAnzeigenToolStripMenuItem";
-            this.alleKundenAnzeigenToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
-            this.alleKundenAnzeigenToolStripMenuItem.Text = "Alle Kunden anzeigen";
-            this.alleKundenAnzeigenToolStripMenuItem.Click += new System.EventHandler(this.alleKundenAnzeigenToolStripMenuItem_Click);
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.dateiToolStripMenuItem,
+            this.kundenToolStripMenuItem,
+            this.kontakteToolStripMenuItem,
+            this.angeboteToolStripMenuItem,
+            this.projekteToolStripMenuItem,
+            this.rechnungenToolStripMenuItem,
+            this.berichteToolStripMenuItem,
+            this.hilfeToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(933, 24);
+            this.menuStrip1.TabIndex = 0;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // uc_kundenAnzeigen
+            // 
+            this.uc_kundenAnzeigen.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.uc_kundenAnzeigen.Location = new System.Drawing.Point(0, 24);
+            this.uc_kundenAnzeigen.Name = "uc_kundenAnzeigen";
+            this.uc_kundenAnzeigen.Size = new System.Drawing.Size(933, 491);
+            this.uc_kundenAnzeigen.TabIndex = 1;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(933, 515);
+            this.Controls.Add(this.uc_kundenAnzeigen);
             this.Controls.Add(this.menuStrip1);
             this.Name = "MainForm";
             this.Text = "Backoffice";
@@ -144,17 +154,19 @@
 
         #endregion
 
-        private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem dateiToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem beendenToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem kundenToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem alleKundenAnzeigenToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem kontakteToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem angeboteToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem projekteToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem rechnungenToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem berichteToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem hilfeToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem alleKundenAnzeigenToolStripMenuItem;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private UserControls.UCKundenAnzeigen uc_kundenAnzeigen;
+
 
     }
 }

@@ -17,6 +17,13 @@ namespace Backoffice
             this.name = name;
         }
 
+        public Projekt(int projektid, string name, ObjectStates status)
+        {
+            this.projektid = projektid;
+            this.name = name;
+            this.status = status;
+        }
+
         public string Name
         {
             get { return name; }
@@ -27,6 +34,12 @@ namespace Backoffice
         {
             get { return projektid; }
             set { projektid = value; }
+        }
+
+        public ObjectStates Status
+        {
+            get { return status; }
+            set { status = value; }
         }
 
     }

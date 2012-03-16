@@ -10,12 +10,28 @@ namespace Backoffice
         List<Kunde> kunden;
         List<Projekt> projekte;
 
-        public Mockdb()
-        {
-            kunden.Add(new Kunde(1, "Daniel", "Herzog"));
-            kunden.Add(new Kunde(2, "Christoph", "Lindmaier"));
+        private static Mockdb instance = null;
 
-            projekte.Add(new Projekt(1, "Testprojekt"));
+        public static Mockdb Instance
+        {
+            get 
+            {
+                if (instance == null)
+                    instance = new Mockdb();
+
+                return instance;
+            }
+           
+        }
+
+        private Mockdb()
+        {
+            kunden = new List<Kunde>();
+            kunden.Add(new Kunde(1, "Daniel", "Herzog", ObjectStates.Unmodified));
+            kunden.Add(new Kunde(2, "Christoph", "Lindmaier", ObjectStates.Unmodified));
+
+            projekte = new List<Projekt>();
+            projekte.Add(new Projekt(1, "Testprojekt", ObjectStates.Unmodified));
         }
 
         public void buildconnection()
@@ -32,8 +48,7 @@ namespace Backoffice
             }
             else if (k.Status == ObjectStates.Modified)
             {
-                int index;
-                index = kunden.IndexOf(k);
+                int index = kunden.IndexOf(k);
                 kunden[index].Kundenid = k.Kundenid;
                 kunden[index].Vorname = k.Vorname;
                 kunden[index].Nachname = k.Nachname;
@@ -53,17 +68,28 @@ namespace Backoffice
 
         public void saveProjekt(Projekt p)
         {
-            throw new NotImplementedException();
+            if (p.Status == ObjectStates.New)
+            {
+                p.Status = ObjectStates.Unmodified;
+                projekte.Add(p);
+            }
+            else if (p.Status == ObjectStates.Modified)
+            {
+                int index = projekte.IndexOf(p);
+                projekte[index].Projektid = p.Projektid;
+                projekte[index].Name = p.Name;
+                projekte[index].Status = ObjectStates.Unmodified;
+            }
         }
 
         public void deleteProjekt(Projekt p)
         {
-            throw new NotImplementedException();
+            projekte.Remove(p);
         }
 
         public List<Projekt> getProjektViewList()
         {
-            throw new NotImplementedException();
+            return projekte;
         }
     }
 }

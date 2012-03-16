@@ -12,23 +12,15 @@ namespace Backoffice
 {
     public partial class MainForm : Form
     {
-        UserControls.UCKundenAnzeigen ka;
-
         public MainForm()
         {
             InitializeComponent();
-
-            ka = new UserControls.UCKundenAnzeigen();
-            this.Controls.Add(ka);
+            uc_kundenAnzeigen.Hide();
         }
 
         void DisplayUserControl(UserControl uc)
         {
-            foreach (var item in this.Controls)
-            {
-                Type t = item.GetType();
-                MessageBox.Show(t.ToString());
-            }
+            uc.Show();
         }
 
         private void beendenToolStripMenuItem_Click(object sender, EventArgs e)
@@ -43,7 +35,7 @@ namespace Backoffice
 
         private void alleKundenAnzeigenToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DisplayUserControl(ka);
+            DisplayUserControl(uc_kundenAnzeigen);
         }
     }
 }

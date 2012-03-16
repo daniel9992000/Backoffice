@@ -9,7 +9,7 @@ namespace Backoffice
     {
         public static IDAL getDAL()
         {
-            return new Mockdb(); 
+            return Mockdb.Instance;
         }
 
     }
