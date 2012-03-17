@@ -15,7 +15,7 @@ namespace Backoffice
         string hausnummer;
         int plz;
         string ort;
-        int telefon;
+        decimal telefon;
         string bemerkungen;
         ObjectStates status;
 
@@ -145,7 +145,7 @@ namespace Backoffice
             }
         }
 
-        public int Telefon
+        public decimal Telefon
         {
             get { return telefon; }
             set 

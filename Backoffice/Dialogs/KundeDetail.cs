@@ -36,14 +36,26 @@ namespace Backoffice.Dialogs
             tb_email.Text = k.Email;
             tb_adresse.Text = k.Adresse;
             tb_hausnr.Text = k.Hausnummer;
-            tb_plz.Text = k.Plz.ToString();
+
+            if (k.Plz == 0)
+                tb_plz.Text = "";
+            else
+                tb_plz.Text = k.Plz.ToString();
+
             tb_ort.Text = k.Ort;
-            tb_telefon.Text = k.Telefon.ToString();
+
+            if (k.Telefon == 0)
+                tb_telefon.Text = "";
+            else
+                tb_telefon.Text = k.Telefon.ToString();
+
             rtb_bemerkungen.Text = k.Bemerkungen;
         }
 
         bool BindFrom()
         {
+            int res1;
+
             if (tb_vorname.Text != "")
             {
                 k.Vorname = tb_vorname.Text;
@@ -55,6 +67,37 @@ namespace Backoffice.Dialogs
                 k.Nachname = tb_nachname.Text;
             }
             else return false;
+
+            if (tb_email.Text != "")
+                k.Email = tb_email.Text;
+            else return false;
+
+            k.Adresse = tb_adresse.Text;
+            k.Hausnummer = tb_hausnr.Text;
+
+            if (Int32.TryParse(tb_plz.Text, out res1))
+                k.Plz = res1;
+            else
+            {
+                if (res1 != 0)
+                    return false;
+                else                
+                    k.Plz = res1;               
+            }
+
+            k.Ort = tb_ort.Text;
+
+            decimal result;
+            if (Decimal.TryParse(tb_telefon.Text, out result))
+                k.Telefon = result;
+            else
+            {
+                if (result != 0)
+                    return false;
+                else
+                    k.Telefon = result;
+            }
+            k.Bemerkungen = rtb_bemerkungen.Text;
 
             if (created) k.Status = ObjectStates.New;
 

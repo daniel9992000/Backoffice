@@ -32,11 +32,15 @@
             this.id = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.vorname = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.nachname = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.email = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.adresse = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.hausnummer = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.plz = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.ort = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.bn_delete = new System.Windows.Forms.Button();
             this.bn_edit = new System.Windows.Forms.Button();
             this.bn_new = new System.Windows.Forms.Button();
-            this.email = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -49,7 +53,11 @@
             this.id,
             this.vorname,
             this.nachname,
-            this.email});
+            this.email,
+            this.adresse,
+            this.hausnummer,
+            this.plz,
+            this.ort});
             this.lv_kunden.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lv_kunden.FullRowSelect = true;
             this.lv_kunden.GridLines = true;
@@ -60,6 +68,7 @@
             this.lv_kunden.TabIndex = 0;
             this.lv_kunden.UseCompatibleStateImageBehavior = false;
             this.lv_kunden.View = System.Windows.Forms.View.Details;
+            this.lv_kunden.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.lv_kunden_ColumnClick);
             this.lv_kunden.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lv_kunden_MouseDoubleClick);
             // 
             // id
@@ -76,6 +85,30 @@
             // 
             this.nachname.Text = "Nachname";
             this.nachname.Width = 111;
+            // 
+            // email
+            // 
+            this.email.Text = "Email";
+            this.email.Width = 130;
+            // 
+            // adresse
+            // 
+            this.adresse.Text = "Adresse";
+            this.adresse.Width = 90;
+            // 
+            // hausnummer
+            // 
+            this.hausnummer.Text = "Hausnummer";
+            // 
+            // plz
+            // 
+            this.plz.Text = "PLZ";
+            this.plz.Width = 40;
+            // 
+            // ort
+            // 
+            this.ort.Text = "Ort";
+            this.ort.Width = 100;
             // 
             // splitContainer1
             // 
@@ -129,10 +162,6 @@
             this.bn_new.UseVisualStyleBackColor = true;
             this.bn_new.Click += new System.EventHandler(this.bn_new_Click);
             // 
-            // email
-            // 
-            this.email.Text = "Email";
-            // 
             // UCKundenAnzeigen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -161,5 +190,9 @@
         private System.Windows.Forms.Button bn_edit;
         private System.Windows.Forms.Button bn_new;
         private System.Windows.Forms.ColumnHeader email;
+        private System.Windows.Forms.ColumnHeader adresse;
+        private System.Windows.Forms.ColumnHeader hausnummer;
+        private System.Windows.Forms.ColumnHeader plz;
+        private System.Windows.Forms.ColumnHeader ort;
     }
 }

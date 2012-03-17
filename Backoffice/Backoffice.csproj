@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BL.cs" />
+    <Compile Include="ColumnSorter.cs" />
     <Compile Include="DALFactory.cs" />
     <Compile Include="Dialogs\KundeDetail.cs">
       <SubType>Form</SubType>
