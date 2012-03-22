@@ -1,4 +1,4 @@
-﻿/*using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,10 +8,11 @@ using System.Windows.Forms;
 namespace Backoffice
 {
     public class LocalDB:IDAL
-    {   
+    {
         NpgsqlConnection conn;
         public void buildconnection()
         {
+           
             try
             {
                 // PostgeSQL-style connection string
@@ -30,7 +31,7 @@ namespace Backoffice
 
         public string testabfrage ()
         {   
-            string ergebnis = "";  
+            string ergebnis = "";
             try 
             {
                 buildconnection();
@@ -59,7 +60,36 @@ namespace Backoffice
 
         public void saveKunde(Kunde k)
         {
-            throw new NotImplementedException();
+            buildconnection();
+            List<Kunde> klist = new List<Kunde>();
+            NpgsqlCommand comm = null;
+            //if (k.Status == ObjectStates.New)
+            try
+            {
+                string sql = "Insert into kunden values (nextval('kunden_seq'),@nachname,@vorname,@email,@adresse,@hausnummer,@plz,@ort,@telefon,@bemerkungen)";
+                comm = new NpgsqlCommand(sql, conn);
+                comm.Parameters.AddWithValue("@nachname", k.Nachname);
+                comm.Parameters.AddWithValue("@vorname", k.Vorname);
+                comm.Parameters.AddWithValue("@email", k.Email);
+                comm.Parameters.AddWithValue("@adresse", k.Adresse);
+                comm.Parameters.AddWithValue("@hausnummer", k.Hausnummer);
+                comm.Parameters.AddWithValue("@plz", k.Plz);
+                comm.Parameters.AddWithValue("@ort", k.Ort);
+                comm.Parameters.AddWithValue("@telefon", k.Telefon);
+                comm.Parameters.AddWithValue("@bemerkungen", k.Bemerkungen);
+                comm.Prepare();
+                comm.ExecuteNonQuery();
+            }
+            catch (NpgsqlException exp)
+            {
+                MessageBox.Show(exp.Message.ToString());
+            }
+            finally
+            {
+               
+                comm.Dispose();
+                conn.Close();
+            }
         }
 
         public void deleteKunde(Kunde k)
@@ -75,15 +105,22 @@ namespace Backoffice
             NpgsqlDataReader reader = null;
             try
             {
-                string sql = "Select * from Kunde;";
+                string sql = "Select * from kunden;";
                 comm = new NpgsqlCommand(sql, conn);             
                 reader = comm.ExecuteReader();
                 while (reader.Read())
                 {
                     Kunde k = new Kunde();
                     k.Kundenid = reader.GetInt32(0);
-                    k.Vorname = reader["vorname"].ToString();
-                    k.Nachname = reader["nachname"].ToString();
+                    k.Vorname = reader["vorname"].ToString().Trim();
+                    k.Nachname = reader["nachname"].ToString().Trim();
+                    k.Email = reader["email"].ToString().Trim(); ;
+                    k.Adresse = reader["adresse"].ToString().Trim();
+                    k.Hausnummer = reader["hausnummer"].ToString().Trim();
+                    k.Plz = reader.GetInt32(6);
+                    k.Ort = reader["ort"].ToString().Trim();
+                    k.Telefon = reader.GetInt32(8);
+                    k.Bemerkungen = reader["bemerkungen"].ToString().Trim();
                     klist.Add(k);
                 }
                
@@ -118,4 +155,4 @@ namespace Backoffice
             throw new NotImplementedException();
         }
     }
-}*/
+}
