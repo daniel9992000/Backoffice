@@ -31,7 +31,13 @@ namespace Backoffice
         public string Name
         {
             get { return name; }
-            set { name = value; }
+            set {
+                    if (name != value)
+                    { 
+                        name = value;
+                        status = ObjectStates.Modified;
+                    }
+                }
         }
 
         public int Projektid

@@ -42,7 +42,7 @@ namespace Backoffice.Dialogs
             }
             else return false;
 
-            if (created) p.Status = ObjectStates.New;
+            if (created == true) p.Status = ObjectStates.New;
             return true;
         }
 

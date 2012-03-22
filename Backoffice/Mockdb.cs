@@ -44,6 +44,7 @@ namespace Backoffice
             if (k.Status == ObjectStates.New)
             {
                 k.Status = ObjectStates.Unmodified;
+                k.Kundenid = kunden.Count + 1;
                 kunden.Add(k);
             }
             else if (k.Status == ObjectStates.Modified)
@@ -78,6 +79,7 @@ namespace Backoffice
             if (p.Status == ObjectStates.New)
             {
                 p.Status = ObjectStates.Unmodified;
+                p.Projektid = projekte.Count + 1;
                 projekte.Add(p);
             }
             else if (p.Status == ObjectStates.Modified)

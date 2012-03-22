@@ -39,7 +39,8 @@ namespace Backoffice
                 string sql = "";
                 if (k.Status == ObjectStates.New)
                 {
-                    sql = "Insert into kunden values (nextval('kunden_seq'),@nachname,@vorname,@email,@adresse,@hausnummer,@plz,@ort,@telefon,@bemerkungen)"; 
+                    sql = @"Insert into kunden (nachname,vorname,email,adresse,hausnummer,plz,ort,telefon,bemerkungen) 
+                            values (@nachname,@vorname,@email,@adresse,@hausnummer,@plz,@ort,@telefon,@bemerkungen)"; 
                     comm = new NpgsqlCommand(sql, conn);
                 }
                 else if (k.Status == ObjectStates.Modified)
@@ -149,12 +150,12 @@ namespace Backoffice
                 string sql = "";
                 if (p.Status == ObjectStates.New)
                 {
-                    sql = "Insert into projekte values (nextval('projekt_seq'),@name)";
+                    sql = "Insert into projekte (name) values (@name)";
                     comm = new NpgsqlCommand(sql, conn);
                 }
                 else if (p.Status == ObjectStates.Modified)
                 {
-                    sql = @"Update projekt set name = @name where projektid = @projektid";
+                    sql = @"Update projekte set name = @name where projektid = @projektid";
                     comm = new NpgsqlCommand(sql, conn);
                     comm.Parameters.AddWithValue("@projektid", p.Projektid);
                 }
