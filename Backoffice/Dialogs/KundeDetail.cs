@@ -121,5 +121,10 @@ namespace Backoffice.Dialogs
         {
             Save();
         }
+
+        private void bn_cancel_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

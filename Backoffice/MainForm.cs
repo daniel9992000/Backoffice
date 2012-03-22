@@ -16,6 +16,7 @@ namespace Backoffice
         {
             InitializeComponent();
             uc_kundenAnzeigen.Hide();
+            ucProjekteAnzeigen1.Hide();
         }
 
         void DisplayUserControl(UserControl uc)
@@ -35,12 +36,19 @@ namespace Backoffice
 
         private void alleKundenAnzeigenToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            ucProjekteAnzeigen1.Hide();
             DisplayUserControl(uc_kundenAnzeigen);
         }
 
         private void neuerKundeToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void projekteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            uc_kundenAnzeigen.Hide();
+            DisplayUserControl(ucProjekteAnzeigen1);
         }
     }
 }

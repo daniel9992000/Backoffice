@@ -26,5 +26,20 @@ namespace Backoffice
         {
             DALFactory.getDAL().deleteKunde(k);
         }
+
+        public static List<Projekt> getProjekte()
+        {
+            return DALFactory.getDAL().getProjektViewList();
+        }
+
+        public static void saveProjekt(Projekt p)
+        {
+            DALFactory.getDAL().saveProjekt(p);
+        }
+
+        public static void deleteProjekt(Projekt p)
+        {
+            DALFactory.getDAL().deleteProjekt(p);
+        }
     }
 }

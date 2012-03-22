@@ -11,6 +11,10 @@ namespace Backoffice
         string name;
         ObjectStates status;
 
+        public Projekt()
+        {
+        }
+
         public Projekt(int projektid, string name)
         {
             this.projektid = projektid;

@@ -32,6 +32,7 @@
             this.beendenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.kundenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.alleKundenAnzeigenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.neuerKundeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.kontakteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.angeboteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.projekteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -40,7 +41,7 @@
             this.hilfeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.uc_kundenAnzeigen = new Backoffice.UserControls.UCKundenAnzeigen();
-            this.neuerKundeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ucProjekteAnzeigen1 = new Backoffice.UserControls.UCProjekteAnzeigen();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -76,6 +77,13 @@
             this.alleKundenAnzeigenToolStripMenuItem.Text = "Alle Kunden anzeigen";
             this.alleKundenAnzeigenToolStripMenuItem.Click += new System.EventHandler(this.alleKundenAnzeigenToolStripMenuItem_Click);
             // 
+            // neuerKundeToolStripMenuItem
+            // 
+            this.neuerKundeToolStripMenuItem.Name = "neuerKundeToolStripMenuItem";
+            this.neuerKundeToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
+            this.neuerKundeToolStripMenuItem.Text = "Neuer Kunde";
+            this.neuerKundeToolStripMenuItem.Click += new System.EventHandler(this.neuerKundeToolStripMenuItem_Click);
+            // 
             // kontakteToolStripMenuItem
             // 
             this.kontakteToolStripMenuItem.Name = "kontakteToolStripMenuItem";
@@ -93,6 +101,7 @@
             this.projekteToolStripMenuItem.Name = "projekteToolStripMenuItem";
             this.projekteToolStripMenuItem.Size = new System.Drawing.Size(62, 20);
             this.projekteToolStripMenuItem.Text = "Projekte";
+            this.projekteToolStripMenuItem.Click += new System.EventHandler(this.projekteToolStripMenuItem_Click);
             // 
             // rechnungenToolStripMenuItem
             // 
@@ -139,18 +148,20 @@
             this.uc_kundenAnzeigen.Size = new System.Drawing.Size(933, 491);
             this.uc_kundenAnzeigen.TabIndex = 1;
             // 
-            // neuerKundeToolStripMenuItem
+            // ucProjekteAnzeigen1
             // 
-            this.neuerKundeToolStripMenuItem.Name = "neuerKundeToolStripMenuItem";
-            this.neuerKundeToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
-            this.neuerKundeToolStripMenuItem.Text = "Neuer Kunde";
-            this.neuerKundeToolStripMenuItem.Click += new System.EventHandler(this.neuerKundeToolStripMenuItem_Click);
+            this.ucProjekteAnzeigen1.Location = new System.Drawing.Point(0, 27);
+            this.ucProjekteAnzeigen1.Name = "ucProjekteAnzeigen1";
+            this.ucProjekteAnzeigen1.Padding = new System.Windows.Forms.Padding(10);
+            this.ucProjekteAnzeigen1.Size = new System.Drawing.Size(404, 395);
+            this.ucProjekteAnzeigen1.TabIndex = 2;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(933, 515);
+            this.Controls.Add(this.ucProjekteAnzeigen1);
             this.Controls.Add(this.uc_kundenAnzeigen);
             this.Controls.Add(this.menuStrip1);
             this.Name = "MainForm";
@@ -177,6 +188,7 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private UserControls.UCKundenAnzeigen uc_kundenAnzeigen;
         private System.Windows.Forms.ToolStripMenuItem neuerKundeToolStripMenuItem;
+        private UserControls.UCProjekteAnzeigen ucProjekteAnzeigen1;
 
 
     }

@@ -64,7 +64,7 @@ namespace Backoffice
         }
 
         public void deleteKunde(Kunde k)
-        {
+        {   
             kunden.Remove(k);
         }
 

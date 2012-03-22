@@ -12,7 +12,7 @@ namespace Backoffice
         NpgsqlConnection conn;
         public void buildconnection()
         {
-           
+
             try
             {
                 // PostgeSQL-style connection string
@@ -23,51 +23,32 @@ namespace Backoffice
                 // Making connection with Npgsql provider
                 conn = new NpgsqlConnection(connstring);
                 conn.Open();
-            }catch (Exception exp)
+            }
+            catch (Exception exp)
             {
-                MessageBox .Show(exp.Message.ToString());
+                MessageBox.Show(exp.Message.ToString());
             }
         }
-
-        public string testabfrage ()
-        {   
-            string ergebnis = "";
-            try 
-            {
-                buildconnection();
-                string sql = "SELECT * FROM Kunden;";
-                // data adapter making request from our connection
-                NpgsqlCommand allausrg = new NpgsqlCommand(sql,conn);
-                allausrg.CommandType = System.Data.CommandType.Text;
-                NpgsqlDataReader readausgrg;
-                readausgrg = allausrg.ExecuteReader();
-                while (readausgrg.Read())
-                {
-                    ergebnis = readausgrg["nachname"].ToString();
-                   
-                }
-                conn.Close();
-            }  
-            catch (Exception msg)
-            {
-                MessageBox.Show(msg.Message.ToString());  
-               
-            }
-            return ergebnis;
-        }
-
-
 
         public void saveKunde(Kunde k)
         {
             buildconnection();
-            List<Kunde> klist = new List<Kunde>();
             NpgsqlCommand comm = null;
-            //if (k.Status == ObjectStates.New)
             try
             {
-                string sql = "Insert into kunden values (nextval('kunden_seq'),@nachname,@vorname,@email,@adresse,@hausnummer,@plz,@ort,@telefon,@bemerkungen)";
-                comm = new NpgsqlCommand(sql, conn);
+                string sql = "";
+                if (k.Status == ObjectStates.New)
+                {
+                    sql = "Insert into kunden values (nextval('kunden_seq'),@nachname,@vorname,@email,@adresse,@hausnummer,@plz,@ort,@telefon,@bemerkungen)"; 
+                    comm = new NpgsqlCommand(sql, conn);
+                }
+                else if (k.Status == ObjectStates.Modified)
+                {
+                    sql = @"Update kunden set nachname = @nachname, vorname = @vorname, email=@email, adresse = @adresse, hausnummer = @hausnummer, 
+                            plz = @plz, ort = @ort, telefon = @telefon, bemerkungen = @bemerkungen where kundenid = @kundenid";
+                    comm = new NpgsqlCommand(sql, conn);
+                    comm.Parameters.AddWithValue("@kundenid", k.Kundenid);  
+                }   
                 comm.Parameters.AddWithValue("@nachname", k.Nachname);
                 comm.Parameters.AddWithValue("@vorname", k.Vorname);
                 comm.Parameters.AddWithValue("@email", k.Email);
@@ -79,6 +60,7 @@ namespace Backoffice
                 comm.Parameters.AddWithValue("@bemerkungen", k.Bemerkungen);
                 comm.Prepare();
                 comm.ExecuteNonQuery();
+                k.Status = ObjectStates.Unmodified;
             }
             catch (NpgsqlException exp)
             {
@@ -86,7 +68,6 @@ namespace Backoffice
             }
             finally
             {
-               
                 comm.Dispose();
                 conn.Close();
             }
@@ -94,7 +75,26 @@ namespace Backoffice
 
         public void deleteKunde(Kunde k)
         {
-            throw new NotImplementedException();
+            buildconnection();
+            NpgsqlCommand comm = null;
+            try
+            {
+                string sql = "Delete from kunden where kundenid = @kundenid";
+                comm = new NpgsqlCommand(sql, conn);
+                comm.Parameters.AddWithValue("@kundenid", k.Kundenid);
+                comm.Prepare();
+                comm.ExecuteNonQuery();
+                k.Status = ObjectStates.Deleted;
+            }
+            catch (NpgsqlException exp)
+            {
+                MessageBox.Show(exp.Message.ToString());
+            }
+            finally
+            {
+                comm.Dispose();
+                conn.Close();
+            }
         }
 
         public List<Kunde> getKundeViewList()
@@ -119,7 +119,7 @@ namespace Backoffice
                     k.Hausnummer = reader["hausnummer"].ToString().Trim();
                     k.Plz = reader.GetInt32(6);
                     k.Ort = reader["ort"].ToString().Trim();
-                    k.Telefon = reader.GetInt32(8);
+                    k.Telefon = reader.GetInt64(8);
                     k.Bemerkungen = reader["bemerkungen"].ToString().Trim();
                     klist.Add(k);
                 }
@@ -142,17 +142,94 @@ namespace Backoffice
 
         public void saveProjekt(Projekt p)
         {
-            throw new NotImplementedException();
+            buildconnection();
+            NpgsqlCommand comm = null;
+            try
+            {
+                string sql = "";
+                if (p.Status == ObjectStates.New)
+                {
+                    sql = "Insert into projekte values (nextval('projekt_seq'),@name)";
+                    comm = new NpgsqlCommand(sql, conn);
+                }
+                else if (p.Status == ObjectStates.Modified)
+                {
+                    sql = @"Update projekt set name = @name where projektid = @projektid";
+                    comm = new NpgsqlCommand(sql, conn);
+                    comm.Parameters.AddWithValue("@projektid", p.Projektid);
+                }
+                comm.Parameters.AddWithValue("@name", p.Name);
+                comm.Prepare();
+                comm.ExecuteNonQuery();
+                p.Status = ObjectStates.Unmodified;
+            }
+            catch (NpgsqlException exp)
+            {
+                MessageBox.Show(exp.Message.ToString());
+            }
+            finally
+            {
+                comm.Dispose();
+                conn.Close();
+            }
         }
 
         public void deleteProjekt(Projekt p)
         {
-            throw new NotImplementedException();
+            buildconnection();
+            NpgsqlCommand comm = null;
+            try
+            {
+                string sql = "Delete from projekte where projektid = @projektid";
+                comm = new NpgsqlCommand(sql, conn);
+                comm.Parameters.AddWithValue("@projektid", p.Projektid);
+                comm.Prepare();
+                comm.ExecuteNonQuery();
+                p.Status = ObjectStates.Deleted;
+            }
+            catch (NpgsqlException exp)
+            {
+                MessageBox.Show(exp.Message.ToString());
+            }
+            finally
+            {
+                comm.Dispose();
+                conn.Close();
+            }
         }
 
         public List<Projekt> getProjektViewList()
         {
-            throw new NotImplementedException();
+            buildconnection();
+            List<Projekt> plist = new List<Projekt>();
+            NpgsqlCommand comm = null;
+            NpgsqlDataReader reader = null;
+            try
+            {
+                string sql = "Select * from projekte;";
+                comm = new NpgsqlCommand(sql, conn);
+                reader = comm.ExecuteReader();
+                while (reader.Read())
+                {
+                    Projekt p = new Projekt();
+                    p.Projektid = reader.GetInt32(0);
+                    p.Name = reader["name"].ToString().Trim();
+                    plist.Add(p);
+                }
+
+            }
+            catch (NpgsqlException exp)
+            {
+                MessageBox.Show(exp.Message.ToString());
+            }
+            finally
+            {
+                reader.Close();
+                comm.Dispose();
+                conn.Close();
+            }
+
+            return plist;
         }
     }
 }
