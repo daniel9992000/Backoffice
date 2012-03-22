@@ -60,6 +60,7 @@
             // 
             // tb_id
             // 
+            this.tb_id.Enabled = false;
             this.tb_id.Location = new System.Drawing.Point(112, 35);
             this.tb_id.Name = "tb_id";
             this.tb_id.Size = new System.Drawing.Size(100, 20);
@@ -85,6 +86,7 @@
             // 
             // bn_save
             // 
+            this.bn_save.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.bn_save.Location = new System.Drawing.Point(159, 248);
             this.bn_save.Name = "bn_save";
             this.bn_save.Size = new System.Drawing.Size(75, 23);

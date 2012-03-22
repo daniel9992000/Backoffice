@@ -99,6 +99,7 @@
             this.ID,
             this.Projektname});
             this.lv_projekte.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lv_projekte.FullRowSelect = true;
             this.lv_projekte.GridLines = true;
             this.lv_projekte.Location = new System.Drawing.Point(0, 0);
             this.lv_projekte.Margin = new System.Windows.Forms.Padding(10);
@@ -107,6 +108,7 @@
             this.lv_projekte.TabIndex = 0;
             this.lv_projekte.UseCompatibleStateImageBehavior = false;
             this.lv_projekte.View = System.Windows.Forms.View.Details;
+            this.lv_projekte.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lv_projekte_MouseDoubleClick);
             // 
             // ID
             // 
