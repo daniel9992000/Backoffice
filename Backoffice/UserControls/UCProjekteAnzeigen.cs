@@ -11,13 +11,9 @@ namespace Backoffice.UserControls
 {
     public partial class UCProjekteAnzeigen : UserControl
     {
-        ColumnSorter sorter;
-
         public UCProjekteAnzeigen()
         {
             InitializeComponent();
-            sorter = new ColumnSorter();
-            this.lv_projekte.ListViewItemSorter = sorter;
         }
 
         void BindTo()

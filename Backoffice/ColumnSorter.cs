@@ -9,63 +9,26 @@ namespace Backoffice
 {
     class ColumnSorter : IComparer
     {
-        int columnToSort;
-        SortOrder orderOfSort;
-        CaseInsensitiveComparer objectCompare;
+        int col;
+        SortOrder order;
 
-        public int SortColum
+        public ColumnSorter(int col, SortOrder order)
         {
-            get
-            {
-                return columnToSort;
-            }
-            set
-            {
-                columnToSort = value;
-            }
-        }
-
-        public SortOrder Order
-        {
-            get
-            {
-                return orderOfSort;
-            }
-            set
-            {
-                orderOfSort = value;
-            }
-        }
-
-        public ColumnSorter()
-        {
-            this.columnToSort = 0;
-            this.orderOfSort = SortOrder.None;
-            this.objectCompare = new CaseInsensitiveComparer();
+            this.col = col;
+            this.order = order;
         }
 
         public int Compare(object x, object y)
         {
-            int result;
-            ListViewItem lvx, lvy;
+            ListViewItem item1, item2;
 
-            lvx = (ListViewItem)x;
-            lvy = (ListViewItem)y;
+            item1 = (ListViewItem)x;
+            item2 = (ListViewItem)y;
 
-            result = objectCompare.Compare(lvx.SubItems[columnToSort].Text, lvy.SubItems[columnToSort].Text);
-
-            if (orderOfSort == SortOrder.Ascending)
-            {
-                return result;
-            }
-            else if (orderOfSort == SortOrder.Descending)
-            {
-                return (-result);
-            }
+            if (this.order == SortOrder.Ascending)
+                return item1.SubItems[col].Text.CompareTo(item2.SubItems[col].Text);
             else
-            {
-                return 0;
-            }
+                return item2.SubItems[col].Text.CompareTo(item1.SubItems[col].Text);
 
         }
     }

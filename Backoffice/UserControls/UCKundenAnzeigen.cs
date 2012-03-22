@@ -10,14 +10,10 @@ using System.Windows.Forms;
 namespace Backoffice.UserControls
 {
     public partial class UCKundenAnzeigen : UserControl
-    {
-        ColumnSorter sorter; 
-
+    {        
         public UCKundenAnzeigen()
         {
             InitializeComponent();
-            sorter = new ColumnSorter();
-            this.lv_kunden.ListViewItemSorter = sorter;
         }
 
         void BindTo()
@@ -42,14 +38,14 @@ namespace Backoffice.UserControls
         }
         void NewKunde()
         {
-            Dialogs.KundeDetail tmp = new Dialogs.KundeDetail();
+            var tmp = new Dialogs.KundeDetail();
             if (tmp.ShowDialog() == DialogResult.OK)
                 BindTo();
         }
 
         void EditKunde(Kunde k)
         {
-            Dialogs.KundeDetail tmp = new Dialogs.KundeDetail(k);
+            var tmp = new Dialogs.KundeDetail(k);
             if (tmp.ShowDialog() == DialogResult.OK)
             {
                 BindTo();
@@ -95,7 +91,16 @@ namespace Backoffice.UserControls
 
         private void lv_kunden_ColumnClick(object sender, ColumnClickEventArgs e)
         {
-            
+            if (lv_kunden.Sorting == SortOrder.Ascending)
+            {
+                lv_kunden.Sorting = SortOrder.Descending;
+                lv_kunden.ListViewItemSorter = new ColumnSorter(e.Column, SortOrder.Descending);
+            }
+            else
+            {
+                lv_kunden.Sorting = SortOrder.Ascending;
+                lv_kunden.ListViewItemSorter = new ColumnSorter(e.Column, SortOrder.Ascending);
+            }
         }
     }
 }
