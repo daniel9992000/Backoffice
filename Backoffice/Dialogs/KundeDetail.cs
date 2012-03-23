@@ -75,28 +75,17 @@ namespace Backoffice.Dialogs
             k.Adresse = tb_adresse.Text;
             k.Hausnummer = tb_hausnr.Text;
 
-            if (Int32.TryParse(tb_plz.Text, out res1))
+            if (Int32.TryParse(tb_plz.Text, out res1) || tb_plz.Text == "")
                 k.Plz = res1;
-            else
-            {
-                if (res1 != 0)
-                    return false;
-                else                
-                    k.Plz = res1;               
-            }
+            else return false;
 
             k.Ort = tb_ort.Text;
 
             decimal result;
-            if (Decimal.TryParse(tb_telefon.Text, out result))
+            if (Decimal.TryParse(tb_telefon.Text, out result) || tb_telefon.Text == "")
                 k.Telefon = result;
-            else
-            {
-                if (result != 0)
-                    return false;
-                else
-                    k.Telefon = result;
-            }
+            else return false;
+               
             k.Bemerkungen = rtb_bemerkungen.Text;
 
             if (created) k.Status = ObjectStates.New;
@@ -109,6 +98,8 @@ namespace Backoffice.Dialogs
             if (BindFrom())
             {
                 BL.saveKunde(k);
+                this.Close();
+                this.DialogResult = System.Windows.Forms.DialogResult.OK;
             }
         }
 

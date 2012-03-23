@@ -18,8 +18,11 @@ namespace Backoffice
                 // PostgeSQL-style connection string
                 string connstring = String.Format("Server={0};Port={1};" +
                     "User Id={2};Password={3};Database={4};",
-                    "localhost", 5432, "swe",
-                    "swe", "EPU_SWE2");
+                    Properties.Settings.Default.DatabaseServer, 
+                    Properties.Settings.Default.DatabasePort,
+                    Properties.Settings.Default.DatabaseUser,
+                    Properties.Settings.Default.DatabasePassword,
+                    Properties.Settings.Default.Database);
                 // Making connection with Npgsql provider
                 conn = new NpgsqlConnection(connstring);
                 conn.Open();

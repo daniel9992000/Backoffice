@@ -59,7 +59,6 @@
             // 
             // bn_save
             // 
-            this.bn_save.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.bn_save.Location = new System.Drawing.Point(542, 329);
             this.bn_save.Name = "bn_save";
             this.bn_save.Size = new System.Drawing.Size(75, 23);

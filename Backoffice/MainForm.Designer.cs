@@ -40,8 +40,8 @@
             this.berichteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hilfeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.uc_kundenAnzeigen = new Backoffice.UserControls.UCKundenAnzeigen();
             this.ucProjekteAnzeigen1 = new Backoffice.UserControls.UCProjekteAnzeigen();
+            this.uc_kundenAnzeigen = new Backoffice.UserControls.UCKundenAnzeigen();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -139,6 +139,15 @@
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
+            // ucProjekteAnzeigen1
+            // 
+            this.ucProjekteAnzeigen1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucProjekteAnzeigen1.Location = new System.Drawing.Point(0, 24);
+            this.ucProjekteAnzeigen1.Name = "ucProjekteAnzeigen1";
+            this.ucProjekteAnzeigen1.Padding = new System.Windows.Forms.Padding(10);
+            this.ucProjekteAnzeigen1.Size = new System.Drawing.Size(933, 491);
+            this.ucProjekteAnzeigen1.TabIndex = 2;
+            // 
             // uc_kundenAnzeigen
             // 
             this.uc_kundenAnzeigen.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -147,14 +156,6 @@
             this.uc_kundenAnzeigen.Padding = new System.Windows.Forms.Padding(10);
             this.uc_kundenAnzeigen.Size = new System.Drawing.Size(933, 491);
             this.uc_kundenAnzeigen.TabIndex = 1;
-            // 
-            // ucProjekteAnzeigen1
-            // 
-            this.ucProjekteAnzeigen1.Location = new System.Drawing.Point(0, 27);
-            this.ucProjekteAnzeigen1.Name = "ucProjekteAnzeigen1";
-            this.ucProjekteAnzeigen1.Padding = new System.Windows.Forms.Padding(10);
-            this.ucProjekteAnzeigen1.Size = new System.Drawing.Size(404, 395);
-            this.ucProjekteAnzeigen1.TabIndex = 2;
             // 
             // MainForm
             // 

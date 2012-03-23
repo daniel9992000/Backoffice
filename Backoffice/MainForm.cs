@@ -10,18 +10,33 @@ using System.Windows.Forms;
 
 namespace Backoffice
 {
+    
     public partial class MainForm : Form
     {
+        List<UserControl> guiControls;
+
         public MainForm()
         {
             InitializeComponent();
-            uc_kundenAnzeigen.Hide();
-            ucProjekteAnzeigen1.Hide();
+            guiControls = new List<UserControl>();
+            guiControls.Add(uc_kundenAnzeigen);
+            guiControls.Add(ucProjekteAnzeigen1);
+
+            foreach (var item in guiControls)
+            {
+                item.Hide();
+            }
+            
         }
 
         void DisplayUserControl(UserControl uc)
         {
-            uc.Show();
+            foreach (var item in guiControls)
+            {
+                item.Hide();
+                if (item == uc)
+                    item.Show();
+            }
         }
 
         private void beendenToolStripMenuItem_Click(object sender, EventArgs e)
@@ -35,8 +50,7 @@ namespace Backoffice
         }
 
         private void alleKundenAnzeigenToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ucProjekteAnzeigen1.Hide();
+        {           
             DisplayUserControl(uc_kundenAnzeigen);
         }
 
@@ -46,8 +60,7 @@ namespace Backoffice
         }
 
         private void projekteToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            uc_kundenAnzeigen.Hide();
+        {           
             DisplayUserControl(ucProjekteAnzeigen1);
         }
     }

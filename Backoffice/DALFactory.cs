@@ -9,8 +9,13 @@ namespace Backoffice
     {
         public static IDAL getDAL()
         {
-            return Mockdb.Instance;
-            //return new LocalDB();
+            string datasource = Properties.Settings.Default.DataSource;
+
+            if(datasource.Equals("Mock"))
+                return Mockdb.Instance;
+            else if(datasource.Equals("Postgres"))
+                return new LocalDB();
+            else return Mockdb.Instance;
         }
 
     }

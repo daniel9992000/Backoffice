@@ -51,6 +51,8 @@ namespace Backoffice.Dialogs
             if (BindFrom())
             {
                 BL.saveProjekt(p);
+                this.Close();
+                this.DialogResult = System.Windows.Forms.DialogResult.OK;
             }
         }
 
