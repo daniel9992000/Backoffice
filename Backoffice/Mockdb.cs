@@ -32,7 +32,7 @@ namespace Backoffice
             kunden.Add(new Kunde(2, "Christoph", "Lindmaier", "christoph.lindmaier@gmx.at", ObjectStates.Unmodified));
 
             angebote = new List<Angebot>();
-            angebote.Add(new Angebot(1, 12000.00, DateTime.Today, 200, 80, 1, 1, ObjectStates.Unmodified));
+            angebote.Add(new Angebot(1, "Angebot 1", 12000.00, DateTime.Today, 200, 80, 1, 1, ObjectStates.Unmodified));
 
             projekte = new List<Projekt>();
             projekte.Add(new Projekt(1, "Testprojekt", ObjectStates.Unmodified));
@@ -162,6 +162,19 @@ namespace Backoffice
         public List<Angebot> getAngebotViewList()
         {
             return angebote;
+        }
+
+        public List<Angebot> getKundenAngebote(int kundenid)
+        {
+            List<Angebot> tmp = new List<Angebot>();
+
+            foreach (var item in angebote)
+            {
+                if (item.Kundenid == kundenid)
+                    tmp.Add(item);
+            }
+
+            return tmp;
         }
         #endregion
 

@@ -50,6 +50,15 @@ namespace Backoffice.Dialogs
                 tb_telefon.Text = k.Telefon.ToString();
 
             rtb_bemerkungen.Text = k.Bemerkungen;
+
+            lv_angebote.Items.Clear();
+            foreach (var item in BL.getKundenAngebote(k.Kundenid))
+            {
+                ListViewItem i = lv_angebote.Items.Add(item.Angebotid.ToString());
+                i.Tag = item;
+                i.SubItems.Add(item.Titel);
+                i.SubItems.Add(item.Datum.ToShortDateString());
+            }
         }
 
         bool BindFrom()
@@ -60,7 +69,10 @@ namespace Backoffice.Dialogs
             {
                 k.Vorname = tb_vorname.Text;
             }
-            else return false;
+            else
+            {
+                return false;
+            }
 
             if (tb_nachname.Text != "")
             {
@@ -116,6 +128,11 @@ namespace Backoffice.Dialogs
         private void bn_cancel_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void lv_angebote_DoubleClick(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

@@ -20,6 +20,7 @@ namespace Backoffice
         void saveAngebot(Angebot a);
         void deleteAngebot(Angebot a);
         List<Angebot> getAngebotViewList();
+        List<Angebot> getKundenAngebote(int kundenid);
 
         //Projekte
         void saveProjekt(Projekt p);

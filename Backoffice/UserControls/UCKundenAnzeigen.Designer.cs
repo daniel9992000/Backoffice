@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.lv_kunden = new System.Windows.Forms.ListView();
-            this.id = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.kundenid = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.vorname = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.nachname = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.email = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -50,7 +50,7 @@
             // lv_kunden
             // 
             this.lv_kunden.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.id,
+            this.kundenid,
             this.vorname,
             this.nachname,
             this.email,
@@ -71,10 +71,10 @@
             this.lv_kunden.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.lv_kunden_ColumnClick);
             this.lv_kunden.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lv_kunden_MouseDoubleClick);
             // 
-            // id
+            // kundenid
             // 
-            this.id.Text = "ID";
-            this.id.Width = 51;
+            this.kundenid.Text = "ID";
+            this.kundenid.Width = 51;
             // 
             // vorname
             // 
@@ -182,7 +182,7 @@
         #endregion
 
         private System.Windows.Forms.ListView lv_kunden;
-        private System.Windows.Forms.ColumnHeader id;
+        private System.Windows.Forms.ColumnHeader kundenid;
         private System.Windows.Forms.ColumnHeader vorname;
         private System.Windows.Forms.ColumnHeader nachname;
         private System.Windows.Forms.SplitContainer splitContainer1;

@@ -15,61 +15,162 @@ namespace Backoffice
         #region Kunden
         public static List<Kunde> getKunden()
         {
-            return DALFactory.getDAL().getKundeViewList();
+            List<Kunde> tmp = null;
+            try
+            {
+                tmp = DALFactory.getDAL().getKundeViewList();
+            }
+            catch (DALException ex)
+            {
+                
+            }
+            return tmp;
         }
 
         public static void saveKunde(Kunde k)
         {
-            DALFactory.getDAL().saveKunde(k);
+            try
+            {
+                DALFactory.getDAL().saveKunde(k);
+            }
+            catch (DALException ex)
+            {
+                
+            }            
         }
 
         public static void deleteKunde(Kunde k)
         {
-            DALFactory.getDAL().deleteKunde(k);
+            try
+            {
+                DALFactory.getDAL().deleteKunde(k);
+            }
+            catch (DALException ex)
+            {
+
+            }            
         }
 
         public static Kunde getKunde(int id)
         {
-            return DALFactory.getDAL().getKunde(id);
+            Kunde tmp = null;
+            try
+            {
+                tmp = DALFactory.getDAL().getKunde(id);
+            }
+            catch (DALException ex)
+            {
+                
+            }
+            return tmp;
         }
         #endregion
 
         #region Angebote
         public static List<Angebot> getAngebote()
         {
-            return DALFactory.getDAL().getAngebotViewList();
+            List<Angebot> tmp = null;
+            try
+            {
+                tmp = DALFactory.getDAL().getAngebotViewList();
+            }
+            catch (DALException ex)
+            {
+
+            }
+            return tmp;
+        }
+
+        public static List<Angebot> getKundenAngebote(int kundenid)
+        {
+            List<Angebot> tmp = null;
+            try
+            {
+                tmp = DALFactory.getDAL().getKundenAngebote(kundenid);
+            }
+            catch (DALException ex)
+            {
+               
+            }
+            return tmp;
         }
 
         public static void saveAngebot(Angebot a)
         {
-            DALFactory.getDAL().saveAngebot(a);
+            try
+            {
+                DALFactory.getDAL().saveAngebot(a);
+            }
+            catch (DALException ex)
+            {
+                
+            }            
         }
 
         public static void deleteAngebot(Angebot a)
         {
-            DALFactory.getDAL().deleteAngebot(a);
-        }
+            try
+            {
+                DALFactory.getDAL().deleteAngebot(a);
+            }
+            catch (DALException ex)
+            {
+
+            }            
+        }        
         #endregion
 
         #region Projekte
         public static List<Projekt> getProjekte()
         {
-            return DALFactory.getDAL().getProjektViewList();
+            List<Projekt> tmp = null;
+            try
+            {
+                tmp = DALFactory.getDAL().getProjektViewList();
+            }
+            catch (DALException ex)
+            {
+                
+            }
+            return tmp;
         }
 
         public static void saveProjekt(Projekt p)
         {
-            DALFactory.getDAL().saveProjekt(p);
+            try
+            {                
+                DALFactory.getDAL().saveProjekt(p);
+            }
+            catch (DALException ex)
+            {
+               
+            }
         }
 
         public static void deleteProjekt(Projekt p)
         {
-            DALFactory.getDAL().deleteProjekt(p);
+            try
+            {
+                DALFactory.getDAL().deleteProjekt(p);
+            }
+            catch (DALException ex)
+            {
+
+            }
         }
 
         public static Projekt getProjekt(int id)
         {
-            return DALFactory.getDAL().getProjekt(id);
+            Projekt tmp = null;
+            try
+            {
+                tmp = DALFactory.getDAL().getProjekt(id);
+            }
+            catch (DALException ex)
+            {
+                
+            }
+            return tmp;
         }
         #endregion
     }

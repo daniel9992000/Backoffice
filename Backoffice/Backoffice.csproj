@@ -54,6 +54,12 @@
     <Compile Include="ColumnSorter.cs" />
     <Compile Include="DALException.cs" />
     <Compile Include="DALFactory.cs" />
+    <Compile Include="Dialogs\AngebotDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\AngebotDetail.Designer.cs">
+      <DependentUpon>AngebotDetail.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\KundeDetail.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -98,6 +104,9 @@
     <Compile Include="UserControls\UCProjekteAnzeigen.Designer.cs">
       <DependentUpon>UCProjekteAnzeigen.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Dialogs\AngebotDetail.resx">
+      <DependentUpon>AngebotDetail.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\KundeDetail.resx">
       <DependentUpon>KundeDetail.cs</DependentUpon>
     </EmbeddedResource>

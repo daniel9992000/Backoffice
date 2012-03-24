@@ -52,14 +52,20 @@
             this.tb_adresse = new System.Windows.Forms.TextBox();
             this.gb3 = new System.Windows.Forms.GroupBox();
             this.rtb_bemerkungen = new System.Windows.Forms.RichTextBox();
+            this.gb4 = new System.Windows.Forms.GroupBox();
+            this.lv_angebote = new System.Windows.Forms.ListView();
+            this.angebotid = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.titel = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.datum = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.gb1.SuspendLayout();
             this.gb2.SuspendLayout();
             this.gb3.SuspendLayout();
+            this.gb4.SuspendLayout();
             this.SuspendLayout();
             // 
             // bn_save
             // 
-            this.bn_save.Location = new System.Drawing.Point(542, 329);
+            this.bn_save.Location = new System.Drawing.Point(12, 329);
             this.bn_save.Name = "bn_save";
             this.bn_save.Size = new System.Drawing.Size(75, 23);
             this.bn_save.TabIndex = 0;
@@ -70,7 +76,7 @@
             // bn_cancel
             // 
             this.bn_cancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.bn_cancel.Location = new System.Drawing.Point(623, 329);
+            this.bn_cancel.Location = new System.Drawing.Point(93, 329);
             this.bn_cancel.Name = "bn_cancel";
             this.bn_cancel.Size = new System.Drawing.Size(75, 23);
             this.bn_cancel.TabIndex = 1;
@@ -277,11 +283,55 @@
             this.rtb_bemerkungen.TabIndex = 0;
             this.rtb_bemerkungen.Text = "";
             // 
+            // gb4
+            // 
+            this.gb4.Controls.Add(this.lv_angebote);
+            this.gb4.Location = new System.Drawing.Point(12, 358);
+            this.gb4.Name = "gb4";
+            this.gb4.Padding = new System.Windows.Forms.Padding(5);
+            this.gb4.Size = new System.Drawing.Size(686, 164);
+            this.gb4.TabIndex = 8;
+            this.gb4.TabStop = false;
+            this.gb4.Text = "Angebote";
+            // 
+            // lv_angebote
+            // 
+            this.lv_angebote.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.angebotid,
+            this.titel,
+            this.datum});
+            this.lv_angebote.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lv_angebote.FullRowSelect = true;
+            this.lv_angebote.GridLines = true;
+            this.lv_angebote.Location = new System.Drawing.Point(5, 18);
+            this.lv_angebote.Name = "lv_angebote";
+            this.lv_angebote.Size = new System.Drawing.Size(676, 141);
+            this.lv_angebote.TabIndex = 0;
+            this.lv_angebote.UseCompatibleStateImageBehavior = false;
+            this.lv_angebote.View = System.Windows.Forms.View.Details;
+            this.lv_angebote.DoubleClick += new System.EventHandler(this.lv_angebote_DoubleClick);
+            // 
+            // angebotid
+            // 
+            this.angebotid.Text = "ID";
+            this.angebotid.Width = 30;
+            // 
+            // titel
+            // 
+            this.titel.Text = "Titel";
+            this.titel.Width = 120;
+            // 
+            // datum
+            // 
+            this.datum.Text = "Datum";
+            this.datum.Width = 80;
+            // 
             // KundeDetail
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(710, 361);
+            this.ClientSize = new System.Drawing.Size(710, 534);
+            this.Controls.Add(this.gb4);
             this.Controls.Add(this.gb3);
             this.Controls.Add(this.gb2);
             this.Controls.Add(this.gb1);
@@ -295,6 +345,7 @@
             this.gb2.ResumeLayout(false);
             this.gb2.PerformLayout();
             this.gb3.ResumeLayout(false);
+            this.gb4.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -325,5 +376,10 @@
         private System.Windows.Forms.TextBox tb_adresse;
         private System.Windows.Forms.GroupBox gb3;
         private System.Windows.Forms.RichTextBox rtb_bemerkungen;
+        private System.Windows.Forms.GroupBox gb4;
+        private System.Windows.Forms.ListView lv_angebote;
+        private System.Windows.Forms.ColumnHeader angebotid;
+        private System.Windows.Forms.ColumnHeader titel;
+        private System.Windows.Forms.ColumnHeader datum;
     }
 }

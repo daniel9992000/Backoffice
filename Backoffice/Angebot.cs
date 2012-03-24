@@ -8,6 +8,7 @@ namespace Backoffice
     public class Angebot
     {
         int angebotid;
+        string titel;
         double summe;
         DateTime datum;
         int dauer;
@@ -20,9 +21,10 @@ namespace Backoffice
         {
         }
 
-        public Angebot(int angebotid, double summe, DateTime datum, int dauer, int chance, int kundenid, int projektid, ObjectStates status)
+        public Angebot(int angebotid, string titel, double summe, DateTime datum, int dauer, int chance, int kundenid, int projektid, ObjectStates status)
         {
             this.angebotid = angebotid;
+            this.titel = titel;
             this.summe = summe;
             this.datum = datum;
             this.dauer = dauer;
@@ -41,6 +43,20 @@ namespace Backoffice
                 if (angebotid != value)
                 {
                     angebotid = value;
+                    status = ObjectStates.Modified;
+                }
+            }
+        }
+
+
+        public string Titel
+        {
+            get { return titel; }
+            set
+            {
+                if (titel != value)
+                {
+                    titel = value;
                     status = ObjectStates.Modified;
                 }
             }

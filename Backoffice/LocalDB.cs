@@ -125,6 +125,7 @@ namespace Backoffice
                     k.Ort = reader["ort"].ToString().Trim();
                     k.Telefon = reader.GetInt64(8);
                     k.Bemerkungen = reader["bemerkungen"].ToString().Trim();
+                    k.Status = ObjectStates.Unmodified;
                     klist.Add(k);
                 }
                
@@ -218,6 +219,7 @@ namespace Backoffice
                     Projekt p = new Projekt();
                     p.Projektid = reader.GetInt32(0);
                     p.Name = reader["name"].ToString().Trim();
+                    p.Status = ObjectStates.Unmodified;
                     plist.Add(p);
                 }
 
@@ -259,6 +261,12 @@ namespace Backoffice
         }
 
         public Projekt getProjekt(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+
+        public List<Angebot> getKundenAngebote(int kundenid)
         {
             throw new NotImplementedException();
         }

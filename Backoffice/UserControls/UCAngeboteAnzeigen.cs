@@ -23,6 +23,7 @@ namespace Backoffice.UserControls
             {
                 ListViewItem i = lv_angebote.Items.Add(tmp.Angebotid.ToString());
                 i.Tag = tmp;
+                i.SubItems.Add(tmp.Titel);
                 i.SubItems.Add(tmp.Datum.ToShortDateString());
                 i.SubItems.Add(tmp.Dauer.ToString());
                 i.SubItems.Add(tmp.Summe.ToString());

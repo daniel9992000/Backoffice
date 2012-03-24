@@ -29,15 +29,16 @@
         private void InitializeComponent()
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.bn_new = new System.Windows.Forms.Button();
-            this.bn_edit = new System.Windows.Forms.Button();
             this.bn_delete = new System.Windows.Forms.Button();
+            this.bn_edit = new System.Windows.Forms.Button();
+            this.bn_new = new System.Windows.Forms.Button();
             this.lv_angebote = new System.Windows.Forms.ListView();
             this.angebotid = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.datum = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.dauer = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.summe = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.chance = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.titel = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -65,15 +66,15 @@
             this.splitContainer1.SplitterDistance = 29;
             this.splitContainer1.TabIndex = 0;
             // 
-            // bn_new
+            // bn_delete
             // 
-            this.bn_new.Location = new System.Drawing.Point(3, 3);
-            this.bn_new.Name = "bn_new";
-            this.bn_new.Size = new System.Drawing.Size(75, 23);
-            this.bn_new.TabIndex = 0;
-            this.bn_new.Text = "Neu";
-            this.bn_new.UseVisualStyleBackColor = true;
-            this.bn_new.Click += new System.EventHandler(this.bn_new_Click);
+            this.bn_delete.Location = new System.Drawing.Point(165, 3);
+            this.bn_delete.Name = "bn_delete";
+            this.bn_delete.Size = new System.Drawing.Size(75, 23);
+            this.bn_delete.TabIndex = 2;
+            this.bn_delete.Text = "Löschen";
+            this.bn_delete.UseVisualStyleBackColor = true;
+            this.bn_delete.Click += new System.EventHandler(this.bn_delete_Click);
             // 
             // bn_edit
             // 
@@ -85,20 +86,21 @@
             this.bn_edit.UseVisualStyleBackColor = true;
             this.bn_edit.Click += new System.EventHandler(this.bn_edit_Click);
             // 
-            // bn_delete
+            // bn_new
             // 
-            this.bn_delete.Location = new System.Drawing.Point(165, 3);
-            this.bn_delete.Name = "bn_delete";
-            this.bn_delete.Size = new System.Drawing.Size(75, 23);
-            this.bn_delete.TabIndex = 2;
-            this.bn_delete.Text = "Löschen";
-            this.bn_delete.UseVisualStyleBackColor = true;
-            this.bn_delete.Click += new System.EventHandler(this.bn_delete_Click);
+            this.bn_new.Location = new System.Drawing.Point(3, 3);
+            this.bn_new.Name = "bn_new";
+            this.bn_new.Size = new System.Drawing.Size(75, 23);
+            this.bn_new.TabIndex = 0;
+            this.bn_new.Text = "Neu";
+            this.bn_new.UseVisualStyleBackColor = true;
+            this.bn_new.Click += new System.EventHandler(this.bn_new_Click);
             // 
             // lv_angebote
             // 
             this.lv_angebote.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.angebotid,
+            this.titel,
             this.datum,
             this.dauer,
             this.summe,
@@ -116,14 +118,17 @@
             // angebotid
             // 
             this.angebotid.Text = "ID";
+            this.angebotid.Width = 30;
             // 
             // datum
             // 
             this.datum.Text = "Datum";
+            this.datum.Width = 80;
             // 
             // dauer
             // 
             this.dauer.Text = "Dauer";
+            this.dauer.Width = 50;
             // 
             // summe
             // 
@@ -131,7 +136,13 @@
             // 
             // chance
             // 
+            this.chance.DisplayIndex = 4;
             this.chance.Text = "Chance";
+            // 
+            // titel
+            // 
+            this.titel.Text = "Titel";
+            this.titel.Width = 100;
             // 
             // UCAngeboteAnzeigen
             // 
@@ -162,5 +173,6 @@
         private System.Windows.Forms.ColumnHeader dauer;
         private System.Windows.Forms.ColumnHeader summe;
         private System.Windows.Forms.ColumnHeader chance;
+        private System.Windows.Forms.ColumnHeader titel;
     }
 }

@@ -91,16 +91,7 @@ namespace Backoffice.UserControls
 
         private void lv_kunden_ColumnClick(object sender, ColumnClickEventArgs e)
         {
-            if (lv_kunden.Sorting == SortOrder.Ascending)
-            {
-                lv_kunden.Sorting = SortOrder.Descending;
-                lv_kunden.ListViewItemSorter = new ColumnSorter(e.Column, SortOrder.Descending);
-            }
-            else
-            {
-                lv_kunden.Sorting = SortOrder.Ascending;
-                lv_kunden.ListViewItemSorter = new ColumnSorter(e.Column, SortOrder.Ascending);
-            }
+            
         }
     }
 }
