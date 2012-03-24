@@ -9,6 +9,7 @@ namespace Backoffice
     {
         List<Kunde> kunden;
         List<Projekt> projekte;
+        List<Angebot> angebote;
 
         private static Mockdb instance = null;
 
@@ -30,6 +31,9 @@ namespace Backoffice
             kunden.Add(new Kunde(1, "Daniel", "Herzog", "danielherzog@gmx.at", ObjectStates.Unmodified));
             kunden.Add(new Kunde(2, "Christoph", "Lindmaier", "christoph.lindmaier@gmx.at", ObjectStates.Unmodified));
 
+            angebote = new List<Angebot>();
+            angebote.Add(new Angebot(1, 12000.00, DateTime.Today, 200, 80, 1, 1, ObjectStates.Unmodified));
+
             projekte = new List<Projekt>();
             projekte.Add(new Projekt(1, "Testprojekt", ObjectStates.Unmodified));
         }
@@ -39,6 +43,7 @@ namespace Backoffice
             throw new NotImplementedException();
         }
 
+        #region Kunden
         public void saveKunde(Kunde k)
         {
             if (k.Status == ObjectStates.New)
@@ -74,6 +79,20 @@ namespace Backoffice
             return kunden;
         }
 
+        public Kunde getKunde(int id)
+        {
+            foreach (var item in kunden)
+            {
+                if(item.Kundenid == id)
+                {
+                    return item;
+                }
+            }
+            return null;
+        }
+        #endregion
+
+        #region Projekte
         public void saveProjekt(Projekt p)
         {
             if (p.Status == ObjectStates.New)
@@ -100,5 +119,52 @@ namespace Backoffice
         {
             return projekte;
         }
+
+        public Projekt getProjekt(int id)
+        {
+            foreach (var item in projekte)
+            {
+                if (item.Projektid == id)
+                    return item;
+            }
+            return null;
+        }
+        #endregion
+
+        #region Angebote
+        public void saveAngebot(Angebot a)
+        {
+            if (a.Status == ObjectStates.New)
+            {
+                a.Status = ObjectStates.Unmodified;
+                a.Kundenid = angebote.Count + 1;
+                angebote.Add(a);
+            }
+            else if (a.Status == ObjectStates.Modified)
+            {
+                int index = angebote.IndexOf(a);
+                angebote[index].Angebotid = a.Angebotid;
+                angebote[index].Chance = a.Chance;
+                angebote[index].Datum = a.Datum;
+                angebote[index].Dauer = a.Dauer;
+                angebote[index].Kundenid = a.Kundenid;
+                angebote[index].Projektid = a.Projektid;
+                angebote[index].Summe = a.Summe;
+                angebote[index].Status = ObjectStates.Unmodified;
+            }
+        }
+
+        public void deleteAngebot(Angebot a)
+        {
+            angebote.Remove(a);
+        }
+
+        public List<Angebot> getAngebotViewList()
+        {
+            return angebote;
+        }
+        #endregion
+
+
     }
 }

@@ -12,6 +12,7 @@ namespace Backoffice
 
     class BL
     {
+        #region Kunden
         public static List<Kunde> getKunden()
         {
             return DALFactory.getDAL().getKundeViewList();
@@ -27,6 +28,30 @@ namespace Backoffice
             DALFactory.getDAL().deleteKunde(k);
         }
 
+        public static Kunde getKunde(int id)
+        {
+            return DALFactory.getDAL().getKunde(id);
+        }
+        #endregion
+
+        #region Angebote
+        public static List<Angebot> getAngebote()
+        {
+            return DALFactory.getDAL().getAngebotViewList();
+        }
+
+        public static void saveAngebot(Angebot a)
+        {
+            DALFactory.getDAL().saveAngebot(a);
+        }
+
+        public static void deleteAngebot(Angebot a)
+        {
+            DALFactory.getDAL().deleteAngebot(a);
+        }
+        #endregion
+
+        #region Projekte
         public static List<Projekt> getProjekte()
         {
             return DALFactory.getDAL().getProjektViewList();
@@ -41,5 +66,11 @@ namespace Backoffice
         {
             DALFactory.getDAL().deleteProjekt(p);
         }
+
+        public static Projekt getProjekt(int id)
+        {
+            return DALFactory.getDAL().getProjekt(id);
+        }
+        #endregion
     }
 }

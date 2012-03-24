@@ -27,9 +27,9 @@ namespace Backoffice
                 conn = new NpgsqlConnection(connstring);
                 conn.Open();
             }
-            catch (Exception exp)
+            catch (NpgsqlException exp)
             {
-                MessageBox.Show(exp.Message.ToString());
+                throw new DALException("DAL: Datenbankverbindung konnten nicht geöffent werden!", exp);
             }
         }
 
@@ -68,7 +68,7 @@ namespace Backoffice
             }
             catch (NpgsqlException exp)
             {
-                MessageBox.Show(exp.Message.ToString());
+                throw new DALException("DAL: Kunde konnte nicht gespeichert werden!", exp);
             }
             finally
             {
@@ -92,7 +92,7 @@ namespace Backoffice
             }
             catch (NpgsqlException exp)
             {
-                MessageBox.Show(exp.Message.ToString());
+                throw new DALException("DAL: Kunde konnte nicht gelöscht werden!", exp);
             }
             finally
             {
@@ -131,7 +131,7 @@ namespace Backoffice
             }
             catch (NpgsqlException exp)
             {
-                MessageBox.Show(exp.Message.ToString());
+                throw new DALException("DAL: Kundeliste konnte nicht aus der Datenbank geladen werden!", exp);
             }
             finally
             {
@@ -169,7 +169,7 @@ namespace Backoffice
             }
             catch (NpgsqlException exp)
             {
-                MessageBox.Show(exp.Message.ToString());
+                throw new DALException("DAL: Projekt konnte nicht gepspeichert werden!", exp);
             }
             finally
             {
@@ -193,7 +193,7 @@ namespace Backoffice
             }
             catch (NpgsqlException exp)
             {
-                MessageBox.Show(exp.Message.ToString());
+                throw new DALException("DAL: Projekt konnte nicht gelöscht werden!", exp);
             }
             finally
             {
@@ -224,7 +224,7 @@ namespace Backoffice
             }
             catch (NpgsqlException exp)
             {
-                MessageBox.Show(exp.Message.ToString());
+                throw new DALException("DAL: Projekteliste konnte aus der Datenbank nicht geladen werden!", exp);
             }
             finally
             {
@@ -234,6 +234,33 @@ namespace Backoffice
             }
 
             return plist;
+        }
+
+
+        public void saveAngebot(Angebot a)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void deleteAngebot(Angebot a)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Angebot> getAngebotViewList()
+        {
+            throw new NotImplementedException();
+        }
+
+
+        public Kunde getKunde(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Projekt getProjekt(int id)
+        {
+            throw new NotImplementedException();
         }
     }
 }

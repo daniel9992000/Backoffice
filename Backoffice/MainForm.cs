@@ -21,6 +21,7 @@ namespace Backoffice
             guiControls = new List<UserControl>();
             guiControls.Add(uc_kundenAnzeigen);
             guiControls.Add(ucProjekteAnzeigen1);
+            guiControls.Add(ucAngeboteAnzeigen1);
 
             foreach (var item in guiControls)
             {
@@ -62,6 +63,11 @@ namespace Backoffice
         private void projekteToolStripMenuItem_Click(object sender, EventArgs e)
         {           
             DisplayUserControl(ucProjekteAnzeigen1);
+        }
+
+        private void alleAngeboteAnzeigenToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DisplayUserControl(ucAngeboteAnzeigen1);
         }
     }
 }
