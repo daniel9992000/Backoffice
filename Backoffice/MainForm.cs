@@ -62,12 +62,17 @@ namespace Backoffice
 
         private void projekteToolStripMenuItem_Click(object sender, EventArgs e)
         {           
-            DisplayUserControl(ucProjekteAnzeigen1);
+           
         }
 
         private void alleAngeboteAnzeigenToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DisplayUserControl(ucAngeboteAnzeigen1);
+        }
+
+        private void projektAnzeigenToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DisplayUserControl(ucProjekteAnzeigen1);
         }
     }
 }

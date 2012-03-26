@@ -35,15 +35,16 @@
             this.neuerKundeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.kontakteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.angeboteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.alleAngeboteAnzeigenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.projekteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rechnungenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.berichteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hilfeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.alleAngeboteAnzeigenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ucProjekteAnzeigen1 = new Backoffice.UserControls.UCProjekteAnzeigen();
             this.uc_kundenAnzeigen = new Backoffice.UserControls.UCKundenAnzeigen();
             this.ucAngeboteAnzeigen1 = new Backoffice.UserControls.UCAngeboteAnzeigen();
+            this.projektAnzeigenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -100,8 +101,17 @@
             this.angeboteToolStripMenuItem.Size = new System.Drawing.Size(71, 20);
             this.angeboteToolStripMenuItem.Text = "Angebote";
             // 
+            // alleAngeboteAnzeigenToolStripMenuItem
+            // 
+            this.alleAngeboteAnzeigenToolStripMenuItem.Name = "alleAngeboteAnzeigenToolStripMenuItem";
+            this.alleAngeboteAnzeigenToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.alleAngeboteAnzeigenToolStripMenuItem.Text = "Angebote anzeigen";
+            this.alleAngeboteAnzeigenToolStripMenuItem.Click += new System.EventHandler(this.alleAngeboteAnzeigenToolStripMenuItem_Click);
+            // 
             // projekteToolStripMenuItem
             // 
+            this.projekteToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.projektAnzeigenToolStripMenuItem});
             this.projekteToolStripMenuItem.Name = "projekteToolStripMenuItem";
             this.projekteToolStripMenuItem.Size = new System.Drawing.Size(62, 20);
             this.projekteToolStripMenuItem.Text = "Projekte";
@@ -143,13 +153,6 @@
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
-            // alleAngeboteAnzeigenToolStripMenuItem
-            // 
-            this.alleAngeboteAnzeigenToolStripMenuItem.Name = "alleAngeboteAnzeigenToolStripMenuItem";
-            this.alleAngeboteAnzeigenToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
-            this.alleAngeboteAnzeigenToolStripMenuItem.Text = "Angebote anzeigen";
-            this.alleAngeboteAnzeigenToolStripMenuItem.Click += new System.EventHandler(this.alleAngeboteAnzeigenToolStripMenuItem_Click);
-            // 
             // ucProjekteAnzeigen1
             // 
             this.ucProjekteAnzeigen1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -173,8 +176,16 @@
             this.ucAngeboteAnzeigen1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ucAngeboteAnzeigen1.Location = new System.Drawing.Point(0, 24);
             this.ucAngeboteAnzeigen1.Name = "ucAngeboteAnzeigen1";
+            this.ucAngeboteAnzeigen1.Padding = new System.Windows.Forms.Padding(10);
             this.ucAngeboteAnzeigen1.Size = new System.Drawing.Size(933, 491);
             this.ucAngeboteAnzeigen1.TabIndex = 3;
+            // 
+            // projektAnzeigenToolStripMenuItem
+            // 
+            this.projektAnzeigenToolStripMenuItem.Name = "projektAnzeigenToolStripMenuItem";
+            this.projektAnzeigenToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.projektAnzeigenToolStripMenuItem.Text = "Projekt anzeigen";
+            this.projektAnzeigenToolStripMenuItem.Click += new System.EventHandler(this.projektAnzeigenToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -212,6 +223,7 @@
         private UserControls.UCProjekteAnzeigen ucProjekteAnzeigen1;
         private System.Windows.Forms.ToolStripMenuItem alleAngeboteAnzeigenToolStripMenuItem;
         private UserControls.UCAngeboteAnzeigen ucAngeboteAnzeigen1;
+        private System.Windows.Forms.ToolStripMenuItem projektAnzeigenToolStripMenuItem;
 
 
     }
