@@ -270,5 +270,22 @@ namespace Backoffice
         {
             throw new NotImplementedException();
         }
+
+ 
+        public void saveKontakt(Kontakt k)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void deleteKontakt(Kontakt k)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Kontakt> getKontaktViewList()
+        {
+            throw new NotImplementedException();
+        }
+        
     }
 }

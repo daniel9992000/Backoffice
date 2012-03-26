@@ -41,10 +41,12 @@
             this.berichteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hilfeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.projektAnzeigenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.kontakteAnzeigenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ucKontakteAnzeigen1 = new Backoffice.UserControls.UCKontakteAnzeigen();
+            this.ucAngeboteAnzeigen1 = new Backoffice.UserControls.UCAngeboteAnzeigen();
             this.ucProjekteAnzeigen1 = new Backoffice.UserControls.UCProjekteAnzeigen();
             this.uc_kundenAnzeigen = new Backoffice.UserControls.UCKundenAnzeigen();
-            this.ucAngeboteAnzeigen1 = new Backoffice.UserControls.UCAngeboteAnzeigen();
-            this.projektAnzeigenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -89,6 +91,8 @@
             // 
             // kontakteToolStripMenuItem
             // 
+            this.kontakteToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.kontakteAnzeigenToolStripMenuItem});
             this.kontakteToolStripMenuItem.Name = "kontakteToolStripMenuItem";
             this.kontakteToolStripMenuItem.Size = new System.Drawing.Size(66, 20);
             this.kontakteToolStripMenuItem.Text = "Kontakte";
@@ -153,6 +157,37 @@
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
+            // projektAnzeigenToolStripMenuItem
+            // 
+            this.projektAnzeigenToolStripMenuItem.Name = "projektAnzeigenToolStripMenuItem";
+            this.projektAnzeigenToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.projektAnzeigenToolStripMenuItem.Text = "Projekt anzeigen";
+            this.projektAnzeigenToolStripMenuItem.Click += new System.EventHandler(this.projektAnzeigenToolStripMenuItem_Click);
+            // 
+            // kontakteAnzeigenToolStripMenuItem
+            // 
+            this.kontakteAnzeigenToolStripMenuItem.Name = "kontakteAnzeigenToolStripMenuItem";
+            this.kontakteAnzeigenToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
+            this.kontakteAnzeigenToolStripMenuItem.Text = "Kontakte anzeigen";
+            this.kontakteAnzeigenToolStripMenuItem.Click += new System.EventHandler(this.kontakteAnzeigenToolStripMenuItem_Click);
+            // 
+            // ucKontakteAnzeigen1
+            // 
+            this.ucKontakteAnzeigen1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucKontakteAnzeigen1.Location = new System.Drawing.Point(0, 24);
+            this.ucKontakteAnzeigen1.Name = "ucKontakteAnzeigen1";
+            this.ucKontakteAnzeigen1.Size = new System.Drawing.Size(933, 491);
+            this.ucKontakteAnzeigen1.TabIndex = 4;
+            // 
+            // ucAngeboteAnzeigen1
+            // 
+            this.ucAngeboteAnzeigen1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucAngeboteAnzeigen1.Location = new System.Drawing.Point(0, 24);
+            this.ucAngeboteAnzeigen1.Name = "ucAngeboteAnzeigen1";
+            this.ucAngeboteAnzeigen1.Padding = new System.Windows.Forms.Padding(10);
+            this.ucAngeboteAnzeigen1.Size = new System.Drawing.Size(933, 491);
+            this.ucAngeboteAnzeigen1.TabIndex = 3;
+            // 
             // ucProjekteAnzeigen1
             // 
             this.ucProjekteAnzeigen1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -171,27 +206,12 @@
             this.uc_kundenAnzeigen.Size = new System.Drawing.Size(933, 491);
             this.uc_kundenAnzeigen.TabIndex = 1;
             // 
-            // ucAngeboteAnzeigen1
-            // 
-            this.ucAngeboteAnzeigen1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucAngeboteAnzeigen1.Location = new System.Drawing.Point(0, 24);
-            this.ucAngeboteAnzeigen1.Name = "ucAngeboteAnzeigen1";
-            this.ucAngeboteAnzeigen1.Padding = new System.Windows.Forms.Padding(10);
-            this.ucAngeboteAnzeigen1.Size = new System.Drawing.Size(933, 491);
-            this.ucAngeboteAnzeigen1.TabIndex = 3;
-            // 
-            // projektAnzeigenToolStripMenuItem
-            // 
-            this.projektAnzeigenToolStripMenuItem.Name = "projektAnzeigenToolStripMenuItem";
-            this.projektAnzeigenToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
-            this.projektAnzeigenToolStripMenuItem.Text = "Projekt anzeigen";
-            this.projektAnzeigenToolStripMenuItem.Click += new System.EventHandler(this.projektAnzeigenToolStripMenuItem_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(933, 515);
+            this.Controls.Add(this.ucKontakteAnzeigen1);
             this.Controls.Add(this.ucAngeboteAnzeigen1);
             this.Controls.Add(this.ucProjekteAnzeigen1);
             this.Controls.Add(this.uc_kundenAnzeigen);
@@ -224,6 +244,8 @@
         private System.Windows.Forms.ToolStripMenuItem alleAngeboteAnzeigenToolStripMenuItem;
         private UserControls.UCAngeboteAnzeigen ucAngeboteAnzeigen1;
         private System.Windows.Forms.ToolStripMenuItem projektAnzeigenToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem kontakteAnzeigenToolStripMenuItem;
+        private UserControls.UCKontakteAnzeigen ucKontakteAnzeigen1;
 
 
     }

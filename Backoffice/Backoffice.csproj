@@ -60,6 +60,12 @@
     <Compile Include="Dialogs\AngebotDetail.Designer.cs">
       <DependentUpon>AngebotDetail.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\KontaktDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\KontaktDetail.Designer.cs">
+      <DependentUpon>KontaktDetail.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\KundeDetail.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -73,7 +79,7 @@
       <DependentUpon>ProjekteDetail.cs</DependentUpon>
     </Compile>
     <Compile Include="IDAL.cs" />
-    <Compile Include="Kontakte.cs" />
+    <Compile Include="Kontakt.cs" />
     <Compile Include="Kunde.cs" />
     <Compile Include="LocalDB.cs" />
     <Compile Include="MainForm.cs">
@@ -92,6 +98,12 @@
     <Compile Include="UserControls\UCAngeboteAnzeigen.Designer.cs">
       <DependentUpon>UCAngeboteAnzeigen.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\UCKontakteAnzeigen.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UCKontakteAnzeigen.Designer.cs">
+      <DependentUpon>UCKontakteAnzeigen.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\UCKundenAnzeigen.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -106,6 +118,9 @@
     </Compile>
     <EmbeddedResource Include="Dialogs\AngebotDetail.resx">
       <DependentUpon>AngebotDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\KontaktDetail.resx">
+      <DependentUpon>KontaktDetail.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\KundeDetail.resx">
       <DependentUpon>KundeDetail.cs</DependentUpon>
@@ -127,6 +142,9 @@
     </Compile>
     <EmbeddedResource Include="UserControls\UCAngeboteAnzeigen.resx">
       <DependentUpon>UCAngeboteAnzeigen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCKontakteAnzeigen.resx">
+      <DependentUpon>UCKontakteAnzeigen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UCKundenAnzeigen.resx">
       <DependentUpon>UCKundenAnzeigen.cs</DependentUpon>

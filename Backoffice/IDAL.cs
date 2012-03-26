@@ -28,6 +28,11 @@ namespace Backoffice
         List<Projekt> getProjektViewList();
         Projekt getProjekt(int id);
 
+        //Kontakte
+        void saveKontakt(Kontakt k);
+        void deleteKontakt(Kontakt k);
+        List<Kontakt> getKontaktViewList();
+        //Kontakt getKontakt(int id);
         
     }
 }

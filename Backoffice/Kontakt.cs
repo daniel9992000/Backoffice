@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Backoffice
 {
-    class Kontakte
+    public class Kontakt
     {
         int kontaktid;
         string vorname;
@@ -13,11 +13,12 @@ namespace Backoffice
         string firmenname;
         ObjectStates status;
 
-        public Kontakte()
+      
+        public Kontakt()
         {
         }
 
-        public Kontakte(int kontaktid, string vorname, string nachname, string firmenname, ObjectStates status)
+        public Kontakt(int kontaktid, string vorname, string nachname, string firmenname, ObjectStates status)
         {
             this.kontaktid = kontaktid;
             this.vorname = vorname;
@@ -41,7 +42,7 @@ namespace Backoffice
                 if (firmenname != value)
                 {
                     firmenname = value;
-                    status = ObjectStates.Modified;
+                    Status = ObjectStates.Modified;
                 }
             }
         }
@@ -54,7 +55,7 @@ namespace Backoffice
                     if (vorname != value)
                     {
                         vorname = value;
-                        status = ObjectStates.Modified;
+                        Status = ObjectStates.Modified;
                     }
                  }
         }
@@ -67,10 +68,16 @@ namespace Backoffice
                 if (nachname != value)
                 {
                     nachname = value;
-                    status = ObjectStates.Modified;
+                    Status = ObjectStates.Modified;
                 }
             }
         }
+        public ObjectStates Status
+        {
+            get { return status; }
+            set { status = value; }
+        }
+
         #endregion 
 
     }

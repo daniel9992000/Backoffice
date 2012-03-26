@@ -10,6 +10,7 @@ namespace Backoffice
         List<Kunde> kunden;
         List<Projekt> projekte;
         List<Angebot> angebote;
+        List<Kontakt> kontakte;
 
         private static Mockdb instance = null;
 
@@ -36,6 +37,13 @@ namespace Backoffice
 
             projekte = new List<Projekt>();
             projekte.Add(new Projekt(1, "Testprojekt", ObjectStates.Unmodified));
+
+            kontakte = new List<Kontakt>();
+            kontakte.Add (new Kontakt(1,"Testfirma", "Karl", "Maier",ObjectStates.Unmodified));
+            
+           
+
+            
         }
 
         public void buildconnection()
@@ -178,6 +186,36 @@ namespace Backoffice
         }
         #endregion
 
+        #region Kontakte
+        public void saveKontakt(Kontakt k)
+        {
+            if (k.Status == ObjectStates.New)
+            {
+                k.Status = ObjectStates.Unmodified;
+                k.Kontaktid = kontakte.Count + 1;
+                kontakte.Add(k);
+            }
+            else if (k.Status == ObjectStates.Modified)
+            {
+                int index = kontakte.IndexOf(k);
+                kontakte[index].Kontaktid = k.Kontaktid;
+                kontakte[index].Firmenname = k.Firmenname;
+                kontakte[index].Vorname = k.Vorname;
+                kontakte[index].Nachname = k.Nachname;
+                kontakte[index].Status = ObjectStates.Unmodified;
+            }
+        }
+
+        public void deleteKontakt(Kontakt k)
+        {
+            kontakte.Remove(k);
+        }
+
+        public List<Kontakt> getKontaktViewList()
+        {
+            return kontakte;
+        }
+        #endregion
 
     }
 }

@@ -173,5 +173,47 @@ namespace Backoffice
             return tmp;
         }
         #endregion
+
+        #region Kontakte
+        public static List<Kontakt> getKontakte()
+        {
+            List<Kontakt> tmp = null;
+            try
+            {
+                tmp = DALFactory.getDAL().getKontaktViewList();
+            }
+            catch (DALException ex)
+            {
+
+            }
+            return tmp;
+        }
+
+        public static void saveKontakt(Kontakt k)
+        {
+            try
+            {
+                DALFactory.getDAL().saveKontakt(k);
+            }
+            catch (DALException ex)
+            {
+
+            }
+        }
+
+        public static void deleteKontakt(Kontakt k)
+        {
+            try
+            {
+                DALFactory.getDAL().deleteKontakt(k);
+            }
+            catch (DALException ex)
+            {
+
+            }
+        }
+
+       
+        #endregion
     }
 }
