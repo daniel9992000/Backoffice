@@ -40,6 +40,11 @@ namespace Backoffice
             this.status = status;
         }
 
+        public override string ToString()
+        {
+            return this.vorname + " " + this.nachname;
+        }
+
         #region Properties 
         public int Kundenid
         {
