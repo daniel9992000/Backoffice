@@ -39,7 +39,7 @@ namespace Backoffice
             projekte.Add(new Projekt(1, "Testprojekt", ObjectStates.Unmodified));
 
             kontakte = new List<Kontakt>();
-            kontakte.Add (new Kontakt(1,"Testfirma", "Karl", "Maier",ObjectStates.Unmodified));
+            kontakte.Add (new Kontakt(1,"Testfirma", "Karl", "Maier", "test.firma@firma.at", ObjectStates.Unmodified));
             
            
 
