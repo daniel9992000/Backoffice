@@ -215,6 +215,18 @@ namespace Backoffice
         {
             return kontakte;
         }
+
+        public Kontakt getKontakt(int id)
+        {
+            foreach (var item in kontakte)
+            {
+                if (item.Kontaktid == id)
+                {
+                    return item;
+                }
+            }
+            return null;
+        }
         #endregion
 
     }
