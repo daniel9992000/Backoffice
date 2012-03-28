@@ -34,10 +34,11 @@ namespace Backoffice
 
             angebote = new List<Angebot>();
             angebote.Add(new Angebot(1, "Angebot 1", 12000.00, DateTime.Today, 200, 80, 1, 1, ObjectStates.Unmodified));
-            angebote.Add(new Angebot(2, "Angebot 2", 12000.00, DateTime.Today, 400, 70, 2, 2, ObjectStates.Unmodified));
+            angebote.Add(new Angebot(2, "Angebot 2", 2500000.00, DateTime.Today, 800, 95, 2, 2, ObjectStates.Unmodified));
 
             projekte = new List<Projekt>();
-            projekte.Add(new Projekt(1, "Testprojekt", ObjectStates.Unmodified));
+            projekte.Add(new Projekt(1, "Projekt 1", ObjectStates.Unmodified));
+            projekte.Add(new Projekt(2, "Projekt 2", ObjectStates.Unmodified));
 
             kontakte = new List<Kontakt>();
             kontakte.Add (new Kontakt(1,"Testfirma", "Karl", "Maier",ObjectStates.Unmodified));

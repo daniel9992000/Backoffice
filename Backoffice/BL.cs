@@ -97,8 +97,13 @@ namespace Backoffice
 
         public static void saveAngebot(Angebot a)
         {
-            try
+            if (a.Chance < 0 || a.Chance > 100)
             {
+                throw new Exception("Angebot: Wert von Chance außerhalb der Grenzen!");
+            }
+
+            try
+            {                
                 DALFactory.getDAL().saveAngebot(a);
             }
             catch (DALException ex)
