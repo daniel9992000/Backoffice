@@ -34,11 +34,11 @@
             this.bn_new = new System.Windows.Forms.Button();
             this.lv_angebote = new System.Windows.Forms.ListView();
             this.angebotid = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.titel = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.datum = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.dauer = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.summe = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.chance = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.titel = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -114,11 +114,17 @@
             this.lv_angebote.TabIndex = 0;
             this.lv_angebote.UseCompatibleStateImageBehavior = false;
             this.lv_angebote.View = System.Windows.Forms.View.Details;
+            this.lv_angebote.DoubleClick += new System.EventHandler(this.lv_angebote_DoubleClick);
             // 
             // angebotid
             // 
             this.angebotid.Text = "ID";
             this.angebotid.Width = 30;
+            // 
+            // titel
+            // 
+            this.titel.Text = "Titel";
+            this.titel.Width = 100;
             // 
             // datum
             // 
@@ -136,13 +142,7 @@
             // 
             // chance
             // 
-            this.chance.DisplayIndex = 4;
             this.chance.Text = "Chance";
-            // 
-            // titel
-            // 
-            this.titel.Text = "Titel";
-            this.titel.Width = 100;
             // 
             // UCAngeboteAnzeigen
             // 

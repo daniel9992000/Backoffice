@@ -34,16 +34,13 @@ namespace Backoffice
 
             angebote = new List<Angebot>();
             angebote.Add(new Angebot(1, "Angebot 1", 12000.00, DateTime.Today, 200, 80, 1, 1, ObjectStates.Unmodified));
+            angebote.Add(new Angebot(2, "Angebot 2", 12000.00, DateTime.Today, 400, 70, 2, 2, ObjectStates.Unmodified));
 
             projekte = new List<Projekt>();
             projekte.Add(new Projekt(1, "Testprojekt", ObjectStates.Unmodified));
 
             kontakte = new List<Kontakt>();
             kontakte.Add (new Kontakt(1,"Testfirma", "Karl", "Maier", "test.firma@firma.at", ObjectStates.Unmodified));
-            
-           
-
-            
         }
 
         public void buildconnection()
@@ -145,7 +142,7 @@ namespace Backoffice
             if (a.Status == ObjectStates.New)
             {
                 a.Status = ObjectStates.Unmodified;
-                a.Kundenid = angebote.Count + 1;
+                a.Angebotid = angebote.Count + 1;
                 angebote.Add(a);
             }
             else if (a.Status == ObjectStates.Modified)

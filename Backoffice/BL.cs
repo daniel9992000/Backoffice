@@ -98,7 +98,7 @@ namespace Backoffice
         public static void saveAngebot(Angebot a)
         {
             try
-            {
+            {  
                 DALFactory.getDAL().saveAngebot(a);
             }
             catch (DALException ex)

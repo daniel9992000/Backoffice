@@ -332,8 +332,8 @@ namespace Backoffice
                 string sql = "";
                 if (a.Status == ObjectStates.New)
                 {
-                    sql = @"Insert into angebote (titel,summe,datum,dauer,chance,kundenid,projektid)
-                        values (@titel,@summe,@datum,@dauer,@chance,@kundenid,@projektid)";
+                    sql = @"Insert into angebote (titel,summe,datum,dauer,chance,kundenid)
+                        values (@titel,@summe,@datum,@dauer,@chance,@kundenid)";
                     comm = new NpgsqlCommand(sql, conn);
                 }
                 else if (a.Status == ObjectStates.Modified)
@@ -349,7 +349,7 @@ namespace Backoffice
                 comm.Parameters.AddWithValue("@dauer", a.Dauer);
                 comm.Parameters.AddWithValue("@chance", a.Chance);
                 comm.Parameters.AddWithValue("@kundenid", a.Kundenid);
-                comm.Parameters.AddWithValue("@projektid", a.Projektid);
+                //comm.Parameters.AddWithValue("@projektid", 1);
                 comm.Prepare();
                 comm.ExecuteNonQuery();
                 a.Status = ObjectStates.Unmodified;
@@ -409,8 +409,8 @@ namespace Backoffice
                     a.Dauer = reader.GetInt32(3);
                     a.Chance = reader.GetInt32(4);
                     a.Kundenid = reader.GetInt32(5);
-                    a.Projektid = reader.GetInt32(6);
-                    a.Titel = reader.GetString(7);
+                    //a.Projektid = reader.GetInt32(6);
+                    a.Titel = reader["titel"].ToString().Trim();
                     a.Status = ObjectStates.Unmodified;
                     alist.Add(a);
                 }
