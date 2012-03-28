@@ -103,7 +103,7 @@ namespace Backoffice
             }
 
             try
-            {                
+            {  
                 DALFactory.getDAL().saveAngebot(a);
             }
             catch (DALException ex)

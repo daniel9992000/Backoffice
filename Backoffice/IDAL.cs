@@ -32,7 +32,7 @@ namespace Backoffice
         void saveKontakt(Kontakt k);
         void deleteKontakt(Kontakt k);
         List<Kontakt> getKontaktViewList();
-        //Kontakt getKontakt(int id);
+        Kontakt getKontakt(int id);
         
     }
 }

@@ -29,14 +29,19 @@
         private void InitializeComponent()
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.bnnew = new System.Windows.Forms.Button();
-            this.bndelete = new System.Windows.Forms.Button();
             this.bnedit = new System.Windows.Forms.Button();
+            this.bndelete = new System.Windows.Forms.Button();
+            this.bnnew = new System.Windows.Forms.Button();
             this.lv_kontakte = new System.Windows.Forms.ListView();
             this.kontaktid = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.firmenname = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.vorname = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.nachname = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.email = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.adresse = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.hausnummer = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.plz = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.ort = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -47,7 +52,7 @@
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer1.Location = new System.Drawing.Point(10, 10);
             this.splitContainer1.Name = "splitContainer1";
             this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -60,31 +65,9 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.lv_kontakte);
-            this.splitContainer1.Size = new System.Drawing.Size(454, 348);
+            this.splitContainer1.Size = new System.Drawing.Size(434, 328);
             this.splitContainer1.SplitterDistance = 43;
             this.splitContainer1.TabIndex = 0;
-            // 
-            // bnnew
-            // 
-            this.bnnew.Location = new System.Drawing.Point(11, 8);
-            this.bnnew.Margin = new System.Windows.Forms.Padding(10);
-            this.bnnew.Name = "bnnew";
-            this.bnnew.Size = new System.Drawing.Size(72, 25);
-            this.bnnew.TabIndex = 0;
-            this.bnnew.Text = "Neu";
-            this.bnnew.UseVisualStyleBackColor = true;
-            this.bnnew.Click += new System.EventHandler(this.bnnew_Click);
-            // 
-            // bndelete
-            // 
-            this.bndelete.Location = new System.Drawing.Point(179, 8);
-            this.bndelete.Margin = new System.Windows.Forms.Padding(10);
-            this.bndelete.Name = "bndelete";
-            this.bndelete.Size = new System.Drawing.Size(72, 25);
-            this.bndelete.TabIndex = 1;
-            this.bndelete.Text = "Löschen";
-            this.bndelete.UseVisualStyleBackColor = true;
-            this.bndelete.Click += new System.EventHandler(this.bndelete_Click);
             // 
             // bnedit
             // 
@@ -97,19 +80,47 @@
             this.bnedit.UseVisualStyleBackColor = true;
             this.bnedit.Click += new System.EventHandler(this.bnedit_Click);
             // 
+            // bndelete
+            // 
+            this.bndelete.Location = new System.Drawing.Point(179, 8);
+            this.bndelete.Margin = new System.Windows.Forms.Padding(10);
+            this.bndelete.Name = "bndelete";
+            this.bndelete.Size = new System.Drawing.Size(72, 25);
+            this.bndelete.TabIndex = 1;
+            this.bndelete.Text = "Löschen";
+            this.bndelete.UseVisualStyleBackColor = true;
+            this.bndelete.Click += new System.EventHandler(this.bndelete_Click);
+            // 
+            // bnnew
+            // 
+            this.bnnew.Location = new System.Drawing.Point(11, 8);
+            this.bnnew.Margin = new System.Windows.Forms.Padding(10);
+            this.bnnew.Name = "bnnew";
+            this.bnnew.Size = new System.Drawing.Size(72, 25);
+            this.bnnew.TabIndex = 0;
+            this.bnnew.Text = "Neu";
+            this.bnnew.UseVisualStyleBackColor = true;
+            this.bnnew.Click += new System.EventHandler(this.bnnew_Click);
+            // 
             // lv_kontakte
             // 
             this.lv_kontakte.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.kontaktid,
             this.firmenname,
             this.vorname,
-            this.nachname});
+            this.nachname,
+            this.email,
+            this.adresse,
+            this.hausnummer,
+            this.plz,
+            this.ort});
             this.lv_kontakte.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lv_kontakte.FullRowSelect = true;
             this.lv_kontakte.GridLines = true;
             this.lv_kontakte.Location = new System.Drawing.Point(0, 0);
+            this.lv_kontakte.Margin = new System.Windows.Forms.Padding(10);
             this.lv_kontakte.Name = "lv_kontakte";
-            this.lv_kontakte.Size = new System.Drawing.Size(454, 301);
+            this.lv_kontakte.Size = new System.Drawing.Size(434, 281);
             this.lv_kontakte.TabIndex = 0;
             this.lv_kontakte.UseCompatibleStateImageBehavior = false;
             this.lv_kontakte.View = System.Windows.Forms.View.Details;
@@ -117,7 +128,8 @@
             // 
             // kontaktid
             // 
-            this.kontaktid.Text = "Kontaktid";
+            this.kontaktid.Text = "ID";
+            this.kontaktid.Width = 40;
             // 
             // firmenname
             // 
@@ -134,12 +146,38 @@
             this.nachname.Text = "Nachname";
             this.nachname.Width = 100;
             // 
+            // email
+            // 
+            this.email.Text = "Email";
+            this.email.Width = 120;
+            // 
+            // adresse
+            // 
+            this.adresse.Text = "Adresse";
+            this.adresse.Width = 100;
+            // 
+            // hausnummer
+            // 
+            this.hausnummer.Text = "Hausnummer";
+            this.hausnummer.Width = 80;
+            // 
+            // plz
+            // 
+            this.plz.Text = "PLZ";
+            this.plz.Width = 40;
+            // 
+            // ort
+            // 
+            this.ort.Text = "Ort";
+            this.ort.Width = 100;
+            // 
             // UCKontakteAnzeigen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.splitContainer1);
             this.Name = "UCKontakteAnzeigen";
+            this.Padding = new System.Windows.Forms.Padding(10);
             this.Size = new System.Drawing.Size(454, 348);
             this.Load += new System.EventHandler(this.UCKontakteAnzeigen_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
@@ -161,5 +199,10 @@
         private System.Windows.Forms.ColumnHeader firmenname;
         private System.Windows.Forms.ColumnHeader vorname;
         private System.Windows.Forms.ColumnHeader nachname;
+        private System.Windows.Forms.ColumnHeader email;
+        private System.Windows.Forms.ColumnHeader adresse;
+        private System.Windows.Forms.ColumnHeader hausnummer;
+        private System.Windows.Forms.ColumnHeader plz;
+        private System.Windows.Forms.ColumnHeader ort;
     }
 }

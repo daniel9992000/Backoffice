@@ -41,7 +41,7 @@ namespace Backoffice
             projekte.Add(new Projekt(2, "Projekt 2", ObjectStates.Unmodified));
 
             kontakte = new List<Kontakt>();
-            kontakte.Add (new Kontakt(1,"Testfirma", "Karl", "Maier",ObjectStates.Unmodified));
+            kontakte.Add (new Kontakt(1,"Testfirma", "Karl", "Maier", "test.firma@firma.at", ObjectStates.Unmodified));
         }
 
         public void buildconnection()
@@ -212,6 +212,18 @@ namespace Backoffice
         public List<Kontakt> getKontaktViewList()
         {
             return kontakte;
+        }
+
+        public Kontakt getKontakt(int id)
+        {
+            foreach (var item in kontakte)
+            {
+                if (item.Kontaktid == id)
+                {
+                    return item;
+                }
+            }
+            return null;
         }
         #endregion
 
