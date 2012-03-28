@@ -98,5 +98,15 @@ namespace Backoffice.UserControls
         {
 
         }
+
+        private void splitContainer1_SplitterMoved(object sender, SplitterEventArgs e)
+        {
+
+        }
+
+        private void lv_kunden_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

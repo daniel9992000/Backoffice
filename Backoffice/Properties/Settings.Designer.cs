@@ -25,18 +25,6 @@ namespace Backoffice.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Mock")]
-        public string DataSource {
-            get {
-                return ((string)(this["DataSource"]));
-            }
-            set {
-                this["DataSource"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("localhost")]
         public string DatabaseServer {
             get {
@@ -92,6 +80,18 @@ namespace Backoffice.Properties {
             }
             set {
                 this["Database"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Mock")]
+        public string DataSource {
+            get {
+                return ((string)(this["DataSource"]));
+            }
+            set {
+                this["DataSource"] = value;
             }
         }
     }

@@ -1,6 +1,6 @@
 ﻿namespace Backoffice.UserControls
 {
-    partial class UCKundenAnzeigen
+    partial class UCRechnungenAnzeigen
     {
         /// <summary> 
         /// Erforderliche Designervariable.
@@ -28,15 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.lv_kunden = new System.Windows.Forms.ListView();
-            this.kundenid = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.vorname = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.nachname = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.email = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.adresse = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.hausnummer = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.plz = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.ort = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.lv_rechnungen = new System.Windows.Forms.ListView();
+            this.rechnungid = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.bezeichnung = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.datum = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.bn_delete = new System.Windows.Forms.Button();
             this.bn_edit = new System.Windows.Forms.Button();
@@ -47,76 +42,45 @@
             this.splitContainer1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // lv_kunden
+            // lv_rechnungen
             // 
-            this.lv_kunden.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.kundenid,
-            this.vorname,
-            this.nachname,
-            this.email,
-            this.adresse,
-            this.hausnummer,
-            this.plz,
-            this.ort});
-            this.lv_kunden.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lv_kunden.FullRowSelect = true;
-            this.lv_kunden.GridLines = true;
-            this.lv_kunden.Location = new System.Drawing.Point(0, 0);
-            this.lv_kunden.Margin = new System.Windows.Forms.Padding(10);
-            this.lv_kunden.Name = "lv_kunden";
-            this.lv_kunden.Size = new System.Drawing.Size(732, 314);
-            this.lv_kunden.TabIndex = 0;
-            this.lv_kunden.UseCompatibleStateImageBehavior = false;
-            this.lv_kunden.View = System.Windows.Forms.View.Details;
-            this.lv_kunden.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.lv_kunden_ColumnClick);
-            this.lv_kunden.SelectedIndexChanged += new System.EventHandler(this.lv_kunden_SelectedIndexChanged);
-            this.lv_kunden.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lv_kunden_MouseDoubleClick);
+            this.lv_rechnungen.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.rechnungid,
+            this.bezeichnung,
+            this.datum});
+            this.lv_rechnungen.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lv_rechnungen.FullRowSelect = true;
+            this.lv_rechnungen.GridLines = true;
+            this.lv_rechnungen.Location = new System.Drawing.Point(0, 0);
+            this.lv_rechnungen.Margin = new System.Windows.Forms.Padding(10);
+            this.lv_rechnungen.Name = "lv_rechnungen";
+            this.lv_rechnungen.Size = new System.Drawing.Size(732, 383);
+            this.lv_rechnungen.TabIndex = 0;
+            this.lv_rechnungen.UseCompatibleStateImageBehavior = false;
+            this.lv_rechnungen.View = System.Windows.Forms.View.Details;
+            this.lv_rechnungen.DoubleClick += new System.EventHandler(this.lv_rechnungen_DoubleClick);
             // 
-            // kundenid
+            // rechnungid
             // 
-            this.kundenid.Text = "ID";
-            this.kundenid.Width = 51;
+            this.rechnungid.Text = "ID";
+            this.rechnungid.Width = 40;
             // 
-            // vorname
+            // bezeichnung
             // 
-            this.vorname.Text = "Vorname";
-            this.vorname.Width = 89;
+            this.bezeichnung.Text = "Bezeichnung";
+            this.bezeichnung.Width = 120;
             // 
-            // nachname
+            // datum
             // 
-            this.nachname.Text = "Nachname";
-            this.nachname.Width = 111;
-            // 
-            // email
-            // 
-            this.email.Text = "Email";
-            this.email.Width = 130;
-            // 
-            // adresse
-            // 
-            this.adresse.Text = "Adresse";
-            this.adresse.Width = 90;
-            // 
-            // hausnummer
-            // 
-            this.hausnummer.Text = "Hausnummer";
-            // 
-            // plz
-            // 
-            this.plz.Text = "PLZ";
-            this.plz.Width = 40;
-            // 
-            // ort
-            // 
-            this.ort.Text = "Ort";
-            this.ort.Width = 100;
+            this.datum.Text = "Datum";
+            this.datum.Width = 80;
             // 
             // splitContainer1
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
             this.splitContainer1.IsSplitterFixed = true;
-            this.splitContainer1.Location = new System.Drawing.Point(10, 10);
+            this.splitContainer1.Location = new System.Drawing.Point(0, 0);
             this.splitContainer1.Name = "splitContainer1";
             this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -125,15 +89,13 @@
             this.splitContainer1.Panel1.Controls.Add(this.bn_delete);
             this.splitContainer1.Panel1.Controls.Add(this.bn_edit);
             this.splitContainer1.Panel1.Controls.Add(this.bn_new);
-            this.splitContainer1.Panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer1_Panel1_Paint);
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.lv_kunden);
-            this.splitContainer1.Size = new System.Drawing.Size(732, 349);
+            this.splitContainer1.Panel2.Controls.Add(this.lv_rechnungen);
+            this.splitContainer1.Size = new System.Drawing.Size(732, 418);
             this.splitContainer1.SplitterDistance = 31;
-            this.splitContainer1.TabIndex = 1;
-            this.splitContainer1.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.splitContainer1_SplitterMoved);
+            this.splitContainer1.TabIndex = 2;
             // 
             // bn_delete
             // 
@@ -165,15 +127,14 @@
             this.bn_new.UseVisualStyleBackColor = true;
             this.bn_new.Click += new System.EventHandler(this.bn_new_Click);
             // 
-            // UCKundenAnzeigen
+            // UCRechnungenAnzeigen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.splitContainer1);
-            this.Name = "UCKundenAnzeigen";
-            this.Padding = new System.Windows.Forms.Padding(10);
-            this.Size = new System.Drawing.Size(752, 369);
-            this.Load += new System.EventHandler(this.UCKundenAnzeigen_Load);
+            this.Name = "UCRechnungenAnzeigen";
+            this.Size = new System.Drawing.Size(732, 418);
+            this.Load += new System.EventHandler(this.UCRechnungenAnzeigen_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
@@ -184,18 +145,13 @@
 
         #endregion
 
-        private System.Windows.Forms.ListView lv_kunden;
-        private System.Windows.Forms.ColumnHeader kundenid;
-        private System.Windows.Forms.ColumnHeader vorname;
-        private System.Windows.Forms.ColumnHeader nachname;
+        private System.Windows.Forms.ListView lv_rechnungen;
+        private System.Windows.Forms.ColumnHeader rechnungid;
+        private System.Windows.Forms.ColumnHeader bezeichnung;
+        private System.Windows.Forms.ColumnHeader datum;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.Button bn_delete;
         private System.Windows.Forms.Button bn_edit;
         private System.Windows.Forms.Button bn_new;
-        private System.Windows.Forms.ColumnHeader email;
-        private System.Windows.Forms.ColumnHeader adresse;
-        private System.Windows.Forms.ColumnHeader hausnummer;
-        private System.Windows.Forms.ColumnHeader plz;
-        private System.Windows.Forms.ColumnHeader ort;
     }
 }

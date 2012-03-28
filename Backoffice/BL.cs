@@ -95,6 +95,11 @@ namespace Backoffice
             return tmp;
         }
 
+        public static Angebot getProjektAngebot(int projektid)
+        {
+            return DALFactory.getDAL().getProjektAngebot(projektid);
+        }
+
         public static void saveAngebot(Angebot a)
         {
             if (a.Chance < 0 || a.Chance > 100)
@@ -219,6 +224,28 @@ namespace Backoffice
         }
 
        
+        #endregion
+
+        #region Rechnungen
+        public static void saveRechnung(Rechnung r)
+        {
+            DALFactory.getDAL().saveRechnung(r);
+        }
+
+        public static void deleteRechnung(Rechnung r)
+        {
+            DALFactory.getDAL().deleteRechung(r);
+        }
+
+        public static List<Rechnung> getRechnungen()
+        {
+            return DALFactory.getDAL().getRechnungViewList();
+        }
+
+        public static List<Rechnung> getKundenRechnungen(int kundenid)
+        {
+            return DALFactory.getDAL().getKundenRechnungen(kundenid);
+        }
         #endregion
     }
 }

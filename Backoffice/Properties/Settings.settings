@@ -2,9 +2,6 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Backoffice.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="DataSource" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Mock</Value>
-    </Setting>
     <Setting Name="DatabaseServer" Type="System.String" Scope="User">
       <Value Profile="(Default)">localhost</Value>
     </Setting>
@@ -19,6 +16,9 @@
     </Setting>
     <Setting Name="Database" Type="System.String" Scope="User">
       <Value Profile="(Default)">EPU_SWE2</Value>
+    </Setting>
+    <Setting Name="DataSource" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Mock</Value>
     </Setting>
   </Settings>
 </SettingsFile>

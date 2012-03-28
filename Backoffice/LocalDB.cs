@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace Backoffice
 {
-    public class LocalDB:IDAL
+    public class LocalDB : IDAL
     {
         NpgsqlConnection conn;
         public void buildconnection()
@@ -349,7 +349,7 @@ namespace Backoffice
                 comm.Parameters.AddWithValue("@dauer", a.Dauer);
                 comm.Parameters.AddWithValue("@chance", a.Chance);
                 comm.Parameters.AddWithValue("@kundenid", a.Kundenid);
-                //comm.Parameters.AddWithValue("@projektid", 1);
+                comm.Parameters.AddWithValue("@projektid", a.Projektid);
                 comm.Prepare();
                 comm.ExecuteNonQuery();
                 a.Status = ObjectStates.Unmodified;
@@ -409,6 +409,7 @@ namespace Backoffice
                     a.Dauer = reader.GetInt32(3);
                     a.Chance = reader.GetInt32(4);
                     a.Kundenid = reader.GetInt32(5);
+                    
                     //a.Projektid = reader.GetInt32(6);
                     a.Titel = reader["titel"].ToString().Trim();
                     a.Status = ObjectStates.Unmodified;
@@ -636,5 +637,34 @@ namespace Backoffice
             }
         }
         #endregion
+
+        #region Rechnung
+        public void saveRechnung(Rechnung r)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void deleteRechung(Rechnung r)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Rechnung> getRechnungViewList()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
+
+
+        public Angebot getProjektAngebot(int projektid)
+        {
+            throw new NotImplementedException();
+        }
+
+
+        public List<Rechnung> getKundenRechnungen(int kundenid)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

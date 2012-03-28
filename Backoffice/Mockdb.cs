@@ -11,6 +11,7 @@ namespace Backoffice
         List<Projekt> projekte;
         List<Angebot> angebote;
         List<Kontakt> kontakte;
+        List<Rechnung> rechnungen;
 
         private static Mockdb instance = null;
 
@@ -42,6 +43,10 @@ namespace Backoffice
 
             kontakte = new List<Kontakt>();
             kontakte.Add (new Kontakt(1,"Testfirma", "Karl", "Maier", "test.firma@firma.at", ObjectStates.Unmodified));
+
+            rechnungen = new List<Rechnung>();
+            rechnungen.Add(new Rechnung(1, "Rechnung 1", DateTime.Today, 1, 1, ObjectStates.Unmodified));
+            rechnungen.Add(new Rechnung(2, "Rechnung 2", DateTime.Today, 1, 1, ObjectStates.Unmodified));
         }
 
         public void buildconnection()
@@ -182,6 +187,22 @@ namespace Backoffice
 
             return tmp;
         }
+
+        public Angebot getProjektAngebot(int projektid)
+        {
+            Angebot tmp = null;
+
+            foreach (var item in angebote)
+            {
+                if (item.Projektid == projektid)
+                {
+                    tmp = item;
+                    break;
+                }
+            }
+
+            return tmp;
+        }
         #endregion
 
         #region Kontakte
@@ -227,5 +248,50 @@ namespace Backoffice
         }
         #endregion
 
+        #region Rechnung
+        public void saveRechnung(Rechnung r)
+        {
+            if (r.Status == ObjectStates.New)
+            {
+                r.Status = ObjectStates.Unmodified;
+                r.Rechnungid = rechnungen.Count + 1;
+                rechnungen.Add(r);
+            }
+            else if (r.Status == ObjectStates.Modified)
+            {
+                int index = rechnungen.IndexOf(r);
+                rechnungen[index].Rechnungid = r.Rechnungid;
+                rechnungen[index].Bezeichnung = r.Bezeichnung;
+                rechnungen[index].Datum = r.Datum;
+                rechnungen[index].Status = ObjectStates.Unmodified;
+            }
+        }
+
+        public void deleteRechung(Rechnung r)
+        {
+            rechnungen.Remove(r);
+        }
+
+        public List<Rechnung> getRechnungViewList()
+        {
+            return rechnungen;
+        }
+
+        public List<Rechnung> getKundenRechnungen(int kundenid)
+        {
+            List<Rechnung> tmp = new List<Rechnung>();
+
+            foreach (var item in rechnungen)
+            {
+                if (item.Kundenid == kundenid)
+                    tmp.Add(item);
+            }
+
+            return tmp;
+        }
+        #endregion       
+    
+
+        
     }
 }

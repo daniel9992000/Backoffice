@@ -57,15 +57,21 @@
             this.angebotid = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.titel = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.datum = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.gb5 = new System.Windows.Forms.GroupBox();
+            this.lv_rechnungen = new System.Windows.Forms.ListView();
+            this.rechnungid = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.bezeichnung = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.datum1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.gb1.SuspendLayout();
             this.gb2.SuspendLayout();
             this.gb3.SuspendLayout();
             this.gb4.SuspendLayout();
+            this.gb5.SuspendLayout();
             this.SuspendLayout();
             // 
             // bn_save
             // 
-            this.bn_save.Location = new System.Drawing.Point(12, 329);
+            this.bn_save.Location = new System.Drawing.Point(12, 352);
             this.bn_save.Name = "bn_save";
             this.bn_save.Size = new System.Drawing.Size(75, 23);
             this.bn_save.TabIndex = 0;
@@ -76,7 +82,7 @@
             // bn_cancel
             // 
             this.bn_cancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.bn_cancel.Location = new System.Drawing.Point(93, 329);
+            this.bn_cancel.Location = new System.Drawing.Point(93, 352);
             this.bn_cancel.Name = "bn_cancel";
             this.bn_cancel.Size = new System.Drawing.Size(75, 23);
             this.bn_cancel.TabIndex = 1;
@@ -180,7 +186,7 @@
             this.gb2.Controls.Add(this.tb_email);
             this.gb2.Location = new System.Drawing.Point(12, 140);
             this.gb2.Name = "gb2";
-            this.gb2.Size = new System.Drawing.Size(348, 183);
+            this.gb2.Size = new System.Drawing.Size(348, 206);
             this.gb2.TabIndex = 6;
             this.gb2.TabStop = false;
             this.gb2.Text = "Kontakt";
@@ -270,26 +276,27 @@
             this.gb3.Controls.Add(this.rtb_bemerkungen);
             this.gb3.Location = new System.Drawing.Point(366, 12);
             this.gb3.Name = "gb3";
-            this.gb3.Size = new System.Drawing.Size(332, 311);
+            this.gb3.Size = new System.Drawing.Size(332, 334);
             this.gb3.TabIndex = 7;
             this.gb3.TabStop = false;
             this.gb3.Text = "Bemerkungen";
             // 
             // rtb_bemerkungen
             // 
-            this.rtb_bemerkungen.Location = new System.Drawing.Point(6, 19);
+            this.rtb_bemerkungen.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rtb_bemerkungen.Location = new System.Drawing.Point(3, 16);
             this.rtb_bemerkungen.Name = "rtb_bemerkungen";
-            this.rtb_bemerkungen.Size = new System.Drawing.Size(320, 286);
+            this.rtb_bemerkungen.Size = new System.Drawing.Size(326, 315);
             this.rtb_bemerkungen.TabIndex = 0;
             this.rtb_bemerkungen.Text = "";
             // 
             // gb4
             // 
             this.gb4.Controls.Add(this.lv_angebote);
-            this.gb4.Location = new System.Drawing.Point(12, 358);
+            this.gb4.Location = new System.Drawing.Point(704, 12);
             this.gb4.Name = "gb4";
             this.gb4.Padding = new System.Windows.Forms.Padding(5);
-            this.gb4.Size = new System.Drawing.Size(686, 164);
+            this.gb4.Size = new System.Drawing.Size(400, 164);
             this.gb4.TabIndex = 8;
             this.gb4.TabStop = false;
             this.gb4.Text = "Angebote";
@@ -305,7 +312,7 @@
             this.lv_angebote.GridLines = true;
             this.lv_angebote.Location = new System.Drawing.Point(5, 18);
             this.lv_angebote.Name = "lv_angebote";
-            this.lv_angebote.Size = new System.Drawing.Size(676, 141);
+            this.lv_angebote.Size = new System.Drawing.Size(390, 141);
             this.lv_angebote.TabIndex = 0;
             this.lv_angebote.UseCompatibleStateImageBehavior = false;
             this.lv_angebote.View = System.Windows.Forms.View.Details;
@@ -326,11 +333,54 @@
             this.datum.Text = "Datum";
             this.datum.Width = 80;
             // 
+            // gb5
+            // 
+            this.gb5.Controls.Add(this.lv_rechnungen);
+            this.gb5.Location = new System.Drawing.Point(709, 182);
+            this.gb5.Name = "gb5";
+            this.gb5.Padding = new System.Windows.Forms.Padding(5);
+            this.gb5.Size = new System.Drawing.Size(395, 164);
+            this.gb5.TabIndex = 9;
+            this.gb5.TabStop = false;
+            this.gb5.Text = "Rechnungen";
+            // 
+            // lv_rechnungen
+            // 
+            this.lv_rechnungen.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.rechnungid,
+            this.bezeichnung,
+            this.datum1});
+            this.lv_rechnungen.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lv_rechnungen.FullRowSelect = true;
+            this.lv_rechnungen.GridLines = true;
+            this.lv_rechnungen.Location = new System.Drawing.Point(5, 18);
+            this.lv_rechnungen.Name = "lv_rechnungen";
+            this.lv_rechnungen.Size = new System.Drawing.Size(385, 141);
+            this.lv_rechnungen.TabIndex = 0;
+            this.lv_rechnungen.UseCompatibleStateImageBehavior = false;
+            this.lv_rechnungen.View = System.Windows.Forms.View.Details;
+            // 
+            // rechnungid
+            // 
+            this.rechnungid.Text = "ID";
+            this.rechnungid.Width = 30;
+            // 
+            // bezeichnung
+            // 
+            this.bezeichnung.Text = "Bezeichnung";
+            this.bezeichnung.Width = 120;
+            // 
+            // datum1
+            // 
+            this.datum1.Text = "Datum";
+            this.datum1.Width = 80;
+            // 
             // KundeDetail
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(710, 534);
+            this.ClientSize = new System.Drawing.Size(1114, 380);
+            this.Controls.Add(this.gb5);
             this.Controls.Add(this.gb4);
             this.Controls.Add(this.gb3);
             this.Controls.Add(this.gb2);
@@ -346,6 +396,7 @@
             this.gb2.PerformLayout();
             this.gb3.ResumeLayout(false);
             this.gb4.ResumeLayout(false);
+            this.gb5.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -381,5 +432,10 @@
         private System.Windows.Forms.ColumnHeader angebotid;
         private System.Windows.Forms.ColumnHeader titel;
         private System.Windows.Forms.ColumnHeader datum;
+        private System.Windows.Forms.GroupBox gb5;
+        private System.Windows.Forms.ListView lv_rechnungen;
+        private System.Windows.Forms.ColumnHeader rechnungid;
+        private System.Windows.Forms.ColumnHeader bezeichnung;
+        private System.Windows.Forms.ColumnHeader datum1;
     }
 }

@@ -21,6 +21,11 @@ namespace Backoffice
             this.name = name;
         }
 
+        public override string ToString()
+        {
+            return name;
+        }
+
         public Projekt(int projektid, string name, ObjectStates status)
         {
             this.projektid = projektid;

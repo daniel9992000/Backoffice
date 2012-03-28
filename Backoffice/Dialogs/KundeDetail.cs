@@ -59,6 +59,16 @@ namespace Backoffice.Dialogs
                 i.SubItems.Add(item.Titel);
                 i.SubItems.Add(item.Datum.ToShortDateString());
             }
+
+            lv_rechnungen.Items.Clear();
+            foreach (var item in BL.getKundenRechnungen(k.Kundenid))
+            {
+                ListViewItem i = lv_rechnungen.Items.Add(item.Rechnungid.ToString());
+                i.Tag = item;
+                i.SubItems.Add(item.Bezeichnung);
+                i.SubItems.Add(item.Datum.ToShortDateString());
+            }
+
         }
 
         bool BindFrom()

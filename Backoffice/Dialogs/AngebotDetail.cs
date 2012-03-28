@@ -74,7 +74,7 @@ namespace Backoffice.Dialogs
 
             a.Datum = dtp_datum.Value;
 
-            a.Kundenid = ((Kunde)cb_kunde.SelectedItem).Kundenid;
+            a.Kundenid = ((Kunde)cb_kunde.SelectedItem).Kundenid;            
 
             if (created) a.Status = ObjectStates.New;
 
