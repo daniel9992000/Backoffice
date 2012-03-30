@@ -247,5 +247,22 @@ namespace Backoffice
             return DALFactory.getDAL().getKundenRechnungen(kundenid);
         }
         #endregion
+
+        #region Rechnungszeilen
+        public static List<Rechnungszeile> getRechnungszeilen(int rechnungid)
+        {
+            return DALFactory.getDAL().getRechnungszeilenViewList(rechnungid);
+        }
+
+        public static void saveRechnungszeile(Rechnungszeile r)
+        {
+            DALFactory.getDAL().saveRechnungszeile(r);
+        }
+
+        public static void deleteRechnungszeile(Rechnungszeile r)
+        {
+            DALFactory.getDAL().deleteRechnungszeile(r);
+        }
+        #endregion
     }
 }

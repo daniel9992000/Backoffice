@@ -23,6 +23,7 @@ namespace Backoffice
                     Properties.Settings.Default.DatabaseUser,
                     Properties.Settings.Default.DatabasePassword,
                     Properties.Settings.Default.Database);
+                
                 // Making connection with Npgsql provider
                 conn = new NpgsqlConnection(connstring);
                 conn.Open();
@@ -663,6 +664,22 @@ namespace Backoffice
 
 
         public List<Rechnung> getKundenRechnungen(int kundenid)
+        {
+            throw new NotImplementedException();
+        }
+
+
+        public void saveRechnungszeile(Rechnungszeile r)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void deleteRechnungszeile(Rechnungszeile r)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Rechnungszeile> getRechnungszeilenViewList(int rechnungid)
         {
             throw new NotImplementedException();
         }

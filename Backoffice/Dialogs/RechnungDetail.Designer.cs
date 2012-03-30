@@ -29,23 +29,28 @@
         private void InitializeComponent()
         {
             this.gb1 = new System.Windows.Forms.GroupBox();
-            this.tb_rechnungid = new System.Windows.Forms.TextBox();
-            this.tb_bezeichnung = new System.Windows.Forms.TextBox();
-            this.dtp_datum = new System.Windows.Forms.DateTimePicker();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.tb_kunde = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.cb_projekt = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.dtp_datum = new System.Windows.Forms.DateTimePicker();
+            this.tb_bezeichnung = new System.Windows.Forms.TextBox();
+            this.tb_rechnungid = new System.Windows.Forms.TextBox();
             this.gb2 = new System.Windows.Forms.GroupBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.bn_add = new System.Windows.Forms.Button();
+            this.tb_rz_wert = new System.Windows.Forms.TextBox();
+            this.tb_rz_bezeichnung = new System.Windows.Forms.TextBox();
             this.lv_zeilen = new System.Windows.Forms.ListView();
             this.reid = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.bezeichnung = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.wert = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.betrag = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.bn_save = new System.Windows.Forms.Button();
             this.bn_cancel = new System.Windows.Forms.Button();
-            this.cb_projekt = new System.Windows.Forms.ComboBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.tb_kunde = new System.Windows.Forms.TextBox();
             this.gb1.SuspendLayout();
             this.gb2.SuspendLayout();
             this.SuspendLayout();
@@ -69,46 +74,39 @@
             this.gb1.TabStop = false;
             this.gb1.Text = "Allgemein";
             // 
-            // tb_rechnungid
+            // tb_kunde
             // 
-            this.tb_rechnungid.Enabled = false;
-            this.tb_rechnungid.Location = new System.Drawing.Point(116, 19);
-            this.tb_rechnungid.Name = "tb_rechnungid";
-            this.tb_rechnungid.Size = new System.Drawing.Size(51, 20);
-            this.tb_rechnungid.TabIndex = 0;
+            this.tb_kunde.Enabled = false;
+            this.tb_kunde.Location = new System.Drawing.Point(116, 124);
+            this.tb_kunde.Name = "tb_kunde";
+            this.tb_kunde.Size = new System.Drawing.Size(200, 20);
+            this.tb_kunde.TabIndex = 10;
             // 
-            // tb_bezeichnung
+            // label5
             // 
-            this.tb_bezeichnung.Location = new System.Drawing.Point(116, 45);
-            this.tb_bezeichnung.Name = "tb_bezeichnung";
-            this.tb_bezeichnung.Size = new System.Drawing.Size(100, 20);
-            this.tb_bezeichnung.TabIndex = 1;
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(29, 100);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(40, 13);
+            this.label5.TabIndex = 9;
+            this.label5.Text = "Projekt";
             // 
-            // dtp_datum
+            // label4
             // 
-            this.dtp_datum.Location = new System.Drawing.Point(116, 71);
-            this.dtp_datum.Name = "dtp_datum";
-            this.dtp_datum.Size = new System.Drawing.Size(200, 20);
-            this.dtp_datum.TabIndex = 2;
-            this.dtp_datum.ValueChanged += new System.EventHandler(this.dtp_datum_ValueChanged);
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(29, 127);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(38, 13);
+            this.label4.TabIndex = 8;
+            this.label4.Text = "Kunde";
             // 
-            // label1
+            // cb_projekt
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(29, 22);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(71, 13);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Rechnung ID";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(29, 48);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(69, 13);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "Bezeichnung";
+            this.cb_projekt.FormattingEnabled = true;
+            this.cb_projekt.Location = new System.Drawing.Point(116, 97);
+            this.cb_projekt.Name = "cb_projekt";
+            this.cb_projekt.Size = new System.Drawing.Size(200, 21);
+            this.cb_projekt.TabIndex = 7;
             // 
             // label3
             // 
@@ -119,30 +117,119 @@
             this.label3.TabIndex = 5;
             this.label3.Text = "Datum";
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(29, 48);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(69, 13);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "Bezeichnung";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(29, 22);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(71, 13);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "Rechnung ID";
+            // 
+            // dtp_datum
+            // 
+            this.dtp_datum.Location = new System.Drawing.Point(116, 71);
+            this.dtp_datum.Name = "dtp_datum";
+            this.dtp_datum.Size = new System.Drawing.Size(200, 20);
+            this.dtp_datum.TabIndex = 2;
+            this.dtp_datum.ValueChanged += new System.EventHandler(this.dtp_datum_ValueChanged);
+            // 
+            // tb_bezeichnung
+            // 
+            this.tb_bezeichnung.Location = new System.Drawing.Point(116, 45);
+            this.tb_bezeichnung.Name = "tb_bezeichnung";
+            this.tb_bezeichnung.Size = new System.Drawing.Size(100, 20);
+            this.tb_bezeichnung.TabIndex = 1;
+            // 
+            // tb_rechnungid
+            // 
+            this.tb_rechnungid.Enabled = false;
+            this.tb_rechnungid.Location = new System.Drawing.Point(116, 19);
+            this.tb_rechnungid.Name = "tb_rechnungid";
+            this.tb_rechnungid.Size = new System.Drawing.Size(51, 20);
+            this.tb_rechnungid.TabIndex = 0;
+            // 
             // gb2
             // 
+            this.gb2.Controls.Add(this.label7);
+            this.gb2.Controls.Add(this.label6);
+            this.gb2.Controls.Add(this.bn_add);
+            this.gb2.Controls.Add(this.tb_rz_wert);
+            this.gb2.Controls.Add(this.tb_rz_bezeichnung);
             this.gb2.Controls.Add(this.lv_zeilen);
-            this.gb2.Location = new System.Drawing.Point(12, 198);
+            this.gb2.Location = new System.Drawing.Point(12, 226);
             this.gb2.Name = "gb2";
-            this.gb2.Size = new System.Drawing.Size(473, 130);
+            this.gb2.Size = new System.Drawing.Size(473, 239);
             this.gb2.TabIndex = 1;
             this.gb2.TabStop = false;
             this.gb2.Text = "Rechnungszeilen";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(281, 36);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(38, 13);
+            this.label7.TabIndex = 12;
+            this.label7.Text = "Betrag";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(6, 36);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(69, 13);
+            this.label6.TabIndex = 11;
+            this.label6.Text = "Bezeichnung";
+            // 
+            // bn_add
+            // 
+            this.bn_add.Location = new System.Drawing.Point(392, 50);
+            this.bn_add.Name = "bn_add";
+            this.bn_add.Size = new System.Drawing.Size(75, 23);
+            this.bn_add.TabIndex = 4;
+            this.bn_add.Text = "Hinzufügen";
+            this.bn_add.UseVisualStyleBackColor = true;
+            this.bn_add.Click += new System.EventHandler(this.bn_add_Click);
+            // 
+            // tb_rz_wert
+            // 
+            this.tb_rz_wert.Location = new System.Drawing.Point(284, 52);
+            this.tb_rz_wert.Name = "tb_rz_wert";
+            this.tb_rz_wert.Size = new System.Drawing.Size(101, 20);
+            this.tb_rz_wert.TabIndex = 2;
+            // 
+            // tb_rz_bezeichnung
+            // 
+            this.tb_rz_bezeichnung.Location = new System.Drawing.Point(6, 52);
+            this.tb_rz_bezeichnung.Name = "tb_rz_bezeichnung";
+            this.tb_rz_bezeichnung.Size = new System.Drawing.Size(272, 20);
+            this.tb_rz_bezeichnung.TabIndex = 1;
             // 
             // lv_zeilen
             // 
             this.lv_zeilen.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.reid,
             this.bezeichnung,
-            this.wert});
+            this.betrag});
             this.lv_zeilen.FullRowSelect = true;
             this.lv_zeilen.GridLines = true;
-            this.lv_zeilen.Location = new System.Drawing.Point(6, 19);
+            this.lv_zeilen.Location = new System.Drawing.Point(6, 78);
             this.lv_zeilen.Name = "lv_zeilen";
-            this.lv_zeilen.Size = new System.Drawing.Size(461, 97);
+            this.lv_zeilen.Size = new System.Drawing.Size(461, 155);
             this.lv_zeilen.TabIndex = 0;
             this.lv_zeilen.UseCompatibleStateImageBehavior = false;
             this.lv_zeilen.View = System.Windows.Forms.View.Details;
+            this.lv_zeilen.KeyDown += new System.Windows.Forms.KeyEventHandler(this.lv_zeilen_KeyDown);
             // 
             // reid
             // 
@@ -154,15 +241,15 @@
             this.bezeichnung.Text = "Bezeichnung";
             this.bezeichnung.Width = 120;
             // 
-            // wert
+            // betrag
             // 
-            this.wert.Text = "Wert";
-            this.wert.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.wert.Width = 80;
+            this.betrag.Text = "Betrag";
+            this.betrag.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.betrag.Width = 80;
             // 
             // bn_save
             // 
-            this.bn_save.Location = new System.Drawing.Point(12, 345);
+            this.bn_save.Location = new System.Drawing.Point(12, 185);
             this.bn_save.Name = "bn_save";
             this.bn_save.Size = new System.Drawing.Size(75, 23);
             this.bn_save.TabIndex = 2;
@@ -173,62 +260,29 @@
             // bn_cancel
             // 
             this.bn_cancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.bn_cancel.Location = new System.Drawing.Point(93, 345);
+            this.bn_cancel.Location = new System.Drawing.Point(93, 185);
             this.bn_cancel.Name = "bn_cancel";
             this.bn_cancel.Size = new System.Drawing.Size(75, 23);
             this.bn_cancel.TabIndex = 3;
             this.bn_cancel.Text = "Abbrechen";
             this.bn_cancel.UseVisualStyleBackColor = true;
             // 
-            // cb_projekt
-            // 
-            this.cb_projekt.FormattingEnabled = true;
-            this.cb_projekt.Location = new System.Drawing.Point(116, 97);
-            this.cb_projekt.Name = "cb_projekt";
-            this.cb_projekt.Size = new System.Drawing.Size(200, 21);
-            this.cb_projekt.TabIndex = 7;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(29, 127);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(38, 13);
-            this.label4.TabIndex = 8;
-            this.label4.Text = "Kunde";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(29, 100);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(40, 13);
-            this.label5.TabIndex = 9;
-            this.label5.Text = "Projekt";
-            // 
-            // tb_kunde
-            // 
-            this.tb_kunde.Enabled = false;
-            this.tb_kunde.Location = new System.Drawing.Point(116, 124);
-            this.tb_kunde.Name = "tb_kunde";
-            this.tb_kunde.Size = new System.Drawing.Size(200, 20);
-            this.tb_kunde.TabIndex = 10;
-            // 
             // RechnungDetail
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(497, 380);
+            this.ClientSize = new System.Drawing.Size(497, 477);
             this.Controls.Add(this.bn_cancel);
-            this.Controls.Add(this.bn_save);
             this.Controls.Add(this.gb2);
             this.Controls.Add(this.gb1);
+            this.Controls.Add(this.bn_save);
             this.Name = "RechnungDetail";
             this.Text = "RechnungDetail";
             this.Load += new System.EventHandler(this.RechnungDetail_Load);
             this.gb1.ResumeLayout(false);
             this.gb1.PerformLayout();
             this.gb2.ResumeLayout(false);
+            this.gb2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -249,9 +303,14 @@
         private System.Windows.Forms.ListView lv_zeilen;
         private System.Windows.Forms.ColumnHeader reid;
         private System.Windows.Forms.ColumnHeader bezeichnung;
-        private System.Windows.Forms.ColumnHeader wert;
+        private System.Windows.Forms.ColumnHeader betrag;
         private System.Windows.Forms.Button bn_save;
         private System.Windows.Forms.Button bn_cancel;
         private System.Windows.Forms.TextBox tb_kunde;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button bn_add;
+        private System.Windows.Forms.TextBox tb_rz_wert;
+        private System.Windows.Forms.TextBox tb_rz_bezeichnung;
     }
 }

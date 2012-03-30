@@ -99,6 +99,7 @@
     <Compile Include="Projekt.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Rechnung.cs" />
+    <Compile Include="Rechnungszeile.cs" />
     <Compile Include="UserControls\UCAngeboteAnzeigen.cs">
       <SubType>UserControl</SubType>
     </Compile>

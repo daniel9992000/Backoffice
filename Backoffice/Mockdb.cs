@@ -12,6 +12,7 @@ namespace Backoffice
         List<Angebot> angebote;
         List<Kontakt> kontakte;
         List<Rechnung> rechnungen;
+        List<Rechnungszeile> zeilen;
 
         private static Mockdb instance = null;
 
@@ -47,6 +48,12 @@ namespace Backoffice
             rechnungen = new List<Rechnung>();
             rechnungen.Add(new Rechnung(1, "Rechnung 1", DateTime.Today, 1, 1, ObjectStates.Unmodified));
             rechnungen.Add(new Rechnung(2, "Rechnung 2", DateTime.Today, 1, 1, ObjectStates.Unmodified));
+
+            zeilen = new List<Rechnungszeile>();
+            zeilen.Add(new Rechnungszeile(1, "Spezifikation", 2000.00, 1, 1, ObjectStates.Unmodified));
+            zeilen.Add(new Rechnungszeile(2, "Design", 10000.00, 1, 1, ObjectStates.Unmodified));
+            zeilen.Add(new Rechnungszeile(3, "Implementierung", 8000.00, 1, 1, ObjectStates.Unmodified));
+            zeilen.Add(new Rechnungszeile(4, "Testen", 1000.00, 1, 1, ObjectStates.Unmodified));
         }
 
         public void buildconnection()
@@ -291,7 +298,43 @@ namespace Backoffice
         }
         #endregion       
     
+        #region Rechnungszeile
+        public void saveRechnungszeile(Rechnungszeile r)
+        {
+            if (r.Status == ObjectStates.New)
+            {
+                r.Status = ObjectStates.Unmodified;
+                r.Reid = zeilen.Count + 1;
+                zeilen.Add(r);
+            }
+            else if (r.Status == ObjectStates.Modified)
+            {
+                int index = zeilen.IndexOf(r);
+                zeilen[index].Reid = r.Reid;
+                zeilen[index].Betrag = r.Betrag;
+                zeilen[index].Bezeichnung = r.Bezeichnung;
+                zeilen[index].Angebotid = r.Angebotid;
+                zeilen[index].Rechnungid = r.Rechnungid;
+                zeilen[index].Status = ObjectStates.Unmodified;
+            }
+        }
 
-        
+        public void deleteRechnungszeile(Rechnungszeile r)
+        {
+            zeilen.Remove(r);
+        }
+
+        public List<Rechnungszeile> getRechnungszeilenViewList(int rechnungid)
+        {
+            List<Rechnungszeile> tmp = new List<Rechnungszeile>();
+            foreach (var item in zeilen)
+            {
+                if (item.Rechnungid == rechnungid)
+                    tmp.Add(item);
+            }
+
+            return tmp;
+        }
+        #endregion
     }
 }

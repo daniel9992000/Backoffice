@@ -12,6 +12,7 @@ namespace Backoffice.Dialogs
     public partial class RechnungDetail : Form
     {
         Rechnung r = null;
+        Rechnungszeile rz = null;
         bool created = false;
 
         public RechnungDetail()
@@ -41,13 +42,23 @@ namespace Backoffice.Dialogs
                     cb_projekt.SelectedItem = item;
             }
 
-            tb_kunde.Text = BL.getKunde(r.Kundenid).ToString();
+            lv_zeilen.Items.Clear();
+            foreach (var item in BL.getRechnungszeilen(r.Rechnungid))
+            {
+                ListViewItem i = lv_zeilen.Items.Add(item.Reid.ToString());
+                i.Tag = item;
+                i.SubItems.Add(item.Bezeichnung);
+                i.SubItems.Add(item.Betrag.ToString() + " Euro");
+            }
 
-            tb_rechnungid.Text = r.Rechnungid.ToString();
+            if(r.Kundenid != 0)
+                tb_kunde.Text = BL.getKunde(r.Kundenid).ToString();
+
+            if(r.Rechnungid != 0)
+                tb_rechnungid.Text = r.Rechnungid.ToString();
+
             tb_bezeichnung.Text = r.Bezeichnung;
-            dtp_datum.Value = r.Datum;            
-
-           
+            dtp_datum.Value = r.Datum;  
         }
 
         bool BindFrom()
@@ -62,6 +73,32 @@ namespace Backoffice.Dialogs
 
             r.Projektid = ((Projekt)cb_projekt.SelectedItem).Projektid;
             r.Kundenid = BL.getProjektAngebot(r.Projektid).Kundenid;
+
+            if (created) r.Status = ObjectStates.New;
+
+            return true;
+        }
+
+        bool BindFromZeilen()
+        {
+            rz = new Rechnungszeile();
+            if (tb_rz_bezeichnung.Text != "")
+            {
+                rz.Bezeichnung = tb_rz_bezeichnung.Text;
+            }
+            else return false;
+
+            double res;
+            if (Double.TryParse(tb_rz_wert.Text, out res))
+            {
+                rz.Betrag = res;
+            }
+            else return false;
+
+            rz.Rechnungid = r.Rechnungid;
+            rz.Angebotid = BL.getProjektAngebot(r.Projektid).Angebotid;
+
+            rz.Status = ObjectStates.New;
 
             return true;
         }
@@ -78,6 +115,27 @@ namespace Backoffice.Dialogs
                 BL.saveRechnung(r);
                 this.Close();
                 this.DialogResult = System.Windows.Forms.DialogResult.OK;
+            }
+        }
+
+        private void bn_add_Click(object sender, EventArgs e)
+        {
+            if (BindFromZeilen())
+            {
+                BL.saveRechnungszeile(rz);
+                BindTo();
+            }
+        }
+
+        private void lv_zeilen_KeyDown(object sender, KeyEventArgs e)
+        {            
+            if (e.KeyCode == Keys.Delete)
+            {               
+                if (lv_zeilen.SelectedItems.Count == 1)
+                {
+                    BL.deleteRechnungszeile((Rechnungszeile)lv_zeilen.FocusedItem.Tag);
+                    BindTo();
+                }
             }
         }
     }

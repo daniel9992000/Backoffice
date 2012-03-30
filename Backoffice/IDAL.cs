@@ -40,5 +40,10 @@ namespace Backoffice
         void deleteRechung(Rechnung r);
         List<Rechnung> getRechnungViewList();
         List<Rechnung> getKundenRechnungen(int kundenid);
+
+        //Rechnungszeilen
+        void saveRechnungszeile(Rechnungszeile r);
+        void deleteRechnungszeile(Rechnungszeile r);
+        List<Rechnungszeile> getRechnungszeilenViewList(int rechnungid);
     }
 }
