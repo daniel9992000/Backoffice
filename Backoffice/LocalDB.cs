@@ -155,9 +155,7 @@ namespace Backoffice
             Kunde k = new Kunde();
             try
             {
-                string sql = "";
-
-                sql = "Select * from kunde where kundenid = @kundenid;";
+                string sql = "Select * from kunden where kundenid = @kundenid;";
                 comm = new NpgsqlCommand(sql, conn);
              
                 comm.Parameters.AddWithValue("@kundenid",id);
@@ -176,8 +174,7 @@ namespace Backoffice
                     k.Bemerkungen = reader["bemerkungen"].ToString().Trim();
                     k.Status = ObjectStates.Unmodified;
                 }
-                return k;
-              
+               return k;
             }
             catch (NpgsqlException exp)
             {
@@ -189,6 +186,7 @@ namespace Backoffice
                 conn.Close();
                 reader.Close();
             }
+           
         }
         #endregion
 
@@ -333,8 +331,8 @@ namespace Backoffice
                 string sql = "";
                 if (a.Status == ObjectStates.New)
                 {
-                    sql = @"Insert into angebote (titel,summe,datum,dauer,chance,kundenid)
-                        values (@titel,@summe,@datum,@dauer,@chance,@kundenid)";
+                    sql = @"Insert into angebote (titel,summe,datum,dauer,chance,kundenid, projektid)
+                        values (@titel,@summe,@datum,@dauer,@chance,@kundenid, @projektid)";
                     comm = new NpgsqlCommand(sql, conn);
                 }
                 else if (a.Status == ObjectStates.Modified)
@@ -411,7 +409,7 @@ namespace Backoffice
                     a.Chance = reader.GetInt32(4);
                     a.Kundenid = reader.GetInt32(5);
                     
-                    //a.Projektid = reader.GetInt32(6);
+                    a.Projektid = reader.GetInt32(6);
                     a.Titel = reader["titel"].ToString().Trim();
                     a.Status = ObjectStates.Unmodified;
                     alist.Add(a);
@@ -642,46 +640,307 @@ namespace Backoffice
         #region Rechnung
         public void saveRechnung(Rechnung r)
         {
-            throw new NotImplementedException();
+            buildconnection();
+            NpgsqlCommand comm = null, commaus = null;
+            try
+            {
+                string sql = "", sqlaus= "";
+                if (r.Status == ObjectStates.New)
+                {
+                    sql = @"Insert into rechnungen (offen, datum,bezeichnung) 
+                            values (@offen, @datum,@bezeichnung)";
+                    sqlaus = "Insert into ausgang (rechnungid,projektid,kundenid) values (currval('rechnungen_rechnungid_seq'),@projektid,@kundenid)";
+                    comm = new NpgsqlCommand(sql, conn);
+                    commaus = new NpgsqlCommand(sqlaus, conn);
+
+                }
+                else if (r.Status == ObjectStates.Modified)
+                {
+                    sql = @"Update rechnungen set offen = @offen, datum = @datum, 
+                    bezeichnung = @bezeichnung where rechnungid = @rechnungid";
+                    comm = new NpgsqlCommand(sql, conn);
+                    sqlaus = @"Update ausgang set projektid = @projektid, 
+                    kundenid = @kundenid where rechnungid = @rechnungid";
+                    commaus = new NpgsqlCommand(sqlaus,conn);
+                    comm.Parameters.AddWithValue("@rechnungid", r.Rechnungid);
+                    commaus.Parameters.AddWithValue("@rechnungid", r.Rechnungid);
+                }
+                comm.Parameters.AddWithValue("@offen", true);
+                comm.Parameters.AddWithValue("@datum", r.Datum);
+                comm.Parameters.AddWithValue("@bezeichnung", r.Bezeichnung);
+                comm.Prepare();
+                comm.ExecuteNonQuery();
+               
+                commaus.Parameters.AddWithValue("@kundenid", r.Kundenid);
+                commaus.Parameters.AddWithValue("@projektid", r.Projektid);
+                commaus.Prepare();
+                commaus.ExecuteNonQuery();
+                r.Status = ObjectStates.Unmodified;
+            }
+            catch (NpgsqlException exp)
+            {
+                throw new DALException("DAL: Rechnung konnte nicht gespeichert werden!", exp);
+              
+            }
+            finally
+            {
+                comm.Dispose();
+                commaus.Dispose();
+                conn.Close();
+            }
         }
 
         public void deleteRechung(Rechnung r)
         {
-            throw new NotImplementedException();
+            buildconnection();
+            NpgsqlCommand comm = null;
+            try
+            {
+                string sql = "Delete from rechnungen where rechnungid = @rechnungid";
+                comm = new NpgsqlCommand(sql, conn);
+                comm.Parameters.AddWithValue("@rechnungid", r.Rechnungid);
+                comm.Prepare();
+                comm.ExecuteNonQuery();
+                r.Status = ObjectStates.Deleted;
+            }
+            catch (NpgsqlException exp)
+            {
+                throw new DALException("DAL: Rechnung konnte nicht gelöscht werden!", exp);
+            }
+            finally
+            {
+                comm.Dispose();
+                conn.Close();
+            }
         }
 
         public List<Rechnung> getRechnungViewList()
         {
-            throw new NotImplementedException();
+            buildconnection();
+            List<Rechnung> rlist = new List<Rechnung>();
+            NpgsqlCommand comm = null;
+            NpgsqlDataReader reader = null;
+            try
+            {
+                string sql = @"Select r.rechnungid, a.projektid, a.kundenid, r.offen, r.datum,r.bezeichnung from ausgang a, rechnungen r
+                where a.rechnungid = r.rechnungid;";
+                comm = new NpgsqlCommand(sql, conn);
+                reader = comm.ExecuteReader();
+                while (reader.Read())
+                {
+                    Rechnung r = new Rechnung();
+                    r.Rechnungid = reader.GetInt32(0);
+                    r.Projektid = reader.GetInt32(1);
+                    r.Kundenid = reader.GetInt32(2);
+                   // r.offen = reader.GetBoolean(3);
+                    r.Datum = reader.GetDateTime(4);
+                    r.Bezeichnung = reader.GetString(5).Trim();
+                    rlist.Add(r);
+                }
+            }
+            catch (NpgsqlException exp)
+            {
+                throw new DALException("DAL: Rechnungsliste konnte nicht aus der Datenbank geladen werden!", exp);
+            }
+            finally
+            {
+                reader.Close();
+                comm.Dispose();
+                conn.Close();
+            }
+
+            return rlist;
         }
         #endregion
 
 
         public Angebot getProjektAngebot(int projektid)
         {
-            throw new NotImplementedException();
+            buildconnection();
+            NpgsqlCommand comm = null;
+            NpgsqlDataReader reader = null;
+            Angebot a = new Angebot();
+            try
+            {
+
+                string sql = "Select * from angebote where projektid = @projektid;";
+                comm = new NpgsqlCommand(sql, conn);
+
+                comm.Parameters.AddWithValue("@projektid", projektid);
+                reader = comm.ExecuteReader();
+                while (reader.Read())
+                {
+                    a.Angebotid = reader.GetInt32(0);
+                    a.Summe = reader.GetDouble(1);
+                    a.Datum = reader.GetDateTime(2);
+                    a.Dauer = reader.GetInt32(3);
+                    a.Chance = reader.GetInt32(4);
+                    a.Kundenid = reader.GetInt32(5);
+
+                    //a.Projektid = reader.GetInt32(6);
+                    a.Titel = reader["titel"].ToString().Trim();
+                    a.Status = ObjectStates.Unmodified;
+                }
+                return a;
+
+            }
+            catch (NpgsqlException exp)
+            {
+                throw new DALException("DAL: Angebot konnte nicht gefunden werden!", exp);
+            }
+            finally
+            {
+                comm.Dispose();
+                conn.Close();
+                reader.Close();
+            }
         }
 
 
         public List<Rechnung> getKundenRechnungen(int kundenid)
         {
-            throw new NotImplementedException();
+            buildconnection();
+            NpgsqlCommand comm = null;
+            NpgsqlDataReader reader = null;
+            List<Rechnung> rlist = new List<Rechnung>();
+            try
+            {
+
+                string sql = @"Select a.rechnungid, a.projektid, a.kundenid, r.datum,r.bezeichnung
+                from ausgang a, rechnungen r where a.rechnungid = r.rechnungid and kundenid = @kundenid;";
+                comm = new NpgsqlCommand(sql, conn);
+
+                comm.Parameters.AddWithValue("@kundenid", kundenid);
+                reader = comm.ExecuteReader();
+                while (reader.Read())
+                {
+                    Rechnung r = new Rechnung();
+                    r.Rechnungid = reader.GetInt32(0);
+                    r.Projektid = reader.GetInt32(1);
+                    r.Kundenid = reader.GetInt32(2);
+                    r.Datum = reader.GetDateTime(3);
+                    r.Bezeichnung = reader.GetString(4);
+                    rlist.Add(r);
+                }
+                return rlist;
+
+            }
+            catch (NpgsqlException exp)
+            {
+                throw new DALException("DAL: Rechnungsliste konnte nicht gefunden werden!", exp);
+            }
+            finally
+            {
+                comm.Dispose();
+                conn.Close();
+                reader.Close();
+            }
         }
 
-
+        #region Rechnungszeile
         public void saveRechnungszeile(Rechnungszeile r)
         {
-            throw new NotImplementedException();
+            buildconnection();
+            NpgsqlCommand comm = null;
+            try
+            {
+                string sql = "";
+                if (r.Status == ObjectStates.New)
+                {
+                    sql = @"Insert into rechnungszeilen (bezeichnung, betrag,angebotid,rechnungid) 
+                            values (@bezeichnung, @betrag,@angebotid, @rechnungid)";
+                    comm = new NpgsqlCommand(sql, conn);
+                  
+                }
+                else if (r.Status == ObjectStates.Modified)
+                {
+                    sql = @"Update rechnungszeilen set bezeichnung = @bezeichnung, betrag = @betrag, 
+                    angebotid = @angebotid, rechnungid = @rechnungid where reid = @reid";
+                    comm = new NpgsqlCommand(sql, conn);
+                    comm.Parameters.AddWithValue("@reid", r.Reid);
+           
+                }
+                comm.Parameters.AddWithValue("@bezeichnung", r.Bezeichnung);
+                comm.Parameters.AddWithValue("@betrag", r.Betrag);
+                comm.Parameters.AddWithValue("@angebotid", r.Angebotid);
+                comm.Parameters.AddWithValue("@rechnungid", r.Rechnungid);
+
+                comm.Prepare();
+                comm.ExecuteNonQuery();
+                r.Status = ObjectStates.Unmodified;
+            }
+            catch (NpgsqlException exp)
+            {
+                throw new DALException("DAL: Rechnungszeile konnte nicht gespeichert werden!", exp);
+            }
+            finally
+            {
+                comm.Dispose();
+                conn.Close();
+            }
         }
 
         public void deleteRechnungszeile(Rechnungszeile r)
         {
-            throw new NotImplementedException();
+            buildconnection();
+            NpgsqlCommand comm = null;
+            try
+            {
+                string sql = "Delete from rechnungszeilen where reid = @reid";
+                comm = new NpgsqlCommand(sql, conn);
+                comm.Parameters.AddWithValue("@reid", r.Reid);
+                comm.Prepare();
+                comm.ExecuteNonQuery();
+                r.Status = ObjectStates.Deleted;
+            }
+            catch (NpgsqlException exp)
+            {
+                throw new DALException("DAL: Rechnungszeile konnte nicht gelöscht werden!", exp);
+            }
+            finally
+            {
+                comm.Dispose();
+                conn.Close();
+            }
         }
 
         public List<Rechnungszeile> getRechnungszeilenViewList(int rechnungid)
         {
-            throw new NotImplementedException();
+            buildconnection();
+            List<Rechnungszeile> rlist = new List<Rechnungszeile>();
+            NpgsqlCommand comm = null;
+            NpgsqlDataReader reader = null;
+            try
+            {
+                string sql = "Select * from rechnungszeilen where rechnungid = @rechnungid;";
+                comm = new NpgsqlCommand(sql, conn);
+                comm.Parameters.AddWithValue("@rechnungid", rechnungid);
+                reader = comm.ExecuteReader();
+                while (reader.Read())
+                {
+                    Rechnungszeile r = new Rechnungszeile();
+                    r.Reid = reader.GetInt32(0);
+                    r.Bezeichnung = reader["bezeichnung"].ToString().Trim();
+                    r.Betrag = reader.GetDouble(2);
+                    r.Angebotid = reader.GetInt32(3);
+                    r.Rechnungid = reader.GetInt32(4);
+                    rlist.Add(r);
+                }
+
+            }
+            catch (NpgsqlException exp)
+            {
+                throw new DALException("DAL: Rechnungszeilenliste konnte nicht aus der Datenbank geladen werden!", exp);
+            }
+            finally
+            {
+                reader.Close();
+                comm.Dispose();
+                conn.Close();
+            }
+
+            return rlist;
         }
+        #endregion
     }
 }

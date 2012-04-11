@@ -41,12 +41,15 @@
             this.tb_angebotid = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.bn_save = new System.Windows.Forms.Button();
-            this.bn_cancel = new System.Windows.Forms.Button();
             this.gb2 = new System.Windows.Forms.GroupBox();
             this.cb_kunde = new System.Windows.Forms.ComboBox();
+            this.gb3 = new System.Windows.Forms.GroupBox();
+            this.cb_projekt = new System.Windows.Forms.ComboBox();
+            this.bnsave = new System.Windows.Forms.Button();
+            this.bncancel = new System.Windows.Forms.Button();
             this.gb1.SuspendLayout();
             this.gb2.SuspendLayout();
+            this.gb3.SuspendLayout();
             this.SuspendLayout();
             // 
             // gb1
@@ -167,27 +170,6 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "ID";
             // 
-            // bn_save
-            // 
-            this.bn_save.Location = new System.Drawing.Point(12, 289);
-            this.bn_save.Name = "bn_save";
-            this.bn_save.Size = new System.Drawing.Size(75, 23);
-            this.bn_save.TabIndex = 1;
-            this.bn_save.Text = "Speichern";
-            this.bn_save.UseVisualStyleBackColor = true;
-            this.bn_save.Click += new System.EventHandler(this.bn_save_Click);
-            // 
-            // bn_cancel
-            // 
-            this.bn_cancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.bn_cancel.Location = new System.Drawing.Point(93, 289);
-            this.bn_cancel.Name = "bn_cancel";
-            this.bn_cancel.Size = new System.Drawing.Size(75, 23);
-            this.bn_cancel.TabIndex = 2;
-            this.bn_cancel.Text = "Abbrechen";
-            this.bn_cancel.UseVisualStyleBackColor = true;
-            this.bn_cancel.Click += new System.EventHandler(this.bn_cancel_Click);
-            // 
             // gb2
             // 
             this.gb2.Controls.Add(this.cb_kunde);
@@ -206,14 +188,54 @@
             this.cb_kunde.Size = new System.Drawing.Size(303, 21);
             this.cb_kunde.TabIndex = 0;
             // 
+            // gb3
+            // 
+            this.gb3.Controls.Add(this.cb_projekt);
+            this.gb3.Location = new System.Drawing.Point(12, 298);
+            this.gb3.Name = "gb3";
+            this.gb3.Size = new System.Drawing.Size(315, 70);
+            this.gb3.TabIndex = 4;
+            this.gb3.TabStop = false;
+            this.gb3.Text = "Projekt";
+            // 
+            // cb_projekt
+            // 
+            this.cb_projekt.FormattingEnabled = true;
+            this.cb_projekt.Location = new System.Drawing.Point(6, 30);
+            this.cb_projekt.Name = "cb_projekt";
+            this.cb_projekt.Size = new System.Drawing.Size(303, 21);
+            this.cb_projekt.TabIndex = 0;
+            // 
+            // bnsave
+            // 
+            this.bnsave.Location = new System.Drawing.Point(12, 390);
+            this.bnsave.Name = "bnsave";
+            this.bnsave.Size = new System.Drawing.Size(75, 23);
+            this.bnsave.TabIndex = 1;
+            this.bnsave.Text = "Speichern";
+            this.bnsave.UseVisualStyleBackColor = true;
+            this.bnsave.Click += new System.EventHandler(this.bn_save_Click);
+            // 
+            // bncancel
+            // 
+            this.bncancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.bncancel.Location = new System.Drawing.Point(93, 390);
+            this.bncancel.Name = "bncancel";
+            this.bncancel.Size = new System.Drawing.Size(75, 23);
+            this.bncancel.TabIndex = 2;
+            this.bncancel.Text = "Abbrechen";
+            this.bncancel.UseVisualStyleBackColor = true;
+            this.bncancel.Click += new System.EventHandler(this.bn_cancel_Click);
+            // 
             // AngebotDetail
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(339, 319);
+            this.ClientSize = new System.Drawing.Size(355, 420);
+            this.Controls.Add(this.gb3);
             this.Controls.Add(this.gb2);
-            this.Controls.Add(this.bn_cancel);
-            this.Controls.Add(this.bn_save);
+            this.Controls.Add(this.bncancel);
+            this.Controls.Add(this.bnsave);
             this.Controls.Add(this.gb1);
             this.Name = "AngebotDetail";
             this.Text = "AngebotDetail";
@@ -221,6 +243,7 @@
             this.gb1.ResumeLayout(false);
             this.gb1.PerformLayout();
             this.gb2.ResumeLayout(false);
+            this.gb3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -228,8 +251,6 @@
         #endregion
 
         private System.Windows.Forms.GroupBox gb1;
-        private System.Windows.Forms.Button bn_save;
-        private System.Windows.Forms.Button bn_cancel;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox tb_chance;
@@ -244,5 +265,9 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox gb2;
         private System.Windows.Forms.ComboBox cb_kunde;
+        private System.Windows.Forms.GroupBox gb3;
+        private System.Windows.Forms.ComboBox cb_projekt;
+        private System.Windows.Forms.Button bnsave;
+        private System.Windows.Forms.Button bncancel;
     }
 }

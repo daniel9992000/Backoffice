@@ -45,6 +45,8 @@ namespace Backoffice.UserControls
         void DeleteRechnung(Rechnung r)
         {
             BL.deleteRechnung(r);
+            BindTo();
+
         }
 
         private void bn_new_Click(object sender, EventArgs e)

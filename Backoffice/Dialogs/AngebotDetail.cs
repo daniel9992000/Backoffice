@@ -36,6 +36,13 @@ namespace Backoffice.Dialogs
                     cb_kunde.SelectedItem = item;
             }
 
+            foreach (var item in BL.getProjekte())
+            {
+                cb_projekt.Items.Add(item);
+                if (item.Projektid == a.Projektid)
+                    cb_projekt.SelectedItem = item;
+            }
+           
             tb_angebotid.Text = a.Angebotid.ToString();
             tb_titel.Text = a.Titel;
             tb_dauer.Text = a.Dauer.ToString();
@@ -74,7 +81,9 @@ namespace Backoffice.Dialogs
 
             a.Datum = dtp_datum.Value;
 
-            a.Kundenid = ((Kunde)cb_kunde.SelectedItem).Kundenid;            
+            a.Kundenid = ((Kunde)cb_kunde.SelectedItem).Kundenid;
+
+            a.Projektid = ((Projekt)cb_projekt.SelectedItem).Projektid;
 
             if (created) a.Status = ObjectStates.New;
 
