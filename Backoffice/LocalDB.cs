@@ -111,22 +111,23 @@ namespace Backoffice
             NpgsqlDataReader reader = null;
             try
             {
-                string sql = "Select * from kunden;";
+                string sql = @"Select (kundenid,vorname,nachname,email,adresse,
+                hausnummer,plz,ort,telefon,bemerkungen from kunden;";
                 comm = new NpgsqlCommand(sql, conn);             
                 reader = comm.ExecuteReader();
                 while (reader.Read())
                 {
                     Kunde k = new Kunde();
                     k.Kundenid = reader.GetInt32(0);
-                    k.Vorname = reader["vorname"].ToString().Trim();
-                    k.Nachname = reader["nachname"].ToString().Trim();
-                    k.Email = reader["email"].ToString().Trim(); ;
-                    k.Adresse = reader["adresse"].ToString().Trim();
-                    k.Hausnummer = reader["hausnummer"].ToString().Trim();
-                    k.Plz = reader.GetInt32(6);
-                    k.Ort = reader["ort"].ToString().Trim();
-                    k.Telefon = reader.GetInt64(8);
-                    k.Bemerkungen = reader["bemerkungen"].ToString().Trim();
+                    k.Vorname = reader.GetString(1).Trim();
+                    k.Nachname = reader.GetString(2).Trim();
+                    k.Email = reader.GetString(3).Trim();
+                    k.Adresse = reader.GetString(4).Trim();
+                    k.Hausnummer = reader.GetString(4).Trim();
+                    k.Plz = reader.GetString(5).Trim();
+                    k.Ort = reader.GetString(6).Trim();
+                    k.Telefon = reader.GetString(7).Trim();
+                    k.Bemerkungen = reader.GetString(8).Trim();
                     k.Status = ObjectStates.Unmodified;
                     klist.Add(k);
                 }
@@ -155,7 +156,8 @@ namespace Backoffice
             Kunde k = new Kunde();
             try
             {
-                string sql = "Select * from kunden where kundenid = @kundenid;";
+                string sql = @"Select kundenid, vorname,nachname,email,adresse,hausnummer,
+                plz,ort,telefon,bemerkungen from kunden where kundenid = @kundenid;";
                 comm = new NpgsqlCommand(sql, conn);
              
                 comm.Parameters.AddWithValue("@kundenid",id);
@@ -163,15 +165,15 @@ namespace Backoffice
                 while (reader.Read())
                 {
                     k.Kundenid = reader.GetInt32(0);
-                    k.Vorname = reader["vorname"].ToString().Trim();
-                    k.Nachname = reader["nachname"].ToString().Trim();
-                    k.Email = reader["email"].ToString().Trim(); ;
-                    k.Adresse = reader["adresse"].ToString().Trim();
-                    k.Hausnummer = reader["hausnummer"].ToString().Trim();
-                    k.Plz = reader.GetInt32(6);
-                    k.Ort = reader["ort"].ToString().Trim();
-                    k.Telefon = reader.GetInt64(8);
-                    k.Bemerkungen = reader["bemerkungen"].ToString().Trim();
+                    k.Vorname = reader.GetString(1).Trim();
+                    k.Nachname = reader.GetString(2).Trim();
+                    k.Email = reader.GetString(3).Trim();
+                    k.Adresse = reader.GetString(4).Trim();
+                    k.Hausnummer = reader.GetString(4).Trim();
+                    k.Plz = reader.GetString(5).Trim();
+                    k.Ort = reader.GetString(6).Trim();
+                    k.Telefon = reader.GetString(7).Trim();
+                    k.Bemerkungen = reader.GetString(8).Trim();
                     k.Status = ObjectStates.Unmodified;
                 }
                return k;
@@ -257,14 +259,14 @@ namespace Backoffice
             NpgsqlDataReader reader = null;
             try
             {
-                string sql = "Select * from projekte;";
+                string sql = "Select projektid, name from projekte;";
                 comm = new NpgsqlCommand(sql, conn);
                 reader = comm.ExecuteReader();
                 while (reader.Read())
                 {
                     Projekt p = new Projekt();
                     p.Projektid = reader.GetInt32(0);
-                    p.Name = reader["name"].ToString().Trim();
+                    p.Name = reader.GetString(1).Trim();
                     p.Status = ObjectStates.Unmodified;
                     plist.Add(p);
                 }
@@ -292,14 +294,14 @@ namespace Backoffice
             NpgsqlDataReader reader = null;
             try
             {
-                string sql = "Select * from projekte where projektid = @projektid;";
+                string sql = "Select projektid, name from projekte where projektid = @projektid;";
                 comm = new NpgsqlCommand(sql, conn);
                 comm.Parameters.AddWithValue("@projektid",id);
                 reader = comm.ExecuteReader();
                 while (reader.Read())
                 {
                     p.Projektid = reader.GetInt32(0);
-                    p.Name = reader["name"].ToString().Trim();
+                    p.Name = reader.GetString(1).Trim();
                     p.Status = ObjectStates.Unmodified;
                  
                 }
@@ -396,7 +398,7 @@ namespace Backoffice
             NpgsqlDataReader reader = null;
             try
             {
-                string sql = "Select * from angebote;";
+                string sql = "Select angebotid,summe,datum,dauer,chance,kundenid,projektid,titel from angebote;";
                 comm = new NpgsqlCommand(sql, conn);
                 reader = comm.ExecuteReader();
                 while (reader.Read())
@@ -407,10 +409,9 @@ namespace Backoffice
                     a.Datum = reader.GetDateTime(2);
                     a.Dauer = reader.GetInt32(3);
                     a.Chance = reader.GetInt32(4);
-                    a.Kundenid = reader.GetInt32(5);
-                    
-                    a.Projektid = reader.GetInt32(6);
-                    a.Titel = reader["titel"].ToString().Trim();
+                    a.Kundenid = reader.ReadNullableInt(5);
+                    a.Projektid = reader.ReadNullableInt(6);
+                    a.Titel = reader.GetString(7).Trim();
                     a.Status = ObjectStates.Unmodified;
                     alist.Add(a);
                 }
@@ -439,7 +440,8 @@ namespace Backoffice
             NpgsqlDataReader reader = null;
             try
             {
-                string sql = "Select * from angebote where kundenid = @kundenid;";
+                string sql = @"Select angebotid, summe,datum,dauer,chance,kundenid,projektid,titel
+                from angebote where kundenid = @kundenid;";
                 comm = new NpgsqlCommand(sql, conn);
                 comm.Parameters.AddWithValue("@kundenid", kundenid);
                 reader = comm.ExecuteReader();
@@ -451,9 +453,9 @@ namespace Backoffice
                     a.Datum = reader.GetDateTime(2);
                     a.Dauer = reader.GetInt32(3);
                     a.Chance = reader.GetInt32(4);
-                    a.Kundenid = reader.GetInt32(5);
-                    a.Projektid = reader.GetInt32(6);
-                    a.Titel = reader.GetString(7);
+                    a.Kundenid = reader.ReadNullableInt(5);
+                    a.Projektid = reader.ReadNullableInt(6);
+                    a.Titel = reader.GetString(7).Trim();
                     a.Status = ObjectStates.Unmodified;
                     alist.Add(a);
 
@@ -472,6 +474,47 @@ namespace Backoffice
             }
 
             return alist;
+        }
+        public Angebot getProjektAngebot(int projektid)
+        {
+            buildconnection();
+            NpgsqlCommand comm = null;
+            NpgsqlDataReader reader = null;
+            Angebot a = new Angebot();
+            try
+            {
+
+                string sql = @"Select angebotid, summe, datum, dauer, chance, 
+                kundendid, projektid, titel from angebote where projektid = @projektid;";
+                comm = new NpgsqlCommand(sql, conn);
+
+                comm.Parameters.AddWithValue("@projektid", projektid);
+                reader = comm.ExecuteReader();
+                while (reader.Read())
+                {
+                    a.Angebotid = reader.GetInt32(0);
+                    a.Summe = reader.GetDouble(1);
+                    a.Datum = reader.GetDateTime(2);
+                    a.Dauer = reader.GetInt32(3);
+                    a.Chance = reader.GetInt32(4);
+                    a.Kundenid = reader.ReadNullableInt(5);
+                    a.Projektid = reader.ReadNullableInt(6);
+                    a.Titel = reader.GetString(7).Trim();
+                    a.Status = ObjectStates.Unmodified;
+                }
+                return a;
+
+            }
+            catch (NpgsqlException exp)
+            {
+                throw new DALException("DAL: Angebot konnte nicht gefunden werden!", exp);
+            }
+            finally
+            {
+                comm.Dispose();
+                conn.Close();
+                reader.Close();
+            }
         }
 
         #endregion
@@ -554,23 +597,24 @@ namespace Backoffice
             NpgsqlDataReader reader = null;
             try
             {
-                string sql = "Select * from kontakte;";
+                string sql = @"Select kontaktid, firmenname, vorname,nachname, email,adresse,hausnummer,
+                plz, ort, telefon, bemerkungen from kontakte;";
                 comm = new NpgsqlCommand(sql, conn);
                 reader = comm.ExecuteReader();
                 while (reader.Read())
                 {
                     Kontakt k = new Kontakt();
                     k.Kontaktid = reader.GetInt32(0);
-                    k.Firmenname = reader["firmenname"].ToString().Trim();
-                    k.Vorname = reader["vorname"].ToString().Trim();
-                    k.Nachname = reader["nachname"].ToString().Trim();
-                    k.Email = reader["email"].ToString().Trim(); ;
-                    k.Adresse = reader["adresse"].ToString().Trim();
-                    k.Hausnummer = reader["hausnummer"].ToString().Trim();
-                    k.Plz = reader.GetInt32(6);
-                    k.Ort = reader["ort"].ToString().Trim();
-                    k.Telefon = reader.GetInt64(8);
-                    k.Bemerkungen = reader["bemerkungen"].ToString().Trim();
+                    k.Firmenname = reader.GetString(1).Trim() ;
+                    k.Vorname = reader.GetString(2).Trim();
+                    k.Nachname = reader.GetString(3).Trim();
+                    k.Email = reader.GetString(4).Trim();
+                    k.Adresse = reader.GetString(5).Trim();
+                    k.Hausnummer = reader.GetString(6).Trim();
+                    k.Plz = reader.GetString(7).Trim();
+                    k.Ort = reader.GetString(8).Trim();
+                    k.Telefon = reader.GetString(9).Trim();
+                    k.Bemerkungen = reader.GetString(10).Trim();
                     k.Status = ObjectStates.Unmodified;
                     klist.Add(k);
                 }
@@ -601,7 +645,8 @@ namespace Backoffice
             {
                 string sql = "";
 
-                sql = "Select * from kontakte where kontaktid = @kontaktid;";
+                sql = @"Select kontaktid, firmenname, vorname,nachname, email,adresse,hausnummer,
+                plz, ort, telefon, bemerkungen from kontakte where kontaktid = @kontaktid;";
                 comm = new NpgsqlCommand(sql, conn);
 
                 comm.Parameters.AddWithValue("@kontaktid", id);
@@ -609,16 +654,16 @@ namespace Backoffice
                 while (reader.Read())
                 {
                     k.Kontaktid = reader.GetInt32(0);
-                    k.Firmenname = reader["firmenname"].ToString().Trim();
-                    k.Vorname = reader["vorname"].ToString().Trim();
-                    k.Nachname = reader["nachname"].ToString().Trim();
-                    k.Email = reader["email"].ToString().Trim(); ;
-                    k.Adresse = reader["adresse"].ToString().Trim();
-                    k.Hausnummer = reader["hausnummer"].ToString().Trim();
-                    k.Plz = reader.GetInt32(6);
-                    k.Ort = reader["ort"].ToString().Trim();
-                    k.Telefon = reader.GetInt64(8);
-                    k.Bemerkungen = reader["bemerkungen"].ToString().Trim();
+                    k.Firmenname = reader.GetString(1).Trim();
+                    k.Vorname = reader.GetString(2).Trim();
+                    k.Nachname = reader.GetString(3).Trim();
+                    k.Email = reader.GetString(4).Trim();
+                    k.Adresse = reader.GetString(5).Trim();
+                    k.Hausnummer = reader.GetString(6).Trim();
+                    k.Plz = reader.GetString(7).Trim();
+                    k.Ort = reader.GetString(8).Trim();
+                    k.Telefon = reader.GetString(9).Trim();
+                    k.Bemerkungen = reader.GetString(10).Trim();
                     k.Status = ObjectStates.Unmodified;
                 }
                 return k;
@@ -730,10 +775,10 @@ namespace Backoffice
                 {
                     Rechnung r = new Rechnung();
                     r.Rechnungid = reader.GetInt32(0);
-                    r.Projektid = reader.GetInt32(1);
-                    r.Kundenid = reader.GetInt32(2);
-                   // r.offen = reader.GetBoolean(3);
-                    r.Datum = reader.GetDateTime(4);
+                    r.Projektid = reader.ReadNullableInt(1);
+                    r.Kundenid = reader.ReadNullableInt(2);
+                    //r.offen = reader.GetBoolean(3);
+                    r.Datum = reader.ReadNullableDateTime(4);
                     r.Bezeichnung = reader.GetString(5).Trim();
                     rlist.Add(r);
                 }
@@ -751,51 +796,6 @@ namespace Backoffice
 
             return rlist;
         }
-        #endregion
-
-
-        public Angebot getProjektAngebot(int projektid)
-        {
-            buildconnection();
-            NpgsqlCommand comm = null;
-            NpgsqlDataReader reader = null;
-            Angebot a = new Angebot();
-            try
-            {
-
-                string sql = "Select * from angebote where projektid = @projektid;";
-                comm = new NpgsqlCommand(sql, conn);
-
-                comm.Parameters.AddWithValue("@projektid", projektid);
-                reader = comm.ExecuteReader();
-                while (reader.Read())
-                {
-                    a.Angebotid = reader.GetInt32(0);
-                    a.Summe = reader.GetDouble(1);
-                    a.Datum = reader.GetDateTime(2);
-                    a.Dauer = reader.GetInt32(3);
-                    a.Chance = reader.GetInt32(4);
-                    a.Kundenid = reader.GetInt32(5);
-
-                    //a.Projektid = reader.GetInt32(6);
-                    a.Titel = reader["titel"].ToString().Trim();
-                    a.Status = ObjectStates.Unmodified;
-                }
-                return a;
-
-            }
-            catch (NpgsqlException exp)
-            {
-                throw new DALException("DAL: Angebot konnte nicht gefunden werden!", exp);
-            }
-            finally
-            {
-                comm.Dispose();
-                conn.Close();
-                reader.Close();
-            }
-        }
-
 
         public List<Rechnung> getKundenRechnungen(int kundenid)
         {
@@ -816,10 +816,10 @@ namespace Backoffice
                 {
                     Rechnung r = new Rechnung();
                     r.Rechnungid = reader.GetInt32(0);
-                    r.Projektid = reader.GetInt32(1);
-                    r.Kundenid = reader.GetInt32(2);
-                    r.Datum = reader.GetDateTime(3);
-                    r.Bezeichnung = reader.GetString(4);
+                    r.Projektid = reader.ReadNullableInt(1);
+                    r.Kundenid = reader.ReadNullableInt(2);
+                    r.Datum = reader.ReadNullableDateTime(3);
+                    r.Bezeichnung = reader.GetString(4).Trim();
                     rlist.Add(r);
                 }
                 return rlist;
@@ -836,6 +836,7 @@ namespace Backoffice
                 reader.Close();
             }
         }
+        #endregion
 
         #region Rechnungszeile
         public void saveRechnungszeile(Rechnungszeile r)
@@ -912,7 +913,7 @@ namespace Backoffice
             NpgsqlDataReader reader = null;
             try
             {
-                string sql = "Select * from rechnungszeilen where rechnungid = @rechnungid;";
+                string sql = "Select reid,bezeichnung,betrag,angebotid,rechnungid from rechnungszeilen where rechnungid = @rechnungid;";
                 comm = new NpgsqlCommand(sql, conn);
                 comm.Parameters.AddWithValue("@rechnungid", rechnungid);
                 reader = comm.ExecuteReader();
@@ -920,10 +921,10 @@ namespace Backoffice
                 {
                     Rechnungszeile r = new Rechnungszeile();
                     r.Reid = reader.GetInt32(0);
-                    r.Bezeichnung = reader["bezeichnung"].ToString().Trim();
+                    r.Bezeichnung = reader.GetString(1).Trim();
                     r.Betrag = reader.GetDouble(2);
-                    r.Angebotid = reader.GetInt32(3);
-                    r.Rechnungid = reader.GetInt32(4);
+                    r.Angebotid = reader.ReadNullableInt(3);
+                    r.Rechnungid = reader.ReadNullableInt(4);
                     rlist.Add(r);
                 }
 

@@ -8,15 +8,15 @@ namespace Backoffice
     public class Kontakt
     {
         int kontaktid;
+        string firmenname;
         string vorname;
         string nachname;
-        string firmenname;
+        string email;
         string adresse;
         string hausnummer;
-        int plz;
-        string email;
+        string plz;
         string ort;
-        decimal telefon;
+        string telefon;
         string bemerkungen;
         ObjectStates status;
 
@@ -47,7 +47,7 @@ namespace Backoffice
             get { return firmenname; }
             set
             {
-                if (firmenname != value)
+                if (!firmenname.Equals(value))
                 {
                     firmenname = value;
                     Status = ObjectStates.Modified;
@@ -60,7 +60,7 @@ namespace Backoffice
         {
             get { return vorname; }
             set {
-                    if (vorname != value)
+                    if (!vorname.Equals(value))
                     {
                         vorname = value;
                         Status = ObjectStates.Modified;
@@ -73,7 +73,7 @@ namespace Backoffice
             get { return nachname; }
             set
             {
-                if (nachname != value)
+                if (nachname.Equals(value))
                 {
                     nachname = value;
                     Status = ObjectStates.Modified;
@@ -86,7 +86,7 @@ namespace Backoffice
             get { return email; }
             set
             {
-                if (email != value)
+                if (!email.Equals(value))
                 {
                     email = value;
                     status = ObjectStates.Modified;
@@ -99,7 +99,7 @@ namespace Backoffice
             get { return adresse; }
             set
             {
-                if (adresse != value)
+                if (!adresse.Equals(value))
                 {
                     adresse = value;
                     status = ObjectStates.Modified;
@@ -112,7 +112,7 @@ namespace Backoffice
             get { return hausnummer; }
             set
             {
-                if (hausnummer != value)
+                if (!hausnummer.Equals(value))
                 {
                     hausnummer = value;
                     status = ObjectStates.Modified;
@@ -120,12 +120,12 @@ namespace Backoffice
             }
         }
 
-        public int Plz
+        public string Plz
         {
             get { return plz; }
             set
             {
-                if (plz != value)
+                if (!plz.Equals(value))
                 {
                     plz = value;
                     status = ObjectStates.Modified;
@@ -138,7 +138,7 @@ namespace Backoffice
             get { return ort; }
             set
             {
-                if (ort != value)
+                if (!ort.Equals(value))
                 {
                     ort = value;
                     status = ObjectStates.Modified;
@@ -146,12 +146,12 @@ namespace Backoffice
             }
         }
 
-        public decimal Telefon
+        public string Telefon
         {
             get { return telefon; }
             set
             {
-                if (telefon != value)
+                if (!telefon.Equals(value))
                 {
                     telefon = value;
                     status = ObjectStates.Modified;
@@ -164,7 +164,7 @@ namespace Backoffice
             get { return bemerkungen; }
             set
             {
-                if (bemerkungen != value)
+                if (!bemerkungen.Equals(value))
                 {
                     bemerkungen = value;
                     status = ObjectStates.Modified;

@@ -8,10 +8,10 @@ namespace Backoffice
     public class Rechnung
     {
         int rechnungid;
-        string bezeichnung;
-        DateTime datum;
-        int projektid;
-        int kundenid;
+        string? bezeichnung;
+        DateTime? datum;
+        int? projektid;
+        int? kundenid;
         ObjectStates status;
 
         public Rechnung()
@@ -42,12 +42,12 @@ namespace Backoffice
             }
         }
 
-        public string Bezeichnung
+        public string? Bezeichnung
         {
             get { return bezeichnung; }
             set
             {
-                if (bezeichnung != value)
+                if (!bezeichnung.Equals(value))
                 {
                     bezeichnung = value;
                     status = ObjectStates.Modified;
@@ -55,12 +55,12 @@ namespace Backoffice
             }
         }
 
-        public DateTime Datum
+        public DateTime? Datum
         {
             get { return datum; }
             set 
             { 
-                if (datum != value) 
+                if (datum.Equals(value))
                 { 
                     datum = value;
                     status = ObjectStates.Modified;
@@ -68,7 +68,7 @@ namespace Backoffice
             }
         }
 
-        public int Projektid
+        public int? Projektid
         {
             get { return projektid; }
             set
@@ -81,7 +81,7 @@ namespace Backoffice
             }
         }
 
-        public int Kundenid
+        public int? Kundenid
         {
             get { return kundenid; }
             set

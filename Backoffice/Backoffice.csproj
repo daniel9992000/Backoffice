@@ -54,6 +54,7 @@
     <Compile Include="ColumnSorter.cs" />
     <Compile Include="DALException.cs" />
     <Compile Include="DALFactory.cs" />
+    <Compile Include="DbHelper.cs" />
     <Compile Include="Dialogs\AngebotDetail.cs">
       <SubType>Form</SubType>
     </Compile>

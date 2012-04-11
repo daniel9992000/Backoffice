@@ -37,7 +37,7 @@ namespace Backoffice
         {
             get { return name; }
             set {
-                    if (name != value)
+                    if (!name.Equals(value))
                     { 
                         name = value;
                         status = ObjectStates.Modified;

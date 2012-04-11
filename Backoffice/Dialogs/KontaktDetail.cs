@@ -58,7 +58,7 @@ namespace Backoffice.Dialogs
         {
             int res1;
 
-            if (tb_firmenname.Text != "")
+            if (!string.IsNullOrWhiteSpace(tb_firmenname.Text))
             {
                 k.Firmenname = tb_firmenname.Text;
             }

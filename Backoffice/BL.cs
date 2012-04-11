@@ -10,7 +10,7 @@ namespace Backoffice
         New, Modified, Unmodified, Deleted
     }
 
-    class BL
+    public class BL
     {
         #region Kunden
         public static List<Kunde> getKunden()

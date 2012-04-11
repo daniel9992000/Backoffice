@@ -10,8 +10,8 @@ namespace Backoffice
         int reid;
         string bezeichnung;
         double betrag;
-        int angebotid;
-        int rechnungid;
+        int? angebotid;
+        int? rechnungid;
         ObjectStates status;
 
         public Rechnungszeile()
@@ -48,7 +48,7 @@ namespace Backoffice
             get { return bezeichnung; }
             set
             {
-                if (bezeichnung != value)
+                if (!bezeichnung.Equals(value))
                 {
                     bezeichnung = value;
                     status = ObjectStates.Modified;
@@ -69,7 +69,7 @@ namespace Backoffice
             }
         }
 
-        public int Angebotid
+        public int? Angebotid
         {
             get { return angebotid; }
             set
@@ -82,7 +82,7 @@ namespace Backoffice
             }
         }
 
-        public int Rechnungid
+        public int? Rechnungid
         {
             get { return rechnungid; }
             set
