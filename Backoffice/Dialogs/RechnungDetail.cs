@@ -58,7 +58,7 @@ namespace Backoffice.Dialogs
                 tb_rechnungid.Text = r.Rechnungid.ToString();
 
             tb_bezeichnung.Text = r.Bezeichnung;
-            dtp_datum.Value = r.Datum;  
+            dtp_datum.Value = r.Datum.Value;  
         }
 
         bool BindFrom()

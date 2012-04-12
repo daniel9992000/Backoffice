@@ -54,6 +54,12 @@
     <Compile Include="ColumnSorter.cs" />
     <Compile Include="DALException.cs" />
     <Compile Include="DALFactory.cs" />
+    <Compile Include="DataBinding\Binder.cs" />
+    <Compile Include="DataBinding\ErrorControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DataBinding\IRule.cs" />
+    <Compile Include="DataBinding\RequiredRule.cs" />
     <Compile Include="DbHelper.cs" />
     <Compile Include="Dialogs\AngebotDetail.cs">
       <SubType>Form</SubType>

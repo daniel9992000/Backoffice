@@ -37,18 +37,11 @@ namespace Backoffice.Dialogs
             tb_email.Text = k.Email;
             tb_adresse.Text = k.Adresse;
             tb_hausnummer.Text = k.Hausnummer;
-
-            if (k.Plz == 0)
-                tb_plz.Text = "";
-            else
-                tb_plz.Text = k.Plz.ToString();
+            tb_plz.Text = k.Plz.ToString();
 
             tb_ort.Text = k.Ort;
 
-            if (k.Telefon == 0)
-                tb_telefon.Text = "";
-            else
-                tb_telefon.Text = k.Telefon.ToString();
+            tb_telefon.Text = k.Telefon.ToString();
 
             rtb_bemerkungen.Text = k.Bemerkungen;
 
@@ -89,16 +82,11 @@ namespace Backoffice.Dialogs
             k.Adresse = tb_adresse.Text;
             k.Hausnummer = tb_hausnummer.Text;
 
-            if (Int32.TryParse(tb_plz.Text, out res1) || tb_plz.Text == "")
-                k.Plz = res1;
-            else return false;
+            
 
             k.Ort = tb_ort.Text;
 
-            decimal result;
-            if (Decimal.TryParse(tb_telefon.Text, out result) || tb_telefon.Text == "")
-                k.Telefon = result;
-            else return false;
+            
 
             k.Bemerkungen = rtb_bemerkungen.Text;
 

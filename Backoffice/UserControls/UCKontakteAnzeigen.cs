@@ -29,10 +29,7 @@ namespace Backoffice.UserControls
                 i.SubItems.Add(tmp.Email);
                 i.SubItems.Add(tmp.Adresse);
                 i.SubItems.Add(tmp.Hausnummer);
-                if (tmp.Plz == 0)
-                    i.SubItems.Add("");
-                else
-                    i.SubItems.Add(tmp.Plz.ToString());
+                i.SubItems.Add(tmp.Plz);
                 i.SubItems.Add(tmp.Ort);
             }
         }

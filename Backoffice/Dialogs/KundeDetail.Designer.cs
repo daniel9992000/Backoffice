@@ -62,6 +62,15 @@
             this.rechnungid = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.bezeichnung = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.datum1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.errorControl9 = new Backoffice.DataBinding.ErrorControl();
+            this.errorControl8 = new Backoffice.DataBinding.ErrorControl();
+            this.errorControl7 = new Backoffice.DataBinding.ErrorControl();
+            this.errorControl6 = new Backoffice.DataBinding.ErrorControl();
+            this.errorControl5 = new Backoffice.DataBinding.ErrorControl();
+            this.errorControl4 = new Backoffice.DataBinding.ErrorControl();
+            this.errorControl3 = new Backoffice.DataBinding.ErrorControl();
+            this.errorControl2 = new Backoffice.DataBinding.ErrorControl();
+            this.errorControl1 = new Backoffice.DataBinding.ErrorControl();
             this.gb1.SuspendLayout();
             this.gb2.SuspendLayout();
             this.gb3.SuspendLayout();
@@ -71,7 +80,7 @@
             // 
             // bn_save
             // 
-            this.bn_save.Location = new System.Drawing.Point(12, 352);
+            this.bn_save.Location = new System.Drawing.Point(12, 599);
             this.bn_save.Name = "bn_save";
             this.bn_save.Size = new System.Drawing.Size(75, 23);
             this.bn_save.TabIndex = 0;
@@ -82,7 +91,7 @@
             // bn_cancel
             // 
             this.bn_cancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.bn_cancel.Location = new System.Drawing.Point(93, 352);
+            this.bn_cancel.Location = new System.Drawing.Point(93, 599);
             this.bn_cancel.Name = "bn_cancel";
             this.bn_cancel.Size = new System.Drawing.Size(75, 23);
             this.bn_cancel.TabIndex = 1;
@@ -92,6 +101,8 @@
             // 
             // gb1
             // 
+            this.gb1.Controls.Add(this.errorControl2);
+            this.gb1.Controls.Add(this.errorControl1);
             this.gb1.Controls.Add(this.tb_id);
             this.gb1.Controls.Add(this.tb_nachname);
             this.gb1.Controls.Add(this.tb_vorname);
@@ -100,13 +111,14 @@
             this.gb1.Controls.Add(this.label1);
             this.gb1.Location = new System.Drawing.Point(12, 12);
             this.gb1.Name = "gb1";
-            this.gb1.Size = new System.Drawing.Size(348, 122);
+            this.gb1.Size = new System.Drawing.Size(443, 122);
             this.gb1.TabIndex = 5;
             this.gb1.TabStop = false;
             this.gb1.Text = "Allgemein";
             // 
             // tb_id
             // 
+            this.tb_id.AccessibleName = "";
             this.tb_id.Enabled = false;
             this.tb_id.Location = new System.Drawing.Point(105, 34);
             this.tb_id.Name = "tb_id";
@@ -172,6 +184,12 @@
             // 
             // gb2
             // 
+            this.gb2.Controls.Add(this.errorControl8);
+            this.gb2.Controls.Add(this.errorControl7);
+            this.gb2.Controls.Add(this.errorControl6);
+            this.gb2.Controls.Add(this.errorControl5);
+            this.gb2.Controls.Add(this.errorControl4);
+            this.gb2.Controls.Add(this.errorControl3);
             this.gb2.Controls.Add(this.label9);
             this.gb2.Controls.Add(this.tb_telefon);
             this.gb2.Controls.Add(this.label8);
@@ -186,7 +204,7 @@
             this.gb2.Controls.Add(this.tb_email);
             this.gb2.Location = new System.Drawing.Point(12, 140);
             this.gb2.Name = "gb2";
-            this.gb2.Size = new System.Drawing.Size(348, 206);
+            this.gb2.Size = new System.Drawing.Size(443, 206);
             this.gb2.TabIndex = 6;
             this.gb2.TabStop = false;
             this.gb2.Text = "Kontakt";
@@ -273,10 +291,11 @@
             // 
             // gb3
             // 
+            this.gb3.Controls.Add(this.errorControl9);
             this.gb3.Controls.Add(this.rtb_bemerkungen);
-            this.gb3.Location = new System.Drawing.Point(366, 12);
+            this.gb3.Location = new System.Drawing.Point(12, 352);
             this.gb3.Name = "gb3";
-            this.gb3.Size = new System.Drawing.Size(332, 334);
+            this.gb3.Size = new System.Drawing.Size(443, 236);
             this.gb3.TabIndex = 7;
             this.gb3.TabStop = false;
             this.gb3.Text = "Bemerkungen";
@@ -286,17 +305,17 @@
             this.rtb_bemerkungen.Dock = System.Windows.Forms.DockStyle.Fill;
             this.rtb_bemerkungen.Location = new System.Drawing.Point(3, 16);
             this.rtb_bemerkungen.Name = "rtb_bemerkungen";
-            this.rtb_bemerkungen.Size = new System.Drawing.Size(326, 315);
+            this.rtb_bemerkungen.Size = new System.Drawing.Size(437, 217);
             this.rtb_bemerkungen.TabIndex = 0;
             this.rtb_bemerkungen.Text = "";
             // 
             // gb4
             // 
             this.gb4.Controls.Add(this.lv_angebote);
-            this.gb4.Location = new System.Drawing.Point(704, 12);
+            this.gb4.Location = new System.Drawing.Point(461, 12);
             this.gb4.Name = "gb4";
             this.gb4.Padding = new System.Windows.Forms.Padding(5);
-            this.gb4.Size = new System.Drawing.Size(400, 164);
+            this.gb4.Size = new System.Drawing.Size(400, 314);
             this.gb4.TabIndex = 8;
             this.gb4.TabStop = false;
             this.gb4.Text = "Angebote";
@@ -312,7 +331,7 @@
             this.lv_angebote.GridLines = true;
             this.lv_angebote.Location = new System.Drawing.Point(5, 18);
             this.lv_angebote.Name = "lv_angebote";
-            this.lv_angebote.Size = new System.Drawing.Size(390, 141);
+            this.lv_angebote.Size = new System.Drawing.Size(390, 291);
             this.lv_angebote.TabIndex = 0;
             this.lv_angebote.UseCompatibleStateImageBehavior = false;
             this.lv_angebote.View = System.Windows.Forms.View.Details;
@@ -336,10 +355,10 @@
             // gb5
             // 
             this.gb5.Controls.Add(this.lv_rechnungen);
-            this.gb5.Location = new System.Drawing.Point(709, 182);
+            this.gb5.Location = new System.Drawing.Point(466, 332);
             this.gb5.Name = "gb5";
             this.gb5.Padding = new System.Windows.Forms.Padding(5);
-            this.gb5.Size = new System.Drawing.Size(395, 164);
+            this.gb5.Size = new System.Drawing.Size(395, 253);
             this.gb5.TabIndex = 9;
             this.gb5.TabStop = false;
             this.gb5.Text = "Rechnungen";
@@ -355,7 +374,7 @@
             this.lv_rechnungen.GridLines = true;
             this.lv_rechnungen.Location = new System.Drawing.Point(5, 18);
             this.lv_rechnungen.Name = "lv_rechnungen";
-            this.lv_rechnungen.Size = new System.Drawing.Size(385, 141);
+            this.lv_rechnungen.Size = new System.Drawing.Size(385, 230);
             this.lv_rechnungen.TabIndex = 0;
             this.lv_rechnungen.UseCompatibleStateImageBehavior = false;
             this.lv_rechnungen.View = System.Windows.Forms.View.Details;
@@ -375,11 +394,84 @@
             this.datum1.Text = "Datum";
             this.datum1.Width = 80;
             // 
+            // errorControl9
+            // 
+            this.errorControl9.AutoSize = true;
+            this.errorControl9.Location = new System.Drawing.Point(78, 0);
+            this.errorControl9.Name = "errorControl9";
+            this.errorControl9.Size = new System.Drawing.Size(67, 13);
+            this.errorControl9.TabIndex = 24;
+            this.errorControl9.Text = "errorControl9";
+            // 
+            // errorControl8
+            // 
+            this.errorControl8.AutoSize = true;
+            this.errorControl8.Location = new System.Drawing.Point(280, 152);
+            this.errorControl8.Name = "errorControl8";
+            this.errorControl8.Size = new System.Drawing.Size(0, 13);
+            this.errorControl8.TabIndex = 23;
+            // 
+            // errorControl7
+            // 
+            this.errorControl7.AutoSize = true;
+            this.errorControl7.Location = new System.Drawing.Point(280, 126);
+            this.errorControl7.Name = "errorControl7";
+            this.errorControl7.Size = new System.Drawing.Size(0, 13);
+            this.errorControl7.TabIndex = 22;
+            // 
+            // errorControl6
+            // 
+            this.errorControl6.AutoSize = true;
+            this.errorControl6.Location = new System.Drawing.Point(186, 100);
+            this.errorControl6.Name = "errorControl6";
+            this.errorControl6.Size = new System.Drawing.Size(0, 13);
+            this.errorControl6.TabIndex = 21;
+            // 
+            // errorControl5
+            // 
+            this.errorControl5.AutoSize = true;
+            this.errorControl5.Location = new System.Drawing.Point(186, 74);
+            this.errorControl5.Name = "errorControl5";
+            this.errorControl5.Size = new System.Drawing.Size(0, 13);
+            this.errorControl5.TabIndex = 20;
+            // 
+            // errorControl4
+            // 
+            this.errorControl4.AutoSize = true;
+            this.errorControl4.Location = new System.Drawing.Point(280, 48);
+            this.errorControl4.Name = "errorControl4";
+            this.errorControl4.Size = new System.Drawing.Size(0, 13);
+            this.errorControl4.TabIndex = 19;
+            // 
+            // errorControl3
+            // 
+            this.errorControl3.AutoSize = true;
+            this.errorControl3.Location = new System.Drawing.Point(280, 22);
+            this.errorControl3.Name = "errorControl3";
+            this.errorControl3.Size = new System.Drawing.Size(0, 13);
+            this.errorControl3.TabIndex = 18;
+            // 
+            // errorControl2
+            // 
+            this.errorControl2.AutoSize = true;
+            this.errorControl2.Location = new System.Drawing.Point(211, 89);
+            this.errorControl2.Name = "errorControl2";
+            this.errorControl2.Size = new System.Drawing.Size(0, 13);
+            this.errorControl2.TabIndex = 7;
+            // 
+            // errorControl1
+            // 
+            this.errorControl1.AutoSize = true;
+            this.errorControl1.Location = new System.Drawing.Point(211, 63);
+            this.errorControl1.Name = "errorControl1";
+            this.errorControl1.Size = new System.Drawing.Size(0, 13);
+            this.errorControl1.TabIndex = 6;
+            // 
             // KundeDetail
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1114, 380);
+            this.ClientSize = new System.Drawing.Size(881, 634);
             this.Controls.Add(this.gb5);
             this.Controls.Add(this.gb4);
             this.Controls.Add(this.gb3);
@@ -395,6 +487,7 @@
             this.gb2.ResumeLayout(false);
             this.gb2.PerformLayout();
             this.gb3.ResumeLayout(false);
+            this.gb3.PerformLayout();
             this.gb4.ResumeLayout(false);
             this.gb5.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -437,5 +530,14 @@
         private System.Windows.Forms.ColumnHeader rechnungid;
         private System.Windows.Forms.ColumnHeader bezeichnung;
         private System.Windows.Forms.ColumnHeader datum1;
+        private DataBinding.ErrorControl errorControl2;
+        private DataBinding.ErrorControl errorControl1;
+        private DataBinding.ErrorControl errorControl8;
+        private DataBinding.ErrorControl errorControl7;
+        private DataBinding.ErrorControl errorControl6;
+        private DataBinding.ErrorControl errorControl5;
+        private DataBinding.ErrorControl errorControl4;
+        private DataBinding.ErrorControl errorControl3;
+        private DataBinding.ErrorControl errorControl9;
     }
 }

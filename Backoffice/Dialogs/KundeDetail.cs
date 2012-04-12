@@ -13,12 +13,14 @@ namespace Backoffice.Dialogs
     {
         Kunde k;
         bool created;
+        DataBinding.Binder binder;
 
         public KundeDetail()
         {
             InitializeComponent();
             k = new Kunde();
             created = true;
+            binder = new DataBinding.Binder();
         }
 
         public KundeDetail(Kunde k)
@@ -26,6 +28,7 @@ namespace Backoffice.Dialogs
             InitializeComponent();
             this.k = k;
             created = false;
+            binder = new DataBinding.Binder();
         }
 
         void BindTo()
@@ -37,17 +40,11 @@ namespace Backoffice.Dialogs
             tb_adresse.Text = k.Adresse;
             tb_hausnr.Text = k.Hausnummer;
 
-            if (k.Plz == 0)
-                tb_plz.Text = "";
-            else
-                tb_plz.Text = k.Plz.ToString();
+            tb_plz.Text = k.Plz;
 
             tb_ort.Text = k.Ort;
 
-            if (k.Telefon == 0)
-                tb_telefon.Text = "";
-            else
-                tb_telefon.Text = k.Telefon.ToString();
+            tb_telefon.Text = k.Telefon;
 
             rtb_bemerkungen.Text = k.Bemerkungen;
 
@@ -66,51 +63,29 @@ namespace Backoffice.Dialogs
                 ListViewItem i = lv_rechnungen.Items.Add(item.Rechnungid.ToString());
                 i.Tag = item;
                 i.SubItems.Add(item.Bezeichnung);
-                i.SubItems.Add(item.Datum.ToShortDateString());
+                i.SubItems.Add(item.Datum.Value.ToShortDateString());
             }
 
         }
 
         bool BindFrom()
         {
-            int res1;
+            binder.StartBindFrom();
 
-            if (tb_vorname.Text != "")
-            {
-                k.Vorname = tb_vorname.Text;
-            }
-            else
-            {
-                return false;
-            }
-
-            if (tb_nachname.Text != "")
-            {
-                k.Nachname = tb_nachname.Text;
-            }
-            else return false;
-
-            if (tb_email.Text != "")
-                k.Email = tb_email.Text;
-            else return false;
-
-            k.Adresse = tb_adresse.Text;
-            k.Hausnummer = tb_hausnr.Text;
-
-            if (Int32.TryParse(tb_plz.Text, out res1) || tb_plz.Text == "")
-                k.Plz = res1;
-            else return false;
-
-            k.Ort = tb_ort.Text;
-
-            decimal result;
-            if (Decimal.TryParse(tb_telefon.Text, out result) || tb_telefon.Text == "")
-                k.Telefon = result;
-            else return false;
-               
-            k.Bemerkungen = rtb_bemerkungen.Text;
+            k.Vorname = binder.BindFrom_String(tb_vorname, errorControl1, new DataBinding.RequiredRule());
+            k.Nachname = binder.BindFrom_String(tb_nachname, errorControl2, new DataBinding.RequiredRule());            
+            k.Email = binder.BindFrom_String(tb_email, errorControl3, new DataBinding.RequiredRule());
+            k.Adresse = binder.BindFrom_String(tb_adresse, errorControl4, null);
+            k.Hausnummer = binder.BindFrom_String(tb_hausnr, errorControl5, null);
+            k.Plz = binder.BindFrom_String(tb_plz, errorControl6, null);
+            k.Ort = binder.BindFrom_String(tb_ort, errorControl7, null);
+            k.Telefon = binder.BindFrom_String(tb_telefon, errorControl8, null);
+            k.Bemerkungen = binder.BindFrom_String(rtb_bemerkungen, errorControl9, null);
 
             if (created) k.Status = ObjectStates.New;
+
+            if (binder.HasErrors)
+                return false;
 
             return true;
         }
