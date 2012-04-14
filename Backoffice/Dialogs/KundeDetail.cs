@@ -33,20 +33,16 @@ namespace Backoffice.Dialogs
 
         void BindTo()
         {
-            tb_id.Text = k.Kundenid.ToString();
-            tb_vorname.Text = k.Vorname;
-            tb_nachname.Text = k.Nachname;
-            tb_email.Text = k.Email;
-            tb_adresse.Text = k.Adresse;
-            tb_hausnr.Text = k.Hausnummer;
-
-            tb_plz.Text = k.Plz;
-
-            tb_ort.Text = k.Ort;
-
-            tb_telefon.Text = k.Telefon;
-
-            rtb_bemerkungen.Text = k.Bemerkungen;
+            binder.BindTo_TextBox(tb_id, k.Kundenid);
+            binder.BindTo_TextBox(tb_vorname, k.Vorname);
+            binder.BindTo_TextBox(tb_nachname, k.Nachname);
+            binder.BindTo_TextBox(tb_email, k.Email);
+            binder.BindTo_TextBox(tb_adresse, k.Adresse);
+            binder.BindTo_TextBox(tb_hausnr, k.Hausnummer);
+            binder.BindTo_TextBox(tb_plz, k.Plz);
+            binder.BindTo_TextBox(tb_ort, k.Ort);
+            binder.BindTo_TextBox(tb_telefon, k.Telefon);
+            binder.BindTo_TextBox(rtb_bemerkungen, k.Bemerkungen);
 
             lv_angebote.Items.Clear();
             foreach (var item in BL.getKundenAngebote(k.Kundenid))

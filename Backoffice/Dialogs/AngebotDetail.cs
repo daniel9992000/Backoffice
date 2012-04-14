@@ -13,18 +13,21 @@ namespace Backoffice.Dialogs
     {
         Angebot a = null;
         bool created = false;
+        DataBinding.Binder binder;
 
         public AngebotDetail()
         {
             InitializeComponent();
             this.a = new Angebot();
             this.created = true;
+            binder = new DataBinding.Binder();
         }
 
         public AngebotDetail(Angebot a)
         {
             InitializeComponent();
             this.a = a;
+            binder = new DataBinding.Binder();
         }
 
         void BindTo()
@@ -53,39 +56,20 @@ namespace Backoffice.Dialogs
 
         bool BindFrom()
         {
-            if (tb_titel.Text != "")
-            {
-                a.Titel = tb_titel.Text;
-            }
-            else return false;
-
-            int result;
-            if (Int32.TryParse(tb_dauer.Text, out result) || tb_dauer.Text == "")
-            {
-                a.Dauer = result;
-            }
-            else return false;
-
-            if (Int32.TryParse(tb_chance.Text, out result) || tb_chance.Text == "")
-            {
-                a.Chance = result;
-            }
-            else return false;
-
-            double res;
-            if (Double.TryParse(tb_summe.Text, out res) || tb_summe.Text == "")
-            {
-                a.Summe = res;
-            }
-            else return false;
+            binder.StartBindFrom();
+            a.Titel = binder.BindFrom_String(tb_titel, errorControl1, new DataBinding.RequiredRule());
+            a.Dauer = binder.BindFrom_Int(tb_dauer, errorControl2, new DataBinding.PositiveRule());
+            a.Chance = binder.BindFrom_Int(tb_chance, errorControl4, new DataBinding.PositiveRule());
+            a.Summe = binder.BindFrom_Double(tb_summe, errorControl3, new DataBinding.PositiveRule());
 
             a.Datum = dtp_datum.Value;
-
-            a.Kundenid = ((Kunde)cb_kunde.SelectedItem).Kundenid;
-
-            a.Projektid = ((Projekt)cb_projekt.SelectedItem).Projektid;
+            a.Kundenid = ((Kunde)binder.BindFrom_ComboBox(cb_kunde, errorControl5, null)).Kundenid;
+            a.Projektid = ((Projekt)binder.BindFrom_ComboBox(cb_projekt, errorControl6, null)).Projektid;
 
             if (created) a.Status = ObjectStates.New;
+
+            if (binder.HasErrors)
+                return false;
 
             return true;
         }

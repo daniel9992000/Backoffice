@@ -397,7 +397,7 @@
             // errorControl9
             // 
             this.errorControl9.AutoSize = true;
-            this.errorControl9.Location = new System.Drawing.Point(78, 0);
+            this.errorControl9.Location = new System.Drawing.Point(138, 0);
             this.errorControl9.Name = "errorControl9";
             this.errorControl9.Size = new System.Drawing.Size(67, 13);
             this.errorControl9.TabIndex = 24;
