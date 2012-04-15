@@ -13,7 +13,7 @@ namespace Backoffice
         DateTime datum;
         int dauer;
         int chance;
-        int? kundenid;
+        int kundenid;
         int? projektid;
         ObjectStates status;
 
@@ -123,7 +123,7 @@ namespace Backoffice
             }
         }
 
-        public int? Kundenid
+        public int Kundenid
         {
             get { return kundenid; }
             set

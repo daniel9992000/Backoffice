@@ -95,7 +95,7 @@ namespace Backoffice
             return tmp;
         }
 
-        public static Angebot getProjektAngebot(int projektid)
+        public static Angebot getProjektAngebot(int? projektid)
         {
             return DALFactory.getDAL().getProjektAngebot(projektid);
         }

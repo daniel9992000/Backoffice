@@ -195,7 +195,7 @@ namespace Backoffice
             return tmp;
         }
 
-        public Angebot getProjektAngebot(int projektid)
+        public Angebot getProjektAngebot(int? projektid)
         {
             Angebot tmp = null;
 
