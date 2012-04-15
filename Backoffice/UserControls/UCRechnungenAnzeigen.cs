@@ -24,7 +24,7 @@ namespace Backoffice.UserControls
                 ListViewItem i = lv_rechnungen.Items.Add(item.Rechnungid.ToString());
                 i.Tag = item;
                 i.SubItems.Add(item.Bezeichnung);
-                i.SubItems.Add(item.Datum.ToShortDateString());
+                i.SubItems.Add(item.Datum.Value.ToShortDateString());
             }
         }
 

@@ -37,10 +37,18 @@ namespace Backoffice
         {
             get { return name; }
             set {
-                    if (!name.Equals(value))
-                    { 
+                    if (!string.IsNullOrWhiteSpace(name))
+                    {
+                        if (!name.Equals(value))
+                        {
+                            name = value;
+                            Status = ObjectStates.Modified;
+                        }
+                    }
+                    else
+                    {
                         name = value;
-                        status = ObjectStates.Modified;
+                        Status = ObjectStates.Modified;
                     }
                 }
         }

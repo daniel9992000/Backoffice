@@ -55,10 +55,18 @@ namespace Backoffice
             get { return titel; }
             set
             {
-                if (titel != value)
+                if (!string.IsNullOrWhiteSpace(titel))
+                {
+                    if (titel.Equals(value))
+                    {
+                        titel = value;
+                        Status = ObjectStates.Modified;
+                    }
+                }
+                else
                 {
                     titel = value;
-                    status = ObjectStates.Modified;
+                    Status = ObjectStates.Modified;
                 }
             }
         }

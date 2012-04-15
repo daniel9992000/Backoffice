@@ -51,14 +51,17 @@ namespace Backoffice.Dialogs
                 i.SubItems.Add(item.Betrag.ToString() + " Euro");
             }
 
-            if(r.Kundenid != 0)
-                tb_kunde.Text = BL.getKunde(r.Kundenid).ToString();
-
+            if (r.Kundenid != 0)
+            {
+                if (r.Kundenid.HasValue)
+                    tb_kunde.Text = BL.getKunde(r.Kundenid.Value).ToString();
+            }
+               
             if(r.Rechnungid != 0)
                 tb_rechnungid.Text = r.Rechnungid.ToString();
 
             tb_bezeichnung.Text = r.Bezeichnung;
-            dtp_datum.Value = r.Datum;  
+            dtp_datum.Value = r.Datum.Value;  
         }
 
         bool BindFrom()
@@ -72,7 +75,7 @@ namespace Backoffice.Dialogs
             r.Datum = dtp_datum.Value;
 
             r.Projektid = ((Projekt)cb_projekt.SelectedItem).Projektid;
-            r.Kundenid = BL.getProjektAngebot(r.Projektid).Kundenid;
+            r.Kundenid = BL.getProjektAngebot(r.Projektid.Value).Kundenid;
 
             if (created) r.Status = ObjectStates.New;
 
@@ -96,7 +99,7 @@ namespace Backoffice.Dialogs
             else return false;
 
             rz.Rechnungid = r.Rechnungid;
-            rz.Angebotid = BL.getProjektAngebot(r.Projektid).Angebotid;
+            rz.Angebotid = BL.getProjektAngebot(r.Projektid.Value).Angebotid;
 
             rz.Status = ObjectStates.New;
 

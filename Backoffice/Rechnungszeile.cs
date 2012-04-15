@@ -48,10 +48,18 @@ namespace Backoffice
             get { return bezeichnung; }
             set
             {
-                if (!bezeichnung.Equals(value))
+                if (!string.IsNullOrWhiteSpace(bezeichnung))
+                {
+                    if (!bezeichnung.Equals(value))
+                    {
+                        bezeichnung = value;
+                        Status = ObjectStates.Modified;
+                    }
+                }
+                else
                 {
                     bezeichnung = value;
-                    status = ObjectStates.Modified;
+                    Status = ObjectStates.Modified;
                 }
             }
         }

@@ -36,19 +36,9 @@ namespace Backoffice.Dialogs
             tb_email.Text = k.Email;
             tb_adresse.Text = k.Adresse;
             tb_hausnr.Text = k.Hausnummer;
-
-            if (k.Plz == 0)
-                tb_plz.Text = "";
-            else
-                tb_plz.Text = k.Plz.ToString();
-
+            tb_plz.Text = k.Plz;
             tb_ort.Text = k.Ort;
-
-            if (k.Telefon == 0)
-                tb_telefon.Text = "";
-            else
-                tb_telefon.Text = k.Telefon.ToString();
-
+            tb_telefon.Text = k.Telefon;
             rtb_bemerkungen.Text = k.Bemerkungen;
 
             lv_angebote.Items.Clear();
@@ -66,15 +56,13 @@ namespace Backoffice.Dialogs
                 ListViewItem i = lv_rechnungen.Items.Add(item.Rechnungid.ToString());
                 i.Tag = item;
                 i.SubItems.Add(item.Bezeichnung);
-                i.SubItems.Add(item.Datum.ToShortDateString());
+                i.SubItems.Add(item.Datum.Value.ToShortDateString());
             }
 
         }
 
         bool BindFrom()
         {
-            int res1;
-
             if (tb_vorname.Text != "")
             {
                 k.Vorname = tb_vorname.Text;
@@ -96,18 +84,9 @@ namespace Backoffice.Dialogs
 
             k.Adresse = tb_adresse.Text;
             k.Hausnummer = tb_hausnr.Text;
-
-            if (Int32.TryParse(tb_plz.Text, out res1) || tb_plz.Text == "")
-                k.Plz = res1;
-            else return false;
-
+            k.Plz = tb_plz.Text;
             k.Ort = tb_ort.Text;
-
-            decimal result;
-            if (Decimal.TryParse(tb_telefon.Text, out result) || tb_telefon.Text == "")
-                k.Telefon = result;
-            else return false;
-               
+            k.Telefon = tb_telefon.Text;
             k.Bemerkungen = rtb_bemerkungen.Text;
 
             if (created) k.Status = ObjectStates.New;

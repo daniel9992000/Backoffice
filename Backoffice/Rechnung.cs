@@ -8,7 +8,7 @@ namespace Backoffice
     public class Rechnung
     {
         int rechnungid;
-        string? bezeichnung;
+        string bezeichnung;
         DateTime? datum;
         int? projektid;
         int? kundenid;
@@ -42,15 +42,23 @@ namespace Backoffice
             }
         }
 
-        public string? Bezeichnung
+        public string Bezeichnung
         {
             get { return bezeichnung; }
             set
             {
-                if (!bezeichnung.Equals(value))
+                if (!string.IsNullOrWhiteSpace(bezeichnung))
+                {
+                    if (!bezeichnung.Equals(value))
+                    {
+                        bezeichnung = value;
+                        Status = ObjectStates.Modified;
+                    }
+                }
+                else
                 {
                     bezeichnung = value;
-                    status = ObjectStates.Modified;
+                    Status = ObjectStates.Modified;
                 }
             }
         }

@@ -111,7 +111,7 @@ namespace Backoffice
             NpgsqlDataReader reader = null;
             try
             {
-                string sql = @"Select (kundenid,vorname,nachname,email,adresse,
+                string sql = @"Select kundenid,vorname,nachname,email,adresse,
                 hausnummer,plz,ort,telefon,bemerkungen from kunden;";
                 comm = new NpgsqlCommand(sql, conn);             
                 reader = comm.ExecuteReader();
@@ -123,11 +123,11 @@ namespace Backoffice
                     k.Nachname = reader.GetString(2).Trim();
                     k.Email = reader.GetString(3).Trim();
                     k.Adresse = reader.GetString(4).Trim();
-                    k.Hausnummer = reader.GetString(4).Trim();
-                    k.Plz = reader.GetString(5).Trim();
-                    k.Ort = reader.GetString(6).Trim();
-                    k.Telefon = reader.GetString(7).Trim();
-                    k.Bemerkungen = reader.GetString(8).Trim();
+                    k.Hausnummer = reader.GetString(5).Trim();
+                    k.Plz = reader.GetString(6).Trim();
+                    k.Ort = reader.GetString(7).Trim();
+                    k.Telefon = reader.GetString(8).Trim();
+                    k.Bemerkungen = reader.GetString(9).Trim();
                     k.Status = ObjectStates.Unmodified;
                     klist.Add(k);
                 }
@@ -339,7 +339,7 @@ namespace Backoffice
                 }
                 else if (a.Status == ObjectStates.Modified)
                 {
-                    sql = @"Update angebote set titel = @titel, summe = @summe, datum = @datum, chance = @chance,
+                    sql = @"Update angebote set titel = @titel, summe = @summe, datum = @datum, dauer=@dauer,chance = @chance,
                            kundenid = @kundenid, projektid = @projektid where angebotid = @angebotid";
                     comm = new NpgsqlCommand(sql, conn);
                     comm.Parameters.AddWithValue("@angebotid", a.Angebotid);
@@ -485,7 +485,7 @@ namespace Backoffice
             {
 
                 string sql = @"Select angebotid, summe, datum, dauer, chance, 
-                kundendid, projektid, titel from angebote where projektid = @projektid;";
+                kundenid, projektid, titel from angebote where projektid = @projektid;";
                 comm = new NpgsqlCommand(sql, conn);
 
                 comm.Parameters.AddWithValue("@projektid", projektid);
