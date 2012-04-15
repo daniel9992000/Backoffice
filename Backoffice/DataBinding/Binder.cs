@@ -153,6 +153,15 @@ namespace Backoffice.DataBinding
             
         }
 
+        public void BindTo_DateTimePicker(DateTimePicker ctrl, object value)
+        {
+            if (value != null)
+            {
+                ctrl.Value = (DateTime)value;
+            }
+
+        }
+
         public void BindTo_ListView()
         {
             

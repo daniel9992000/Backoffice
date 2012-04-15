@@ -182,7 +182,7 @@ namespace Backoffice
             return angebote;
         }
 
-        public List<Angebot> getKundenAngebote(int kundenid)
+        public List<Angebot> getAngebotViewList(int kundenid)
         {
             List<Angebot> tmp = new List<Angebot>();
 
@@ -195,7 +195,7 @@ namespace Backoffice
             return tmp;
         }
 
-        public Angebot getProjektAngebot(int? projektid)
+        public Angebot getAngebot(int? projektid)
         {
             Angebot tmp = null;
 
@@ -206,6 +206,19 @@ namespace Backoffice
                     tmp = item;
                     break;
                 }
+            }
+
+            return tmp;
+        }
+
+        public List<Angebot> getAngebotViewList(int? projektid)
+        {
+            List<Angebot> tmp = new List<Angebot>();
+
+            foreach (var item in angebote)
+            {
+                if (item.Projektid == projektid)
+                    tmp.Add(item);
             }
 
             return tmp;
@@ -284,7 +297,7 @@ namespace Backoffice
             return rechnungen;
         }
 
-        public List<Rechnung> getKundenRechnungen(int kundenid)
+        public List<Rechnung> getRechnungViewList(int kundenid)
         {
             List<Rechnung> tmp = new List<Rechnung>();
 
@@ -336,5 +349,7 @@ namespace Backoffice
             return tmp;
         }
         #endregion
+
+
     }
 }

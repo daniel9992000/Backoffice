@@ -52,7 +52,7 @@ namespace Backoffice.Dialogs
             binder.BindTo_TextBox(tb_dauer, a.Dauer);
             binder.BindTo_TextBox(tb_summe, a.Summe);
             binder.BindTo_TextBox(tb_chance, a.Chance);
-            dtp_datum.Value = a.Datum;
+            binder.BindTo_DateTimePicker(dtp_datum, a.Datum);
         }
 
         bool BindFrom()

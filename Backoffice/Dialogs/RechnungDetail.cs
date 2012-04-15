@@ -31,11 +31,6 @@ namespace Backoffice.Dialogs
             binder = new DataBinding.Binder();
         }
 
-        private void dtp_datum_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
         void BindTo()
         {
             cb_projekt.Items.Clear();
@@ -49,7 +44,7 @@ namespace Backoffice.Dialogs
             binder.BindTo_TextBox(tb_rechnungid, r.Rechnungid);
             binder.BindTo_TextBox(tb_bezeichnung, r.Bezeichnung);
             binder.BindTo_TextBox(tb_kunde, BL.getKunde(r.Kundenid));
-            dtp_datum.Value = r.Datum.Value;  
+            binder.BindTo_DateTimePicker(dtp_datum, r.Datum.Value); 
         }
 
         void BindToZeilen()
@@ -67,12 +62,12 @@ namespace Backoffice.Dialogs
         bool BindFrom()
         {
             binder.StartBindFrom();
-            r.Bezeichnung = binder.BindFrom_String(tb_bezeichnung, errorControl1, new DataBinding.RequiredRule()); 
-            r.Datum = dtp_datum.Value;
+            r.Bezeichnung = binder.BindFrom_String(tb_bezeichnung, errorControl1, new DataBinding.RequiredRule());
+            r.Datum = binder.BindFrom_DateTime(dtp_datum, errorControl2, null);
 
             if((r.Projektid = binder.BindFrom_ComboBox_Int(cb_projekt, errorControl3, new DataBinding.RequiredRule())) != 0)
             {            
-                r.Kundenid = BL.getProjektAngebot(r.Projektid).Kundenid;
+                r.Kundenid = BL.getAngebot(r.Projektid).Kundenid;
             }
 
             if (created) r.Status = ObjectStates.New;
@@ -91,7 +86,7 @@ namespace Backoffice.Dialogs
             rz.Bezeichnung = binder.BindFrom_String(tb_rz_bezeichnung, errorControl4, new DataBinding.RequiredRule());
             rz.Betrag = binder.BindFrom_Double(tb_rz_wert, errorControl5, new DataBinding.PositiveRule());
             rz.Rechnungid = r.Rechnungid;
-            rz.Angebotid = BL.getProjektAngebot(r.Projektid).Angebotid;
+            rz.Angebotid = BL.getAngebot(r.Projektid).Angebotid;
             rz.Status = ObjectStates.New;
 
             if (binder.HasErrors)

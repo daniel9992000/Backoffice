@@ -27,6 +27,20 @@ namespace Backoffice
             return tmp;
         }
 
+        public static Kunde getKunde(int id)
+        {
+            Kunde tmp = null;
+            try
+            {
+                tmp = DALFactory.getDAL().getKunde(id);
+            }
+            catch (DALException ex)
+            {
+
+            }
+            return tmp;
+        }
+
         public static void saveKunde(Kunde k)
         {
             try
@@ -51,19 +65,7 @@ namespace Backoffice
             }            
         }
 
-        public static Kunde getKunde(int id)
-        {
-            Kunde tmp = null;
-            try
-            {
-                tmp = DALFactory.getDAL().getKunde(id);
-            }
-            catch (DALException ex)
-            {
-                
-            }
-            return tmp;
-        }
+        
         #endregion
 
         #region Angebote
@@ -81,12 +83,12 @@ namespace Backoffice
             return tmp;
         }
 
-        public static List<Angebot> getKundenAngebote(int kundenid)
+        public static List<Angebot> getAngebote(int kundenid)
         {
             List<Angebot> tmp = null;
             try
             {
-                tmp = DALFactory.getDAL().getKundenAngebote(kundenid);
+                tmp = DALFactory.getDAL().getAngebotViewList(kundenid);
             }
             catch (DALException ex)
             {
@@ -95,9 +97,9 @@ namespace Backoffice
             return tmp;
         }
 
-        public static Angebot getProjektAngebot(int? projektid)
+        public static Angebot getAngebot(int? projektid)
         {
-            return DALFactory.getDAL().getProjektAngebot(projektid);
+            return DALFactory.getDAL().getAngebot(projektid);
         }
 
         public static void saveAngebot(Angebot a)
@@ -242,9 +244,9 @@ namespace Backoffice
             return DALFactory.getDAL().getRechnungViewList();
         }
 
-        public static List<Rechnung> getKundenRechnungen(int kundenid)
+        public static List<Rechnung> getRechnungen(int kundenid)
         {
-            return DALFactory.getDAL().getKundenRechnungen(kundenid);
+            return DALFactory.getDAL().getRechnungViewList(kundenid);
         }
         #endregion
 

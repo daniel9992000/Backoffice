@@ -431,8 +431,7 @@ namespace Backoffice
             return alist;
         }
 
-
-        public List<Angebot> getKundenAngebote(int kundenid)
+        public List<Angebot> getAngebotViewList(int kundenid)
         {
             buildconnection();
             List<Angebot> alist = new List<Angebot>();
@@ -474,7 +473,51 @@ namespace Backoffice
 
             return alist;
         }
-        public Angebot getProjektAngebot(int? projektid)
+
+        public List<Angebot> getAngebotViewList(int? projektid)
+        {
+            buildconnection();
+            List<Angebot> alist = new List<Angebot>();
+            NpgsqlCommand comm = null;
+            NpgsqlDataReader reader = null;
+            try
+            {
+                string sql = @"Select angebotid, summe,datum,dauer,chance,kundenid,projektid,titel
+                from angebote where projektid = @projektid;";
+                comm = new NpgsqlCommand(sql, conn);
+                comm.Parameters.AddWithValue("@projektid", projektid);
+                reader = comm.ExecuteReader();
+                while (reader.Read())
+                {
+                    Angebot a = new Angebot();
+                    a.Angebotid = reader.GetInt32(0);
+                    a.Summe = reader.GetDouble(1);
+                    a.Datum = reader.GetDateTime(2);
+                    a.Dauer = reader.GetInt32(3);
+                    a.Chance = reader.GetInt32(4);
+                    a.Kundenid = reader.GetInt32(5);
+                    a.Projektid = reader.ReadNullableInt(6);
+                    a.Titel = reader.GetString(7).Trim();
+                    a.Status = ObjectStates.Unmodified;
+                    alist.Add(a);
+                }
+
+            }
+            catch (NpgsqlException exp)
+            {
+                throw new DALException("DAL: Angebote konnten aus der Datenbank nicht geladen werden!", exp);
+            }
+            finally
+            {
+                reader.Close();
+                comm.Dispose();
+                conn.Close();
+            }
+
+            return alist;
+        }
+
+        public Angebot getAngebot(int? projektid)
         {
             buildconnection();
             NpgsqlCommand comm = null;
@@ -796,7 +839,7 @@ namespace Backoffice
             return rlist;
         }
 
-        public List<Rechnung> getKundenRechnungen(int kundenid)
+        public List<Rechnung> getRechnungViewList(int kundenid)
         {
             buildconnection();
             NpgsqlCommand comm = null;
@@ -942,5 +985,6 @@ namespace Backoffice
             return rlist;
         }
         #endregion
+       
     }
 }

@@ -20,8 +20,9 @@ namespace Backoffice
         void saveAngebot(Angebot a);
         void deleteAngebot(Angebot a);
         List<Angebot> getAngebotViewList();
-        List<Angebot> getKundenAngebote(int kundenid);
-        Angebot getProjektAngebot(int? projektid);
+        List<Angebot> getAngebotViewList(int kundenid);
+        List<Angebot> getAngebotViewList(int? projektid);
+        Angebot getAngebot(int? projektid);
 
         //Projekte
         void saveProjekt(Projekt p);
@@ -39,7 +40,7 @@ namespace Backoffice
         void saveRechnung(Rechnung r);
         void deleteRechung(Rechnung r);
         List<Rechnung> getRechnungViewList();
-        List<Rechnung> getKundenRechnungen(int kundenid);
+        List<Rechnung> getRechnungViewList(int kundenid);
 
         //Rechnungszeilen
         void saveRechnungszeile(Rechnungszeile r);
