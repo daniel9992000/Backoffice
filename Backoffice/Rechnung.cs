@@ -17,6 +17,10 @@ namespace Backoffice
         public Rechnung()
         {
             this.datum = DateTime.Today;
+            this.rechnungid = 0;
+            this.bezeichnung = string.Empty;
+            this.projektid = 0;
+            this.kundenid = 0;
         }
 
         public Rechnung(int rechnungid, string bezeichnung, DateTime datum, int projektid, int kundenid, ObjectStates status)

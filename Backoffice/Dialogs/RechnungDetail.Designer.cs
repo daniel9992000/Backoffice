@@ -51,12 +51,20 @@
             this.betrag = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.bn_save = new System.Windows.Forms.Button();
             this.bn_cancel = new System.Windows.Forms.Button();
+            this.errorControl1 = new Backoffice.DataBinding.ErrorControl();
+            this.errorControl2 = new Backoffice.DataBinding.ErrorControl();
+            this.errorControl3 = new Backoffice.DataBinding.ErrorControl();
+            this.errorControl4 = new Backoffice.DataBinding.ErrorControl();
+            this.errorControl5 = new Backoffice.DataBinding.ErrorControl();
             this.gb1.SuspendLayout();
             this.gb2.SuspendLayout();
             this.SuspendLayout();
             // 
             // gb1
             // 
+            this.gb1.Controls.Add(this.errorControl3);
+            this.gb1.Controls.Add(this.errorControl2);
+            this.gb1.Controls.Add(this.errorControl1);
             this.gb1.Controls.Add(this.tb_kunde);
             this.gb1.Controls.Add(this.label5);
             this.gb1.Controls.Add(this.label4);
@@ -69,7 +77,7 @@
             this.gb1.Controls.Add(this.tb_rechnungid);
             this.gb1.Location = new System.Drawing.Point(12, 12);
             this.gb1.Name = "gb1";
-            this.gb1.Size = new System.Drawing.Size(473, 167);
+            this.gb1.Size = new System.Drawing.Size(542, 167);
             this.gb1.TabIndex = 0;
             this.gb1.TabStop = false;
             this.gb1.Text = "Allgemein";
@@ -160,6 +168,8 @@
             // 
             // gb2
             // 
+            this.gb2.Controls.Add(this.errorControl5);
+            this.gb2.Controls.Add(this.errorControl4);
             this.gb2.Controls.Add(this.label7);
             this.gb2.Controls.Add(this.label6);
             this.gb2.Controls.Add(this.bn_add);
@@ -168,7 +178,7 @@
             this.gb2.Controls.Add(this.lv_zeilen);
             this.gb2.Location = new System.Drawing.Point(12, 226);
             this.gb2.Name = "gb2";
-            this.gb2.Size = new System.Drawing.Size(473, 239);
+            this.gb2.Size = new System.Drawing.Size(542, 268);
             this.gb2.TabIndex = 1;
             this.gb2.TabStop = false;
             this.gb2.Text = "Rechnungszeilen";
@@ -193,7 +203,7 @@
             // 
             // bn_add
             // 
-            this.bn_add.Location = new System.Drawing.Point(392, 50);
+            this.bn_add.Location = new System.Drawing.Point(461, 50);
             this.bn_add.Name = "bn_add";
             this.bn_add.Size = new System.Drawing.Size(75, 23);
             this.bn_add.TabIndex = 4;
@@ -205,7 +215,7 @@
             // 
             this.tb_rz_wert.Location = new System.Drawing.Point(284, 52);
             this.tb_rz_wert.Name = "tb_rz_wert";
-            this.tb_rz_wert.Size = new System.Drawing.Size(101, 20);
+            this.tb_rz_wert.Size = new System.Drawing.Size(171, 20);
             this.tb_rz_wert.TabIndex = 2;
             // 
             // tb_rz_bezeichnung
@@ -223,9 +233,9 @@
             this.betrag});
             this.lv_zeilen.FullRowSelect = true;
             this.lv_zeilen.GridLines = true;
-            this.lv_zeilen.Location = new System.Drawing.Point(6, 78);
+            this.lv_zeilen.Location = new System.Drawing.Point(6, 102);
             this.lv_zeilen.Name = "lv_zeilen";
-            this.lv_zeilen.Size = new System.Drawing.Size(461, 155);
+            this.lv_zeilen.Size = new System.Drawing.Size(530, 155);
             this.lv_zeilen.TabIndex = 0;
             this.lv_zeilen.UseCompatibleStateImageBehavior = false;
             this.lv_zeilen.View = System.Windows.Forms.View.Details;
@@ -267,11 +277,56 @@
             this.bn_cancel.Text = "Abbrechen";
             this.bn_cancel.UseVisualStyleBackColor = true;
             // 
+            // errorControl1
+            // 
+            this.errorControl1.AutoSize = true;
+            this.errorControl1.Location = new System.Drawing.Point(222, 48);
+            this.errorControl1.Name = "errorControl1";
+            this.errorControl1.Size = new System.Drawing.Size(67, 13);
+            this.errorControl1.TabIndex = 11;
+            this.errorControl1.Text = "errorControl1";
+            // 
+            // errorControl2
+            // 
+            this.errorControl2.AutoSize = true;
+            this.errorControl2.Location = new System.Drawing.Point(322, 77);
+            this.errorControl2.Name = "errorControl2";
+            this.errorControl2.Size = new System.Drawing.Size(67, 13);
+            this.errorControl2.TabIndex = 12;
+            this.errorControl2.Text = "errorControl2";
+            // 
+            // errorControl3
+            // 
+            this.errorControl3.AutoSize = true;
+            this.errorControl3.Location = new System.Drawing.Point(322, 100);
+            this.errorControl3.Name = "errorControl3";
+            this.errorControl3.Size = new System.Drawing.Size(67, 13);
+            this.errorControl3.TabIndex = 13;
+            this.errorControl3.Text = "errorControl3";
+            // 
+            // errorControl4
+            // 
+            this.errorControl4.AutoSize = true;
+            this.errorControl4.Location = new System.Drawing.Point(6, 75);
+            this.errorControl4.Name = "errorControl4";
+            this.errorControl4.Size = new System.Drawing.Size(67, 13);
+            this.errorControl4.TabIndex = 13;
+            this.errorControl4.Text = "errorControl4";
+            // 
+            // errorControl5
+            // 
+            this.errorControl5.AutoSize = true;
+            this.errorControl5.Location = new System.Drawing.Point(281, 75);
+            this.errorControl5.Name = "errorControl5";
+            this.errorControl5.Size = new System.Drawing.Size(67, 13);
+            this.errorControl5.TabIndex = 14;
+            this.errorControl5.Text = "errorControl5";
+            // 
             // RechnungDetail
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(497, 477);
+            this.ClientSize = new System.Drawing.Size(566, 507);
             this.Controls.Add(this.bn_cancel);
             this.Controls.Add(this.gb2);
             this.Controls.Add(this.gb1);
@@ -312,5 +367,10 @@
         private System.Windows.Forms.Button bn_add;
         private System.Windows.Forms.TextBox tb_rz_wert;
         private System.Windows.Forms.TextBox tb_rz_bezeichnung;
+        private DataBinding.ErrorControl errorControl3;
+        private DataBinding.ErrorControl errorControl2;
+        private DataBinding.ErrorControl errorControl1;
+        private DataBinding.ErrorControl errorControl5;
+        private DataBinding.ErrorControl errorControl4;
     }
 }

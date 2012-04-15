@@ -86,23 +86,53 @@ namespace Backoffice.DataBinding
             return result;
         }
 
-        public object BindFrom_ComboBox(ComboBox cb, ErrorControl errctrl, IRule rule)
+        public DateTime BindFrom_DateTime(Control ctrl, ErrorControl errctrl, IRule rule)
         {
-            cb.BackColor = Color.Empty;
+            ctrl.BackColor = Color.Empty;
             errctrl.clearError();
 
-            object result = cb.SelectedItem;
+            DateTime result = DateTime.Today;
 
-            if (result == null)
+            if (ctrl is DateTimePicker)
             {
-                haserrors = true;
-                cb.BackColor = Color.Red;
-                errctrl.setError("Bitte ein Element auswählen");
-            }
+                result = ((DateTimePicker)ctrl).Value;
+            }           
 
             if (rule != null)
             {
                 if (!rule.Eval(result, errctrl))
+                {
+                    haserrors = true;
+                    ctrl.BackColor = Color.Red;
+                }
+            }
+
+            return result;
+        }
+
+        public int BindFrom_ComboBox_Int(ComboBox cb, ErrorControl errctrl, IRule rule)
+        {
+            cb.BackColor = Color.Empty;
+            errctrl.clearError();
+
+            int result = 0;
+            object selected = cb.SelectedItem;
+
+            if (selected != null)
+            {
+                if (selected is Kunde)
+                {
+                    result = ((Kunde)selected).Kundenid;
+                }
+                else if (selected is Projekt)
+                {
+                    result = ((Projekt)selected).Projektid;
+                }                
+            }
+
+            if (rule != null)
+            {
+                if (!rule.Eval(selected, errctrl))
                 {
                     haserrors = true;
                     cb.BackColor = Color.Red;
@@ -120,9 +150,15 @@ namespace Backoffice.DataBinding
             {
                 ctrl.Text = value.ToString();
             }
+            
         }
 
-        public void BindTo_ListView(ListView lv, List<object> list)
+        public void BindTo_ListView()
+        {
+            
+        }
+
+        public void BindTo_ComboBox()
         {
             
         }

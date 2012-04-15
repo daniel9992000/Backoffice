@@ -19,7 +19,14 @@ namespace Backoffice
 
         public Angebot()
         {
+            this.angebotid = 0;
+            this.titel = string.Empty;
+            this.summe = 0;
             this.datum = DateTime.Today;
+            this.dauer = 0;
+            this.chance = 0;
+            this.kundenid = 0;
+            this.projektid = 0;            
         }
 
         public Angebot(int angebotid, string titel, double summe, DateTime datum, int dauer, int chance, int kundenid, int projektid, ObjectStates status)

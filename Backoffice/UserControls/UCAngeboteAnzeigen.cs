@@ -48,6 +48,7 @@ namespace Backoffice.UserControls
         void DeleteAngebot(Angebot a)
         {
             BL.deleteAngebot(a);
+            BindTo();
         }
 
         private void bn_new_Click(object sender, EventArgs e)
