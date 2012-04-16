@@ -24,6 +24,8 @@ namespace Backoffice
             guiControls.Add(ucAngeboteAnzeigen1);
             guiControls.Add(ucKontakteAnzeigen1);
             guiControls.Add(ucRechnungenAnzeigen1);
+            guiControls.Add(ucJahresumsatzAnzeigen1);
+            guiControls.Add(ucEinahmenAusgabenAnzeigen1);
 
             foreach (var item in guiControls)
             {
@@ -85,6 +87,16 @@ namespace Backoffice
         private void rechnungenAnzeigenToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DisplayUserControl(ucRechnungenAnzeigen1);
+        }
+
+        private void prognostizierterJahresumsatToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DisplayUserControl(ucJahresumsatzAnzeigen1);
+        }
+
+        private void aktuelleEinnahmenAusgabenToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DisplayUserControl(ucEinahmenAusgabenAnzeigen1);
         }
     }
 }

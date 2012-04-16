@@ -40,15 +40,21 @@
             this.projekteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.projektAnzeigenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rechnungenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.rechnungenAnzeigenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.berichteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.prognostizierterJahresumsatToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aktuelleEinnahmenAusgabenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.offeneRechnungenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.offeneProjekteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hilfeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.ucRechnungenAnzeigen1 = new Backoffice.UserControls.UCRechnungenAnzeigen();
             this.ucKontakteAnzeigen1 = new Backoffice.UserControls.UCKontakteAnzeigen();
             this.ucAngeboteAnzeigen1 = new Backoffice.UserControls.UCAngeboteAnzeigen();
             this.ucProjekteAnzeigen1 = new Backoffice.UserControls.UCProjekteAnzeigen();
             this.uc_kundenAnzeigen = new Backoffice.UserControls.UCKundenAnzeigen();
-            this.ucRechnungenAnzeigen1 = new Backoffice.UserControls.UCRechnungenAnzeigen();
-            this.rechnungenAnzeigenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ucJahresumsatzAnzeigen1 = new Backoffice.UserControls.UCJahresumsatzAnzeigen();
+            this.ucEinahmenAusgabenAnzeigen1 = new Backoffice.UserControls.UCEinahmenAusgabenAnzeigen();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -145,11 +151,49 @@
             this.rechnungenToolStripMenuItem.Size = new System.Drawing.Size(86, 20);
             this.rechnungenToolStripMenuItem.Text = "Rechnungen";
             // 
+            // rechnungenAnzeigenToolStripMenuItem
+            // 
+            this.rechnungenAnzeigenToolStripMenuItem.Name = "rechnungenAnzeigenToolStripMenuItem";
+            this.rechnungenAnzeigenToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
+            this.rechnungenAnzeigenToolStripMenuItem.Text = "Rechnungen anzeigen";
+            this.rechnungenAnzeigenToolStripMenuItem.Click += new System.EventHandler(this.rechnungenAnzeigenToolStripMenuItem_Click);
+            // 
             // berichteToolStripMenuItem
             // 
+            this.berichteToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.prognostizierterJahresumsatToolStripMenuItem,
+            this.aktuelleEinnahmenAusgabenToolStripMenuItem,
+            this.offeneRechnungenToolStripMenuItem,
+            this.offeneProjekteToolStripMenuItem});
             this.berichteToolStripMenuItem.Name = "berichteToolStripMenuItem";
             this.berichteToolStripMenuItem.Size = new System.Drawing.Size(62, 20);
             this.berichteToolStripMenuItem.Text = "Berichte";
+            // 
+            // prognostizierterJahresumsatToolStripMenuItem
+            // 
+            this.prognostizierterJahresumsatToolStripMenuItem.Name = "prognostizierterJahresumsatToolStripMenuItem";
+            this.prognostizierterJahresumsatToolStripMenuItem.Size = new System.Drawing.Size(238, 22);
+            this.prognostizierterJahresumsatToolStripMenuItem.Text = "Prognostizierter Jahresumsatz";
+            this.prognostizierterJahresumsatToolStripMenuItem.Click += new System.EventHandler(this.prognostizierterJahresumsatToolStripMenuItem_Click);
+            // 
+            // aktuelleEinnahmenAusgabenToolStripMenuItem
+            // 
+            this.aktuelleEinnahmenAusgabenToolStripMenuItem.Name = "aktuelleEinnahmenAusgabenToolStripMenuItem";
+            this.aktuelleEinnahmenAusgabenToolStripMenuItem.Size = new System.Drawing.Size(238, 22);
+            this.aktuelleEinnahmenAusgabenToolStripMenuItem.Text = "Aktuelle Einnahmen/Ausgaben";
+            this.aktuelleEinnahmenAusgabenToolStripMenuItem.Click += new System.EventHandler(this.aktuelleEinnahmenAusgabenToolStripMenuItem_Click);
+            // 
+            // offeneRechnungenToolStripMenuItem
+            // 
+            this.offeneRechnungenToolStripMenuItem.Name = "offeneRechnungenToolStripMenuItem";
+            this.offeneRechnungenToolStripMenuItem.Size = new System.Drawing.Size(238, 22);
+            this.offeneRechnungenToolStripMenuItem.Text = "Offene Rechnungen";
+            // 
+            // offeneProjekteToolStripMenuItem
+            // 
+            this.offeneProjekteToolStripMenuItem.Name = "offeneProjekteToolStripMenuItem";
+            this.offeneProjekteToolStripMenuItem.Size = new System.Drawing.Size(238, 22);
+            this.offeneProjekteToolStripMenuItem.Text = "Offene Projekte";
             // 
             // hilfeToolStripMenuItem
             // 
@@ -174,6 +218,14 @@
             this.menuStrip1.Size = new System.Drawing.Size(933, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
+            // 
+            // ucRechnungenAnzeigen1
+            // 
+            this.ucRechnungenAnzeigen1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucRechnungenAnzeigen1.Location = new System.Drawing.Point(0, 24);
+            this.ucRechnungenAnzeigen1.Name = "ucRechnungenAnzeigen1";
+            this.ucRechnungenAnzeigen1.Size = new System.Drawing.Size(933, 491);
+            this.ucRechnungenAnzeigen1.TabIndex = 5;
             // 
             // ucKontakteAnzeigen1
             // 
@@ -211,26 +263,29 @@
             this.uc_kundenAnzeigen.Size = new System.Drawing.Size(933, 491);
             this.uc_kundenAnzeigen.TabIndex = 1;
             // 
-            // ucRechnungenAnzeigen1
+            // ucJahresumsatzAnzeigen1
             // 
-            this.ucRechnungenAnzeigen1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucRechnungenAnzeigen1.Location = new System.Drawing.Point(0, 24);
-            this.ucRechnungenAnzeigen1.Name = "ucRechnungenAnzeigen1";
-            this.ucRechnungenAnzeigen1.Size = new System.Drawing.Size(933, 491);
-            this.ucRechnungenAnzeigen1.TabIndex = 5;
+            this.ucJahresumsatzAnzeigen1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucJahresumsatzAnzeigen1.Location = new System.Drawing.Point(0, 24);
+            this.ucJahresumsatzAnzeigen1.Name = "ucJahresumsatzAnzeigen1";
+            this.ucJahresumsatzAnzeigen1.Size = new System.Drawing.Size(933, 491);
+            this.ucJahresumsatzAnzeigen1.TabIndex = 6;
             // 
-            // rechnungenAnzeigenToolStripMenuItem
+            // ucEinahmenAusgabenAnzeigen1
             // 
-            this.rechnungenAnzeigenToolStripMenuItem.Name = "rechnungenAnzeigenToolStripMenuItem";
-            this.rechnungenAnzeigenToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
-            this.rechnungenAnzeigenToolStripMenuItem.Text = "Rechnungen anzeigen";
-            this.rechnungenAnzeigenToolStripMenuItem.Click += new System.EventHandler(this.rechnungenAnzeigenToolStripMenuItem_Click);
+            this.ucEinahmenAusgabenAnzeigen1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucEinahmenAusgabenAnzeigen1.Location = new System.Drawing.Point(0, 24);
+            this.ucEinahmenAusgabenAnzeigen1.Name = "ucEinahmenAusgabenAnzeigen1";
+            this.ucEinahmenAusgabenAnzeigen1.Size = new System.Drawing.Size(933, 491);
+            this.ucEinahmenAusgabenAnzeigen1.TabIndex = 7;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(933, 515);
+            this.Controls.Add(this.ucEinahmenAusgabenAnzeigen1);
+            this.Controls.Add(this.ucJahresumsatzAnzeigen1);
             this.Controls.Add(this.ucRechnungenAnzeigen1);
             this.Controls.Add(this.ucKontakteAnzeigen1);
             this.Controls.Add(this.ucAngeboteAnzeigen1);
@@ -269,6 +324,12 @@
         private UserControls.UCKontakteAnzeigen ucKontakteAnzeigen1;
         private UserControls.UCRechnungenAnzeigen ucRechnungenAnzeigen1;
         private System.Windows.Forms.ToolStripMenuItem rechnungenAnzeigenToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem prognostizierterJahresumsatToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem aktuelleEinnahmenAusgabenToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem offeneRechnungenToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem offeneProjekteToolStripMenuItem;
+        private UserControls.UCJahresumsatzAnzeigen ucJahresumsatzAnzeigen1;
+        private UserControls.UCEinahmenAusgabenAnzeigen ucEinahmenAusgabenAnzeigen1;
 
 
     }

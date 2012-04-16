@@ -264,5 +264,27 @@ namespace Backoffice
             DALFactory.getDAL().deleteRechnungszeile(r);
         }
         #endregion
+
+        #region Auswertungen
+        public static List<Angebot> getJahresumsatzangebote()
+        {
+            return DALFactory.getDAL().getJahresumsatzViewList();
+        }
+
+        public static double[] getIstJahresumsatz()
+        {
+            return DALFactory.getDAL().getIstJahresumsatz();
+        }
+
+        public static List<Rechnung> getMonatsEinnahmen(int month, int year)
+        {
+            return DALFactory.getDAL().getEinnahmen(month, year);
+        }
+
+        public static List<Rechnung> getMonatsAusgaben(int month, int year)
+        {
+            return DALFactory.getDAL().getAusgaben(month, year);
+        }
+        #endregion
     }
 }

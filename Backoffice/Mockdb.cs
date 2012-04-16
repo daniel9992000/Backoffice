@@ -336,5 +336,61 @@ namespace Backoffice
             return tmp;
         }
         #endregion
+
+        #region Auswertungen
+        public List<Angebot> getJahresumsatzViewList()
+        {
+            List<Angebot> alist = new List<Angebot>();
+            foreach (var item in angebote)
+            {
+                if (item.Datum.Year == DateTime.Now.Year && item.Chance >0)
+                {
+                    alist.Add(item);
+                }
+            }
+            return alist;
+        }
+
+        public double[] getIstJahresumsatz()
+        {
+            double[] werte = new double[2]{0,0};
+            foreach (var item in angebote)
+            {
+                if (item.Datum.Year == DateTime.Now.Year && item.Chance > 0)
+                {
+                    werte[0]++;
+                    werte[1] += item.Summe;
+                }
+            }
+            return werte;
+        }
+
+
+        public List<Rechnung> getEinnahmen(int month, int year)
+        {
+             List<Rechnung> rlist = new List<Rechnung>();
+             foreach (var item in rechnungen)
+             {
+                 if ((item.Datum.Value.Year) == year && (item.Datum.Value.Month == month))
+                 {
+                     rlist.Add(item);
+                 }
+             }
+             return rlist;
+        }
+
+        public List<Rechnung> getAusgaben(int month, int year)
+        {
+            List<Rechnung> rlist = new List<Rechnung>();
+            foreach (var item in rechnungen)
+            {
+                if ((item.Datum.Value.Year) == year && (item.Datum.Value.Month == month))
+                {
+                    rlist.Add(item);
+                }
+            }
+            return rlist;
+        }
+        #endregion
     }
 }

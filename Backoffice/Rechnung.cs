@@ -11,7 +11,7 @@ namespace Backoffice
         string bezeichnung;
         DateTime? datum;
         int? projektid;
-        int? kundenid;
+        int kundenid;
         ObjectStates status;
 
         public Rechnung()
@@ -89,7 +89,7 @@ namespace Backoffice
             }
         }
 
-        public int? Kundenid
+        public int Kundenid
         {
             get { return kundenid; }
             set

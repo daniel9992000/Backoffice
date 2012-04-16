@@ -409,7 +409,7 @@ namespace Backoffice
                     a.Datum = reader.GetDateTime(2);
                     a.Dauer = reader.GetInt32(3);
                     a.Chance = reader.GetInt32(4);
-                    a.Kundenid = reader.ReadNullableInt(5);
+                    a.Kundenid = reader.GetInt32(5);
                     a.Projektid = reader.ReadNullableInt(6);
                     a.Titel = reader.GetString(7).Trim();
                     a.Status = ObjectStates.Unmodified;
@@ -453,12 +453,11 @@ namespace Backoffice
                     a.Datum = reader.GetDateTime(2);
                     a.Dauer = reader.GetInt32(3);
                     a.Chance = reader.GetInt32(4);
-                    a.Kundenid = reader.ReadNullableInt(5);
+                    a.Kundenid = reader.GetInt32(5);
                     a.Projektid = reader.ReadNullableInt(6);
                     a.Titel = reader.GetString(7).Trim();
                     a.Status = ObjectStates.Unmodified;
                     alist.Add(a);
-
                 }
 
             }
@@ -475,7 +474,7 @@ namespace Backoffice
 
             return alist;
         }
-        public Angebot getProjektAngebot(int projektid)
+        public Angebot getProjektAngebot(int? projektid)
         {
             buildconnection();
             NpgsqlCommand comm = null;
@@ -497,7 +496,7 @@ namespace Backoffice
                     a.Datum = reader.GetDateTime(2);
                     a.Dauer = reader.GetInt32(3);
                     a.Chance = reader.GetInt32(4);
-                    a.Kundenid = reader.ReadNullableInt(5);
+                    a.Kundenid = reader.GetInt32(5);
                     a.Projektid = reader.ReadNullableInt(6);
                     a.Titel = reader.GetString(7).Trim();
                     a.Status = ObjectStates.Unmodified;
@@ -776,7 +775,7 @@ namespace Backoffice
                     Rechnung r = new Rechnung();
                     r.Rechnungid = reader.GetInt32(0);
                     r.Projektid = reader.ReadNullableInt(1);
-                    r.Kundenid = reader.ReadNullableInt(2);
+                    r.Kundenid = reader.GetInt32(2);
                     //r.offen = reader.GetBoolean(3);
                     r.Datum = reader.ReadNullableDateTime(4);
                     r.Bezeichnung = reader.GetString(5).Trim();
@@ -817,7 +816,7 @@ namespace Backoffice
                     Rechnung r = new Rechnung();
                     r.Rechnungid = reader.GetInt32(0);
                     r.Projektid = reader.ReadNullableInt(1);
-                    r.Kundenid = reader.ReadNullableInt(2);
+                    r.Kundenid = reader.GetInt32(2);
                     r.Datum = reader.ReadNullableDateTime(3);
                     r.Bezeichnung = reader.GetString(4).Trim();
                     rlist.Add(r);

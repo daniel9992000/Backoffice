@@ -34,6 +34,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="itextsharp">
+      <HintPath>..\..\itextsharp.dll</HintPath>
+    </Reference>
     <Reference Include="Npgsql">
       <HintPath>..\Npgsql.dll</HintPath>
     </Reference>
@@ -52,6 +55,7 @@
     <Compile Include="Angebot.cs" />
     <Compile Include="BL.cs" />
     <Compile Include="ColumnSorter.cs" />
+    <Compile Include="CreatePdf.cs" />
     <Compile Include="DALException.cs" />
     <Compile Include="DALFactory.cs" />
     <Compile Include="DataBinding\Binder.cs" />
@@ -114,6 +118,18 @@
     <Compile Include="UserControls\UCAngeboteAnzeigen.Designer.cs">
       <DependentUpon>UCAngeboteAnzeigen.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\UCEinahmenAusgabenAnzeigen.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UCEinahmenAusgabenAnzeigen.Designer.cs">
+      <DependentUpon>UCEinahmenAusgabenAnzeigen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UCJahresumsatzAnzeigen.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UCJahresumsatzAnzeigen.Designer.cs">
+      <DependentUpon>UCJahresumsatzAnzeigen.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\UCKontakteAnzeigen.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -167,6 +183,12 @@
     </Compile>
     <EmbeddedResource Include="UserControls\UCAngeboteAnzeigen.resx">
       <DependentUpon>UCAngeboteAnzeigen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCEinahmenAusgabenAnzeigen.resx">
+      <DependentUpon>UCEinahmenAusgabenAnzeigen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCJahresumsatzAnzeigen.resx">
+      <DependentUpon>UCJahresumsatzAnzeigen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UCKontakteAnzeigen.resx">
       <DependentUpon>UCKontakteAnzeigen.cs</DependentUpon>

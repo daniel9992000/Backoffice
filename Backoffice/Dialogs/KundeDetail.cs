@@ -13,12 +13,14 @@ namespace Backoffice.Dialogs
     {
         Kunde k;
         bool created;
+        DataBinding.Binder binder;
 
         public KundeDetail()
         {
             InitializeComponent();
             k = new Kunde();
             created = true;
+            binder = new DataBinding.Binder();
         }
 
         public KundeDetail(Kunde k)
@@ -26,20 +28,21 @@ namespace Backoffice.Dialogs
             InitializeComponent();
             this.k = k;
             created = false;
+            binder = new DataBinding.Binder();
         }
 
         void BindTo()
         {
-            tb_id.Text = k.Kundenid.ToString();
-            tb_vorname.Text = k.Vorname;
-            tb_nachname.Text = k.Nachname;
-            tb_email.Text = k.Email;
-            tb_adresse.Text = k.Adresse;
-            tb_hausnr.Text = k.Hausnummer;
-            tb_plz.Text = k.Plz;
-            tb_ort.Text = k.Ort;
-            tb_telefon.Text = k.Telefon;
-            rtb_bemerkungen.Text = k.Bemerkungen;
+            binder.BindTo_TextBox(tb_id, k.Kundenid);
+            binder.BindTo_TextBox(tb_vorname, k.Vorname);
+            binder.BindTo_TextBox(tb_nachname, k.Nachname);
+            binder.BindTo_TextBox(tb_email, k.Email);
+            binder.BindTo_TextBox(tb_adresse, k.Adresse);
+            binder.BindTo_TextBox(tb_hausnr, k.Hausnummer);
+            binder.BindTo_TextBox(tb_plz, k.Plz);
+            binder.BindTo_TextBox(tb_ort, k.Ort);
+            binder.BindTo_TextBox(tb_telefon, k.Telefon);
+            binder.BindTo_TextBox(rtb_bemerkungen, k.Bemerkungen);
 
             lv_angebote.Items.Clear();
             foreach (var item in BL.getKundenAngebote(k.Kundenid))
@@ -63,33 +66,22 @@ namespace Backoffice.Dialogs
 
         bool BindFrom()
         {
-            if (tb_vorname.Text != "")
-            {
-                k.Vorname = tb_vorname.Text;
-            }
-            else
-            {
-                return false;
-            }
+            binder.StartBindFrom();
 
-            if (tb_nachname.Text != "")
-            {
-                k.Nachname = tb_nachname.Text;
-            }
-            else return false;
-
-            if (tb_email.Text != "")
-                k.Email = tb_email.Text;
-            else return false;
-
-            k.Adresse = tb_adresse.Text;
-            k.Hausnummer = tb_hausnr.Text;
-            k.Plz = tb_plz.Text;
-            k.Ort = tb_ort.Text;
-            k.Telefon = tb_telefon.Text;
-            k.Bemerkungen = rtb_bemerkungen.Text;
+            k.Vorname = binder.BindFrom_String(tb_vorname, errorControl1, new DataBinding.RequiredRule());
+            k.Nachname = binder.BindFrom_String(tb_nachname, errorControl2, new DataBinding.RequiredRule());            
+            k.Email = binder.BindFrom_String(tb_email, errorControl3, new DataBinding.RequiredRule());
+            k.Adresse = binder.BindFrom_String(tb_adresse, errorControl4, null);
+            k.Hausnummer = binder.BindFrom_String(tb_hausnr, errorControl5, null);
+            k.Plz = binder.BindFrom_String(tb_plz, errorControl6, null);
+            k.Ort = binder.BindFrom_String(tb_ort, errorControl7, null);
+            k.Telefon = binder.BindFrom_String(tb_telefon, errorControl8, null);
+            k.Bemerkungen = binder.BindFrom_String(rtb_bemerkungen, errorControl9, null);
 
             if (created) k.Status = ObjectStates.New;
+
+            if (binder.HasErrors)
+                return false;
 
             return true;
         }
