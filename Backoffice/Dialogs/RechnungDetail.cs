@@ -43,7 +43,7 @@ namespace Backoffice.Dialogs
             
             binder.BindTo_TextBox(tb_rechnungid, r.Rechnungid);
             binder.BindTo_TextBox(tb_bezeichnung, r.Bezeichnung);
-            binder.BindTo_TextBox(tb_kunde, BL.getKunde(r.Kundenid));
+            binder.BindTo_TextBox(tb_kunde, BL.getKunde(r.Kundenid.Value));
             binder.BindTo_DateTimePicker(dtp_datum, r.Datum.Value); 
         }
 
