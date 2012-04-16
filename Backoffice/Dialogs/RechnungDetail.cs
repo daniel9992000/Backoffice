@@ -14,34 +14,41 @@ namespace Backoffice.Dialogs
         Rechnung r = null;
         Rechnungszeile rz = null;
         bool created = false;
+        DataBinding.Binder binder;
 
         public RechnungDetail()
         {
             InitializeComponent();
             r = new Rechnung();
             created = true;
+            binder = new DataBinding.Binder();
         }
 
         public RechnungDetail(Rechnung r)
         {
             InitializeComponent();
             this.r = r;
-        }
-
-        private void dtp_datum_ValueChanged(object sender, EventArgs e)
-        {
-
+            binder = new DataBinding.Binder();
         }
 
         void BindTo()
         {
+            cb_projekt.Items.Clear();
             foreach (var item in BL.getProjekte())
             {
                 cb_projekt.Items.Add(item);
                 if (item.Projektid == r.Projektid)
                     cb_projekt.SelectedItem = item;
-            }
+            }            
+            
+            binder.BindTo_TextBox(tb_rechnungid, r.Rechnungid);
+            binder.BindTo_TextBox(tb_bezeichnung, r.Bezeichnung);
+            binder.BindTo_TextBox(tb_kunde, BL.getKunde(r.Kundenid));
+            binder.BindTo_DateTimePicker(dtp_datum, r.Datum.Value); 
+        }
 
+        void BindToZeilen()
+        {
             lv_zeilen.Items.Clear();
             foreach (var item in BL.getRechnungszeilen(r.Rechnungid))
             {
@@ -50,34 +57,23 @@ namespace Backoffice.Dialogs
                 i.SubItems.Add(item.Bezeichnung);
                 i.SubItems.Add(item.Betrag.ToString() + " Euro");
             }
-
-            if (r.Kundenid != 0)
-            {
-                if (r.Kundenid.HasValue)
-                    tb_kunde.Text = BL.getKunde(r.Kundenid.Value).ToString();
-            }
-               
-            if(r.Rechnungid != 0)
-                tb_rechnungid.Text = r.Rechnungid.ToString();
-
-            tb_bezeichnung.Text = r.Bezeichnung;
-            dtp_datum.Value = r.Datum.Value;  
         }
 
         bool BindFrom()
         {
-            if (tb_bezeichnung.Text != "")
-            {
-                r.Bezeichnung = tb_bezeichnung.Text;
+            binder.StartBindFrom();
+            r.Bezeichnung = binder.BindFrom_String(tb_bezeichnung, errorControl1, new DataBinding.RequiredRule());
+            r.Datum = binder.BindFrom_DateTime(dtp_datum, errorControl2, null);
+
+            if((r.Projektid = binder.BindFrom_ComboBox_Int(cb_projekt, errorControl3, new DataBinding.RequiredRule())) != 0)
+            {            
+                r.Kundenid = BL.getAngebot(r.Projektid).Kundenid;
             }
-            else return false;
-
-            r.Datum = dtp_datum.Value;
-
-            r.Projektid = ((Projekt)cb_projekt.SelectedItem).Projektid;
-            r.Kundenid = BL.getProjektAngebot(r.Projektid.Value).Kundenid;
 
             if (created) r.Status = ObjectStates.New;
+
+            if (binder.HasErrors)
+                return false;
 
             return true;
         }
@@ -85,23 +81,16 @@ namespace Backoffice.Dialogs
         bool BindFromZeilen()
         {
             rz = new Rechnungszeile();
-            if (tb_rz_bezeichnung.Text != "")
-            {
-                rz.Bezeichnung = tb_rz_bezeichnung.Text;
-            }
-            else return false;
 
-            double res;
-            if (Double.TryParse(tb_rz_wert.Text, out res))
-            {
-                rz.Betrag = res;
-            }
-            else return false;
-
+            binder.StartBindFrom();
+            rz.Bezeichnung = binder.BindFrom_String(tb_rz_bezeichnung, errorControl4, new DataBinding.RequiredRule());
+            rz.Betrag = binder.BindFrom_Double(tb_rz_wert, errorControl5, new DataBinding.PositiveRule());
             rz.Rechnungid = r.Rechnungid;
-            rz.Angebotid = BL.getProjektAngebot(r.Projektid.Value).Angebotid;
-
+            rz.Angebotid = BL.getAngebot(r.Projektid).Angebotid;
             rz.Status = ObjectStates.New;
+
+            if (binder.HasErrors)
+                return false;
 
             return true;
         }
@@ -109,6 +98,9 @@ namespace Backoffice.Dialogs
         private void RechnungDetail_Load(object sender, EventArgs e)
         {
             BindTo();
+            if (created)
+                gb2.Enabled = false;
+            BindToZeilen();
         }
 
         private void bn_save_Click(object sender, EventArgs e)
@@ -126,7 +118,7 @@ namespace Backoffice.Dialogs
             if (BindFromZeilen())
             {
                 BL.saveRechnungszeile(rz);
-                BindTo();
+                BindToZeilen();
             }
         }
 
@@ -137,7 +129,7 @@ namespace Backoffice.Dialogs
                 if (lv_zeilen.SelectedItems.Count == 1)
                 {
                     BL.deleteRechnungszeile((Rechnungszeile)lv_zeilen.FocusedItem.Tag);
-                    BindTo();
+                    BindToZeilen();
                 }
             }
         }

@@ -31,7 +31,7 @@ namespace Backoffice.Dialogs
         }
 
         void BindTo()
-        {
+        {            
             foreach (var item in BL.getKunden())
             {
                 cb_kunde.Items.Add(item);
@@ -39,19 +39,20 @@ namespace Backoffice.Dialogs
                     cb_kunde.SelectedItem = item;
             }
 
+            cb_projekt.Items.Add(string.Empty);
             foreach (var item in BL.getProjekte())
             {
                 cb_projekt.Items.Add(item);
                 if (item.Projektid == a.Projektid)
                     cb_projekt.SelectedItem = item;
             }
-           
-            tb_angebotid.Text = a.Angebotid.ToString();
-            tb_titel.Text = a.Titel;
-            tb_dauer.Text = a.Dauer.ToString();
-            tb_summe.Text = a.Summe.ToString();
-            tb_chance.Text = a.Chance.ToString();
-            dtp_datum.Value = a.Datum;
+
+            binder.BindTo_TextBox(tb_angebotid, a.Angebotid);
+            binder.BindTo_TextBox(tb_titel, a.Titel);
+            binder.BindTo_TextBox(tb_dauer, a.Dauer);
+            binder.BindTo_TextBox(tb_summe, a.Summe);
+            binder.BindTo_TextBox(tb_chance, a.Chance);
+            binder.BindTo_DateTimePicker(dtp_datum, a.Datum);
         }
 
         bool BindFrom()
@@ -61,10 +62,11 @@ namespace Backoffice.Dialogs
             a.Dauer = binder.BindFrom_Int(tb_dauer, errorControl2, new DataBinding.PositiveRule());
             a.Chance = binder.BindFrom_Int(tb_chance, errorControl4, new DataBinding.PositiveRule());
             a.Summe = binder.BindFrom_Double(tb_summe, errorControl3, new DataBinding.PositiveRule());
+            a.Datum = binder.BindFrom_DateTime(dtp_datum, errorControl7, null);
+            a.Kundenid = binder.BindFrom_ComboBox_Int(cb_kunde, errorControl5, new DataBinding.RequiredRule());
 
-            a.Datum = dtp_datum.Value;
-            a.Kundenid = ((Kunde)binder.BindFrom_ComboBox(cb_kunde, errorControl5, null)).Kundenid;
-            a.Projektid = ((Projekt)binder.BindFrom_ComboBox(cb_projekt, errorControl6, null)).Projektid;
+            if ((a.Projektid = binder.BindFrom_ComboBox_Int(cb_projekt, errorControl6, null)) == 0)
+                a.Projektid = null;
 
             if (created) a.Status = ObjectStates.New;
 

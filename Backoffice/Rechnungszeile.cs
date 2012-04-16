@@ -16,7 +16,11 @@ namespace Backoffice
 
         public Rechnungszeile()
         {
-
+            this.reid = 0;
+            this.bezeichnung = string.Empty;
+            this.betrag = 0;
+            this.angebotid = 0;
+            this.rechnungid = 0;
         }
 
         public Rechnungszeile(int reid, string bezeichnung, double betrag, int angebotid, int rechnungid, ObjectStates status)

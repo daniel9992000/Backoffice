@@ -17,6 +17,14 @@ namespace Backoffice.DataBinding
                     return false;
                 }
             }
+            else
+            {
+                if (value == null)
+                {
+                    ctrl.setError("Bitte wählen Sie ein Objekt aus!");
+                    return false;
+                }
+            }
 
             return true;
         }

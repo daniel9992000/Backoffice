@@ -967,5 +967,26 @@ namespace Backoffice
         {
             throw new NotImplementedException();
         }
+
+
+        public List<Angebot> getAngebotViewList(int kundenid)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Angebot> getAngebotViewList(int? projektid)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Angebot getAngebot(int? projektid)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Rechnung> getRechnungViewList(int kundenid)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

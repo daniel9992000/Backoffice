@@ -45,7 +45,7 @@ namespace Backoffice.Dialogs
             binder.BindTo_TextBox(rtb_bemerkungen, k.Bemerkungen);
 
             lv_angebote.Items.Clear();
-            foreach (var item in BL.getKundenAngebote(k.Kundenid))
+            foreach (var item in BL.getAngebote(k.Kundenid))
             {
                 ListViewItem i = lv_angebote.Items.Add(item.Angebotid.ToString());
                 i.Tag = item;
@@ -54,7 +54,7 @@ namespace Backoffice.Dialogs
             }
 
             lv_rechnungen.Items.Clear();
-            foreach (var item in BL.getKundenRechnungen(k.Kundenid))
+            foreach (var item in BL.getRechnungen(k.Kundenid))
             {
                 ListViewItem i = lv_rechnungen.Items.Add(item.Rechnungid.ToString());
                 i.Tag = item;
