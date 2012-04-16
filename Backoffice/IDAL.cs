@@ -52,5 +52,6 @@ namespace Backoffice
         double[] getIstJahresumsatz();
         List<Rechnung> getEinnahmen(int month, int year);
         List<Rechnung> getAusgaben(int month, int year);
+        List<Angebot> getAngebote();
     }
 }

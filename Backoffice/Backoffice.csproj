@@ -96,6 +96,12 @@
     <Compile Include="Dialogs\RechnungDetail.Designer.cs">
       <DependentUpon>RechnungDetail.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\UCOffeneProjekteAnzeigen.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UCOffeneProjekteAnzeigen.Designer.cs">
+      <DependentUpon>UCOffeneProjekteAnzeigen.cs</DependentUpon>
+    </Compile>
     <Compile Include="IDAL.cs" />
     <Compile Include="Kontakt.cs" />
     <Compile Include="Kunde.cs" />
@@ -168,6 +174,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\RechnungDetail.resx">
       <DependentUpon>RechnungDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCOffeneProjekteAnzeigen.resx">
+      <DependentUpon>UCOffeneProjekteAnzeigen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>

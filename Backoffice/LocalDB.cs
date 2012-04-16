@@ -988,5 +988,11 @@ namespace Backoffice
         {
             throw new NotImplementedException();
         }
+
+
+        public List<Angebot> getAngebote()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

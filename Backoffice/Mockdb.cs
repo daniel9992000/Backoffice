@@ -396,12 +396,28 @@ namespace Backoffice
 
         public List<Angebot> getAngebotViewList(int kundenid)
         {
-            throw new NotImplementedException();
+            List<Angebot> tmp = new List<Angebot>();
+
+            foreach (var item in angebote)
+            {
+                if (item.Kundenid == kundenid)
+                    tmp.Add(item);
+            }
+
+            return tmp;
         }
 
         public List<Angebot> getAngebotViewList(int? projektid)
         {
-            throw new NotImplementedException();
+            List<Angebot> tmp = new List<Angebot>();
+
+            foreach (var item in angebote)
+            {
+                if (item.Projektid == projektid)
+                    tmp.Add(item);
+            }
+
+            return tmp;
         }
 
         public Angebot getAngebot(int? projektid)
@@ -412,6 +428,20 @@ namespace Backoffice
         public List<Rechnung> getRechnungViewList(int kundenid)
         {
             throw new NotImplementedException();
+        }
+
+
+        public List<Angebot> getAngebote()
+        {
+            List<Angebot> alist = new List<Angebot>();
+            foreach (var item in angebote)
+            {
+                if (item.Chance > 0 && !item.Projektid.HasValue)
+                {
+                    alist.Add(item);
+                }
+            }
+            return alist;
         }
     }
 }

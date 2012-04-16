@@ -287,6 +287,11 @@ namespace Backoffice
         {
             return DALFactory.getDAL().getAusgaben(month, year);
         }
+
+        public static List<Angebot> getOffeneProjekte()
+        {
+            return DALFactory.getDAL().getAngebote();
+        }
         #endregion
     }
 }

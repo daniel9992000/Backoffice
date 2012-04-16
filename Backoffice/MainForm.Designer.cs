@@ -55,6 +55,7 @@
             this.uc_kundenAnzeigen = new Backoffice.UserControls.UCKundenAnzeigen();
             this.ucJahresumsatzAnzeigen1 = new Backoffice.UserControls.UCJahresumsatzAnzeigen();
             this.ucEinahmenAusgabenAnzeigen1 = new Backoffice.UserControls.UCEinahmenAusgabenAnzeigen();
+            this.ucOffeneProjekteAnzeigen1 = new Backoffice.Dialogs.UCOffeneProjekteAnzeigen();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -194,6 +195,7 @@
             this.offeneProjekteToolStripMenuItem.Name = "offeneProjekteToolStripMenuItem";
             this.offeneProjekteToolStripMenuItem.Size = new System.Drawing.Size(238, 22);
             this.offeneProjekteToolStripMenuItem.Text = "Offene Projekte";
+            this.offeneProjekteToolStripMenuItem.Click += new System.EventHandler(this.offeneProjekteToolStripMenuItem_Click);
             // 
             // hilfeToolStripMenuItem
             // 
@@ -279,11 +281,20 @@
             this.ucEinahmenAusgabenAnzeigen1.Size = new System.Drawing.Size(933, 491);
             this.ucEinahmenAusgabenAnzeigen1.TabIndex = 7;
             // 
+            // ucOffeneProjekteAnzeigen1
+            // 
+            this.ucOffeneProjekteAnzeigen1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucOffeneProjekteAnzeigen1.Location = new System.Drawing.Point(0, 24);
+            this.ucOffeneProjekteAnzeigen1.Name = "ucOffeneProjekteAnzeigen1";
+            this.ucOffeneProjekteAnzeigen1.Size = new System.Drawing.Size(933, 491);
+            this.ucOffeneProjekteAnzeigen1.TabIndex = 8;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(933, 515);
+            this.Controls.Add(this.ucOffeneProjekteAnzeigen1);
             this.Controls.Add(this.ucEinahmenAusgabenAnzeigen1);
             this.Controls.Add(this.ucJahresumsatzAnzeigen1);
             this.Controls.Add(this.ucRechnungenAnzeigen1);
@@ -330,6 +341,7 @@
         private System.Windows.Forms.ToolStripMenuItem offeneProjekteToolStripMenuItem;
         private UserControls.UCJahresumsatzAnzeigen ucJahresumsatzAnzeigen1;
         private UserControls.UCEinahmenAusgabenAnzeigen ucEinahmenAusgabenAnzeigen1;
+        private Dialogs.UCOffeneProjekteAnzeigen ucOffeneProjekteAnzeigen1;
 
 
     }
