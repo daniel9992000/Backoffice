@@ -942,5 +942,30 @@ namespace Backoffice
             return rlist;
         }
         #endregion
+
+
+
+        public List<Angebot> getJahresumsatzViewList()
+        {
+            throw new NotImplementedException();
+        }
+
+
+
+        double[] IDAL.getIstJahresumsatz()
+        {
+            throw new NotImplementedException();
+        }
+
+
+        public List<Rechnung> getEinnahmen(int month, int year)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Rechnung> getAusgaben(int month, int year)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
