@@ -47,11 +47,20 @@ namespace Backoffice
         void deleteRechnungszeile(Rechnungszeile r);
         List<Rechnungszeile> getRechnungszeilenViewList(int rechnungid);
 
+        //Buchungen
+        void saveBuchung(Buchung b);
+        void deleteBuchung(Buchung b);
+        List<Buchung> getBuchungViewList(int rechnungid);
+
+
         //Auswertungen
         List<Angebot> getJahresumsatzViewList();
         double[] getIstJahresumsatz();
         List<Rechnung> getEinnahmen(int month, int year);
         List<Rechnung> getAusgaben(int month, int year);
         List<Angebot> getAngebote();
+        List<Rechnung> getOffeneERechnungen();
+        List<Rechnung> getOffeneARechnungen();
+       
     }
 }

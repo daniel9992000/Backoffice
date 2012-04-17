@@ -27,6 +27,8 @@ namespace Backoffice
             guiControls.Add(ucJahresumsatzAnzeigen1);
             guiControls.Add(ucEinahmenAusgabenAnzeigen1);
             guiControls.Add(ucOffeneProjekteAnzeigen1);
+            guiControls.Add(ucOffeneRechnungenAnzeigen1);
+            guiControls.Add(ucStundensatzAnzeigen1);
             foreach (var item in guiControls)
             {
                 item.Hide();
@@ -102,6 +104,16 @@ namespace Backoffice
         private void offeneProjekteToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DisplayUserControl(ucOffeneProjekteAnzeigen1);
+        }
+
+        private void offeneRechnungenToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DisplayUserControl(ucOffeneRechnungenAnzeigen1);
+        }
+
+        private void stundensatzProjektToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DisplayUserControl(ucStundensatzAnzeigen1);
         }
     }
 }

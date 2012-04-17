@@ -267,6 +267,23 @@ namespace Backoffice
         }
         #endregion
 
+        #region Buchung
+        public static List<Buchung> getBuchungen(int rechnungsid)
+        {
+            return DALFactory.getDAL().getBuchungViewList(rechnungsid);
+        }
+
+        public static void saveBuchung(Buchung b)
+        {
+            DALFactory.getDAL().saveBuchung(b);
+        }
+
+        public static void deleteBuchung(Buchung b)
+        {
+            DALFactory.getDAL().deleteBuchung(b);
+        }
+        #endregion
+
         #region Auswertungen
         public static List<Angebot> getJahresumsatzangebote()
         {
@@ -291,6 +308,16 @@ namespace Backoffice
         public static List<Angebot> getOffeneProjekte()
         {
             return DALFactory.getDAL().getAngebote();
+        }
+
+        public static List<Rechnung> getoffeneEingangsRechnungen()
+        {
+            return DALFactory.getDAL().getOffeneERechnungen();
+        }
+
+        public static List<Rechnung> getoffeneAusgangsRechnungen()
+        {
+            return DALFactory.getDAL().getOffeneARechnungen();
         }
         #endregion
     }

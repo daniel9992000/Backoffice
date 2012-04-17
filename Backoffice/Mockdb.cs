@@ -13,6 +13,7 @@ namespace Backoffice
         List<Kontakt> kontakte;
         List<Rechnung> rechnungen;
         List<Rechnungszeile> zeilen;
+        List<Buchung> buchungen;
 
         private static Mockdb instance = null;
 
@@ -54,6 +55,14 @@ namespace Backoffice
             zeilen.Add(new Rechnungszeile(2, "Design", 10000.00, 1, 1, ObjectStates.Unmodified));
             zeilen.Add(new Rechnungszeile(3, "Implementierung", 8000.00, 1, 1, ObjectStates.Unmodified));
             zeilen.Add(new Rechnungszeile(4, "Testen", 1000.00, 1, 1, ObjectStates.Unmodified));
+            zeilen.Add(new Rechnungszeile(5, "Design", 1000.00, 2, 2, ObjectStates.Unmodified));
+
+
+            buchungen = new List<Buchung>();
+            buchungen.Add(new Buchung(1,11000.00,"ausgang", DateTime.Now,1,ObjectStates.Unmodified));
+            buchungen.Add(new Buchung(2,10000.00,"ausgang", DateTime.Now,1,ObjectStates.Unmodified));
+            buchungen.Add(new Buchung(3,500.00,"ausgang", DateTime.Now, 2, ObjectStates.Unmodified));
+            
         }
 
         public void buildconnection()
@@ -420,10 +429,7 @@ namespace Backoffice
             return tmp;
         }
 
-        public Angebot getAngebot(int? projektid)
-        {
-            throw new NotImplementedException();
-        }
+     
 
         public List<Rechnung> getRechnungViewList(int kundenid)
         {
@@ -442,6 +448,123 @@ namespace Backoffice
                 }
             }
             return alist;
+        }
+
+
+        public List<Rechnung> getOffeneARechnungen()
+        {
+            List<Rechnung> rlist = new List<Rechnung>();
+            double summerezeile, summebuchung;
+            foreach (var item in rechnungen)
+            {   
+                summerezeile = summebuchung = 0;
+                foreach (var rzeile in zeilen)
+                {   
+                    if (rzeile.Rechnungid == item.Rechnungid)
+                        summerezeile+= rzeile.Betrag;
+                }
+                foreach (var buchung in buchungen)
+                {
+                    if (buchung.Rechnungid == item.Rechnungid)
+                        summebuchung += buchung.Betrag;
+                }
+                if (summebuchung != summerezeile)
+                    rlist.Add(item);
+            }
+            return rlist;
+        }
+
+
+
+
+        public List<Rechnung> getOffeneERechnungen() //noch richtig implementieren
+        {
+            List<Rechnung> rlist = new List<Rechnung>();
+            double summerezeile, summebuchung;
+            foreach (var item in rechnungen)
+            {
+                summerezeile = summebuchung = 0;
+                foreach (var rzeile in zeilen)
+                {
+                    if (rzeile.Rechnungid == item.Rechnungid)
+                        summerezeile += rzeile.Betrag;
+                }
+                foreach (var buchung in buchungen)
+                {
+                    if (buchung.Rechnungid == item.Rechnungid)
+                        summebuchung += buchung.Betrag;
+                }
+                if (summebuchung != summerezeile)
+                    rlist.Add(item);
+            }
+            return rlist;
+        }
+
+        #region Buchung
+        public void saveBuchung(Buchung b)
+        {
+            if (b.Status == ObjectStates.New)
+            {
+                b.Status = ObjectStates.Unmodified;
+                b.Buchungid = buchungen.Count + 1;
+                buchungen.Add(b);
+            }
+            else if (b.Status == ObjectStates.Modified)
+            {
+                int index = buchungen.IndexOf(b);
+                buchungen[index].Buchungid = b.Buchungid;
+                buchungen[index].Betrag = b.Betrag;
+                buchungen[index].Datum = b.Datum;
+                buchungen[index].Kategorie = b.Kategorie;
+                buchungen[index].Rechnungid = b.Rechnungid;
+                buchungen[index].Status = ObjectStates.Unmodified;
+            }
+        }
+
+        public void deleteBuchung(Buchung b)
+        {
+            buchungen.Remove(b);
+        }
+
+        public List<Buchung> getBuchungViewList(int rechnungid)
+        {
+            List<Buchung> blist = new List<Buchung>();
+            foreach (var item in buchungen)
+            {
+                if (item.Rechnungid == rechnungid)
+                {
+                    blist.Add(item);
+                }
+            }
+            return blist;
+        }
+        #endregion
+
+
+        public Angebot getAngebot(int? projektid)
+        {
+            Angebot a = new Angebot();
+            foreach (var item in angebote)
+            {
+                if (item.Projektid == projektid.Value)
+                    a =  item;
+            }
+            return a;
+            
+        }
+
+
+
+
+        Angebot IDAL.getAngebot(int? projektid)
+        {
+            Angebot a = new Angebot();
+            foreach (var item in angebote)
+            {
+                if (item.Projektid == projektid.Value)
+                    a = item;
+            }
+            return a;
         }
     }
 }

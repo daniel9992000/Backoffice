@@ -994,5 +994,34 @@ namespace Backoffice
         {
             throw new NotImplementedException();
         }
+
+
+        public List<Rechnung> getOffeneERechnungen()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Rechnung> getOffeneARechnungen()
+        {
+            throw new NotImplementedException();
+        }
+
+
+
+
+        public void saveBuchung(Buchung b)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void deleteBuchung(Buchung b)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Buchung> getBuchungViewList(int rechnungid)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -54,6 +54,7 @@
   <ItemGroup>
     <Compile Include="Angebot.cs" />
     <Compile Include="BL.cs" />
+    <Compile Include="Buchung.cs" />
     <Compile Include="ColumnSorter.cs" />
     <Compile Include="CreatePdf.cs" />
     <Compile Include="DALException.cs" />
@@ -148,6 +149,12 @@
     <Compile Include="UserControls\UCKundenAnzeigen.Designer.cs">
       <DependentUpon>UCKundenAnzeigen.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\UCOffeneRechnungenAnzeigen.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UCOffeneRechnungenAnzeigen.Designer.cs">
+      <DependentUpon>UCOffeneRechnungenAnzeigen.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\UCProjekteAnzeigen.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -159,6 +166,12 @@
     </Compile>
     <Compile Include="UserControls\UCRechnungenAnzeigen.Designer.cs">
       <DependentUpon>UCRechnungenAnzeigen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UCStundensatzAnzeigen.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UCStundensatzAnzeigen.Designer.cs">
+      <DependentUpon>UCStundensatzAnzeigen.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Dialogs\AngebotDetail.resx">
       <DependentUpon>AngebotDetail.cs</DependentUpon>
@@ -205,11 +218,17 @@
     <EmbeddedResource Include="UserControls\UCKundenAnzeigen.resx">
       <DependentUpon>UCKundenAnzeigen.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCOffeneRechnungenAnzeigen.resx">
+      <DependentUpon>UCOffeneRechnungenAnzeigen.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UCProjekteAnzeigen.resx">
       <DependentUpon>UCProjekteAnzeigen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UCRechnungenAnzeigen.resx">
       <DependentUpon>UCRechnungenAnzeigen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCStundensatzAnzeigen.resx">
+      <DependentUpon>UCStundensatzAnzeigen.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config">
       <SubType>Designer</SubType>
