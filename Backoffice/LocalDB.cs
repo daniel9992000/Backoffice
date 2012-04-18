@@ -681,8 +681,8 @@ namespace Backoffice
         }
         #endregion
 
-        #region Rechnung
-        public void saveRechnung(Rechnung r)
+        #region Ausgangsrechnung
+        public void saveAusgang(Ausgang r)
         {
             buildconnection();
             NpgsqlCommand comm = null, commaus = null;
@@ -734,7 +734,7 @@ namespace Backoffice
             }
         }
 
-        public void deleteRechung(Rechnung r)
+        public void deleteAusgang(Ausgang r)
         {
             buildconnection();
             NpgsqlCommand comm = null;
@@ -758,10 +758,10 @@ namespace Backoffice
             }
         }
 
-        public List<Rechnung> getRechnungViewList()
+        public List<Ausgang> getAusgangViewList()
         {
             buildconnection();
-            List<Rechnung> rlist = new List<Rechnung>();
+            List<Ausgang> rlist = new List<Ausgang>();
             NpgsqlCommand comm = null;
             NpgsqlDataReader reader = null;
             try
@@ -772,9 +772,9 @@ namespace Backoffice
                 reader = comm.ExecuteReader();
                 while (reader.Read())
                 {
-                    Rechnung r = new Rechnung();
+                    Ausgang r = new Ausgang();
                     r.Rechnungid = reader.GetInt32(0);
-                    r.Projektid = reader.ReadNullableInt(1);
+                    r.Projektid = reader.GetInt32(1);
                     r.Kundenid = reader.GetInt32(2);
                     //r.offen = reader.GetBoolean(3);
                     r.Datum = reader.ReadNullableDateTime(4);
@@ -796,12 +796,12 @@ namespace Backoffice
             return rlist;
         }
 
-        public List<Rechnung> getKundenRechnungen(int kundenid)
+        public List<Ausgang> getAusgangViewList(int kundenid)
         {
             buildconnection();
             NpgsqlCommand comm = null;
             NpgsqlDataReader reader = null;
-            List<Rechnung> rlist = new List<Rechnung>();
+            List<Ausgang> rlist = new List<Ausgang>();
             try
             {
 
@@ -813,9 +813,9 @@ namespace Backoffice
                 reader = comm.ExecuteReader();
                 while (reader.Read())
                 {
-                    Rechnung r = new Rechnung();
+                    Ausgang r = new Ausgang();
                     r.Rechnungid = reader.GetInt32(0);
-                    r.Projektid = reader.ReadNullableInt(1);
+                    r.Projektid = reader.GetInt32(1);
                     r.Kundenid = reader.GetInt32(2);
                     r.Datum = reader.ReadNullableDateTime(3);
                     r.Bezeichnung = reader.GetString(4).Trim();
@@ -958,12 +958,12 @@ namespace Backoffice
         }
 
 
-        public List<Rechnung> getEinnahmen(int month, int year)
+        public List<Ausgang> getEinnahmen(int month, int year)
         {
             throw new NotImplementedException();
         }
 
-        public List<Rechnung> getAusgaben(int month, int year)
+        public List<Eingang> getAusgaben(int month, int year)
         {
             throw new NotImplementedException();
         }
@@ -996,12 +996,12 @@ namespace Backoffice
         }
 
 
-        public List<Rechnung> getOffeneERechnungen()
+        public List<Eingang> getOffeneERechnungen()
         {
             throw new NotImplementedException();
         }
 
-        public List<Rechnung> getOffeneARechnungen()
+        public List<Ausgang> getOffeneARechnungen()
         {
             throw new NotImplementedException();
         }

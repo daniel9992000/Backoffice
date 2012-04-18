@@ -36,11 +36,11 @@ namespace Backoffice
         List<Kontakt> getKontaktViewList();
         Kontakt getKontakt(int id);
 
-        //Rechnungen
-        void saveRechnung(Rechnung r);
-        void deleteRechung(Rechnung r);
-        List<Rechnung> getRechnungViewList();
-        List<Rechnung> getRechnungViewList(int kundenid);
+        //Ausgangsrechnungen
+        void saveAusgang(Ausgang r);
+        void deleteAusgang(Ausgang r);
+        List<Ausgang> getAusgangViewList();
+        List<Ausgang> getAusgangViewList(int kundenid);
 
         //Rechnungszeilen
         void saveRechnungszeile(Rechnungszeile r);
@@ -56,11 +56,11 @@ namespace Backoffice
         //Auswertungen
         List<Angebot> getJahresumsatzViewList();
         double[] getIstJahresumsatz();
-        List<Rechnung> getEinnahmen(int month, int year);
-        List<Rechnung> getAusgaben(int month, int year);
+        List<Ausgang> getEinnahmen(int month, int year);
+        List<Eingang> getAusgaben(int month, int year);
         List<Angebot> getAngebote();
-        List<Rechnung> getOffeneERechnungen();
-        List<Rechnung> getOffeneARechnungen();
+        List<Eingang> getOffeneERechnungen();
+        List<Ausgang> getOffeneARechnungen();
        
     }
 }

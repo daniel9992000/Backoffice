@@ -39,13 +39,14 @@
             this.summe = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.datum = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.chance = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.bnaktualisieren = new System.Windows.Forms.Button();
             this.gb1 = new System.Windows.Forms.GroupBox();
             this.label3 = new System.Windows.Forms.Label();
             this.tbisumang = new System.Windows.Forms.TextBox();
             this.tbianzang = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.gb2 = new System.Windows.Forms.GroupBox();
-            this.bnaktualisieren = new System.Windows.Forms.Button();
+            this.sFD1 = new System.Windows.Forms.SaveFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -160,6 +161,16 @@
             this.chance.Text = "Chance";
             this.chance.Width = 97;
             // 
+            // bnaktualisieren
+            // 
+            this.bnaktualisieren.Location = new System.Drawing.Point(677, 37);
+            this.bnaktualisieren.Name = "bnaktualisieren";
+            this.bnaktualisieren.Size = new System.Drawing.Size(122, 33);
+            this.bnaktualisieren.TabIndex = 7;
+            this.bnaktualisieren.Text = "Bericht aktualisieren";
+            this.bnaktualisieren.UseVisualStyleBackColor = true;
+            this.bnaktualisieren.Click += new System.EventHandler(this.bnaktualisieren_Click);
+            // 
             // gb1
             // 
             this.gb1.Controls.Add(this.label3);
@@ -222,15 +233,11 @@
             this.gb2.TabStop = false;
             this.gb2.Text = "Prognose";
             // 
-            // bnaktualisieren
+            // sFD1
             // 
-            this.bnaktualisieren.Location = new System.Drawing.Point(677, 37);
-            this.bnaktualisieren.Name = "bnaktualisieren";
-            this.bnaktualisieren.Size = new System.Drawing.Size(122, 33);
-            this.bnaktualisieren.TabIndex = 7;
-            this.bnaktualisieren.Text = "Bericht aktualisieren";
-            this.bnaktualisieren.UseVisualStyleBackColor = true;
-            this.bnaktualisieren.Click += new System.EventHandler(this.bnaktualisieren_Click);
+            this.sFD1.DefaultExt = "pdf";
+            this.sFD1.FileName = "Jahresumsatz";
+            this.sFD1.Filter = "pdf|*.pdf";
             // 
             // UCJahresumsatzAnzeigen
             // 
@@ -272,5 +279,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.GroupBox gb2;
         private System.Windows.Forms.Button bnaktualisieren;
+        private System.Windows.Forms.SaveFileDialog sFD1;
     }
 }

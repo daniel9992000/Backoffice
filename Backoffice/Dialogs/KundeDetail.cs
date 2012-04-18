@@ -54,7 +54,7 @@ namespace Backoffice.Dialogs
             }
 
             lv_rechnungen.Items.Clear();
-            foreach (var item in BL.getRechnungen(k.Kundenid))
+            foreach (var item in BL.getAusgaenge(k.Kundenid))
             {
                 ListViewItem i = lv_rechnungen.Items.Add(item.Rechnungid.ToString());
                 i.Tag = item;

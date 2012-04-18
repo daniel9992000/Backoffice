@@ -30,12 +30,15 @@ namespace Backoffice.UserControls
 
         private void btngenpdf_Click(object sender, EventArgs e)
         {
-            CreatePdf mypdf = new CreatePdf();
-            mypdf.CreatePdfDocument("OffeneRechnungen.pdf");
-            mypdf.AddHeader("Offene Rechnungen");
-            mypdf.addTable(4, "Offene Eingangsrechnungen", eingangsr);
-            mypdf.addTable(4, "Offene Ausgangsrechnungen", ausgangsr);
-            mypdf.ClosePdf();
+            if (sFD1.ShowDialog() == DialogResult.OK)
+            {
+                CreatePdf mypdf = new CreatePdf();
+                mypdf.CreatePdfDocument(sFD1.FileName);
+                mypdf.AddHeader("Offene Rechnungen");
+                mypdf.addTable(4, "Offene Eingangsrechnungen", eingangsr);
+                mypdf.addTable(4, "Offene Ausgangsrechnungen", ausgangsr);
+                mypdf.ClosePdf();
+            }
         }
 
         void BindTo()
@@ -55,16 +58,13 @@ namespace Backoffice.UserControls
             {
                 ListViewItem i = lv_eingangr.Items.Add(tmp.Rechnungid.ToString());
                 i.Tag = tmp;
-                relist = BL.getRechnungszeilen(tmp.Rechnungid);
-                foreach (var item in relist)
-                {
-                    resumme += item.Betrag;
-                }
+                resumme = tmp.Betrag;
                 blist = BL.getBuchungen(tmp.Rechnungid);
                 foreach (var bitem in blist)
                 {
                     bsumme += bitem.Betrag;
                 }
+                bsumme = resumme - bsumme;
                 i.SubItems.Add(resumme.ToString("#0.00"));
                 i.SubItems.Add(bsumme.ToString("#0.00"));
                 i.SubItems.Add(tmp.Datum.Value.ToShortDateString());
@@ -94,6 +94,7 @@ namespace Backoffice.UserControls
                 {
                     bsumme += bitem.Betrag;
                 }
+                bsumme = resumme - bsumme;
                 i.SubItems.Add(resumme.ToString("#0.00"));
                 i.SubItems.Add(bsumme.ToString("#0.00"));
                 i.SubItems.Add(tmp.Datum.Value.ToShortDateString());

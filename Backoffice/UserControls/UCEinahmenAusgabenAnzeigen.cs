@@ -35,7 +35,7 @@ namespace Backoffice.UserControls
             double resumme = 0;
             einnahmen.Add("ID:");
             einnahmen.Add("Betrag:");
-            einnahmen.Add("Kategorie:");
+            einnahmen.Add("Bezeichnung:");
             einnahmen.Add("Datum:");
             foreach (var tmp in BL.getMonatsEinnahmen(dtp1.Value.Month, dtp1.Value.Year))
             {
@@ -58,22 +58,17 @@ namespace Backoffice.UserControls
 
             ausgaben.Add("ID:");
             ausgaben.Add("Betrag:");
-            ausgaben.Add("Kategorie:");
+            ausgaben.Add("Bezeichnung:");
             ausgaben.Add("Datum:");
             foreach (var tmp in BL.getMonatsAusgaben(dtp1.Value.Month, dtp1.Value.Year))
             {
                 ListViewItem i = lv_ausgaben.Items.Add(tmp.Rechnungid.ToString());
                 i.Tag = tmp;
-                relist = BL.getRechnungszeilen(tmp.Rechnungid);
-                foreach (var item in relist)
-                {
-                    resumme += item.Betrag;
-                }
-                i.SubItems.Add(resumme.ToString("#0.00"));
+                i.SubItems.Add(tmp.Betrag.ToString("#0.00"));
                 i.SubItems.Add(tmp.Bezeichnung);
                 i.SubItems.Add(tmp.Datum.Value.ToShortDateString());
                 ausgaben.Add(tmp.Rechnungid.ToString());
-                ausgaben.Add(resumme.ToString("#0.00"));
+                ausgaben.Add(tmp.Betrag.ToString("#0.00"));
                 ausgaben.Add(tmp.Bezeichnung.ToString());
                 ausgaben.Add(tmp.Datum.Value.ToShortDateString());
             }
@@ -81,12 +76,17 @@ namespace Backoffice.UserControls
 
         private void bn_createpdf_Click(object sender, EventArgs e)
         {
-            CreatePdf mypdf = new CreatePdf();
-            mypdf.CreatePdfDocument("Monatsbericht.pdf");
-            mypdf.AddHeader("Einnahmen und Ausgaben: "+ dtp1.Value.ToString("MMMM") + " " + dtp1.Value.Year);
-            mypdf.addTable(4, "Einnahmen", einnahmen);
-            mypdf.addTable(4, "Ausgaben", ausgaben);
-            mypdf.ClosePdf();
+           
+            if (sFD1.ShowDialog() == DialogResult.OK)
+            {
+                CreatePdf mypdf = new CreatePdf();
+                mypdf.CreatePdfDocument(sFD1.FileName);
+                mypdf.AddHeader("Einnahmen und Ausgaben: "+ dtp1.Value.ToString("MMMM") + " " + dtp1.Value.Year);
+                mypdf.addTable(4, "Einnahmen", einnahmen);
+                mypdf.addTable(4, "Ausgaben", ausgaben);
+                mypdf.ClosePdf();
+            }
+           
         }
 
         private void bnaktualisieren_Click(object sender, EventArgs e)

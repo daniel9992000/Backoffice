@@ -35,10 +35,11 @@
             this.Projektdauer = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Projektkosten = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Stundensatz = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.label1 = new System.Windows.Forms.Label();
-            this.tbstdsatz = new System.Windows.Forms.TextBox();
-            this.bngen = new System.Windows.Forms.Button();
             this.bnakt = new System.Windows.Forms.Button();
+            this.bngen = new System.Windows.Forms.Button();
+            this.tbstdsatz = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.sFD1 = new System.Windows.Forms.SaveFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -108,22 +109,15 @@
             this.Stundensatz.Text = "Stundensatz";
             this.Stundensatz.Width = 150;
             // 
-            // label1
+            // bnakt
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(17, 36);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(157, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Durchschnittlicher Stundensatz:";
-            // 
-            // tbstdsatz
-            // 
-            this.tbstdsatz.Location = new System.Drawing.Point(199, 33);
-            this.tbstdsatz.Name = "tbstdsatz";
-            this.tbstdsatz.ReadOnly = true;
-            this.tbstdsatz.Size = new System.Drawing.Size(100, 20);
-            this.tbstdsatz.TabIndex = 1;
+            this.bnakt.Location = new System.Drawing.Point(484, 24);
+            this.bnakt.Name = "bnakt";
+            this.bnakt.Size = new System.Drawing.Size(155, 51);
+            this.bnakt.TabIndex = 3;
+            this.bnakt.Text = "Bericht aktualisieren";
+            this.bnakt.UseVisualStyleBackColor = true;
+            this.bnakt.Click += new System.EventHandler(this.bnakt_Click);
             // 
             // bngen
             // 
@@ -135,15 +129,28 @@
             this.bngen.UseVisualStyleBackColor = true;
             this.bngen.Click += new System.EventHandler(this.bngen_Click);
             // 
-            // bnakt
+            // tbstdsatz
             // 
-            this.bnakt.Location = new System.Drawing.Point(484, 24);
-            this.bnakt.Name = "bnakt";
-            this.bnakt.Size = new System.Drawing.Size(155, 51);
-            this.bnakt.TabIndex = 3;
-            this.bnakt.Text = "Bericht aktualisieren";
-            this.bnakt.UseVisualStyleBackColor = true;
-            this.bnakt.Click += new System.EventHandler(this.bnakt_Click);
+            this.tbstdsatz.Location = new System.Drawing.Point(199, 33);
+            this.tbstdsatz.Name = "tbstdsatz";
+            this.tbstdsatz.ReadOnly = true;
+            this.tbstdsatz.Size = new System.Drawing.Size(100, 20);
+            this.tbstdsatz.TabIndex = 1;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(17, 36);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(157, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Durchschnittlicher Stundensatz:";
+            // 
+            // sFD1
+            // 
+            this.sFD1.DefaultExt = "pdf";
+            this.sFD1.FileName = "Stundensatz";
+            this.sFD1.Filter = "pdf|*.pdf";
             // 
             // UCStundensatzAnzeigen
             // 
@@ -175,5 +182,6 @@
         private System.Windows.Forms.Button bngen;
         private System.Windows.Forms.TextBox tbstdsatz;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.SaveFileDialog sFD1;
     }
 }

@@ -55,12 +55,15 @@ namespace Backoffice.Dialogs
 
         private void bngenpdf_Click(object sender, EventArgs e)
         {
-            CreatePdf mypdf = new CreatePdf();
-            mypdf.CreatePdfDocument("OffeneProjekte.pdf");
-            mypdf.AddHeader("Offene Projekte laut Angebot");
-            mypdf.addTable(5, "Offene Projekte", values);
-            mypdf.AddsmallHeader("Anzahl offener Projekte: " + anz);
-            mypdf.ClosePdf();
+            if (sFD1.ShowDialog() == DialogResult.OK)
+            {
+                CreatePdf mypdf = new CreatePdf();
+                mypdf.CreatePdfDocument(sFD1.FileName);
+                mypdf.AddHeader("Offene Projekte laut Angebot");
+                mypdf.addTable(5, "Offene Projekte", values);
+                mypdf.AddsmallHeader("Anzahl offener Projekte: " + anz);
+                mypdf.ClosePdf();
+            }
         }
 
         private void bnakt_Click(object sender, EventArgs e)

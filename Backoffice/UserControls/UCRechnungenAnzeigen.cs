@@ -19,7 +19,7 @@ namespace Backoffice.UserControls
         void BindTo()
         {
             lv_rechnungen.Items.Clear();
-            foreach (var item in BL.getRechnungen())
+            foreach (var item in BL.getAusgaenge())
             {
                 ListViewItem i = lv_rechnungen.Items.Add(item.Rechnungid.ToString());
                 i.Tag = item;
@@ -28,7 +28,7 @@ namespace Backoffice.UserControls
             }
         }
 
-        void EditRechnung(Rechnung r)
+        void EditRechnung(Ausgang r)
         {
             Dialogs.RechnungDetail tmp = new Dialogs.RechnungDetail(r);
             if (tmp.ShowDialog() == DialogResult.OK)
@@ -42,9 +42,9 @@ namespace Backoffice.UserControls
                 BindTo();
         }
 
-        void DeleteRechnung(Rechnung r)
+        void DeleteRechnung(Ausgang r)
         {
-            BL.deleteRechnung(r);
+            BL.deleteAusgang(r);
             BindTo();
 
         }
@@ -58,7 +58,7 @@ namespace Backoffice.UserControls
         {
             if (lv_rechnungen.SelectedItems.Count == 1)
             {
-                EditRechnung((Rechnung)lv_rechnungen.FocusedItem.Tag);
+                EditRechnung((Ausgang)lv_rechnungen.FocusedItem.Tag);
             }
         }
 
@@ -66,7 +66,7 @@ namespace Backoffice.UserControls
         {
             if (lv_rechnungen.SelectedItems.Count == 1)
             {
-                DeleteRechnung((Rechnung)lv_rechnungen.FocusedItem.Tag);
+                DeleteRechnung((Ausgang)lv_rechnungen.FocusedItem.Tag);
             }
         }
 
@@ -77,7 +77,7 @@ namespace Backoffice.UserControls
 
         private void lv_rechnungen_DoubleClick(object sender, EventArgs e)
         {
-            EditRechnung((Rechnung)lv_rechnungen.FocusedItem.Tag);
+            EditRechnung((Ausgang)lv_rechnungen.FocusedItem.Tag);
         }
     }
 }

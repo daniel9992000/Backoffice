@@ -29,21 +29,22 @@
         private void InitializeComponent()
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.btnakt = new System.Windows.Forms.Button();
+            this.btngenpdf = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.lv_eingangr = new System.Windows.Forms.ListView();
             this.rechnungid = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.betragges = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.offbetrag = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.datum = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.lv_ausgangr = new System.Windows.Forms.ListView();
             this.aid = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.abetrag = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.adatum = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.abetragoff = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.btngenpdf = new System.Windows.Forms.Button();
-            this.btnakt = new System.Windows.Forms.Button();
-            this.offbetrag = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.adatum = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.sFD1 = new System.Windows.Forms.SaveFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -76,6 +77,63 @@
             this.splitContainer1.SplitterDistance = 91;
             this.splitContainer1.TabIndex = 0;
             // 
+            // btnakt
+            // 
+            this.btnakt.Location = new System.Drawing.Point(325, 34);
+            this.btnakt.Name = "btnakt";
+            this.btnakt.Size = new System.Drawing.Size(127, 41);
+            this.btnakt.TabIndex = 3;
+            this.btnakt.Text = "Bericht aktualisieren";
+            this.btnakt.UseVisualStyleBackColor = true;
+            this.btnakt.Click += new System.EventHandler(this.btnakt_Click);
+            // 
+            // btngenpdf
+            // 
+            this.btngenpdf.Location = new System.Drawing.Point(456, 34);
+            this.btngenpdf.Name = "btngenpdf";
+            this.btngenpdf.Size = new System.Drawing.Size(125, 41);
+            this.btngenpdf.TabIndex = 2;
+            this.btngenpdf.Text = "Pdf generieren";
+            this.btngenpdf.UseVisualStyleBackColor = true;
+            this.btngenpdf.Click += new System.EventHandler(this.btngenpdf_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(619, 46);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(244, 20);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Offene Ausgangsrechnungen";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(28, 46);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(239, 20);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Offene Eingangsrechnungen";
+            // 
+            // splitContainer2
+            // 
+            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer2.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer2.Name = "splitContainer2";
+            // 
+            // splitContainer2.Panel1
+            // 
+            this.splitContainer2.Panel1.Controls.Add(this.lv_eingangr);
+            // 
+            // splitContainer2.Panel2
+            // 
+            this.splitContainer2.Panel2.Controls.Add(this.lv_ausgangr);
+            this.splitContainer2.Size = new System.Drawing.Size(877, 356);
+            this.splitContainer2.SplitterDistance = 452;
+            this.splitContainer2.TabIndex = 1;
+            // 
             // lv_eingangr
             // 
             this.lv_eingangr.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
@@ -102,28 +160,15 @@
             this.betragges.Text = "Betrag gesamt";
             this.betragges.Width = 110;
             // 
+            // offbetrag
+            // 
+            this.offbetrag.Text = "Offener Betrag";
+            this.offbetrag.Width = 94;
+            // 
             // datum
             // 
-            this.datum.DisplayIndex = 2;
             this.datum.Text = "Datum";
             this.datum.Width = 93;
-            // 
-            // splitContainer2
-            // 
-            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer2.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer2.Name = "splitContainer2";
-            // 
-            // splitContainer2.Panel1
-            // 
-            this.splitContainer2.Panel1.Controls.Add(this.lv_eingangr);
-            // 
-            // splitContainer2.Panel2
-            // 
-            this.splitContainer2.Panel2.Controls.Add(this.lv_ausgangr);
-            this.splitContainer2.Size = new System.Drawing.Size(877, 356);
-            this.splitContainer2.SplitterDistance = 452;
-            this.splitContainer2.TabIndex = 1;
             // 
             // lv_ausgangr
             // 
@@ -151,61 +196,21 @@
             this.abetrag.Text = "Betrag gesamt";
             this.abetrag.Width = 103;
             // 
+            // abetragoff
+            // 
+            this.abetragoff.Text = "Offener Betrag";
+            this.abetragoff.Width = 87;
+            // 
             // adatum
             // 
             this.adatum.Text = "Datum";
             this.adatum.Width = 88;
             // 
-            // abetragoff
+            // sFD1
             // 
-            this.abetragoff.DisplayIndex = 3;
-            this.abetragoff.Text = "Offener Betrag";
-            this.abetragoff.Width = 87;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(28, 46);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(239, 20);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Offene Eingangsrechnungen";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(619, 46);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(244, 20);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Offene Ausgangsrechnungen";
-            // 
-            // btngenpdf
-            // 
-            this.btngenpdf.Location = new System.Drawing.Point(456, 34);
-            this.btngenpdf.Name = "btngenpdf";
-            this.btngenpdf.Size = new System.Drawing.Size(125, 41);
-            this.btngenpdf.TabIndex = 2;
-            this.btngenpdf.Text = "Pdf generieren";
-            this.btngenpdf.UseVisualStyleBackColor = true;
-            this.btngenpdf.Click += new System.EventHandler(this.btngenpdf_Click);
-            // 
-            // btnakt
-            // 
-            this.btnakt.Location = new System.Drawing.Point(325, 34);
-            this.btnakt.Name = "btnakt";
-            this.btnakt.Size = new System.Drawing.Size(127, 41);
-            this.btnakt.TabIndex = 3;
-            this.btnakt.Text = "Bericht aktualisieren";
-            this.btnakt.UseVisualStyleBackColor = true;
-            this.btnakt.Click += new System.EventHandler(this.btnakt_Click);
-            // 
-            // offbetrag
-            // 
-            this.offbetrag.Text = "Offener Betrag";
-            this.offbetrag.Width = 94;
+            this.sFD1.DefaultExt = "pdf";
+            this.sFD1.FileName = "OffeneRechnungen";
+            this.sFD1.Filter = "pdf|*.pdf";
             // 
             // UCOffeneRechnungenAnzeigen
             // 
@@ -246,5 +251,6 @@
         private System.Windows.Forms.ColumnHeader adatum;
         private System.Windows.Forms.ColumnHeader abetragoff;
         private System.Windows.Forms.ColumnHeader offbetrag;
+        private System.Windows.Forms.SaveFileDialog sFD1;
     }
 }

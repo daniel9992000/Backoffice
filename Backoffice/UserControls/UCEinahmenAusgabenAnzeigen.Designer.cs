@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.bnaktualisieren = new System.Windows.Forms.Button();
             this.dtp1 = new System.Windows.Forms.DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -37,14 +38,14 @@
             this.lv_einnahmen = new System.Windows.Forms.ListView();
             this.eid = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ebetrag = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.eKategorie = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.eBezeichnung = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.eDatum = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lv_ausgaben = new System.Windows.Forms.ListView();
             this.aID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.abetrag = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.adatum = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.aKategorie = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.bnaktualisieren = new System.Windows.Forms.Button();
+            this.aBezeichnung = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.sFD1 = new System.Windows.Forms.SaveFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -77,6 +78,16 @@
             this.splitContainer1.Size = new System.Drawing.Size(953, 462);
             this.splitContainer1.SplitterDistance = 73;
             this.splitContainer1.TabIndex = 0;
+            // 
+            // bnaktualisieren
+            // 
+            this.bnaktualisieren.Location = new System.Drawing.Point(243, 34);
+            this.bnaktualisieren.Name = "bnaktualisieren";
+            this.bnaktualisieren.Size = new System.Drawing.Size(200, 30);
+            this.bnaktualisieren.TabIndex = 4;
+            this.bnaktualisieren.Text = "Bericht aktualisieren";
+            this.bnaktualisieren.UseVisualStyleBackColor = true;
+            this.bnaktualisieren.Click += new System.EventHandler(this.bnaktualisieren_Click);
             // 
             // dtp1
             // 
@@ -138,7 +149,7 @@
             this.lv_einnahmen.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.eid,
             this.ebetrag,
-            this.eKategorie,
+            this.eBezeichnung,
             this.eDatum});
             this.lv_einnahmen.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lv_einnahmen.GridLines = true;
@@ -158,10 +169,10 @@
             this.ebetrag.Text = "Betrag";
             this.ebetrag.Width = 105;
             // 
-            // eKategorie
+            // eBezeichnung
             // 
-            this.eKategorie.Text = "Kategorie";
-            this.eKategorie.Width = 107;
+            this.eBezeichnung.Text = "Bezeichnung";
+            this.eBezeichnung.Width = 152;
             // 
             // eDatum
             // 
@@ -173,8 +184,8 @@
             this.lv_ausgaben.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.aID,
             this.abetrag,
-            this.adatum,
-            this.aKategorie});
+            this.aBezeichnung,
+            this.adatum});
             this.lv_ausgaben.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lv_ausgaben.GridLines = true;
             this.lv_ausgaben.Location = new System.Drawing.Point(0, 0);
@@ -195,25 +206,19 @@
             // 
             // adatum
             // 
-            this.adatum.DisplayIndex = 3;
             this.adatum.Text = "Datum";
             this.adatum.Width = 99;
             // 
-            // aKategorie
+            // aBezeichnung
             // 
-            this.aKategorie.DisplayIndex = 2;
-            this.aKategorie.Text = "Kategorie";
-            this.aKategorie.Width = 117;
+            this.aBezeichnung.Text = "Bezeichnung";
+            this.aBezeichnung.Width = 168;
             // 
-            // bnaktualisieren
+            // sFD1
             // 
-            this.bnaktualisieren.Location = new System.Drawing.Point(243, 34);
-            this.bnaktualisieren.Name = "bnaktualisieren";
-            this.bnaktualisieren.Size = new System.Drawing.Size(200, 30);
-            this.bnaktualisieren.TabIndex = 4;
-            this.bnaktualisieren.Text = "Bericht aktualisieren";
-            this.bnaktualisieren.UseVisualStyleBackColor = true;
-            this.bnaktualisieren.Click += new System.EventHandler(this.bnaktualisieren_Click);
+            this.sFD1.DefaultExt = "pdf";
+            this.sFD1.FileName = "Einnahmen_Ausgaben";
+            this.sFD1.Filter = "pdf|*.pdf";
             // 
             // UCEinahmenAusgabenAnzeigen
             // 
@@ -244,16 +249,17 @@
         private System.Windows.Forms.ListView lv_einnahmen;
         private System.Windows.Forms.ColumnHeader eid;
         private System.Windows.Forms.ColumnHeader ebetrag;
-        private System.Windows.Forms.ColumnHeader eKategorie;
+        private System.Windows.Forms.ColumnHeader eBezeichnung;
         private System.Windows.Forms.ColumnHeader eDatum;
         private System.Windows.Forms.ListView lv_ausgaben;
         private System.Windows.Forms.ColumnHeader aID;
         private System.Windows.Forms.ColumnHeader abetrag;
         private System.Windows.Forms.ColumnHeader adatum;
-        private System.Windows.Forms.ColumnHeader aKategorie;
+        private System.Windows.Forms.ColumnHeader aBezeichnung;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DateTimePicker dtp1;
         private System.Windows.Forms.Button bnaktualisieren;
+        private System.Windows.Forms.SaveFileDialog sFD1;
     }
 }
