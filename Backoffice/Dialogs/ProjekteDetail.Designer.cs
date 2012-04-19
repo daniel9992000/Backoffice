@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.errorControl1 = new Backoffice.DataBinding.ErrorControl();
             this.tb_name = new System.Windows.Forms.TextBox();
             this.tb_id = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -36,7 +37,6 @@
             this.bn_save = new System.Windows.Forms.Button();
             this.bn_cancel = new System.Windows.Forms.Button();
             this.gb2 = new System.Windows.Forms.GroupBox();
-            this.errorControl1 = new Backoffice.DataBinding.ErrorControl();
             this.lv_angebote = new System.Windows.Forms.ListView();
             this.gb3 = new System.Windows.Forms.GroupBox();
             this.lv_rechungen = new System.Windows.Forms.ListView();
@@ -54,10 +54,19 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(390, 94);
+            this.groupBox1.Size = new System.Drawing.Size(442, 94);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Allgemein";
+            // 
+            // errorControl1
+            // 
+            this.errorControl1.AutoSize = true;
+            this.errorControl1.Location = new System.Drawing.Point(201, 51);
+            this.errorControl1.Name = "errorControl1";
+            this.errorControl1.Size = new System.Drawing.Size(67, 13);
+            this.errorControl1.TabIndex = 4;
+            this.errorControl1.Text = "errorControl1";
             // 
             // tb_name
             // 
@@ -119,26 +128,17 @@
             this.gb2.Location = new System.Drawing.Point(12, 112);
             this.gb2.Name = "gb2";
             this.gb2.Padding = new System.Windows.Forms.Padding(5);
-            this.gb2.Size = new System.Drawing.Size(390, 162);
+            this.gb2.Size = new System.Drawing.Size(442, 162);
             this.gb2.TabIndex = 3;
             this.gb2.TabStop = false;
             this.gb2.Text = "Angebote";
-            // 
-            // errorControl1
-            // 
-            this.errorControl1.AutoSize = true;
-            this.errorControl1.Location = new System.Drawing.Point(201, 51);
-            this.errorControl1.Name = "errorControl1";
-            this.errorControl1.Size = new System.Drawing.Size(67, 13);
-            this.errorControl1.TabIndex = 4;
-            this.errorControl1.Text = "errorControl1";
             // 
             // lv_angebote
             // 
             this.lv_angebote.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lv_angebote.Location = new System.Drawing.Point(5, 18);
             this.lv_angebote.Name = "lv_angebote";
-            this.lv_angebote.Size = new System.Drawing.Size(380, 139);
+            this.lv_angebote.Size = new System.Drawing.Size(432, 139);
             this.lv_angebote.TabIndex = 0;
             this.lv_angebote.UseCompatibleStateImageBehavior = false;
             this.lv_angebote.View = System.Windows.Forms.View.Details;
@@ -149,7 +149,7 @@
             this.gb3.Location = new System.Drawing.Point(12, 280);
             this.gb3.Name = "gb3";
             this.gb3.Padding = new System.Windows.Forms.Padding(5);
-            this.gb3.Size = new System.Drawing.Size(390, 162);
+            this.gb3.Size = new System.Drawing.Size(437, 162);
             this.gb3.TabIndex = 4;
             this.gb3.TabStop = false;
             this.gb3.Text = "Rechnungen";
@@ -159,7 +159,7 @@
             this.lv_rechungen.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lv_rechungen.Location = new System.Drawing.Point(5, 18);
             this.lv_rechungen.Name = "lv_rechungen";
-            this.lv_rechungen.Size = new System.Drawing.Size(380, 139);
+            this.lv_rechungen.Size = new System.Drawing.Size(427, 139);
             this.lv_rechungen.TabIndex = 0;
             this.lv_rechungen.UseCompatibleStateImageBehavior = false;
             this.lv_rechungen.View = System.Windows.Forms.View.Details;
@@ -168,7 +168,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(418, 480);
+            this.ClientSize = new System.Drawing.Size(466, 480);
             this.Controls.Add(this.gb3);
             this.Controls.Add(this.gb2);
             this.Controls.Add(this.bn_cancel);
