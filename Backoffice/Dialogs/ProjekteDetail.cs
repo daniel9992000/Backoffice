@@ -43,7 +43,7 @@ namespace Backoffice.Dialogs
         bool BindFrom()
         {
             binder.StartBindFrom();
-            binder.BindFrom_String(tb_name, errorControl1, new DataBinding.RequiredRule());
+            p.Name = binder.BindFrom_String(tb_name, errorControl1, new DataBinding.RequiredRule());
 
             if (created == true) p.Status = ObjectStates.New;
 
