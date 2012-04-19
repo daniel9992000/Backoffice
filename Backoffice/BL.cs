@@ -229,24 +229,24 @@ namespace Backoffice
         #endregion
 
         #region Rechnungen
-        public static void saveRechnung(Rechnung r)
+        public static void saveAusgang(Ausgang r)
         {
-            DALFactory.getDAL().saveRechnung(r);
+            DALFactory.getDAL().saveAusgang(r);
         }
 
-        public static void deleteRechnung(Rechnung r)
+        public static void deleteAusgang(Ausgang r)
         {
-            DALFactory.getDAL().deleteRechung(r);
+            DALFactory.getDAL().deleteAusgang(r);
         }
 
-        public static List<Rechnung> getRechnungen()
+        public static List<Ausgang> getAusgaenge()
         {
-            return DALFactory.getDAL().getRechnungViewList();
+            return DALFactory.getDAL().getAusgangViewList();
         }
 
-        public static List<Rechnung> getRechnungen(int kundenid)
+        public static List<Ausgang> getAusgaenge(int kundenid)
         {
-            return DALFactory.getDAL().getRechnungViewList(kundenid);
+            return DALFactory.getDAL().getAusgangViewList(kundenid);
         }
         #endregion
 
@@ -295,12 +295,12 @@ namespace Backoffice
             return DALFactory.getDAL().getIstJahresumsatz();
         }
 
-        public static List<Rechnung> getMonatsEinnahmen(int month, int year)
+        public static List<Ausgang> getMonatsEinnahmen(int month, int year)
         {
             return DALFactory.getDAL().getEinnahmen(month, year);
         }
 
-        public static List<Rechnung> getMonatsAusgaben(int month, int year)
+        public static List<Eingang> getMonatsAusgaben(int month, int year)
         {
             return DALFactory.getDAL().getAusgaben(month, year);
         }
@@ -310,12 +310,12 @@ namespace Backoffice
             return DALFactory.getDAL().getAngebote();
         }
 
-        public static List<Rechnung> getoffeneEingangsRechnungen()
+        public static List<Eingang> getoffeneEingangsRechnungen()
         {
             return DALFactory.getDAL().getOffeneERechnungen();
         }
 
-        public static List<Rechnung> getoffeneAusgangsRechnungen()
+        public static List<Ausgang> getoffeneAusgangsRechnungen()
         {
             return DALFactory.getDAL().getOffeneARechnungen();
         }

@@ -11,7 +11,7 @@ namespace Backoffice.Dialogs
 {
     public partial class RechnungDetail : Form
     {
-        Rechnung r = null;
+        Ausgang r = null;
         Rechnungszeile rz = null;
         bool created = false;
         DataBinding.Binder binder;
@@ -19,12 +19,12 @@ namespace Backoffice.Dialogs
         public RechnungDetail()
         {
             InitializeComponent();
-            r = new Rechnung();
+            r = new Ausgang();
             created = true;
             binder = new DataBinding.Binder();
         }
 
-        public RechnungDetail(Rechnung r)
+        public RechnungDetail(Ausgang r)
         {
             InitializeComponent();
             this.r = r;
@@ -43,7 +43,7 @@ namespace Backoffice.Dialogs
             
             binder.BindTo_TextBox(tb_rechnungid, r.Rechnungid);
             binder.BindTo_TextBox(tb_bezeichnung, r.Bezeichnung);
-            binder.BindTo_TextBox(tb_kunde, BL.getKunde(r.Kundenid.Value));
+            binder.BindTo_TextBox(tb_kunde, BL.getKunde(r.Kundenid));
             binder.BindTo_DateTimePicker(dtp_datum, r.Datum.Value); 
         }
 
@@ -107,7 +107,7 @@ namespace Backoffice.Dialogs
         {
             if (BindFrom())
             {
-                BL.saveRechnung(r);
+                BL.saveAusgang(r);
                 this.Close();
                 this.DialogResult = System.Windows.Forms.DialogResult.OK;
             }

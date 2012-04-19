@@ -29,12 +29,15 @@ namespace Backoffice.UserControls
 
         private void bngen_Click(object sender, EventArgs e)
         {
-            CreatePdf mypdf = new CreatePdf();
-            mypdf.CreatePdfDocument("Stundesatz_Projekt.pdf");
-            mypdf.AddHeader("Stundensatz pro Projekt");
-            mypdf.addTable(5, "Projekte", projekte);
-            mypdf.AddsmallHeader("Durchschnittlicher Stundensatz: " + tbstdsatz.Text);
-            mypdf.ClosePdf();
+            if (sFD1.ShowDialog() == DialogResult.OK)
+            {
+                CreatePdf mypdf = new CreatePdf();
+                mypdf.CreatePdfDocument(sFD1.FileName);
+                mypdf.AddHeader("Stundensatz pro Projekt");
+                mypdf.addTable(5, "Projekte", projekte);
+                mypdf.AddsmallHeader("Durchschnittlicher Stundensatz: " + tbstdsatz.Text);
+                mypdf.ClosePdf();
+            }
         }
 
         void BindTo()

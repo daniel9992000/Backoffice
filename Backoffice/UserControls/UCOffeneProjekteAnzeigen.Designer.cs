@@ -29,9 +29,6 @@
         private void InitializeComponent()
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.tboffprojekte = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.bngenpdf = new System.Windows.Forms.Button();
             this.lv_angebote = new System.Windows.Forms.ListView();
             this.projektid = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Angebotname = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -39,6 +36,10 @@
             this.summe = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.datum = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.bnakt = new System.Windows.Forms.Button();
+            this.bngenpdf = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.tboffprojekte = new System.Windows.Forms.TextBox();
+            this.sFD1 = new System.Windows.Forms.SaveFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -67,33 +68,6 @@
             this.splitContainer1.SplitterDistance = 293;
             this.splitContainer1.TabIndex = 0;
             // 
-            // tboffprojekte
-            // 
-            this.tboffprojekte.Location = new System.Drawing.Point(209, 46);
-            this.tboffprojekte.Name = "tboffprojekte";
-            this.tboffprojekte.ReadOnly = true;
-            this.tboffprojekte.Size = new System.Drawing.Size(100, 20);
-            this.tboffprojekte.TabIndex = 0;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(83, 53);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(120, 13);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Anzahl offene Projekte: ";
-            // 
-            // bngenpdf
-            // 
-            this.bngenpdf.Location = new System.Drawing.Point(682, 33);
-            this.bngenpdf.Name = "bngenpdf";
-            this.bngenpdf.Size = new System.Drawing.Size(130, 44);
-            this.bngenpdf.TabIndex = 2;
-            this.bngenpdf.Text = "Pdf generieren";
-            this.bngenpdf.UseVisualStyleBackColor = true;
-            this.bngenpdf.Click += new System.EventHandler(this.bngenpdf_Click);
-            // 
             // lv_angebote
             // 
             this.lv_angebote.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
@@ -103,6 +77,7 @@
             this.summe,
             this.datum});
             this.lv_angebote.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lv_angebote.GridLines = true;
             this.lv_angebote.Location = new System.Drawing.Point(0, 0);
             this.lv_angebote.Name = "lv_angebote";
             this.lv_angebote.Size = new System.Drawing.Size(917, 293);
@@ -117,12 +92,12 @@
             // Angebotname
             // 
             this.Angebotname.Text = "Angebotname";
-            this.Angebotname.Width = 146;
+            this.Angebotname.Width = 160;
             // 
             // chance
             // 
             this.chance.Text = "Chance";
-            this.chance.Width = 84;
+            this.chance.Width = 121;
             // 
             // summe
             // 
@@ -143,6 +118,39 @@
             this.bnakt.Text = "Bericht aktualisieren";
             this.bnakt.UseVisualStyleBackColor = true;
             this.bnakt.Click += new System.EventHandler(this.bnakt_Click);
+            // 
+            // bngenpdf
+            // 
+            this.bngenpdf.Location = new System.Drawing.Point(682, 33);
+            this.bngenpdf.Name = "bngenpdf";
+            this.bngenpdf.Size = new System.Drawing.Size(130, 44);
+            this.bngenpdf.TabIndex = 2;
+            this.bngenpdf.Text = "Pdf generieren";
+            this.bngenpdf.UseVisualStyleBackColor = true;
+            this.bngenpdf.Click += new System.EventHandler(this.bngenpdf_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(83, 53);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(120, 13);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Anzahl offene Projekte: ";
+            // 
+            // tboffprojekte
+            // 
+            this.tboffprojekte.Location = new System.Drawing.Point(209, 46);
+            this.tboffprojekte.Name = "tboffprojekte";
+            this.tboffprojekte.ReadOnly = true;
+            this.tboffprojekte.Size = new System.Drawing.Size(100, 20);
+            this.tboffprojekte.TabIndex = 0;
+            // 
+            // sFD1
+            // 
+            this.sFD1.DefaultExt = "pdf";
+            this.sFD1.FileName = "Offene_Projekte";
+            this.sFD1.Filter = "pdf|*.pdf";
             // 
             // UCOffeneProjekteAnzeigen
             // 
@@ -174,5 +182,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox tboffprojekte;
         private System.Windows.Forms.Button bnakt;
+        private System.Windows.Forms.SaveFileDialog sFD1;
     }
 }

@@ -53,6 +53,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Angebot.cs" />
+    <Compile Include="Ausgang.cs" />
     <Compile Include="BL.cs" />
     <Compile Include="Buchung.cs" />
     <Compile Include="ColumnSorter.cs" />
@@ -97,6 +98,7 @@
     <Compile Include="Dialogs\RechnungDetail.Designer.cs">
       <DependentUpon>RechnungDetail.cs</DependentUpon>
     </Compile>
+    <Compile Include="Eingang.cs" />
     <Compile Include="UserControls\UCOffeneProjekteAnzeigen.cs">
       <SubType>UserControl</SubType>
     </Compile>

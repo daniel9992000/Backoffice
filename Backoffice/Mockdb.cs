@@ -11,7 +11,8 @@ namespace Backoffice
         List<Projekt> projekte;
         List<Angebot> angebote;
         List<Kontakt> kontakte;
-        List<Rechnung> rechnungen;
+        List<Ausgang> ausgaenge;
+        List<Eingang> eingaenge;
         List<Rechnungszeile> zeilen;
         List<Buchung> buchungen;
 
@@ -46,9 +47,12 @@ namespace Backoffice
             kontakte = new List<Kontakt>();
             kontakte.Add (new Kontakt(1,"Testfirma", "Karl", "Maier", "test.firma@firma.at", ObjectStates.Unmodified));
 
-            rechnungen = new List<Rechnung>();
-            rechnungen.Add(new Rechnung(1, "Rechnung 1", DateTime.Today, 1, 1, ObjectStates.Unmodified));
-            rechnungen.Add(new Rechnung(2, "Rechnung 2", DateTime.Today, 1, 1, ObjectStates.Unmodified));
+            ausgaenge = new List<Ausgang>();
+            ausgaenge.Add(new Ausgang(1, "Ausgangsrechnung 1", DateTime.Today, 1, 1, ObjectStates.Unmodified));
+            ausgaenge.Add(new Ausgang(2, "Ausgangsrechnung 2", DateTime.Today, 1, 1, ObjectStates.Unmodified));
+
+            eingaenge = new List<Eingang>();
+            eingaenge.Add(new Eingang(3,"Eingangsrechnung 1", DateTime.Today,888.98,"C:",1,ObjectStates.Unmodified));
 
             zeilen = new List<Rechnungszeile>();
             zeilen.Add(new Rechnungszeile(1, "Spezifikation", 2000.00, 1, 1, ObjectStates.Unmodified));
@@ -264,40 +268,40 @@ namespace Backoffice
         }
         #endregion
 
-        #region Rechnung
-        public void saveRechnung(Rechnung r)
+        #region Ausgangsrechnungen
+        public void saveAusgang(Ausgang r)
         {
             if (r.Status == ObjectStates.New)
             {
                 r.Status = ObjectStates.Unmodified;
-                r.Rechnungid = rechnungen.Count + 1;
-                rechnungen.Add(r);
+                r.Rechnungid = ausgaenge.Count + 1;
+                ausgaenge.Add(r);
             }
             else if (r.Status == ObjectStates.Modified)
             {
-                int index = rechnungen.IndexOf(r);
-                rechnungen[index].Rechnungid = r.Rechnungid;
-                rechnungen[index].Bezeichnung = r.Bezeichnung;
-                rechnungen[index].Datum = r.Datum;
-                rechnungen[index].Status = ObjectStates.Unmodified;
+                int index = ausgaenge.IndexOf(r);
+                ausgaenge[index].Rechnungid = r.Rechnungid;
+                ausgaenge[index].Bezeichnung = r.Bezeichnung;
+                ausgaenge[index].Datum = r.Datum;
+                ausgaenge[index].Status = ObjectStates.Unmodified;
             }
         }
 
-        public void deleteRechung(Rechnung r)
+        public void deleteAusgang(Ausgang r)
         {
-            rechnungen.Remove(r);
+            ausgaenge.Remove(r);
+        }
+       
+        public List<Ausgang> getAusgangViewList()
+        {
+            return ausgaenge;
         }
 
-        public List<Rechnung> getRechnungViewList()
+        public List<Ausgang> getAusgangViewList(int kundenid)
         {
-            return rechnungen;
-        }
+            List<Ausgang> tmp = new List<Ausgang>();
 
-        public List<Rechnung> getKundenRechnungen(int kundenid)
-        {
-            List<Rechnung> tmp = new List<Rechnung>();
-
-            foreach (var item in rechnungen)
+            foreach (var item in ausgaenge)
             {
                 if (item.Kundenid == kundenid)
                     tmp.Add(item);
@@ -375,10 +379,10 @@ namespace Backoffice
         }
 
 
-        public List<Rechnung> getEinnahmen(int month, int year)
+        public List<Eingang> getAusgaben(int month, int year)
         {
-             List<Rechnung> rlist = new List<Rechnung>();
-             foreach (var item in rechnungen)
+             List<Eingang> rlist = new List<Eingang>();
+             foreach (var item in eingaenge)
              {
                  if ((item.Datum.Value.Year) == year && (item.Datum.Value.Month == month))
                  {
@@ -388,10 +392,10 @@ namespace Backoffice
              return rlist;
         }
 
-        public List<Rechnung> getAusgaben(int month, int year)
+        public List<Ausgang> getEinnahmen(int month, int year)
         {
-            List<Rechnung> rlist = new List<Rechnung>();
-            foreach (var item in rechnungen)
+            List<Ausgang> rlist = new List<Ausgang>();
+            foreach (var item in ausgaenge)
             {
                 if ((item.Datum.Value.Year) == year && (item.Datum.Value.Month == month))
                 {
@@ -451,11 +455,11 @@ namespace Backoffice
         }
 
 
-        public List<Rechnung> getOffeneARechnungen()
+        public List<Ausgang> getOffeneARechnungen()
         {
-            List<Rechnung> rlist = new List<Rechnung>();
+            List<Ausgang> rlist = new List<Ausgang>();
             double summerezeile, summebuchung;
-            foreach (var item in rechnungen)
+            foreach (var item in ausgaenge)
             {   
                 summerezeile = summebuchung = 0;
                 foreach (var rzeile in zeilen)
@@ -477,18 +481,14 @@ namespace Backoffice
 
 
 
-        public List<Rechnung> getOffeneERechnungen() //noch richtig implementieren
+        public List<Eingang> getOffeneERechnungen() //noch richtig implementieren
         {
-            List<Rechnung> rlist = new List<Rechnung>();
+            List<Eingang> rlist = new List<Eingang>();
             double summerezeile, summebuchung;
-            foreach (var item in rechnungen)
+            foreach (var item in eingaenge)
             {
                 summerezeile = summebuchung = 0;
-                foreach (var rzeile in zeilen)
-                {
-                    if (rzeile.Rechnungid == item.Rechnungid)
-                        summerezeile += rzeile.Betrag;
-                }
+                summerezeile = item.Betrag;
                 foreach (var buchung in buchungen)
                 {
                     if (buchung.Rechnungid == item.Rechnungid)

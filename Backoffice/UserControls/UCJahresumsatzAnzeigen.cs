@@ -69,17 +69,21 @@ namespace Backoffice.UserControls
 
         private void bngenpdf_Click(object sender, EventArgs e)
         {
-            CreatePdf mypdf = new CreatePdf();
-            mypdf.CreatePdfDocument("Jahresumsatz.pdf");
-            mypdf.AddHeader("Prognostizierter Jahresumsatz laut Angebot");
-            mypdf.addTable(4, "Angebote", values);
-            mypdf.AddsmallHeader("Ist-Stand Angebote:");
-            mypdf.AddText("Anzahl Angebote: " + tbianzang.Text);
-            mypdf.AddText("Summe Angebote: " + tbisumang.Text);
-            mypdf.AddsmallHeader("Prognose für das Jahr " + DateTime.Now.Year+ ":");
-            mypdf.AddText("Anzahl Angebote: " + tbanzangebote.Text);
-            mypdf.AddText("Summe Angebote: " + tbsumangebote.Text);
-            mypdf.ClosePdf();
+            if (sFD1.ShowDialog() == DialogResult.OK)
+            {
+                CreatePdf mypdf = new CreatePdf();
+                mypdf.CreatePdfDocument(sFD1.FileName);
+                mypdf.AddHeader("Prognostizierter Jahresumsatz laut Angebot");
+                mypdf.addTable(4, "Angebote", values);
+                mypdf.AddsmallHeader("Ist-Stand Angebote:");
+                mypdf.AddText("Anzahl Angebote: " + tbianzang.Text);
+                mypdf.AddText("Summe Angebote: " + tbisumang.Text);
+                mypdf.AddsmallHeader("Prognose für das Jahr " + DateTime.Now.Year + ":");
+                mypdf.AddText("Anzahl Angebote: " + tbanzangebote.Text);
+                mypdf.AddText("Summe Angebote: " + tbsumangebote.Text);
+                mypdf.ClosePdf();
+            }
+           
         }
 
         private void bnaktualisieren_Click(object sender, EventArgs e)
