@@ -474,7 +474,7 @@ namespace Backoffice
 
             return alist;
         }
-        public Angebot getProjektAngebot(int? projektid)
+        public Angebot getAngebotViewListByProjektId(int projektid)
         {
             buildconnection();
             NpgsqlCommand comm = null;
@@ -1020,6 +1020,18 @@ namespace Backoffice
         }
 
         public List<Buchung> getBuchungViewList(int rechnungid)
+        {
+            throw new NotImplementedException();
+        }
+
+
+        List<Angebot> IDAL.getAngebotViewListByProjektId(int projektid)
+        {
+            throw new NotImplementedException();
+        }
+
+
+        public List<Ausgang> getAusgangViewListByProjektId(int projektid)
         {
             throw new NotImplementedException();
         }

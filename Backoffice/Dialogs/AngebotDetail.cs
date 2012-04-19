@@ -31,22 +31,10 @@ namespace Backoffice.Dialogs
         }
 
         void BindTo()
-        {            
-            foreach (var item in BL.getKunden())
-            {
-                cb_kunde.Items.Add(item);
-                if (item.Kundenid == a.Kundenid)
-                    cb_kunde.SelectedItem = item;
-            }
-
+        {
+            binder.BindTo_ComboBox(cb_kunde, BL.getKunden(), a);
             cb_projekt.Items.Add(string.Empty);
-            foreach (var item in BL.getProjekte())
-            {
-                cb_projekt.Items.Add(item);
-                if (item.Projektid == a.Projektid)
-                    cb_projekt.SelectedItem = item;
-            }
-
+            binder.BindTo_ComboBox(cb_projekt, BL.getProjekte(), a); 
             binder.BindTo_TextBox(tb_angebotid, a.Angebotid);
             binder.BindTo_TextBox(tb_titel, a.Titel);
             binder.BindTo_TextBox(tb_dauer, a.Dauer);

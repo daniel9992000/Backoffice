@@ -97,6 +97,20 @@ namespace Backoffice
             return tmp;
         }
 
+        public static List<Angebot> getAngeboteByProjektId(int projektid)
+        {
+            List<Angebot> tmp = null;
+            try
+            {
+                tmp = DALFactory.getDAL().getAngebotViewListByProjektId(projektid);
+            }
+            catch (DALException ex)
+            {
+
+            }
+            return tmp;
+        }
+
         public static Angebot getAngebot(int? projektid)
         {
             return DALFactory.getDAL().getAngebot(projektid);
@@ -247,6 +261,11 @@ namespace Backoffice
         public static List<Ausgang> getAusgaenge(int kundenid)
         {
             return DALFactory.getDAL().getAusgangViewList(kundenid);
+        }
+
+        public static List<Ausgang> getAusgaengeByProjektId(int projektid)
+        {
+            return DALFactory.getDAL().getAusgangViewList(projektid);
         }
         #endregion
 

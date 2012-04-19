@@ -43,25 +43,8 @@ namespace Backoffice.Dialogs
             binder.BindTo_TextBox(tb_ort, k.Ort);
             binder.BindTo_TextBox(tb_telefon, k.Telefon);
             binder.BindTo_TextBox(rtb_bemerkungen, k.Bemerkungen);
-
-            lv_angebote.Items.Clear();
-            foreach (var item in BL.getAngebote(k.Kundenid))
-            {
-                ListViewItem i = lv_angebote.Items.Add(item.Angebotid.ToString());
-                i.Tag = item;
-                i.SubItems.Add(item.Titel);
-                i.SubItems.Add(item.Datum.ToShortDateString());
-            }
-
-            lv_rechnungen.Items.Clear();
-            foreach (var item in BL.getAusgaenge(k.Kundenid))
-            {
-                ListViewItem i = lv_rechnungen.Items.Add(item.Rechnungid.ToString());
-                i.Tag = item;
-                i.SubItems.Add(item.Bezeichnung);
-                i.SubItems.Add(item.Datum.Value.ToShortDateString());
-            }
-
+            binder.BindTo_ListView(lv_angebote, BL.getAngebote(k.Kundenid));
+            binder.BindTo_ListView(lv_rechnungen, BL.getAusgaenge(k.Kundenid));
         }
 
         bool BindFrom()

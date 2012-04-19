@@ -21,7 +21,7 @@ namespace Backoffice
         void deleteAngebot(Angebot a);
         List<Angebot> getAngebotViewList();
         List<Angebot> getAngebotViewList(int kundenid);
-        List<Angebot> getAngebotViewList(int? projektid);
+        List<Angebot> getAngebotViewListByProjektId(int projektid);
         Angebot getAngebot(int? projektid);
 
         //Projekte
@@ -41,6 +41,7 @@ namespace Backoffice
         void deleteAusgang(Ausgang r);
         List<Ausgang> getAusgangViewList();
         List<Ausgang> getAusgangViewList(int kundenid);
+        List<Ausgang> getAusgangViewListByProjektId(int projektid);
 
         //Rechnungszeilen
         void saveRechnungszeile(Rechnungszeile r);

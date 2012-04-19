@@ -195,7 +195,7 @@ namespace Backoffice
             return angebote;
         }
 
-        public List<Angebot> getKundenAngebote(int kundenid)
+        public List<Angebot> getAngebotViewList(int kundenid)
         {
             List<Angebot> tmp = new List<Angebot>();
 
@@ -208,20 +208,31 @@ namespace Backoffice
             return tmp;
         }
 
-        public Angebot getProjektAngebot(int? projektid)
+        public List<Angebot> getAngebotViewListByProjektId(int projektid)
         {
-            Angebot tmp = null;
+            List<Angebot> tmp = new List<Angebot>();
 
             foreach (var item in angebote)
             {
                 if (item.Projektid == projektid)
                 {
-                    tmp = item;
-                    break;
+                    tmp.Add(item);                   
                 }
             }
 
             return tmp;
+        }
+
+        public Angebot getAngebot(int? projektid)
+        {
+            Angebot a = new Angebot();
+            foreach (var item in angebote)
+            {
+                if (item.Projektid == projektid.Value)
+                    a = item;
+            }
+            return a;
+
         }
         #endregion
 
@@ -304,6 +315,19 @@ namespace Backoffice
             foreach (var item in ausgaenge)
             {
                 if (item.Kundenid == kundenid)
+                    tmp.Add(item);
+            }
+
+            return tmp;
+        }
+
+        public List<Ausgang> getAusgangViewListByProjektId(int projektid)
+        {
+            List<Ausgang> tmp = new List<Ausgang>();
+
+            foreach (var item in ausgaenge)
+            {
+                if (item.Projektid == projektid)
                     tmp.Add(item);
             }
 
@@ -405,33 +429,6 @@ namespace Backoffice
             return rlist;
         }
         #endregion
-
-
-        public List<Angebot> getAngebotViewList(int kundenid)
-        {
-            List<Angebot> tmp = new List<Angebot>();
-
-            foreach (var item in angebote)
-            {
-                if (item.Kundenid == kundenid)
-                    tmp.Add(item);
-            }
-
-            return tmp;
-        }
-
-        public List<Angebot> getAngebotViewList(int? projektid)
-        {
-            List<Angebot> tmp = new List<Angebot>();
-
-            foreach (var item in angebote)
-            {
-                if (item.Projektid == projektid)
-                    tmp.Add(item);
-            }
-
-            return tmp;
-        }
 
      
 
@@ -541,17 +538,7 @@ namespace Backoffice
         #endregion
 
 
-        public Angebot getAngebot(int? projektid)
-        {
-            Angebot a = new Angebot();
-            foreach (var item in angebote)
-            {
-                if (item.Projektid == projektid.Value)
-                    a =  item;
-            }
-            return a;
-            
-        }
+        
 
 
 
@@ -566,5 +553,10 @@ namespace Backoffice
             }
             return a;
         }
+
+
+
+
+        
     }
 }

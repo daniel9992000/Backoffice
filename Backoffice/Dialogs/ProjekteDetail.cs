@@ -13,12 +13,14 @@ namespace Backoffice.Dialogs
     {
         Projekt p;
         bool created;
+        DataBinding.Binder binder;
 
         public ProjekteDetail()
         {
             InitializeComponent();
             p = new Projekt();
             created = true;
+            binder = new DataBinding.Binder();
         }
 
         public ProjekteDetail(Projekt p)
@@ -26,23 +28,28 @@ namespace Backoffice.Dialogs
             InitializeComponent();
             this.p = p;
             created = false;
+            binder = new DataBinding.Binder();
         }
 
         void BindTo()
         {
-            tb_id.Text = p.Projektid.ToString();
-            tb_name.Text = p.Name;
+            binder.BindTo_TextBox(tb_id, p.Projektid);
+            binder.BindTo_TextBox(tb_name, p.Name);
+            binder.BindTo_ListView(lv_angebote, BL.getAngeboteByProjektId(p.Projektid));
+            binder.BindTo_ListView(lv_rechungen, BL.getAusgaengeByProjektId(p.Projektid));
+           
         }
 
         bool BindFrom()
         {
-            if (tb_name.Text != "")
-            {
-                p.Name = tb_name.Text;
-            }
-            else return false;
+            binder.StartBindFrom();
+            binder.BindFrom_String(tb_name, errorControl1, new DataBinding.RequiredRule());
 
             if (created == true) p.Status = ObjectStates.New;
+
+            if (binder.HasErrors)
+                return false;
+
             return true;
         }
 

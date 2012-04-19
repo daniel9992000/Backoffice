@@ -13,12 +13,14 @@ namespace Backoffice.Dialogs
     {
         Kontakt k;
         bool created;
+        DataBinding.Binder binder;
 
         public KontaktDetail()
         {
             InitializeComponent();
             k = new Kontakt();
             created = true;
+            binder = new DataBinding.Binder();
         }
 
         public KontaktDetail(Kontakt k)
@@ -26,71 +28,42 @@ namespace Backoffice.Dialogs
             InitializeComponent();
             this.k = k;
             created = false;
+            binder = new DataBinding.Binder();
         }
 
         void BindTo()
         {
-            tb_id.Text = k.Kontaktid.ToString();
-            tb_firmenname.Text = k.Firmenname;
-            tb_vorname.Text = k.Vorname;
-            tb_nachname.Text = k.Nachname;
-            tb_email.Text = k.Email;
-            tb_adresse.Text = k.Adresse;
-            tb_hausnummer.Text = k.Hausnummer;
-            tb_plz.Text = k.Plz.ToString();
-
-            tb_ort.Text = k.Ort;
-
-            tb_telefon.Text = k.Telefon.ToString();
-
-            rtb_bemerkungen.Text = k.Bemerkungen;
-
+            binder.BindTo_TextBox(tb_id, k.Kontaktid);
+            binder.BindTo_TextBox(tb_firmenname, k.Firmenname);
+            binder.BindTo_TextBox(tb_vorname, k.Vorname);
+            binder.BindTo_TextBox(tb_nachname, k.Nachname);
+            binder.BindTo_TextBox(tb_email, k.Email);
+            binder.BindTo_TextBox(tb_adresse, k.Adresse);
+            binder.BindTo_TextBox(tb_hausnummer, k.Hausnummer);
+            binder.BindTo_TextBox(tb_plz, k.Plz);
+            binder.BindTo_TextBox(tb_ort, k.Ort);
+            binder.BindTo_TextBox(tb_telefon, k.Telefon);
+            binder.BindTo_TextBox(rtb_bemerkungen, k.Bemerkungen);
         }
 
         bool BindFrom()
         {
-            int res1;
-
-            if (!string.IsNullOrWhiteSpace(tb_firmenname.Text))
-            {
-                k.Firmenname = tb_firmenname.Text;
-            }
-            else
-            {
-                return false;
-            }
-
-            if (tb_vorname.Text != "")
-            {
-                k.Vorname = tb_vorname.Text;
-            }
-            else
-            {
-                return false;
-            }
-
-            if (tb_nachname.Text != "")
-            {
-                k.Nachname = tb_nachname.Text;
-            }
-            else return false;
-
-            if (tb_email.Text != "")
-                k.Email = tb_email.Text;
-            else return false;
-
-            k.Adresse = tb_adresse.Text;
-            k.Hausnummer = tb_hausnummer.Text;
-
-            
-
-            k.Ort = tb_ort.Text;
-
-            
-
-            k.Bemerkungen = rtb_bemerkungen.Text;
+            binder.StartBindFrom();
+            k.Firmenname = binder.BindFrom_String(tb_firmenname, errorControl1, new DataBinding.RequiredRule());
+            k.Vorname = binder.BindFrom_String(tb_vorname, errorControl2, new DataBinding.RequiredRule());
+            k.Nachname = binder.BindFrom_String(tb_nachname, errorControl3, new DataBinding.RequiredRule());
+            k.Email = binder.BindFrom_String(tb_email, errorControl4, new DataBinding.RequiredRule());
+            k.Adresse = binder.BindFrom_String(tb_adresse, errorControl5, null);
+            k.Hausnummer = binder.BindFrom_String(tb_hausnummer, errorControl6, null);
+            k.Plz = binder.BindFrom_String(tb_plz, errorControl7, null);
+            k.Ort = binder.BindFrom_String(tb_ort, errorControl8, null);
+            k.Telefon = binder.BindFrom_String(tb_telefon, errorControl9, null);
+            k.Bemerkungen = binder.BindFrom_String(rtb_bemerkungen, errorControl10, null);
 
             if (created) k.Status = ObjectStates.New;
+
+            if (binder.HasErrors)
+                return false;
 
             return true;
         }
@@ -100,6 +73,8 @@ namespace Backoffice.Dialogs
             if (BindFrom())
             {
                 BL.saveKontakt(k);
+                this.Close();
+                this.DialogResult = System.Windows.Forms.DialogResult.OK;
             }
         }
         private void KontaktDetail_Load(object sender, EventArgs e)
