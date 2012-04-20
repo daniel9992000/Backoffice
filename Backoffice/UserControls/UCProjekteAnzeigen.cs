@@ -18,13 +18,8 @@ namespace Backoffice.UserControls
 
         void BindTo()
         {
-            lv_projekte.Items.Clear();
-            foreach (var tmp in BL.getProjekte())
-            {
-                ListViewItem i = lv_projekte.Items.Add(tmp.Projektid.ToString());
-                i.Tag = tmp;
-                i.SubItems.Add(tmp.Name);
-            }
+            DataBinding.Binder binder = new DataBinding.Binder();
+            binder.BindTo_ListView(lv_projekte, BL.getProjekte());
 
         }
         void NewProjekt()
@@ -48,8 +43,6 @@ namespace Backoffice.UserControls
             BL.deleteProjekt(p);
             BindTo();
         }
-
-  
 
         private void lv_projekte_MouseDoubleClick(object sender, MouseEventArgs e)
         {

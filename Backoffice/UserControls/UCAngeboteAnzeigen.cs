@@ -18,17 +18,8 @@ namespace Backoffice.UserControls
 
         void BindTo()
         {
-            lv_angebote.Items.Clear();
-            foreach (var tmp in BL.getAngebote())
-            {
-                ListViewItem i = lv_angebote.Items.Add(tmp.Angebotid.ToString());
-                i.Tag = tmp;
-                i.SubItems.Add(tmp.Titel);
-                i.SubItems.Add(tmp.Datum.ToShortDateString());
-                i.SubItems.Add(tmp.Dauer.ToString());
-                i.SubItems.Add(tmp.Summe.ToString());
-                i.SubItems.Add(tmp.Chance.ToString() + "%");
-            }
+            DataBinding.Binder binder = new DataBinding.Binder();
+            binder.BindTo_ListView(lv_angebote, BL.getAngebote());
         }
 
         void NewAngebot()

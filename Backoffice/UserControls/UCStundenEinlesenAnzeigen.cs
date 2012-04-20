@@ -11,8 +11,7 @@ namespace Backoffice.Dialogs
 {
     public partial class UCStundenEinlesenAnzeigen : UserControl
     {
-        bool hilf;
-
+  
         public UCStundenEinlesenAnzeigen()
         {
             InitializeComponent();
@@ -38,7 +37,7 @@ namespace Backoffice.Dialogs
 
         void BindTo()
         {
-            hilf = false;
+            bool hilf = false;
             cb_projekt.Items.Clear();
             foreach (var item in BL.getProjekte())
             {

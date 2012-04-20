@@ -1075,5 +1075,16 @@ namespace Backoffice
         { 
             throw new NotImplementedException();
         }
+
+
+        public List<Angebot> getAngebotViewListByProjektId(int projektid)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Ausgang> getAusgangViewListByProjektId(int projektid)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
