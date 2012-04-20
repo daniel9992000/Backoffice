@@ -837,6 +837,27 @@ namespace Backoffice
         }
         #endregion
 
+        #region Eingangsrechnungen
+
+        void saveEingang(Eingang r)
+        {
+            throw new NotImplementedException();
+        }
+        void deleteEingang(Eingang r)
+        {
+            throw new NotImplementedException();
+        }
+        List<Eingang> getEingangViewList()
+        {
+            throw new NotImplementedException();
+        }
+        List<Eingang> getEingangViewList(int kontaktid)
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion
+
         #region Rechnungszeile
         public void saveRechnungszeile(Rechnungszeile r)
         {
@@ -1021,6 +1042,37 @@ namespace Backoffice
 
         public List<Buchung> getBuchungViewList(int rechnungid)
         {
+            throw new NotImplementedException();
+        }
+
+
+        void IDAL.saveEingang(Eingang r)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IDAL.deleteEingang(Eingang r)
+        {
+            throw new NotImplementedException();
+        }
+
+        List<Eingang> IDAL.getEingangViewList()
+        {
+            throw new NotImplementedException();
+        }
+
+        List<Eingang> IDAL.getEingangViewList(int kontaktid)
+        {
+            throw new NotImplementedException();
+        }
+
+        List<Stunden> IDAL.getStundenViewList(string projektname)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IDAL.saveStunden(Stunden s)
+        { 
             throw new NotImplementedException();
         }
     }

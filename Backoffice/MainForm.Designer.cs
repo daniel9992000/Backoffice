@@ -39,16 +39,20 @@
             this.alleAngeboteAnzeigenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.projekteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.projektAnzeigenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.stundenEinlesenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rechnungenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rechnungenAnzeigenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.eingangsrechnungenAnzeigenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.berichteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.prognostizierterJahresumsatToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aktuelleEinnahmenAusgabenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.offeneRechnungenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.offeneProjekteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.stundensatzProjektToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hilfeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.stundensatzProjektToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ucEingangAnzeigen1 = new Backoffice.UserControls.UCEingangAnzeigen();
+            this.ucStundensatzAnzeigen1 = new Backoffice.UserControls.UCStundensatzAnzeigen();
             this.ucOffeneRechnungenAnzeigen1 = new Backoffice.UserControls.UCOffeneRechnungenAnzeigen();
             this.ucOffeneProjekteAnzeigen1 = new Backoffice.Dialogs.UCOffeneProjekteAnzeigen();
             this.ucEinahmenAusgabenAnzeigen1 = new Backoffice.UserControls.UCEinahmenAusgabenAnzeigen();
@@ -58,7 +62,7 @@
             this.ucAngeboteAnzeigen1 = new Backoffice.UserControls.UCAngeboteAnzeigen();
             this.ucProjekteAnzeigen1 = new Backoffice.UserControls.UCProjekteAnzeigen();
             this.uc_kundenAnzeigen = new Backoffice.UserControls.UCKundenAnzeigen();
-            this.ucStundensatzAnzeigen1 = new Backoffice.UserControls.UCStundensatzAnzeigen();
+            this.ucStundenEinlesenAnzeigen1 = new Backoffice.Dialogs.UCStundenEinlesenAnzeigen();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -134,7 +138,8 @@
             // projekteToolStripMenuItem
             // 
             this.projekteToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.projektAnzeigenToolStripMenuItem});
+            this.projektAnzeigenToolStripMenuItem,
+            this.stundenEinlesenToolStripMenuItem});
             this.projekteToolStripMenuItem.Name = "projekteToolStripMenuItem";
             this.projekteToolStripMenuItem.Size = new System.Drawing.Size(62, 20);
             this.projekteToolStripMenuItem.Text = "Projekte";
@@ -143,14 +148,22 @@
             // projektAnzeigenToolStripMenuItem
             // 
             this.projektAnzeigenToolStripMenuItem.Name = "projektAnzeigenToolStripMenuItem";
-            this.projektAnzeigenToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.projektAnzeigenToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
             this.projektAnzeigenToolStripMenuItem.Text = "Projekt anzeigen";
             this.projektAnzeigenToolStripMenuItem.Click += new System.EventHandler(this.projektAnzeigenToolStripMenuItem_Click);
+            // 
+            // stundenEinlesenToolStripMenuItem
+            // 
+            this.stundenEinlesenToolStripMenuItem.Name = "stundenEinlesenToolStripMenuItem";
+            this.stundenEinlesenToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
+            this.stundenEinlesenToolStripMenuItem.Text = "Stunden einlesen";
+            this.stundenEinlesenToolStripMenuItem.Click += new System.EventHandler(this.stundenEinlesenToolStripMenuItem_Click);
             // 
             // rechnungenToolStripMenuItem
             // 
             this.rechnungenToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.rechnungenAnzeigenToolStripMenuItem});
+            this.rechnungenAnzeigenToolStripMenuItem,
+            this.eingangsrechnungenAnzeigenToolStripMenuItem});
             this.rechnungenToolStripMenuItem.Name = "rechnungenToolStripMenuItem";
             this.rechnungenToolStripMenuItem.Size = new System.Drawing.Size(86, 20);
             this.rechnungenToolStripMenuItem.Text = "Rechnungen";
@@ -158,9 +171,16 @@
             // rechnungenAnzeigenToolStripMenuItem
             // 
             this.rechnungenAnzeigenToolStripMenuItem.Name = "rechnungenAnzeigenToolStripMenuItem";
-            this.rechnungenAnzeigenToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
-            this.rechnungenAnzeigenToolStripMenuItem.Text = "Rechnungen anzeigen";
+            this.rechnungenAnzeigenToolStripMenuItem.Size = new System.Drawing.Size(240, 22);
+            this.rechnungenAnzeigenToolStripMenuItem.Text = "Ausgangsrechnungen anzeigen";
             this.rechnungenAnzeigenToolStripMenuItem.Click += new System.EventHandler(this.rechnungenAnzeigenToolStripMenuItem_Click);
+            // 
+            // eingangsrechnungenAnzeigenToolStripMenuItem
+            // 
+            this.eingangsrechnungenAnzeigenToolStripMenuItem.Name = "eingangsrechnungenAnzeigenToolStripMenuItem";
+            this.eingangsrechnungenAnzeigenToolStripMenuItem.Size = new System.Drawing.Size(240, 22);
+            this.eingangsrechnungenAnzeigenToolStripMenuItem.Text = "Eingangsrechnungen anzeigen";
+            this.eingangsrechnungenAnzeigenToolStripMenuItem.Click += new System.EventHandler(this.eingangsrechnungenAnzeigenToolStripMenuItem_Click);
             // 
             // berichteToolStripMenuItem
             // 
@@ -202,6 +222,13 @@
             this.offeneProjekteToolStripMenuItem.Text = "Offene Projekte";
             this.offeneProjekteToolStripMenuItem.Click += new System.EventHandler(this.offeneProjekteToolStripMenuItem_Click);
             // 
+            // stundensatzProjektToolStripMenuItem
+            // 
+            this.stundensatzProjektToolStripMenuItem.Name = "stundensatzProjektToolStripMenuItem";
+            this.stundensatzProjektToolStripMenuItem.Size = new System.Drawing.Size(238, 22);
+            this.stundensatzProjektToolStripMenuItem.Text = "Stundensatz/Projekt";
+            this.stundensatzProjektToolStripMenuItem.Click += new System.EventHandler(this.stundensatzProjektToolStripMenuItem_Click);
+            // 
             // hilfeToolStripMenuItem
             // 
             this.hilfeToolStripMenuItem.Name = "hilfeToolStripMenuItem";
@@ -226,12 +253,21 @@
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
-            // stundensatzProjektToolStripMenuItem
+            // ucEingangAnzeigen1
             // 
-            this.stundensatzProjektToolStripMenuItem.Name = "stundensatzProjektToolStripMenuItem";
-            this.stundensatzProjektToolStripMenuItem.Size = new System.Drawing.Size(238, 22);
-            this.stundensatzProjektToolStripMenuItem.Text = "Stundensatz/Projekt";
-            this.stundensatzProjektToolStripMenuItem.Click += new System.EventHandler(this.stundensatzProjektToolStripMenuItem_Click);
+            this.ucEingangAnzeigen1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucEingangAnzeigen1.Location = new System.Drawing.Point(0, 24);
+            this.ucEingangAnzeigen1.Name = "ucEingangAnzeigen1";
+            this.ucEingangAnzeigen1.Size = new System.Drawing.Size(933, 491);
+            this.ucEingangAnzeigen1.TabIndex = 11;
+            // 
+            // ucStundensatzAnzeigen1
+            // 
+            this.ucStundensatzAnzeigen1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucStundensatzAnzeigen1.Location = new System.Drawing.Point(0, 24);
+            this.ucStundensatzAnzeigen1.Name = "ucStundensatzAnzeigen1";
+            this.ucStundensatzAnzeigen1.Size = new System.Drawing.Size(933, 491);
+            this.ucStundensatzAnzeigen1.TabIndex = 10;
             // 
             // ucOffeneRechnungenAnzeigen1
             // 
@@ -309,19 +345,21 @@
             this.uc_kundenAnzeigen.Size = new System.Drawing.Size(933, 491);
             this.uc_kundenAnzeigen.TabIndex = 1;
             // 
-            // ucStundensatzAnzeigen1
+            // ucStundenEinlesenAnzeigen1
             // 
-            this.ucStundensatzAnzeigen1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucStundensatzAnzeigen1.Location = new System.Drawing.Point(0, 24);
-            this.ucStundensatzAnzeigen1.Name = "ucStundensatzAnzeigen1";
-            this.ucStundensatzAnzeigen1.Size = new System.Drawing.Size(933, 491);
-            this.ucStundensatzAnzeigen1.TabIndex = 10;
+            this.ucStundenEinlesenAnzeigen1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucStundenEinlesenAnzeigen1.Location = new System.Drawing.Point(0, 24);
+            this.ucStundenEinlesenAnzeigen1.Name = "ucStundenEinlesenAnzeigen1";
+            this.ucStundenEinlesenAnzeigen1.Size = new System.Drawing.Size(933, 491);
+            this.ucStundenEinlesenAnzeigen1.TabIndex = 13;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(933, 515);
+            this.Controls.Add(this.ucStundenEinlesenAnzeigen1);
+            this.Controls.Add(this.ucEingangAnzeigen1);
             this.Controls.Add(this.ucStundensatzAnzeigen1);
             this.Controls.Add(this.ucOffeneRechnungenAnzeigen1);
             this.Controls.Add(this.ucOffeneProjekteAnzeigen1);
@@ -375,6 +413,10 @@
         private UserControls.UCOffeneRechnungenAnzeigen ucOffeneRechnungenAnzeigen1;
         private System.Windows.Forms.ToolStripMenuItem stundensatzProjektToolStripMenuItem;
         private UserControls.UCStundensatzAnzeigen ucStundensatzAnzeigen1;
+        private UserControls.UCEingangAnzeigen ucEingangAnzeigen1;
+        private System.Windows.Forms.ToolStripMenuItem eingangsrechnungenAnzeigenToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem stundenEinlesenToolStripMenuItem;
+        private Dialogs.UCStundenEinlesenAnzeigen ucStundenEinlesenAnzeigen1;
 
 
     }

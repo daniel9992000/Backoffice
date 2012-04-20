@@ -42,6 +42,13 @@ namespace Backoffice
         List<Ausgang> getAusgangViewList();
         List<Ausgang> getAusgangViewList(int kundenid);
 
+        //Eingangsrechnungen
+        void saveEingang(Eingang r);
+        void deleteEingang(Eingang r);
+        List<Eingang> getEingangViewList();
+        List<Eingang> getEingangViewList(int kontaktid);
+
+
         //Rechnungszeilen
         void saveRechnungszeile(Rechnungszeile r);
         void deleteRechnungszeile(Rechnungszeile r);
@@ -61,6 +68,9 @@ namespace Backoffice
         List<Angebot> getAngebote();
         List<Eingang> getOffeneERechnungen();
         List<Ausgang> getOffeneARechnungen();
-       
+        
+        //Stunden
+        List<Stunden> getStundenViewList(string projektname);
+        void saveStunden(Stunden s);
     }
 }

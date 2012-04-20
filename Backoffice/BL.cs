@@ -228,7 +228,7 @@ namespace Backoffice
        
         #endregion
 
-        #region Rechnungen
+        #region Ausgangsrechnungen
         public static void saveAusgang(Ausgang r)
         {
             DALFactory.getDAL().saveAusgang(r);
@@ -247,6 +247,28 @@ namespace Backoffice
         public static List<Ausgang> getAusgaenge(int kundenid)
         {
             return DALFactory.getDAL().getAusgangViewList(kundenid);
+        }
+        #endregion
+
+        #region Eingangsrechnungen
+        public static void saveEingang(Eingang r)
+        {
+            DALFactory.getDAL().saveEingang(r);
+        }
+
+        public static void deleteEingang(Eingang r)
+        {
+            DALFactory.getDAL().deleteEingang(r);
+        }
+
+        public static List<Eingang> getEingaenge()
+        {
+            return DALFactory.getDAL().getEingangViewList();
+        }
+
+        public static List<Eingang> getEingaenge(int kontaktid)
+        {
+            return DALFactory.getDAL().getEingangViewList(kontaktid);
         }
         #endregion
 
@@ -320,5 +342,15 @@ namespace Backoffice
             return DALFactory.getDAL().getOffeneARechnungen();
         }
         #endregion
+
+        public static List<Stunden> getStunden(string projektname)
+        {
+            return DALFactory.getDAL().getStundenViewList(projektname);
+        }
+
+        public static void saveStunde(Stunden s)
+        {
+            DALFactory.getDAL().saveStunden(s);
+        }
     }
 }

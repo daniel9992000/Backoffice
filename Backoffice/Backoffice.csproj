@@ -74,6 +74,12 @@
     <Compile Include="Dialogs\AngebotDetail.Designer.cs">
       <DependentUpon>AngebotDetail.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\EingangDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\EingangDetail.Designer.cs">
+      <DependentUpon>EingangDetail.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\KontaktDetail.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -98,7 +104,21 @@
     <Compile Include="Dialogs\RechnungDetail.Designer.cs">
       <DependentUpon>RechnungDetail.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\UCStundenEinlesenAnzeigen.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UCStundenEinlesenAnzeigen.Designer.cs">
+      <DependentUpon>UCStundenEinlesenAnzeigen.cs</DependentUpon>
+    </Compile>
     <Compile Include="Eingang.cs" />
+    <Compile Include="StundenEinlesen.cs" />
+    <Compile Include="Stunden.cs" />
+    <Compile Include="UserControls\UCEingangAnzeigen.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UCEingangAnzeigen.Designer.cs">
+      <DependentUpon>UCEingangAnzeigen.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\UCOffeneProjekteAnzeigen.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -178,6 +198,9 @@
     <EmbeddedResource Include="Dialogs\AngebotDetail.resx">
       <DependentUpon>AngebotDetail.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\EingangDetail.resx">
+      <DependentUpon>EingangDetail.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\KontaktDetail.resx">
       <DependentUpon>KontaktDetail.cs</DependentUpon>
     </EmbeddedResource>
@@ -189,6 +212,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\RechnungDetail.resx">
       <DependentUpon>RechnungDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCStundenEinlesenAnzeigen.resx">
+      <DependentUpon>UCStundenEinlesenAnzeigen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCEingangAnzeigen.resx">
+      <DependentUpon>UCEingangAnzeigen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UCOffeneProjekteAnzeigen.resx">
       <DependentUpon>UCOffeneProjekteAnzeigen.cs</DependentUpon>

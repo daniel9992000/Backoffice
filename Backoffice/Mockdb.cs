@@ -15,6 +15,8 @@ namespace Backoffice
         List<Eingang> eingaenge;
         List<Rechnungszeile> zeilen;
         List<Buchung> buchungen;
+        List<Stunden> stunden;
+        int rechnungid = 0;
 
         private static Mockdb instance = null;
 
@@ -45,14 +47,17 @@ namespace Backoffice
             projekte.Add(new Projekt(2, "Projekt 2", ObjectStates.Unmodified));
 
             kontakte = new List<Kontakt>();
-            kontakte.Add (new Kontakt(1,"Testfirma", "Karl", "Maier", "test.firma@firma.at", ObjectStates.Unmodified));
+            kontakte.Add (new Kontakt(1, "Karl", "Maier", "Testfirma", "test.firma@firma.at", ObjectStates.Unmodified));
 
             ausgaenge = new List<Ausgang>();
             ausgaenge.Add(new Ausgang(1, "Ausgangsrechnung 1", DateTime.Today, 1, 1, ObjectStates.Unmodified));
+            rechnungid++;
             ausgaenge.Add(new Ausgang(2, "Ausgangsrechnung 2", DateTime.Today, 1, 1, ObjectStates.Unmodified));
+            rechnungid++;
 
             eingaenge = new List<Eingang>();
-            eingaenge.Add(new Eingang(3,"Eingangsrechnung 1", DateTime.Today,888.98,"C:",1,ObjectStates.Unmodified));
+            eingaenge.Add(new Eingang(3,"Eingangsrechnung 1", DateTime.Today,888.98,"C:", 1, ObjectStates.Unmodified));
+            rechnungid++;
 
             zeilen = new List<Rechnungszeile>();
             zeilen.Add(new Rechnungszeile(1, "Spezifikation", 2000.00, 1, 1, ObjectStates.Unmodified));
@@ -66,7 +71,9 @@ namespace Backoffice
             buchungen.Add(new Buchung(1,11000.00,"ausgang", DateTime.Now,1,ObjectStates.Unmodified));
             buchungen.Add(new Buchung(2,10000.00,"ausgang", DateTime.Now,1,ObjectStates.Unmodified));
             buchungen.Add(new Buchung(3,500.00,"ausgang", DateTime.Now, 2, ObjectStates.Unmodified));
-            
+
+            stunden = new List<Stunden>();
+            stunden.Add(new Stunden ("Projekt 1","Karl Huf",54,DateTime.Now));
         }
 
         public void buildconnection()
@@ -274,7 +281,8 @@ namespace Backoffice
             if (r.Status == ObjectStates.New)
             {
                 r.Status = ObjectStates.Unmodified;
-                r.Rechnungid = ausgaenge.Count + 1;
+                r.Rechnungid = rechnungid + 1;
+                rechnungid++;
                 ausgaenge.Add(r);
             }
             else if (r.Status == ObjectStates.Modified)
@@ -283,6 +291,7 @@ namespace Backoffice
                 ausgaenge[index].Rechnungid = r.Rechnungid;
                 ausgaenge[index].Bezeichnung = r.Bezeichnung;
                 ausgaenge[index].Datum = r.Datum;
+                ausgaenge[index].Projektid = r.Projektid;
                 ausgaenge[index].Status = ObjectStates.Unmodified;
             }
         }
@@ -309,8 +318,57 @@ namespace Backoffice
 
             return tmp;
         }
-        #endregion       
-    
+        #endregion     
+  
+        #region Eingangsrechnungen
+
+        void IDAL.saveEingang(Eingang r)
+        {
+            if (r.Status == ObjectStates.New)
+            {
+                r.Status = ObjectStates.Unmodified;
+                r.Rechnungid = rechnungid + 1;
+                rechnungid++;
+                eingaenge.Add(r);
+            }
+            else if (r.Status == ObjectStates.Modified)
+            {
+                int index = eingaenge.IndexOf(r);
+                eingaenge[index].Rechnungid = r.Rechnungid;
+                eingaenge[index].Bezeichnung = r.Bezeichnung;
+                eingaenge[index].Datum = r.Datum;
+                eingaenge[index].Path = r.Path;
+                eingaenge[index].Kontaktid = r.Kontaktid;
+                eingaenge[index].Status = ObjectStates.Unmodified;
+            }
+        }
+
+        void IDAL.deleteEingang(Eingang r)
+        {
+            eingaenge.Remove(r);
+        }
+
+        List<Eingang> IDAL.getEingangViewList()
+        {
+            return eingaenge;
+        }
+
+        List<Eingang> IDAL.getEingangViewList(int kontaktid)
+        {
+            List<Eingang> tmp = new List<Eingang>();
+
+            foreach (var item in eingaenge)
+            {
+                if (item.Kontaktid == kontaktid)
+                    tmp.Add(item);
+            }
+
+            return tmp;
+        }
+
+        #endregion
+
+
         #region Rechnungszeile
         public void saveRechnungszeile(Rechnungszeile r)
         {
@@ -554,7 +612,21 @@ namespace Backoffice
         }
 
 
+        List<Stunden> IDAL.getStundenViewList(string projektname)
+        {
+            List<Stunden> slist = new List<Stunden>();
+            foreach (var item in stunden)
+            {
+                if (item.Projektname == projektname)
+                    slist.Add(item);
+            }
+            return slist;
+        }
 
+        void IDAL.saveStunden(Stunden s)
+        {
+            stunden.Add(s);
+        }
 
         Angebot IDAL.getAngebot(int? projektid)
         {
