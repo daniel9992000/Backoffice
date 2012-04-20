@@ -84,6 +84,8 @@ namespace Backoffice.UserControls
             {
                 ListViewItem i = lv_ausgangr.Items.Add(tmp.Rechnungid.ToString());
                 i.Tag = tmp;
+                resumme = 0;
+                bsumme = 0;
                 relist = BL.getRechnungszeilen(tmp.Rechnungid);
                 foreach (var item in relist)
                 {

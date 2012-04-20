@@ -33,14 +33,7 @@ namespace Backoffice.Dialogs
 
         void BindTo()
         {
-            cb_projekt.Items.Clear();
-            foreach (var item in BL.getProjekte())
-            {
-                cb_projekt.Items.Add(item);
-                if (item.Projektid == r.Projektid)
-                    cb_projekt.SelectedItem = item;
-            }            
-            
+            binder.BindTo_ComboBox(cb_projekt, BL.getProjekte(), r);
             binder.BindTo_TextBox(tb_rechnungid, r.Rechnungid);
             binder.BindTo_TextBox(tb_bezeichnung, r.Bezeichnung);
             binder.BindTo_TextBox(tb_kunde, BL.getKunde(r.Kundenid));
@@ -49,14 +42,7 @@ namespace Backoffice.Dialogs
 
         void BindToZeilen()
         {
-            lv_zeilen.Items.Clear();
-            foreach (var item in BL.getRechnungszeilen(r.Rechnungid))
-            {
-                ListViewItem i = lv_zeilen.Items.Add(item.Reid.ToString());
-                i.Tag = item;
-                i.SubItems.Add(item.Bezeichnung);
-                i.SubItems.Add(item.Betrag.ToString() + " Euro");
-            }
+            binder.BindTo_ListView(lv_zeilen, BL.getRechnungszeilen(r.Rechnungid));
         }
 
         bool BindFrom()

@@ -18,16 +18,8 @@ namespace Backoffice.UserControls
 
         void BindTo()
         {
-            lv_eingang.Items.Clear();
-            foreach (var item in BL.getEingaenge())
-            {
-                ListViewItem i = lv_eingang.Items.Add(item.Rechnungid.ToString());
-                i.Tag = item;
-                i.SubItems.Add(item.Bezeichnung);
-                i.SubItems.Add(item.Betrag.ToString("#0.00"));
-                i.SubItems.Add(item.Path);
-                i.SubItems.Add(item.Datum.Value.ToShortDateString());
-            }
+            DataBinding.Binder binder = new DataBinding.Binder();
+            binder.BindTo_ListView(lv_eingang, BL.getEingaenge());           
         }
         private void UCEingangAnzeigen_Load(object sender, EventArgs e)
         {

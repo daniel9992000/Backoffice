@@ -32,15 +32,7 @@ namespace Backoffice.Dialogs
 
         void BindTo()
         {
-            cb_kontakt.Items.Clear();
-            foreach (var item in BL.getKontakte())
-            {
-                cb_kontakt.Items.Add(item.Vorname + " " + item.Nachname);
-                
-                if (item.Kontaktid == r.Kontaktid)
-                    cb_kontakt.SelectedItem = item;
-            }
-
+            binder.BindTo_ComboBox(cb_kontakt, BL.getKontakte(), r);
             binder.BindTo_TextBox(tb_rechnungid, r.Rechnungid);
             binder.BindTo_TextBox(tb_bezeichnung, r.Bezeichnung);
             binder.BindTo_TextBox(tb_betrag, r.Betrag.ToString("#0.00"));

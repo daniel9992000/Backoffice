@@ -128,7 +128,11 @@ namespace Backoffice.DataBinding
                 else if (selected is Projekt)
                 {
                     result = ((Projekt)selected).Projektid;
-                }                
+                }
+                else if (selected is Kontakt)
+                {
+                    result = ((Kontakt)selected).Kontaktid;
+                }  
             }
 
             if (rule != null)
@@ -177,7 +181,7 @@ namespace Backoffice.DataBinding
                 lv.Columns.Add("Titel", 120);
                 lv.Columns.Add("Datum", 80);
                 lv.Columns.Add("Dauer", 40);
-                lv.Columns.Add("Summe", 80);
+                lv.Columns.Add("Summe", 110, HorizontalAlignment.Right);
                 lv.Columns.Add("Chance", 40);
 
                 foreach (var item in values)
@@ -189,7 +193,7 @@ namespace Backoffice.DataBinding
                     i.SubItems.Add(tmp.Titel);
                     i.SubItems.Add(tmp.Datum.ToShortDateString());
                     i.SubItems.Add(tmp.Dauer.ToString());
-                    i.SubItems.Add(tmp.Summe.ToString()+ " Euro");
+                    i.SubItems.Add(tmp.Summe.ToString("#0.00") + " Euro");
                     i.SubItems.Add(tmp.Chance.ToString() + "%");
                 }
             }
@@ -235,6 +239,58 @@ namespace Backoffice.DataBinding
                     i.SubItems.Add(tmp.Ort);
                 }
             }
+            else if (typeof(IList<Eingang>).IsInstanceOfType(values))
+            {
+                lv.Columns.Add("ID", 25);
+                lv.Columns.Add("Bezeichnung", 120);
+                lv.Columns.Add("Datum", 80);
+                lv.Columns.Add("Betrag", 110, HorizontalAlignment.Right);
+                lv.Columns.Add("Pfad", 200);
+
+                foreach (var item in values)
+                {
+                    var tmp = (Eingang)item;
+
+                    ListViewItem i = lv.Items.Add(tmp.Rechnungid.ToString());
+                    i.Tag = tmp;
+                    i.SubItems.Add(tmp.Bezeichnung);
+                    i.SubItems.Add(tmp.Datum.Value.ToShortDateString());
+                    i.SubItems.Add(tmp.Betrag.ToString("#0.00") + " Euro");
+                    i.SubItems.Add(tmp.Path);
+                }
+            }
+            else if (typeof(IList<Ausgang>).IsInstanceOfType(values))
+            {
+                lv.Columns.Add("ID", 25);
+                lv.Columns.Add("Bezeichnung", 120);
+                lv.Columns.Add("Datum", 80);
+
+                foreach (var item in values)
+                {
+                    var tmp = (Ausgang)item;
+
+                    ListViewItem i = lv.Items.Add(tmp.Rechnungid.ToString());
+                    i.Tag = tmp;
+                    i.SubItems.Add(tmp.Bezeichnung);
+                    i.SubItems.Add(tmp.Datum.Value.ToShortDateString());
+                }
+            }
+            else if (typeof(IList<Rechnungszeile>).IsInstanceOfType(values))
+            {
+                lv.Columns.Add("ID", 25);
+                lv.Columns.Add("Bezeichnung", 120);
+                lv.Columns.Add("Betrag", 110, HorizontalAlignment.Right);
+
+                foreach (var item in values)
+                {
+                    var tmp = (Rechnungszeile)item;
+
+                    ListViewItem i = lv.Items.Add(tmp.Reid.ToString());
+                    i.Tag = tmp;
+                    i.SubItems.Add(tmp.Bezeichnung);
+                    i.SubItems.Add(tmp.Betrag.ToString("#0.00") + " Euro");
+                }
+            }
             else if (typeof(IList<Projekt>).IsInstanceOfType(values))
             {
                 lv.Columns.Add("ID", 25);
@@ -278,6 +334,27 @@ namespace Backoffice.DataBinding
                     if (o is Angebot)
                     {
                         if (((Projekt)item).Projektid == ((Angebot)o).Projektid)
+                        {
+                            cb.SelectedItem = item;
+                        }
+                    }
+                    else if (o is Ausgang)
+                    {
+                        if (((Projekt)item).Projektid == ((Ausgang)o).Projektid)
+                        {
+                            cb.SelectedItem = item;
+                        }
+                    }
+                }
+            }
+            else if (typeof(IList<Kontakt>).IsInstanceOfType(values))
+            {
+                foreach (var item in values)
+                {
+                    cb.Items.Add(item);
+                    if (o is Eingang)
+                    {
+                        if (((Kontakt)item).Kontaktid == ((Eingang)o).Kontaktid)
                         {
                             cb.SelectedItem = item;
                         }

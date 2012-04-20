@@ -18,14 +18,8 @@ namespace Backoffice.UserControls
 
         void BindTo()
         {
-            lv_rechnungen.Items.Clear();
-            foreach (var item in BL.getAusgaenge())
-            {
-                ListViewItem i = lv_rechnungen.Items.Add(item.Rechnungid.ToString());
-                i.Tag = item;
-                i.SubItems.Add(item.Bezeichnung);
-                i.SubItems.Add(item.Datum.Value.ToShortDateString());
-            }
+            DataBinding.Binder binder = new DataBinding.Binder();
+            binder.BindTo_ListView(lv_rechnungen, BL.getAusgaenge());
         }
 
         void EditRechnung(Ausgang r)
