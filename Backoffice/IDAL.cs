@@ -22,6 +22,7 @@ namespace Backoffice
         List<Angebot> getAngebotViewList();
         List<Angebot> getAngebotViewList(int kundenid);
         List<Angebot> getAngebotViewListByProjektId(int projektid);
+        Angebot getAngebot(int angebotid);
         Angebot getAngebot(int? projektid);
 
         //Projekte

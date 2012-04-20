@@ -1086,5 +1086,11 @@ namespace Backoffice
         {
             throw new NotImplementedException();
         }
+
+
+        public Angebot getAngebot(int angebotid)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

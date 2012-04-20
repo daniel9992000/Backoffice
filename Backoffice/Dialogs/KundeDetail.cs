@@ -95,8 +95,17 @@ namespace Backoffice.Dialogs
         }
 
         private void lv_angebote_DoubleClick(object sender, EventArgs e)
+        {            
+            Dialogs.AngebotDetail tmp = new AngebotDetail((Angebot)lv_angebote.FocusedItem.Tag);
+            tmp.ShowDialog();
+            BindTo();
+        }
+
+        private void lv_rechnungen_DoubleClick(object sender, EventArgs e)
         {
-            this.Close();
+            Dialogs.RechnungDetail tmp = new RechnungDetail((Ausgang)lv_rechnungen.FocusedItem.Tag);
+            tmp.ShowDialog();
+            BindTo();
         }
     }
 }

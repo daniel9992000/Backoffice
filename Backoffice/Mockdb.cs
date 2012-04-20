@@ -39,8 +39,8 @@ namespace Backoffice
             kunden.Add(new Kunde(2, "Christoph", "Lindmaier", "christoph.lindmaier@gmx.at", ObjectStates.Unmodified));
 
             angebote = new List<Angebot>();
-            angebote.Add(new Angebot(1, "Angebot 1", 12000.00, DateTime.Today, 200, 80, 1, 1, ObjectStates.Unmodified));
-            angebote.Add(new Angebot(2, "Angebot 2", 2500000.00, DateTime.Today, 800, 95, 2, 2, ObjectStates.Unmodified));
+            angebote.Add(new Angebot(1, "Angebot 1", 12000.00, DateTime.Parse("17.03.2012"), 200, 80, 1, 1, ObjectStates.Unmodified));
+            angebote.Add(new Angebot(2, "Angebot 2", 25000.00, DateTime.Parse("17.03.2012"), 800, 95, 2, 2, ObjectStates.Unmodified));
 
             projekte = new List<Projekt>();
             projekte.Add(new Projekt(1, "Projekt 1", ObjectStates.Unmodified));
@@ -50,13 +50,13 @@ namespace Backoffice
             kontakte.Add (new Kontakt(1, "Karl", "Maier", "Testfirma", "test.firma@firma.at", ObjectStates.Unmodified));
 
             ausgaenge = new List<Ausgang>();
-            ausgaenge.Add(new Ausgang(1, "Ausgangsrechnung 1", DateTime.Today, 1, 1, ObjectStates.Unmodified));
+            ausgaenge.Add(new Ausgang(1, "Ausgangsrechnung 1", DateTime.Parse("20.03.2012"), 1, 1, ObjectStates.Unmodified));
             rechnungid++;
-            ausgaenge.Add(new Ausgang(2, "Ausgangsrechnung 2", DateTime.Today, 1, 1, ObjectStates.Unmodified));
+            ausgaenge.Add(new Ausgang(2, "Ausgangsrechnung 2", DateTime.Parse("21.03.2012"), 1, 1, ObjectStates.Unmodified));
             rechnungid++;
 
             eingaenge = new List<Eingang>();
-            eingaenge.Add(new Eingang(3,"Eingangsrechnung 1", DateTime.Today,888.98,"C:", 1, ObjectStates.Unmodified));
+            eingaenge.Add(new Eingang(3, "Eingangsrechnung 1", DateTime.Parse("30.03.2012"), 888.98, "C:", 1, ObjectStates.Unmodified));
             rechnungid++;
 
             zeilen = new List<Rechnungszeile>();
@@ -182,6 +182,7 @@ namespace Backoffice
             {
                 int index = angebote.IndexOf(a);
                 angebote[index].Angebotid = a.Angebotid;
+                angebote[index].Titel = a.Titel;
                 angebote[index].Chance = a.Chance;
                 angebote[index].Datum = a.Datum;
                 angebote[index].Dauer = a.Dauer;
@@ -240,6 +241,16 @@ namespace Backoffice
             }
             return a;
 
+        }
+
+        public Angebot getAngebot(int angebotid)
+        {            
+            foreach (var item in angebote)
+            {
+                if (item.Angebotid == angebotid)
+                    return item;
+            }
+            return new Angebot();
         }
         #endregion
 
@@ -301,7 +312,7 @@ namespace Backoffice
                 int index = ausgaenge.IndexOf(r);
                 ausgaenge[index].Rechnungid = r.Rechnungid;
                 ausgaenge[index].Bezeichnung = r.Bezeichnung;
-                ausgaenge[index].Datum = r.Datum;
+                ausgaenge[index].Datum = r.Datum.Value;
                 ausgaenge[index].Projektid = r.Projektid;
                 ausgaenge[index].Status = ObjectStates.Unmodified;
             }
@@ -626,6 +637,9 @@ namespace Backoffice
             }
             return a;
         }
+
+
+
 
 
 
