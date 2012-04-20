@@ -392,8 +392,7 @@ namespace Backoffice
             }
 
             return tmp;
-        }
-        #endregion       
+        }   
     
         #region Rechnungszeile
         public void saveRechnungszeile(Rechnungszeile r)
