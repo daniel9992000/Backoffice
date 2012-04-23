@@ -64,7 +64,7 @@ namespace Backoffice
             {
                 if (!string.IsNullOrWhiteSpace(titel))
                 {
-                    if (titel.Equals(value))
+                    if (!titel.Equals(value))
                     {
                         titel = value;
                         Status = ObjectStates.Modified;
