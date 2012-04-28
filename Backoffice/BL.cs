@@ -311,6 +311,11 @@ namespace Backoffice
         #endregion
 
         #region Buchung
+        public static List<Buchung> getBuchungen()
+        {
+            return DALFactory.getDAL().getBuchungViewList();
+        }
+
         public static List<Buchung> getBuchungen(int rechnungsid)
         {
             return DALFactory.getDAL().getBuchungViewList(rechnungsid);

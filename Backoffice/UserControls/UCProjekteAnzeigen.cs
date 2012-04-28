@@ -25,17 +25,15 @@ namespace Backoffice.UserControls
         void NewProjekt()
         {
             Dialogs.ProjekteDetail tmp = new Dialogs.ProjekteDetail();
-            if (tmp.ShowDialog() == DialogResult.OK)
-                BindTo();
+            tmp.ShowDialog();
+             BindTo();
         }
 
         void EditProjekt(Projekt p)
         {
             Dialogs.ProjekteDetail tmp = new Dialogs.ProjekteDetail(p);
-            if (tmp.ShowDialog() == DialogResult.OK)
-            {
-                BindTo();
-            }
+            tmp.ShowDialog();
+            BindTo();            
         }
 
         void DeleteProjekt(Projekt p)

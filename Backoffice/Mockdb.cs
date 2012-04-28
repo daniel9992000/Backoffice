@@ -593,6 +593,13 @@ namespace Backoffice
             buchungen.Remove(b);
         }
 
+        public List<Buchung> getBuchungViewList()
+        {
+            List<Buchung> tmp = new List<Buchung>();
+            tmp = buchungen;
+            return tmp;
+        }
+
         public List<Buchung> getBuchungViewList(int rechnungid)
         {
             List<Buchung> blist = new List<Buchung>();
@@ -637,13 +644,5 @@ namespace Backoffice
             }
             return a;
         }
-
-
-
-
-
-
-
-        
     }
 }

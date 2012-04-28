@@ -75,7 +75,6 @@ namespace Backoffice.Dialogs
             {
                 BL.saveKunde(k);
                 this.Close();
-                this.DialogResult = System.Windows.Forms.DialogResult.OK;
             }
         }
 
@@ -91,7 +90,7 @@ namespace Backoffice.Dialogs
 
         private void bn_cancel_Click(object sender, EventArgs e)
         {
-
+            this.Close();
         }
 
         private void lv_angebote_DoubleClick(object sender, EventArgs e)
@@ -104,6 +103,20 @@ namespace Backoffice.Dialogs
         private void lv_rechnungen_DoubleClick(object sender, EventArgs e)
         {
             Dialogs.RechnungDetail tmp = new RechnungDetail((Ausgang)lv_rechnungen.FocusedItem.Tag);
+            tmp.ShowDialog();
+            BindTo();
+        }
+
+        private void bn_new_angebot_Click(object sender, EventArgs e)
+        {
+            Dialogs.AngebotDetail tmp = new AngebotDetail();
+            tmp.ShowDialog();
+            BindTo();
+        }
+
+        private void bn_new_rechnung_Click(object sender, EventArgs e)
+        {
+            Dialogs.RechnungDetail tmp = new RechnungDetail();
             tmp.ShowDialog();
             BindTo();
         }

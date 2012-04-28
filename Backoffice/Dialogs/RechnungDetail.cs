@@ -37,7 +37,8 @@ namespace Backoffice.Dialogs
             binder.BindTo_TextBox(tb_rechnungid, r.Rechnungid);
             binder.BindTo_TextBox(tb_bezeichnung, r.Bezeichnung);
             binder.BindTo_TextBox(tb_kunde, BL.getKunde(r.Kundenid));
-            binder.BindTo_DateTimePicker(dtp_datum, r.Datum.Value); 
+            binder.BindTo_DateTimePicker(dtp_datum, r.Datum.Value);
+            binder.BindTo_ListView(lv_buchungen, BL.getBuchungen(r.Rechnungid));
         }
 
         void BindToZeilen()
@@ -95,7 +96,6 @@ namespace Backoffice.Dialogs
             {
                 BL.saveAusgang(r);
                 this.Close();
-                this.DialogResult = System.Windows.Forms.DialogResult.OK;
             }
         }
 
@@ -118,6 +118,11 @@ namespace Backoffice.Dialogs
                     BindToZeilen();
                 }
             }
+        }
+
+        private void bn_cancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

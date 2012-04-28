@@ -25,15 +25,15 @@ namespace Backoffice.UserControls
         void NewAngebot()
         {
             Dialogs.AngebotDetail tmp = new Dialogs.AngebotDetail();
-            if (tmp.ShowDialog() == DialogResult.OK)
-                BindTo();
+            tmp.ShowDialog();
+            BindTo();
         }
 
         void EditAngebot(Angebot a)
         {
             Dialogs.AngebotDetail tmp = new Dialogs.AngebotDetail(a);
-            if (tmp.ShowDialog() == DialogResult.OK)
-                BindTo();
+            tmp.ShowDialog();
+            BindTo();
         }
 
         void DeleteAngebot(Angebot a)

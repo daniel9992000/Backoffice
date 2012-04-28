@@ -113,7 +113,6 @@
             // 
             // bn_cancel
             // 
-            this.bn_cancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.bn_cancel.Location = new System.Drawing.Point(96, 448);
             this.bn_cancel.Name = "bn_cancel";
             this.bn_cancel.Size = new System.Drawing.Size(75, 23);

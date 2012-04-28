@@ -245,7 +245,6 @@ namespace Backoffice.DataBinding
                 lv.Columns.Add("Bezeichnung", 120);
                 lv.Columns.Add("Datum", 80);
                 lv.Columns.Add("Betrag", 110, HorizontalAlignment.Right);
-                lv.Columns.Add("Pfad", 200);
 
                 foreach (var item in values)
                 {
@@ -256,7 +255,6 @@ namespace Backoffice.DataBinding
                     i.SubItems.Add(tmp.Bezeichnung);
                     i.SubItems.Add(tmp.Datum.Value.ToShortDateString());
                     i.SubItems.Add(tmp.Betrag.ToString("#0.00") + " Euro");
-                    i.SubItems.Add(tmp.Path);
                 }
             }
             else if (typeof(IList<Ausgang>).IsInstanceOfType(values))
@@ -288,6 +286,22 @@ namespace Backoffice.DataBinding
                     ListViewItem i = lv.Items.Add(tmp.Reid.ToString());
                     i.Tag = tmp;
                     i.SubItems.Add(tmp.Bezeichnung);
+                    i.SubItems.Add(tmp.Betrag.ToString("#0.00") + " Euro");
+                }
+            }
+            else if (typeof(IList<Buchung>).IsInstanceOfType(values))
+            {
+                lv.Columns.Add("ID", 25);
+                lv.Columns.Add("Datum", 120);
+                lv.Columns.Add("Betrag", 110, HorizontalAlignment.Right);
+
+                foreach (var item in values)
+                {
+                    var tmp = (Buchung)item;
+
+                    ListViewItem i = lv.Items.Add(tmp.Buchungid.ToString());
+                    i.Tag = tmp;
+                    i.SubItems.Add(tmp.Datum.ToShortDateString());
                     i.SubItems.Add(tmp.Betrag.ToString("#0.00") + " Euro");
                 }
             }

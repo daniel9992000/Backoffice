@@ -63,6 +63,8 @@
             this.ucProjekteAnzeigen1 = new Backoffice.UserControls.UCProjekteAnzeigen();
             this.uc_kundenAnzeigen = new Backoffice.UserControls.UCKundenAnzeigen();
             this.ucStundenEinlesenAnzeigen1 = new Backoffice.Dialogs.UCStundenEinlesenAnzeigen();
+            this.buchungenAnzeigenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ucBuchungenAnzeigen1 = new Backoffice.UserControls.UCBuchungenAnzeigen();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -163,7 +165,8 @@
             // 
             this.rechnungenToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.rechnungenAnzeigenToolStripMenuItem,
-            this.eingangsrechnungenAnzeigenToolStripMenuItem});
+            this.eingangsrechnungenAnzeigenToolStripMenuItem,
+            this.buchungenAnzeigenToolStripMenuItem});
             this.rechnungenToolStripMenuItem.Name = "rechnungenToolStripMenuItem";
             this.rechnungenToolStripMenuItem.Size = new System.Drawing.Size(86, 20);
             this.rechnungenToolStripMenuItem.Text = "Rechnungen";
@@ -353,11 +356,27 @@
             this.ucStundenEinlesenAnzeigen1.Size = new System.Drawing.Size(933, 491);
             this.ucStundenEinlesenAnzeigen1.TabIndex = 13;
             // 
+            // buchungenAnzeigenToolStripMenuItem
+            // 
+            this.buchungenAnzeigenToolStripMenuItem.Name = "buchungenAnzeigenToolStripMenuItem";
+            this.buchungenAnzeigenToolStripMenuItem.Size = new System.Drawing.Size(240, 22);
+            this.buchungenAnzeigenToolStripMenuItem.Text = "Buchungen anzeigen";
+            this.buchungenAnzeigenToolStripMenuItem.Click += new System.EventHandler(this.buchungenAnzeigenToolStripMenuItem_Click);
+            // 
+            // ucBuchungenAnzeigen1
+            // 
+            this.ucBuchungenAnzeigen1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucBuchungenAnzeigen1.Location = new System.Drawing.Point(0, 24);
+            this.ucBuchungenAnzeigen1.Name = "ucBuchungenAnzeigen1";
+            this.ucBuchungenAnzeigen1.Size = new System.Drawing.Size(933, 491);
+            this.ucBuchungenAnzeigen1.TabIndex = 14;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(933, 515);
+            this.Controls.Add(this.ucBuchungenAnzeigen1);
             this.Controls.Add(this.ucStundenEinlesenAnzeigen1);
             this.Controls.Add(this.ucEingangAnzeigen1);
             this.Controls.Add(this.ucStundensatzAnzeigen1);
@@ -417,6 +436,8 @@
         private System.Windows.Forms.ToolStripMenuItem eingangsrechnungenAnzeigenToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem stundenEinlesenToolStripMenuItem;
         private Dialogs.UCStundenEinlesenAnzeigen ucStundenEinlesenAnzeigen1;
+        private System.Windows.Forms.ToolStripMenuItem buchungenAnzeigenToolStripMenuItem;
+        private UserControls.UCBuchungenAnzeigen ucBuchungenAnzeigen1;
 
 
     }

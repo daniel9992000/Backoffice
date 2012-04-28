@@ -37,7 +37,6 @@ namespace Backoffice.Dialogs
             binder.BindTo_TextBox(tb_name, p.Name);
             binder.BindTo_ListView(lv_angebote, BL.getAngeboteByProjektId(p.Projektid));
             binder.BindTo_ListView(lv_rechungen, BL.getAusgaengeByProjektId(p.Projektid));
-           
         }
 
         bool BindFrom()
@@ -59,11 +58,9 @@ namespace Backoffice.Dialogs
             {
                 BL.saveProjekt(p);
                 this.Close();
-                this.DialogResult = System.Windows.Forms.DialogResult.OK;
             }
         }
-
-
+        
         private void bn_save_Click_1(object sender, EventArgs e)
         {
             Save();
@@ -71,7 +68,7 @@ namespace Backoffice.Dialogs
 
         private void bn_cancel_Click(object sender, EventArgs e)
         {
-
+            this.Close();
         }
 
         private void ProjekteDetail_Load_1(object sender, EventArgs e)

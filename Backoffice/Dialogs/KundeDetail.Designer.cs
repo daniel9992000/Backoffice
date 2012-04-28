@@ -71,6 +71,8 @@
             this.rechnungid = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.bezeichnung = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.datum1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.bn_new_angebot = new System.Windows.Forms.Button();
+            this.bn_new_rechnung = new System.Windows.Forms.Button();
             this.gb1.SuspendLayout();
             this.gb2.SuspendLayout();
             this.gb3.SuspendLayout();
@@ -90,7 +92,6 @@
             // 
             // bn_cancel
             // 
-            this.bn_cancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.bn_cancel.Location = new System.Drawing.Point(93, 599);
             this.bn_cancel.Name = "bn_cancel";
             this.bn_cancel.Size = new System.Drawing.Size(75, 23);
@@ -384,6 +385,7 @@
             // 
             // gb4
             // 
+            this.gb4.Controls.Add(this.bn_new_angebot);
             this.gb4.Controls.Add(this.lv_angebote);
             this.gb4.Location = new System.Drawing.Point(461, 12);
             this.gb4.Name = "gb4";
@@ -399,12 +401,12 @@
             this.angebotid,
             this.titel,
             this.datum});
-            this.lv_angebote.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lv_angebote.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.lv_angebote.FullRowSelect = true;
             this.lv_angebote.GridLines = true;
-            this.lv_angebote.Location = new System.Drawing.Point(5, 18);
+            this.lv_angebote.Location = new System.Drawing.Point(5, 50);
             this.lv_angebote.Name = "lv_angebote";
-            this.lv_angebote.Size = new System.Drawing.Size(532, 291);
+            this.lv_angebote.Size = new System.Drawing.Size(532, 259);
             this.lv_angebote.TabIndex = 0;
             this.lv_angebote.UseCompatibleStateImageBehavior = false;
             this.lv_angebote.View = System.Windows.Forms.View.Details;
@@ -427,6 +429,7 @@
             // 
             // gb5
             // 
+            this.gb5.Controls.Add(this.bn_new_rechnung);
             this.gb5.Controls.Add(this.lv_rechnungen);
             this.gb5.Location = new System.Drawing.Point(466, 332);
             this.gb5.Name = "gb5";
@@ -442,12 +445,12 @@
             this.rechnungid,
             this.bezeichnung,
             this.datum1});
-            this.lv_rechnungen.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lv_rechnungen.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.lv_rechnungen.FullRowSelect = true;
             this.lv_rechnungen.GridLines = true;
-            this.lv_rechnungen.Location = new System.Drawing.Point(5, 18);
+            this.lv_rechnungen.Location = new System.Drawing.Point(5, 50);
             this.lv_rechnungen.Name = "lv_rechnungen";
-            this.lv_rechnungen.Size = new System.Drawing.Size(522, 230);
+            this.lv_rechnungen.Size = new System.Drawing.Size(522, 198);
             this.lv_rechnungen.TabIndex = 0;
             this.lv_rechnungen.UseCompatibleStateImageBehavior = false;
             this.lv_rechnungen.View = System.Windows.Forms.View.Details;
@@ -467,6 +470,26 @@
             // 
             this.datum1.Text = "Datum";
             this.datum1.Width = 80;
+            // 
+            // bn_new_angebot
+            // 
+            this.bn_new_angebot.Location = new System.Drawing.Point(5, 21);
+            this.bn_new_angebot.Name = "bn_new_angebot";
+            this.bn_new_angebot.Size = new System.Drawing.Size(100, 23);
+            this.bn_new_angebot.TabIndex = 1;
+            this.bn_new_angebot.Text = "Neues Angebot";
+            this.bn_new_angebot.UseVisualStyleBackColor = true;
+            this.bn_new_angebot.Click += new System.EventHandler(this.bn_new_angebot_Click);
+            // 
+            // bn_new_rechnung
+            // 
+            this.bn_new_rechnung.Location = new System.Drawing.Point(5, 21);
+            this.bn_new_rechnung.Name = "bn_new_rechnung";
+            this.bn_new_rechnung.Size = new System.Drawing.Size(100, 23);
+            this.bn_new_rechnung.TabIndex = 2;
+            this.bn_new_rechnung.Text = "Neue Rechung";
+            this.bn_new_rechnung.UseVisualStyleBackColor = true;
+            this.bn_new_rechnung.Click += new System.EventHandler(this.bn_new_rechnung_Click);
             // 
             // KundeDetail
             // 
@@ -540,5 +563,7 @@
         private DataBinding.ErrorControl errorControl4;
         private DataBinding.ErrorControl errorControl3;
         private DataBinding.ErrorControl errorControl9;
+        private System.Windows.Forms.Button bn_new_angebot;
+        private System.Windows.Forms.Button bn_new_rechnung;
     }
 }

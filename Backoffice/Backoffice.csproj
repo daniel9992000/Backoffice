@@ -104,6 +104,12 @@
     <Compile Include="Dialogs\RechnungDetail.Designer.cs">
       <DependentUpon>RechnungDetail.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\UCBuchungenAnzeigen.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UCBuchungenAnzeigen.Designer.cs">
+      <DependentUpon>UCBuchungenAnzeigen.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\UCStundenEinlesenAnzeigen.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -212,6 +218,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\RechnungDetail.resx">
       <DependentUpon>RechnungDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCBuchungenAnzeigen.resx">
+      <DependentUpon>UCBuchungenAnzeigen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UCStundenEinlesenAnzeigen.resx">
       <DependentUpon>UCStundenEinlesenAnzeigen.cs</DependentUpon>

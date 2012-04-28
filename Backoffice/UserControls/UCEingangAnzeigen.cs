@@ -29,15 +29,15 @@ namespace Backoffice.UserControls
         void EditRechnung(Eingang r)
         {
             Dialogs.EingangDetail tmp = new Dialogs.EingangDetail(r);
-            if (tmp.ShowDialog() == DialogResult.OK)
-                BindTo();
+            tmp.ShowDialog();
+            BindTo();
         }
 
         void NewRechnung()
         {
             Dialogs.EingangDetail tmp = new Dialogs.EingangDetail();
-            if (tmp.ShowDialog() == DialogResult.OK)
-                BindTo();
+            tmp.ShowDialog();
+            BindTo();
         }
 
         void DeleteRechnung(Eingang r)

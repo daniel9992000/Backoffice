@@ -25,22 +25,21 @@ namespace Backoffice.UserControls
         void EditRechnung(Ausgang r)
         {
             Dialogs.RechnungDetail tmp = new Dialogs.RechnungDetail(r);
-            if (tmp.ShowDialog() == DialogResult.OK)
-                BindTo();
+            tmp.ShowDialog();
+            BindTo();
         }
 
         void NewRechnung()
         {
             Dialogs.RechnungDetail tmp = new Dialogs.RechnungDetail();
-            if (tmp.ShowDialog() == DialogResult.OK)
-                BindTo();
+            tmp.ShowDialog();
+            BindTo();
         }
 
         void DeleteRechnung(Ausgang r)
         {
             BL.deleteAusgang(r);
             BindTo();
-
         }
 
         private void bn_new_Click(object sender, EventArgs e)

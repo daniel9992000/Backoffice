@@ -29,6 +29,9 @@
         private void InitializeComponent()
         {
             this.gb1 = new System.Windows.Forms.GroupBox();
+            this.errorControl3 = new Backoffice.DataBinding.ErrorControl();
+            this.errorControl2 = new Backoffice.DataBinding.ErrorControl();
+            this.errorControl1 = new Backoffice.DataBinding.ErrorControl();
             this.tb_nachname = new System.Windows.Forms.TextBox();
             this.tb_vorname = new System.Windows.Forms.TextBox();
             this.tb_firmenname = new System.Windows.Forms.TextBox();
@@ -40,6 +43,12 @@
             this.bnsave = new System.Windows.Forms.Button();
             this.bncancel = new System.Windows.Forms.Button();
             this.gb2 = new System.Windows.Forms.GroupBox();
+            this.errorControl9 = new Backoffice.DataBinding.ErrorControl();
+            this.errorControl8 = new Backoffice.DataBinding.ErrorControl();
+            this.errorControl7 = new Backoffice.DataBinding.ErrorControl();
+            this.errorControl6 = new Backoffice.DataBinding.ErrorControl();
+            this.errorControl5 = new Backoffice.DataBinding.ErrorControl();
+            this.errorControl4 = new Backoffice.DataBinding.ErrorControl();
             this.tb_email = new System.Windows.Forms.TextBox();
             this.tb_adresse = new System.Windows.Forms.TextBox();
             this.tb_hausnummer = new System.Windows.Forms.TextBox();
@@ -53,20 +62,14 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.gb3 = new System.Windows.Forms.GroupBox();
-            this.rtb_bemerkungen = new System.Windows.Forms.RichTextBox();
-            this.errorControl1 = new Backoffice.DataBinding.ErrorControl();
-            this.errorControl2 = new Backoffice.DataBinding.ErrorControl();
-            this.errorControl3 = new Backoffice.DataBinding.ErrorControl();
-            this.errorControl4 = new Backoffice.DataBinding.ErrorControl();
-            this.errorControl5 = new Backoffice.DataBinding.ErrorControl();
-            this.errorControl6 = new Backoffice.DataBinding.ErrorControl();
-            this.errorControl7 = new Backoffice.DataBinding.ErrorControl();
-            this.errorControl8 = new Backoffice.DataBinding.ErrorControl();
-            this.errorControl9 = new Backoffice.DataBinding.ErrorControl();
             this.errorControl10 = new Backoffice.DataBinding.ErrorControl();
+            this.rtb_bemerkungen = new System.Windows.Forms.RichTextBox();
+            this.gb4 = new System.Windows.Forms.GroupBox();
+            this.lv_eingang = new System.Windows.Forms.ListView();
             this.gb1.SuspendLayout();
             this.gb2.SuspendLayout();
             this.gb3.SuspendLayout();
+            this.gb4.SuspendLayout();
             this.SuspendLayout();
             // 
             // gb1
@@ -88,6 +91,30 @@
             this.gb1.TabIndex = 0;
             this.gb1.TabStop = false;
             this.gb1.Text = "Allgmein";
+            // 
+            // errorControl3
+            // 
+            this.errorControl3.AutoSize = true;
+            this.errorControl3.Location = new System.Drawing.Point(306, 104);
+            this.errorControl3.Name = "errorControl3";
+            this.errorControl3.Size = new System.Drawing.Size(0, 13);
+            this.errorControl3.TabIndex = 10;
+            // 
+            // errorControl2
+            // 
+            this.errorControl2.AutoSize = true;
+            this.errorControl2.Location = new System.Drawing.Point(306, 79);
+            this.errorControl2.Name = "errorControl2";
+            this.errorControl2.Size = new System.Drawing.Size(0, 13);
+            this.errorControl2.TabIndex = 9;
+            // 
+            // errorControl1
+            // 
+            this.errorControl1.AutoSize = true;
+            this.errorControl1.Location = new System.Drawing.Point(306, 56);
+            this.errorControl1.Name = "errorControl1";
+            this.errorControl1.Size = new System.Drawing.Size(0, 13);
+            this.errorControl1.TabIndex = 8;
             // 
             // tb_nachname
             // 
@@ -153,7 +180,6 @@
             this.label1.Size = new System.Drawing.Size(18, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "ID";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // bnsave
             // 
@@ -167,13 +193,13 @@
             // 
             // bncancel
             // 
-            this.bncancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.bncancel.Location = new System.Drawing.Point(84, 416);
             this.bncancel.Name = "bncancel";
             this.bncancel.Size = new System.Drawing.Size(75, 25);
             this.bncancel.TabIndex = 21;
             this.bncancel.Text = "Abbrechen";
             this.bncancel.UseVisualStyleBackColor = true;
+            this.bncancel.Click += new System.EventHandler(this.bncancel_Click);
             // 
             // gb2
             // 
@@ -201,6 +227,54 @@
             this.gb2.TabIndex = 3;
             this.gb2.TabStop = false;
             this.gb2.Text = "Kontakt";
+            // 
+            // errorControl9
+            // 
+            this.errorControl9.AutoSize = true;
+            this.errorControl9.Location = new System.Drawing.Point(323, 172);
+            this.errorControl9.Name = "errorControl9";
+            this.errorControl9.Size = new System.Drawing.Size(0, 13);
+            this.errorControl9.TabIndex = 18;
+            // 
+            // errorControl8
+            // 
+            this.errorControl8.AutoSize = true;
+            this.errorControl8.Location = new System.Drawing.Point(323, 141);
+            this.errorControl8.Name = "errorControl8";
+            this.errorControl8.Size = new System.Drawing.Size(0, 13);
+            this.errorControl8.TabIndex = 17;
+            // 
+            // errorControl7
+            // 
+            this.errorControl7.AutoSize = true;
+            this.errorControl7.Location = new System.Drawing.Point(226, 112);
+            this.errorControl7.Name = "errorControl7";
+            this.errorControl7.Size = new System.Drawing.Size(0, 13);
+            this.errorControl7.TabIndex = 16;
+            // 
+            // errorControl6
+            // 
+            this.errorControl6.AutoSize = true;
+            this.errorControl6.Location = new System.Drawing.Point(257, 86);
+            this.errorControl6.Name = "errorControl6";
+            this.errorControl6.Size = new System.Drawing.Size(0, 13);
+            this.errorControl6.TabIndex = 15;
+            // 
+            // errorControl5
+            // 
+            this.errorControl5.AutoSize = true;
+            this.errorControl5.Location = new System.Drawing.Point(323, 57);
+            this.errorControl5.Name = "errorControl5";
+            this.errorControl5.Size = new System.Drawing.Size(0, 13);
+            this.errorControl5.TabIndex = 14;
+            // 
+            // errorControl4
+            // 
+            this.errorControl4.AutoSize = true;
+            this.errorControl4.Location = new System.Drawing.Point(323, 28);
+            this.errorControl4.Name = "errorControl4";
+            this.errorControl4.Size = new System.Drawing.Size(0, 13);
+            this.errorControl4.TabIndex = 11;
             // 
             // tb_email
             // 
@@ -308,7 +382,14 @@
             this.gb3.TabIndex = 4;
             this.gb3.TabStop = false;
             this.gb3.Text = "Bemerkungen";
-            this.gb3.Enter += new System.EventHandler(this.gb3_Enter);
+            // 
+            // errorControl10
+            // 
+            this.errorControl10.AutoSize = true;
+            this.errorControl10.Location = new System.Drawing.Point(104, 0);
+            this.errorControl10.Name = "errorControl10";
+            this.errorControl10.Size = new System.Drawing.Size(0, 13);
+            this.errorControl10.TabIndex = 19;
             // 
             // rtb_bemerkungen
             // 
@@ -319,101 +400,32 @@
             this.rtb_bemerkungen.TabIndex = 14;
             this.rtb_bemerkungen.Text = "";
             // 
-            // errorControl1
+            // gb4
             // 
-            this.errorControl1.AutoSize = true;
-            this.errorControl1.Location = new System.Drawing.Point(306, 56);
-            this.errorControl1.Name = "errorControl1";
-            this.errorControl1.Size = new System.Drawing.Size(67, 13);
-            this.errorControl1.TabIndex = 8;
-            this.errorControl1.Text = "errorControl1";
+            this.gb4.Controls.Add(this.lv_eingang);
+            this.gb4.Location = new System.Drawing.Point(494, 222);
+            this.gb4.Name = "gb4";
+            this.gb4.Size = new System.Drawing.Size(394, 188);
+            this.gb4.TabIndex = 20;
+            this.gb4.TabStop = false;
+            this.gb4.Text = "Eingangsrechnungen";
             // 
-            // errorControl2
+            // lv_eingang
             // 
-            this.errorControl2.AutoSize = true;
-            this.errorControl2.Location = new System.Drawing.Point(306, 79);
-            this.errorControl2.Name = "errorControl2";
-            this.errorControl2.Size = new System.Drawing.Size(67, 13);
-            this.errorControl2.TabIndex = 9;
-            this.errorControl2.Text = "errorControl2";
-            // 
-            // errorControl3
-            // 
-            this.errorControl3.AutoSize = true;
-            this.errorControl3.Location = new System.Drawing.Point(306, 104);
-            this.errorControl3.Name = "errorControl3";
-            this.errorControl3.Size = new System.Drawing.Size(67, 13);
-            this.errorControl3.TabIndex = 10;
-            this.errorControl3.Text = "errorControl3";
-            // 
-            // errorControl4
-            // 
-            this.errorControl4.AutoSize = true;
-            this.errorControl4.Location = new System.Drawing.Point(323, 28);
-            this.errorControl4.Name = "errorControl4";
-            this.errorControl4.Size = new System.Drawing.Size(67, 13);
-            this.errorControl4.TabIndex = 11;
-            this.errorControl4.Text = "errorControl4";
-            // 
-            // errorControl5
-            // 
-            this.errorControl5.AutoSize = true;
-            this.errorControl5.Location = new System.Drawing.Point(323, 57);
-            this.errorControl5.Name = "errorControl5";
-            this.errorControl5.Size = new System.Drawing.Size(67, 13);
-            this.errorControl5.TabIndex = 14;
-            this.errorControl5.Text = "errorControl5";
-            // 
-            // errorControl6
-            // 
-            this.errorControl6.AutoSize = true;
-            this.errorControl6.Location = new System.Drawing.Point(257, 86);
-            this.errorControl6.Name = "errorControl6";
-            this.errorControl6.Size = new System.Drawing.Size(67, 13);
-            this.errorControl6.TabIndex = 15;
-            this.errorControl6.Text = "errorControl6";
-            // 
-            // errorControl7
-            // 
-            this.errorControl7.AutoSize = true;
-            this.errorControl7.Location = new System.Drawing.Point(226, 112);
-            this.errorControl7.Name = "errorControl7";
-            this.errorControl7.Size = new System.Drawing.Size(67, 13);
-            this.errorControl7.TabIndex = 16;
-            this.errorControl7.Text = "errorControl7";
-            // 
-            // errorControl8
-            // 
-            this.errorControl8.AutoSize = true;
-            this.errorControl8.Location = new System.Drawing.Point(323, 141);
-            this.errorControl8.Name = "errorControl8";
-            this.errorControl8.Size = new System.Drawing.Size(67, 13);
-            this.errorControl8.TabIndex = 17;
-            this.errorControl8.Text = "errorControl8";
-            // 
-            // errorControl9
-            // 
-            this.errorControl9.AutoSize = true;
-            this.errorControl9.Location = new System.Drawing.Point(323, 172);
-            this.errorControl9.Name = "errorControl9";
-            this.errorControl9.Size = new System.Drawing.Size(67, 13);
-            this.errorControl9.TabIndex = 18;
-            this.errorControl9.Text = "errorControl9";
-            // 
-            // errorControl10
-            // 
-            this.errorControl10.AutoSize = true;
-            this.errorControl10.Location = new System.Drawing.Point(104, 0);
-            this.errorControl10.Name = "errorControl10";
-            this.errorControl10.Size = new System.Drawing.Size(73, 13);
-            this.errorControl10.TabIndex = 19;
-            this.errorControl10.Text = "errorControl10";
+            this.lv_eingang.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lv_eingang.Location = new System.Drawing.Point(3, 16);
+            this.lv_eingang.Name = "lv_eingang";
+            this.lv_eingang.Size = new System.Drawing.Size(388, 169);
+            this.lv_eingang.TabIndex = 0;
+            this.lv_eingang.UseCompatibleStateImageBehavior = false;
+            this.lv_eingang.DoubleClick += new System.EventHandler(this.lv_eingang_DoubleClick);
             // 
             // KontaktDetail
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(938, 451);
+            this.Controls.Add(this.gb4);
             this.Controls.Add(this.gb3);
             this.Controls.Add(this.gb2);
             this.Controls.Add(this.bncancel);
@@ -428,6 +440,7 @@
             this.gb2.PerformLayout();
             this.gb3.ResumeLayout(false);
             this.gb3.PerformLayout();
+            this.gb4.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -470,5 +483,7 @@
         private DataBinding.ErrorControl errorControl5;
         private DataBinding.ErrorControl errorControl4;
         private DataBinding.ErrorControl errorControl10;
+        private System.Windows.Forms.GroupBox gb4;
+        private System.Windows.Forms.ListView lv_eingang;
     }
 }
