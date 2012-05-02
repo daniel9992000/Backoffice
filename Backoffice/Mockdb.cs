@@ -155,7 +155,14 @@ namespace Backoffice
 
         public List<Projekt> getProjektViewList()
         {
-            return projekte;
+            List<Projekt> tmp = new List<Projekt>();
+            foreach (var item in projekte)
+            {
+                item.Stunden = getProjektStunden(item.Name);
+                tmp.Add(item);
+            }
+
+            return tmp;
         }
 
         public Projekt getProjekt(int id)
@@ -643,6 +650,29 @@ namespace Backoffice
                     a = item;
             }
             return a;
+        }
+
+
+        public double getRechnungssumme(int rechnungid)
+        {
+            double summe = 0;
+            foreach (var item in zeilen)
+            {
+                if (item.Rechnungid == rechnungid)
+                    summe += item.Betrag;
+            }
+            return summe;
+        }
+
+        public int getProjektStunden(string projektname)
+        {
+            int anz = 0;
+            foreach (var item in stunden)
+            {
+                if (item.Projektname.Equals(projektname))
+                    anz += item.Stundenanz;
+            }
+            return anz;
         }
     }
 }
