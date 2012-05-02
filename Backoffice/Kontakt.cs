@@ -23,6 +23,16 @@ namespace Backoffice
       
         public Kontakt()
         {
+            this.firmenname = string.Empty;
+            this.vorname = string.Empty;
+            this.nachname = string.Empty;
+            this.email = string.Empty;
+            this.adresse = string.Empty;
+            this.hausnummer = string.Empty;
+            this.plz = string.Empty;
+            this.ort = string.Empty;
+            this.telefon = string.Empty;
+            this.bemerkungen = string.Empty;
         }
 
         public Kontakt(int kontaktid, string vorname, string nachname, string firmenname, string email, ObjectStates status)
@@ -32,6 +42,12 @@ namespace Backoffice
             this.nachname = nachname;
             this.firmenname = firmenname;
             this.email = email;
+            this.adresse = string.Empty;
+            this.hausnummer = string.Empty;
+            this.plz = string.Empty;
+            this.ort = string.Empty;
+            this.telefon = string.Empty;
+            this.bemerkungen = string.Empty;
             this.status = status;
         }
 
@@ -52,18 +68,13 @@ namespace Backoffice
             get { return firmenname; }
             set
             {
-                if (!string.IsNullOrWhiteSpace(firmenname))
+                if (!string.IsNullOrWhiteSpace(value))
                 {   
-                    if (!firmenname.Equals(value))
+                    if (!value.Equals(firmenname))
                     {
                         firmenname = value;
                         Status = ObjectStates.Modified;
                     }     
-                }
-                else
-                {
-                    firmenname = value;
-                    Status = ObjectStates.Modified;
                 }
             }
         }
@@ -73,18 +84,13 @@ namespace Backoffice
         {
             get { return vorname; }
             set {
-                    if (!string.IsNullOrWhiteSpace(vorname))
+                    if (!string.IsNullOrWhiteSpace(value))
                     {   
-                        if (!vorname.Equals(value))
+                        if (!value.Equals(vorname))
                         {
                             vorname = value;
                             Status = ObjectStates.Modified;
                         }     
-                    }
-                    else
-                    {
-                        vorname = value;
-                        Status = ObjectStates.Modified;
                     }
                  }
         }
@@ -94,18 +100,13 @@ namespace Backoffice
             get { return nachname; }
             set
             {
-                 if (!string.IsNullOrWhiteSpace(nachname))
+                 if (!string.IsNullOrWhiteSpace(value))
                     {   
-                        if (!nachname.Equals(value))
+                        if (!value.Equals(nachname))
                         {
                             nachname = value;
                             Status = ObjectStates.Modified;
                         }     
-                    }
-                    else
-                    {
-                        nachname = value;
-                        Status = ObjectStates.Modified;
                     }
             }
         }
@@ -115,18 +116,13 @@ namespace Backoffice
             get { return email; }
             set
             {
-                if (!string.IsNullOrWhiteSpace(email))
+                if (!string.IsNullOrWhiteSpace(value))
                     {   
-                        if (!email.Equals(value))
+                        if (!value.Equals(email))
                         {
                             email = value;
                             Status = ObjectStates.Modified;
                         }     
-                    }
-                    else
-                    {
-                        email = value;
-                        Status = ObjectStates.Modified;
                     }
             }
         }
@@ -135,20 +131,12 @@ namespace Backoffice
         {
             get { return adresse; }
             set
-            {
-                 if (!string.IsNullOrWhiteSpace(adresse))
-                    {   
-                        if (!adresse.Equals(value))
-                        {
-                            adresse = value;
-                            Status = ObjectStates.Modified;
-                        }     
-                    }
-                    else
-                    {
-                        adresse = value;
-                        Status = ObjectStates.Modified;
-                    }
+            {   
+                if (!value.Equals(adresse))
+                {
+                    adresse = value;
+                    Status = ObjectStates.Modified;
+                }              
             }
         }
 
@@ -157,19 +145,12 @@ namespace Backoffice
             get { return hausnummer; }
             set
             {
-                 if (!string.IsNullOrWhiteSpace(hausnummer))
-                    {   
-                        if (!hausnummer.Equals(value))
-                        {
-                            hausnummer = value;
-                            Status = ObjectStates.Modified;
-                        }     
-                    }
-                    else
-                    {
-                        hausnummer = value;
-                        Status = ObjectStates.Modified;
-                    }
+            
+                if (!value.Equals(hausnummer))
+                {
+                    hausnummer = value;
+                    Status = ObjectStates.Modified;
+                }     
             }
         }
 
@@ -177,20 +158,12 @@ namespace Backoffice
         {
             get { return plz; }
             set
-            {
-                 if (!string.IsNullOrWhiteSpace(plz))
-                    {   
-                        if (!plz.Equals(value))
-                        {
-                            plz = value;
-                            Status = ObjectStates.Modified;
-                        }     
-                    }
-                    else
-                    {
-                        plz = value;
-                        Status = ObjectStates.Modified;
-                    }
+            {  
+                if (!value.Equals(plz))
+                {
+                    plz = value;
+                    Status = ObjectStates.Modified;
+                }     
             }
         }
 
@@ -199,19 +172,11 @@ namespace Backoffice
             get { return ort; }
             set
             {
-                if (!string.IsNullOrWhiteSpace(ort))
-                    {   
-                        if (!ort.Equals(value))
-                        {
-                            ort = value;
-                            Status = ObjectStates.Modified;
-                        }     
-                    }
-                    else
-                    {
-                        ort = value;
-                        Status = ObjectStates.Modified;
-                    }
+                if (!value.Equals(ort))
+                {
+                    ort = value;
+                    Status = ObjectStates.Modified;
+                }     
             }
         }
 
@@ -220,19 +185,11 @@ namespace Backoffice
             get { return telefon; }
             set
             {
-                if (!string.IsNullOrWhiteSpace(telefon))
-                    {   
-                        if (!telefon.Equals(value))
-                        {
-                            telefon = value;
-                            Status = ObjectStates.Modified;
-                        }     
-                    }
-                    else
-                    {
-                        telefon = value;
-                        Status = ObjectStates.Modified;
-                    }
+                if (!value.Equals(telefon))
+                {
+                    telefon = value;
+                    Status = ObjectStates.Modified;
+                }     
             }
         }
 
@@ -240,20 +197,12 @@ namespace Backoffice
         {
             get { return bemerkungen; }
             set
-            {
-                if (!string.IsNullOrWhiteSpace(bemerkungen))
-                    {   
-                        if (!bemerkungen.Equals(value))
-                        {
-                            bemerkungen = value;
-                            Status = ObjectStates.Modified;
-                        }     
-                    }
-                    else
-                    {
-                        bemerkungen = value;
-                        Status = ObjectStates.Modified;
-                    }
+            { 
+                if (!bemerkungen.Equals(value))
+                {
+                    bemerkungen = value;
+                    Status = ObjectStates.Modified;
+                }     
             }
         }
 

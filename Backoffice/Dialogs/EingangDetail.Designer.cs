@@ -31,6 +31,9 @@
             this.oFD = new System.Windows.Forms.OpenFileDialog();
             this.bn_cancel = new System.Windows.Forms.Button();
             this.gb1 = new System.Windows.Forms.GroupBox();
+            this.errorControl5 = new Backoffice.DataBinding.ErrorControl();
+            this.label6 = new System.Windows.Forms.Label();
+            this.tb_betrag = new System.Windows.Forms.TextBox();
             this.errorControl3 = new Backoffice.DataBinding.ErrorControl();
             this.errorControl2 = new Backoffice.DataBinding.ErrorControl();
             this.errorControl1 = new Backoffice.DataBinding.ErrorControl();
@@ -48,9 +51,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.tb_pfad = new System.Windows.Forms.TextBox();
             this.bnchooserech = new System.Windows.Forms.Button();
-            this.tb_betrag = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.errorControl5 = new Backoffice.DataBinding.ErrorControl();
             this.gb1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -92,32 +92,53 @@
             this.gb1.TabStop = false;
             this.gb1.Text = "Allgemein";
             // 
+            // errorControl5
+            // 
+            this.errorControl5.AutoSize = true;
+            this.errorControl5.Location = new System.Drawing.Point(228, 52);
+            this.errorControl5.Name = "errorControl5";
+            this.errorControl5.Size = new System.Drawing.Size(0, 13);
+            this.errorControl5.TabIndex = 19;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(32, 52);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(38, 13);
+            this.label6.TabIndex = 18;
+            this.label6.Text = "Betrag";
+            // 
+            // tb_betrag
+            // 
+            this.tb_betrag.Location = new System.Drawing.Point(116, 46);
+            this.tb_betrag.Name = "tb_betrag";
+            this.tb_betrag.Size = new System.Drawing.Size(92, 20);
+            this.tb_betrag.TabIndex = 17;
+            // 
             // errorControl3
             // 
             this.errorControl3.AutoSize = true;
             this.errorControl3.Location = new System.Drawing.Point(344, 126);
             this.errorControl3.Name = "errorControl3";
-            this.errorControl3.Size = new System.Drawing.Size(67, 13);
+            this.errorControl3.Size = new System.Drawing.Size(0, 13);
             this.errorControl3.TabIndex = 16;
-            this.errorControl3.Text = "errorControl3";
             // 
             // errorControl2
             // 
             this.errorControl2.AutoSize = true;
             this.errorControl2.Location = new System.Drawing.Point(344, 104);
             this.errorControl2.Name = "errorControl2";
-            this.errorControl2.Size = new System.Drawing.Size(67, 13);
+            this.errorControl2.Size = new System.Drawing.Size(0, 13);
             this.errorControl2.TabIndex = 15;
-            this.errorControl2.Text = "errorControl2";
             // 
             // errorControl1
             // 
             this.errorControl1.AutoSize = true;
             this.errorControl1.Location = new System.Drawing.Point(294, 81);
             this.errorControl1.Name = "errorControl1";
-            this.errorControl1.Size = new System.Drawing.Size(67, 13);
+            this.errorControl1.Size = new System.Drawing.Size(0, 13);
             this.errorControl1.TabIndex = 14;
-            this.errorControl1.Text = "errorControl1";
             // 
             // label5
             // 
@@ -213,9 +234,8 @@
             this.errorControl4.AutoSize = true;
             this.errorControl4.Location = new System.Drawing.Point(203, 69);
             this.errorControl4.Name = "errorControl4";
-            this.errorControl4.Size = new System.Drawing.Size(67, 13);
+            this.errorControl4.Size = new System.Drawing.Size(0, 13);
             this.errorControl4.TabIndex = 17;
-            this.errorControl4.Text = "errorControl4";
             // 
             // label4
             // 
@@ -242,31 +262,6 @@
             this.bnchooserech.Text = "Rechnung wählen";
             this.bnchooserech.UseVisualStyleBackColor = true;
             this.bnchooserech.Click += new System.EventHandler(this.bnchooserech_Click);
-            // 
-            // tb_betrag
-            // 
-            this.tb_betrag.Location = new System.Drawing.Point(116, 46);
-            this.tb_betrag.Name = "tb_betrag";
-            this.tb_betrag.Size = new System.Drawing.Size(92, 20);
-            this.tb_betrag.TabIndex = 17;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(32, 52);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(38, 13);
-            this.label6.TabIndex = 18;
-            this.label6.Text = "Betrag";
-            // 
-            // errorControl5
-            // 
-            this.errorControl5.AutoSize = true;
-            this.errorControl5.Location = new System.Drawing.Point(228, 52);
-            this.errorControl5.Name = "errorControl5";
-            this.errorControl5.Size = new System.Drawing.Size(67, 13);
-            this.errorControl5.TabIndex = 19;
-            this.errorControl5.Text = "errorControl5";
             // 
             // EingangDetail
             // 

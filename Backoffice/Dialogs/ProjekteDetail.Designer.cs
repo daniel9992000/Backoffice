@@ -64,9 +64,8 @@
             this.errorControl1.AutoSize = true;
             this.errorControl1.Location = new System.Drawing.Point(201, 51);
             this.errorControl1.Name = "errorControl1";
-            this.errorControl1.Size = new System.Drawing.Size(67, 13);
+            this.errorControl1.Size = new System.Drawing.Size(0, 13);
             this.errorControl1.TabIndex = 4;
-            this.errorControl1.Text = "errorControl1";
             // 
             // tb_name
             // 

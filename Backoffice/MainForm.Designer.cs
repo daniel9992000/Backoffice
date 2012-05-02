@@ -32,7 +32,6 @@
             this.beendenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.kundenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.alleKundenAnzeigenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.neuerKundeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.kontakteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.kontakteAnzeigenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.angeboteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -85,8 +84,7 @@
             // kundenToolStripMenuItem
             // 
             this.kundenToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.alleKundenAnzeigenToolStripMenuItem,
-            this.neuerKundeToolStripMenuItem});
+            this.alleKundenAnzeigenToolStripMenuItem});
             this.kundenToolStripMenuItem.Name = "kundenToolStripMenuItem";
             this.kundenToolStripMenuItem.Size = new System.Drawing.Size(60, 20);
             this.kundenToolStripMenuItem.Text = "Kunden";
@@ -97,13 +95,6 @@
             this.alleKundenAnzeigenToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
             this.alleKundenAnzeigenToolStripMenuItem.Text = "Kunden anzeigen";
             this.alleKundenAnzeigenToolStripMenuItem.Click += new System.EventHandler(this.alleKundenAnzeigenToolStripMenuItem_Click);
-            // 
-            // neuerKundeToolStripMenuItem
-            // 
-            this.neuerKundeToolStripMenuItem.Name = "neuerKundeToolStripMenuItem";
-            this.neuerKundeToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
-            this.neuerKundeToolStripMenuItem.Text = "Neuer Kunde";
-            this.neuerKundeToolStripMenuItem.Click += new System.EventHandler(this.neuerKundeToolStripMenuItem_Click);
             // 
             // kontakteToolStripMenuItem
             // 
@@ -394,7 +385,6 @@
         private System.Windows.Forms.ToolStripMenuItem hilfeToolStripMenuItem;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private UserControls.UCKundenAnzeigen uc_kundenAnzeigen;
-        private System.Windows.Forms.ToolStripMenuItem neuerKundeToolStripMenuItem;
         private UserControls.UCProjekteAnzeigen ucProjekteAnzeigen1;
         private System.Windows.Forms.ToolStripMenuItem alleAngeboteAnzeigenToolStripMenuItem;
         private UserControls.UCAngeboteAnzeigen ucAngeboteAnzeigen1;

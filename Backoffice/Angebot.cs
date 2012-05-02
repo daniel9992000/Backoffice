@@ -62,18 +62,13 @@ namespace Backoffice
             get { return titel; }
             set
             {
-                if (!string.IsNullOrWhiteSpace(titel))
+                if (!string.IsNullOrWhiteSpace(value))
                 {
-                    if (!titel.Equals(value))
+                    if (!value.Equals(titel))
                     {
                         titel = value;
                         Status = ObjectStates.Modified;
                     }
-                }
-                else
-                {
-                    titel = value;
-                    Status = ObjectStates.Modified;
                 }
             }
         }
@@ -96,7 +91,7 @@ namespace Backoffice
             get { return datum; }
             set
             {
-                if (datum != value)
+                if (!value.Equals(datum))
                 {
                     datum = value;
                     status = ObjectStates.Modified;

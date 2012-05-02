@@ -35,6 +35,7 @@
             this.lv_projekte = new System.Windows.Forms.ListView();
             this.ID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Projektname = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.stunden = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -97,7 +98,8 @@
             // 
             this.lv_projekte.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.ID,
-            this.Projektname});
+            this.Projektname,
+            this.stunden});
             this.lv_projekte.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lv_projekte.FullRowSelect = true;
             this.lv_projekte.GridLines = true;
@@ -118,6 +120,11 @@
             // 
             this.Projektname.Text = "Projektname";
             this.Projektname.Width = 180;
+            // 
+            // stunden
+            // 
+            this.stunden.Text = "Stunden";
+            this.stunden.Width = 104;
             // 
             // UCProjekteAnzeigen
             // 
@@ -145,5 +152,6 @@
         private System.Windows.Forms.ListView lv_projekte;
         private System.Windows.Forms.ColumnHeader ID;
         private System.Windows.Forms.ColumnHeader Projektname;
+        private System.Windows.Forms.ColumnHeader stunden;
     }
 }

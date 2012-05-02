@@ -20,6 +20,7 @@ namespace Backoffice.UserControls
 
         private void UCJahresumsatzAnzeigen_Load(object sender, EventArgs e)
         {
+
             BindTo();
         }
 
@@ -30,21 +31,10 @@ namespace Backoffice.UserControls
 
             DataBinding.Binder binder = new DataBinding.Binder();
             double[] werte = new double[2];
-            double faktor;
             werte = BL.getIstJahresumsatz();
-
-            if (DateTime.IsLeapYear(DateTime.Now.Year))
-                faktor = 366;
-            else
-                faktor = 365;
 
             binder.BindTo_TextBox(tbianzang, double.Parse(werte[0].ToString("#0.00")));
             binder.BindTo_TextBox(tbisumang, double.Parse(werte[1].ToString("#0.00")));
-
-            faktor = faktor / DateTime.Now.DayOfYear;
-            werte[0] = werte[0] * faktor;
-            werte[1] = werte[1] * faktor;
-
             binder.BindTo_TextBox(tbanzangebote, double.Parse(werte[0].ToString("#0.00")));
             binder.BindTo_TextBox(tbsumangebote, double.Parse(werte[1].ToString("#0.00")));
             

@@ -20,6 +20,9 @@ namespace Backoffice.UserControls
 
         private void UCEinahmenAusgabenAnzeigen_Load(object sender, EventArgs e)
         {
+            dtp1.Format = DateTimePickerFormat.Custom;
+            dtp1.CustomFormat = "MMMM yyyy";
+            dtp1.ShowUpDown = true;
             BindTo();
         }
 
@@ -39,12 +42,7 @@ namespace Backoffice.UserControls
             {
                 ListViewItem i = lv_einnahmen.Items.Add(tmp.Rechnungid.ToString());
                 i.Tag = tmp;
-                resumme = 0;
-                relist = BL.getRechnungszeilen(tmp.Rechnungid);
-                foreach( var item in relist)
-                {
-                    resumme+= item.Betrag;
-                }
+                resumme = BL.getRechnungssumme(tmp.Rechnungid);
                 i.SubItems.Add(resumme.ToString("#0.00"));
                 i.SubItems.Add(tmp.Bezeichnung);
                 i.SubItems.Add(tmp.Datum.Value.ToShortDateString());

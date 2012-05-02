@@ -29,6 +29,9 @@
         private void InitializeComponent()
         {
             this.gb1 = new System.Windows.Forms.GroupBox();
+            this.errorControl3 = new Backoffice.DataBinding.ErrorControl();
+            this.errorControl2 = new Backoffice.DataBinding.ErrorControl();
+            this.errorControl1 = new Backoffice.DataBinding.ErrorControl();
             this.tb_nachname = new System.Windows.Forms.TextBox();
             this.tb_vorname = new System.Windows.Forms.TextBox();
             this.tb_firmenname = new System.Windows.Forms.TextBox();
@@ -40,6 +43,12 @@
             this.bnsave = new System.Windows.Forms.Button();
             this.bncancel = new System.Windows.Forms.Button();
             this.gb2 = new System.Windows.Forms.GroupBox();
+            this.errorControl9 = new Backoffice.DataBinding.ErrorControl();
+            this.errorControl8 = new Backoffice.DataBinding.ErrorControl();
+            this.errorControl7 = new Backoffice.DataBinding.ErrorControl();
+            this.errorControl6 = new Backoffice.DataBinding.ErrorControl();
+            this.errorControl5 = new Backoffice.DataBinding.ErrorControl();
+            this.errorControl4 = new Backoffice.DataBinding.ErrorControl();
             this.tb_email = new System.Windows.Forms.TextBox();
             this.tb_adresse = new System.Windows.Forms.TextBox();
             this.tb_hausnummer = new System.Windows.Forms.TextBox();
@@ -53,17 +62,8 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.gb3 = new System.Windows.Forms.GroupBox();
-            this.rtb_bemerkungen = new System.Windows.Forms.RichTextBox();
-            this.errorControl1 = new Backoffice.DataBinding.ErrorControl();
-            this.errorControl2 = new Backoffice.DataBinding.ErrorControl();
-            this.errorControl3 = new Backoffice.DataBinding.ErrorControl();
-            this.errorControl4 = new Backoffice.DataBinding.ErrorControl();
-            this.errorControl5 = new Backoffice.DataBinding.ErrorControl();
-            this.errorControl6 = new Backoffice.DataBinding.ErrorControl();
-            this.errorControl7 = new Backoffice.DataBinding.ErrorControl();
-            this.errorControl8 = new Backoffice.DataBinding.ErrorControl();
-            this.errorControl9 = new Backoffice.DataBinding.ErrorControl();
             this.errorControl10 = new Backoffice.DataBinding.ErrorControl();
+            this.rtb_bemerkungen = new System.Windows.Forms.RichTextBox();
             this.gb1.SuspendLayout();
             this.gb2.SuspendLayout();
             this.gb3.SuspendLayout();
@@ -88,6 +88,30 @@
             this.gb1.TabIndex = 0;
             this.gb1.TabStop = false;
             this.gb1.Text = "Allgmein";
+            // 
+            // errorControl3
+            // 
+            this.errorControl3.AutoSize = true;
+            this.errorControl3.Location = new System.Drawing.Point(306, 104);
+            this.errorControl3.Name = "errorControl3";
+            this.errorControl3.Size = new System.Drawing.Size(0, 13);
+            this.errorControl3.TabIndex = 10;
+            // 
+            // errorControl2
+            // 
+            this.errorControl2.AutoSize = true;
+            this.errorControl2.Location = new System.Drawing.Point(306, 79);
+            this.errorControl2.Name = "errorControl2";
+            this.errorControl2.Size = new System.Drawing.Size(0, 13);
+            this.errorControl2.TabIndex = 9;
+            // 
+            // errorControl1
+            // 
+            this.errorControl1.AutoSize = true;
+            this.errorControl1.Location = new System.Drawing.Point(306, 56);
+            this.errorControl1.Name = "errorControl1";
+            this.errorControl1.Size = new System.Drawing.Size(0, 13);
+            this.errorControl1.TabIndex = 8;
             // 
             // tb_nachname
             // 
@@ -202,6 +226,54 @@
             this.gb2.TabStop = false;
             this.gb2.Text = "Kontakt";
             // 
+            // errorControl9
+            // 
+            this.errorControl9.AutoSize = true;
+            this.errorControl9.Location = new System.Drawing.Point(323, 172);
+            this.errorControl9.Name = "errorControl9";
+            this.errorControl9.Size = new System.Drawing.Size(0, 13);
+            this.errorControl9.TabIndex = 18;
+            // 
+            // errorControl8
+            // 
+            this.errorControl8.AutoSize = true;
+            this.errorControl8.Location = new System.Drawing.Point(323, 141);
+            this.errorControl8.Name = "errorControl8";
+            this.errorControl8.Size = new System.Drawing.Size(0, 13);
+            this.errorControl8.TabIndex = 17;
+            // 
+            // errorControl7
+            // 
+            this.errorControl7.AutoSize = true;
+            this.errorControl7.Location = new System.Drawing.Point(226, 112);
+            this.errorControl7.Name = "errorControl7";
+            this.errorControl7.Size = new System.Drawing.Size(0, 13);
+            this.errorControl7.TabIndex = 16;
+            // 
+            // errorControl6
+            // 
+            this.errorControl6.AutoSize = true;
+            this.errorControl6.Location = new System.Drawing.Point(257, 86);
+            this.errorControl6.Name = "errorControl6";
+            this.errorControl6.Size = new System.Drawing.Size(0, 13);
+            this.errorControl6.TabIndex = 15;
+            // 
+            // errorControl5
+            // 
+            this.errorControl5.AutoSize = true;
+            this.errorControl5.Location = new System.Drawing.Point(323, 57);
+            this.errorControl5.Name = "errorControl5";
+            this.errorControl5.Size = new System.Drawing.Size(0, 13);
+            this.errorControl5.TabIndex = 14;
+            // 
+            // errorControl4
+            // 
+            this.errorControl4.AutoSize = true;
+            this.errorControl4.Location = new System.Drawing.Point(323, 28);
+            this.errorControl4.Name = "errorControl4";
+            this.errorControl4.Size = new System.Drawing.Size(0, 13);
+            this.errorControl4.TabIndex = 11;
+            // 
             // tb_email
             // 
             this.tb_email.Location = new System.Drawing.Point(165, 25);
@@ -310,96 +382,6 @@
             this.gb3.Text = "Bemerkungen";
             this.gb3.Enter += new System.EventHandler(this.gb3_Enter);
             // 
-            // rtb_bemerkungen
-            // 
-            this.rtb_bemerkungen.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.rtb_bemerkungen.Location = new System.Drawing.Point(3, 16);
-            this.rtb_bemerkungen.Name = "rtb_bemerkungen";
-            this.rtb_bemerkungen.Size = new System.Drawing.Size(388, 175);
-            this.rtb_bemerkungen.TabIndex = 14;
-            this.rtb_bemerkungen.Text = "";
-            // 
-            // errorControl1
-            // 
-            this.errorControl1.AutoSize = true;
-            this.errorControl1.Location = new System.Drawing.Point(306, 56);
-            this.errorControl1.Name = "errorControl1";
-            this.errorControl1.Size = new System.Drawing.Size(67, 13);
-            this.errorControl1.TabIndex = 8;
-            this.errorControl1.Text = "errorControl1";
-            // 
-            // errorControl2
-            // 
-            this.errorControl2.AutoSize = true;
-            this.errorControl2.Location = new System.Drawing.Point(306, 79);
-            this.errorControl2.Name = "errorControl2";
-            this.errorControl2.Size = new System.Drawing.Size(67, 13);
-            this.errorControl2.TabIndex = 9;
-            this.errorControl2.Text = "errorControl2";
-            // 
-            // errorControl3
-            // 
-            this.errorControl3.AutoSize = true;
-            this.errorControl3.Location = new System.Drawing.Point(306, 104);
-            this.errorControl3.Name = "errorControl3";
-            this.errorControl3.Size = new System.Drawing.Size(67, 13);
-            this.errorControl3.TabIndex = 10;
-            this.errorControl3.Text = "errorControl3";
-            // 
-            // errorControl4
-            // 
-            this.errorControl4.AutoSize = true;
-            this.errorControl4.Location = new System.Drawing.Point(323, 28);
-            this.errorControl4.Name = "errorControl4";
-            this.errorControl4.Size = new System.Drawing.Size(67, 13);
-            this.errorControl4.TabIndex = 11;
-            this.errorControl4.Text = "errorControl4";
-            // 
-            // errorControl5
-            // 
-            this.errorControl5.AutoSize = true;
-            this.errorControl5.Location = new System.Drawing.Point(323, 57);
-            this.errorControl5.Name = "errorControl5";
-            this.errorControl5.Size = new System.Drawing.Size(67, 13);
-            this.errorControl5.TabIndex = 14;
-            this.errorControl5.Text = "errorControl5";
-            // 
-            // errorControl6
-            // 
-            this.errorControl6.AutoSize = true;
-            this.errorControl6.Location = new System.Drawing.Point(257, 86);
-            this.errorControl6.Name = "errorControl6";
-            this.errorControl6.Size = new System.Drawing.Size(67, 13);
-            this.errorControl6.TabIndex = 15;
-            this.errorControl6.Text = "errorControl6";
-            // 
-            // errorControl7
-            // 
-            this.errorControl7.AutoSize = true;
-            this.errorControl7.Location = new System.Drawing.Point(226, 112);
-            this.errorControl7.Name = "errorControl7";
-            this.errorControl7.Size = new System.Drawing.Size(67, 13);
-            this.errorControl7.TabIndex = 16;
-            this.errorControl7.Text = "errorControl7";
-            // 
-            // errorControl8
-            // 
-            this.errorControl8.AutoSize = true;
-            this.errorControl8.Location = new System.Drawing.Point(323, 141);
-            this.errorControl8.Name = "errorControl8";
-            this.errorControl8.Size = new System.Drawing.Size(67, 13);
-            this.errorControl8.TabIndex = 17;
-            this.errorControl8.Text = "errorControl8";
-            // 
-            // errorControl9
-            // 
-            this.errorControl9.AutoSize = true;
-            this.errorControl9.Location = new System.Drawing.Point(323, 172);
-            this.errorControl9.Name = "errorControl9";
-            this.errorControl9.Size = new System.Drawing.Size(67, 13);
-            this.errorControl9.TabIndex = 18;
-            this.errorControl9.Text = "errorControl9";
-            // 
             // errorControl10
             // 
             this.errorControl10.AutoSize = true;
@@ -408,6 +390,15 @@
             this.errorControl10.Size = new System.Drawing.Size(73, 13);
             this.errorControl10.TabIndex = 19;
             this.errorControl10.Text = "errorControl10";
+            // 
+            // rtb_bemerkungen
+            // 
+            this.rtb_bemerkungen.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rtb_bemerkungen.Location = new System.Drawing.Point(3, 16);
+            this.rtb_bemerkungen.Name = "rtb_bemerkungen";
+            this.rtb_bemerkungen.Size = new System.Drawing.Size(388, 175);
+            this.rtb_bemerkungen.TabIndex = 14;
+            this.rtb_bemerkungen.Text = "";
             // 
             // KontaktDetail
             // 

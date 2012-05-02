@@ -34,7 +34,8 @@ namespace Backoffice
 
             foreach (var item in guiControls)
             {
-                item.Hide();
+                item.Hide();          
+            
             }
             
         }
@@ -45,7 +46,9 @@ namespace Backoffice
             {
                 item.Hide();
                 if (item == uc)
+                {
                     item.Show();
+                }
             }
         }
 

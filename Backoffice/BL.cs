@@ -328,6 +328,12 @@ namespace Backoffice
         #endregion
 
         #region Auswertungen
+
+        public static double getRechnungssumme(int rechnungid)
+        {
+            return DALFactory.getDAL().getRechnungssumme(rechnungid);
+        }
+
         public static List<Angebot> getJahresumsatzangebote()
         {
             return DALFactory.getDAL().getJahresumsatzViewList();
@@ -364,6 +370,7 @@ namespace Backoffice
         }
         #endregion
 
+        #region Stunden
         public static List<Stunden> getStunden(string projektname)
         {
             return DALFactory.getDAL().getStundenViewList(projektname);
@@ -373,5 +380,11 @@ namespace Backoffice
         {
             DALFactory.getDAL().saveStunden(s);
         }
+
+        public static int getProjektStunden(string projektname)
+        {
+            return DALFactory.getDAL().getProjektStunden(projektname);
+        }
+        #endregion
     }
 }

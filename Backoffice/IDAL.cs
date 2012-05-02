@@ -63,6 +63,7 @@ namespace Backoffice
 
 
         //Auswertungen
+        double getRechnungssumme(int rechnungid);
         List<Angebot> getJahresumsatzViewList();
         double[] getIstJahresumsatz();
         List<Ausgang> getEinnahmen(int month, int year);
@@ -74,5 +75,6 @@ namespace Backoffice
         //Stunden
         List<Stunden> getStundenViewList(string projektname);
         void saveStunden(Stunden s);
+        int getProjektStunden(string projektname);
     }
 }

@@ -9,16 +9,21 @@ namespace Backoffice
     {
         int projektid;
         string name;
+        int stunden;
         ObjectStates status;
 
         public Projekt()
         {
+            this.name = string.Empty;
+            this.stunden = 0;
+            this.projektid = 0;
         }
 
         public Projekt(int projektid, string name)
         {
             this.projektid = projektid;
             this.name = name;
+            this.stunden = 0;
         }
 
         public override string ToString()
@@ -31,24 +36,20 @@ namespace Backoffice
             this.projektid = projektid;
             this.name = name;
             this.status = status;
+            this.stunden = 0;
         }
 
         public string Name
         {
             get { return name; }
             set {
-                    if (!string.IsNullOrWhiteSpace(name))
+                    if (!string.IsNullOrWhiteSpace(value))
                     {
-                        if (!name.Equals(value))
+                        if (!value.Equals(name))
                         {
                             name = value;
                             Status = ObjectStates.Modified;
                         }
-                    }
-                    else
-                    {
-                        name = value;
-                        Status = ObjectStates.Modified;
                     }
                 }
         }
@@ -57,6 +58,19 @@ namespace Backoffice
         {
             get { return projektid; }
             set { projektid = value; }
+        }
+
+        public int Stunden
+        {
+            get { return stunden; }
+            set
+            {
+                if (stunden != value)
+                {
+                    stunden = value;
+                    Status = ObjectStates.Modified;
+                }
+            }
         }
 
         public ObjectStates Status

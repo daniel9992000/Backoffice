@@ -294,7 +294,8 @@ namespace Backoffice.DataBinding
             else if (typeof(IList<Projekt>).IsInstanceOfType(values))
             {
                 lv.Columns.Add("ID", 25);
-                lv.Columns.Add("Name", 100);
+                lv.Columns.Add("Name", 150);
+                lv.Columns.Add("Stunden", 100);
 
                 foreach (var item in values)
                 {
@@ -303,6 +304,8 @@ namespace Backoffice.DataBinding
                     ListViewItem i = lv.Items.Add(tmp.Projektid.ToString());
                     i.Tag = tmp;
                     i.SubItems.Add(tmp.Name);
+                    i.SubItems.Add(tmp.Stunden.ToString());
+
                    
                 }
             }

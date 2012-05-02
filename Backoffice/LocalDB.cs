@@ -1046,6 +1046,40 @@ namespace Backoffice
         }
 
 
+
+        public List<Stunden> getStundenViewList(string projektname)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void saveStunden(Stunden s)
+        { 
+            throw new NotImplementedException();
+        }
+
+
+        public List<Angebot> getAngebotViewListByProjektId(int projektid)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Ausgang> getAusgangViewListByProjektId(int projektid)
+        {
+            throw new NotImplementedException();
+        }
+
+
+        public Angebot getAngebot(int angebotid)
+        {
+            throw new NotImplementedException();
+        }
+
+        public double getRechnungssumme(int rechnungid)
+        {
+            throw new NotImplementedException();
+        }
+
+
         void IDAL.saveEingang(Eingang r)
         {
             throw new NotImplementedException();
@@ -1066,29 +1100,8 @@ namespace Backoffice
             throw new NotImplementedException();
         }
 
-        List<Stunden> IDAL.getStundenViewList(string projektname)
-        {
-            throw new NotImplementedException();
-        }
 
-        void IDAL.saveStunden(Stunden s)
-        { 
-            throw new NotImplementedException();
-        }
-
-
-        public List<Angebot> getAngebotViewListByProjektId(int projektid)
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<Ausgang> getAusgangViewListByProjektId(int projektid)
-        {
-            throw new NotImplementedException();
-        }
-
-
-        public Angebot getAngebot(int angebotid)
+        public int getProjektStunden(string projektname)
         {
             throw new NotImplementedException();
         }
