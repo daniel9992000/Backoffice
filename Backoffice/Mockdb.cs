@@ -87,7 +87,6 @@ namespace Backoffice
             if (k.Status == ObjectStates.New)
             {
                 k.Status = ObjectStates.Unmodified;
-                
                 k.Kundenid = kunden.Count + 1;
                 kunden.Add(k);
             }
@@ -145,7 +144,6 @@ namespace Backoffice
                 int index = projekte.IndexOf(p);
                 projekte[index].Projektid = p.Projektid;
                 projekte[index].Name = p.Name;
-                projekte[index].Stunden = p.Stunden;
                 projekte[index].Status = ObjectStates.Unmodified;
             }
         }
@@ -157,10 +155,6 @@ namespace Backoffice
 
         public List<Projekt> getProjektViewList()
         {
-            foreach (var item in projekte)
-            {
-                item.Stunden = getProjektStunden(item.Name);
-            }
             return projekte;
         }
 
@@ -451,19 +445,6 @@ namespace Backoffice
         #endregion
 
         #region Auswertungen
-
-        public double getRechnungssumme (int rechnungid)
-        {
-            List<Rechnungszeile> relist = new List<Rechnungszeile>();
-            double resumme = 0;
-            relist = BL.getRechnungszeilen(rechnungid);
-            foreach (var item in relist)
-            {
-                resumme += item.Betrag;
-            }
-            return resumme;
-        }
-
         public List<Angebot> getJahresumsatzViewList()
         {
             List<Angebot> alist = new List<Angebot>();
@@ -480,11 +461,6 @@ namespace Backoffice
         public double[] getIstJahresumsatz()
         {
             double[] werte = new double[2]{0,0};
-            double faktor = 0;
-            if (DateTime.IsLeapYear(DateTime.Now.Year))
-                faktor = 366;
-            else
-                faktor = 365;
             foreach (var item in angebote)
             {
                 if (item.Datum.Year == DateTime.Now.Year && item.Chance > 0)
@@ -493,9 +469,6 @@ namespace Backoffice
                     werte[1] += item.Summe;
                 }
             }
-            faktor = faktor / DateTime.Now.DayOfYear;
-            werte[0] = werte[0] * faktor;
-            werte[1] = werte[1] * faktor;
             return werte;
         }
 
@@ -620,6 +593,13 @@ namespace Backoffice
             buchungen.Remove(b);
         }
 
+        public List<Buchung> getBuchungViewList()
+        {
+            List<Buchung> tmp = new List<Buchung>();
+            tmp = buchungen;
+            return tmp;
+        }
+
         public List<Buchung> getBuchungViewList(int rechnungid)
         {
             List<Buchung> blist = new List<Buchung>();
@@ -638,7 +618,7 @@ namespace Backoffice
         
 
 
-        public  List<Stunden> getStundenViewList(string projektname)
+        List<Stunden> IDAL.getStundenViewList(string projektname)
         {
             List<Stunden> slist = new List<Stunden>();
             foreach (var item in stunden)
@@ -649,25 +629,20 @@ namespace Backoffice
             return slist;
         }
 
-        public void saveStunden(Stunden s)
+        void IDAL.saveStunden(Stunden s)
         {
             stunden.Add(s);
         }
 
-        public int getProjektStunden(string projektname)
+        Angebot IDAL.getAngebot(int? projektid)
         {
-            int anzstunden = 0;
-            foreach (var item in stunden)
+            Angebot a = new Angebot();
+            foreach (var item in angebote)
             {
-                if (item.Projektname.Equals(projektname))
-                    anzstunden += item.Stundenanz;
+                if (item.Projektid == projektid.Value)
+                    a = item;
             }
-            return anzstunden;
+            return a;
         }
-
-
-
-
-        
     }
 }

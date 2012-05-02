@@ -37,15 +37,15 @@ namespace Backoffice.UserControls
         void NewKontakt()
         {
             var tmp = new Dialogs.KontaktDetail();
-            if (tmp.ShowDialog() == DialogResult.OK)
-                BindTo();
+            tmp.ShowDialog();
+            BindTo();
         }
 
         void EditKontakt(Kontakt k)
         {
             var tmp = new Dialogs.KontaktDetail(k);
-            if (tmp.ShowDialog() == DialogResult.OK)
-                BindTo();
+            tmp.ShowDialog();
+            BindTo();
         }
 
         void DeleteKontakt(Kontakt k)

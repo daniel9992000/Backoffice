@@ -1105,5 +1105,11 @@ namespace Backoffice
         {
             throw new NotImplementedException();
         }
+
+
+        public List<Buchung> getBuchungViewList()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

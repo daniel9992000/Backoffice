@@ -59,6 +59,7 @@ namespace Backoffice
         //Buchungen
         void saveBuchung(Buchung b);
         void deleteBuchung(Buchung b);
+        List<Buchung> getBuchungViewList();
         List<Buchung> getBuchungViewList(int rechnungid);
 
 

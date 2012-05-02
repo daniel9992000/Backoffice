@@ -229,7 +229,6 @@ namespace Backoffice_Unittests
             Assert.That(BL.getProjekte().Count, Is.EqualTo(oldlength + 1));
             Assert.That(BL.getProjekt(oldlength+1).Projektid, Is.EqualTo(oldlength+1));
             Assert.That(BL.getProjekt(oldlength+1).Name, Is.EqualTo("Testprojekt"));
-            Assert.That(BL.getProjekt(oldlength+1).Stunden, Is.EqualTo(56));
             Assert.That(BL.getProjekt(oldlength+1).ToString(), Is.EqualTo("Testprojekt"));
         }
 

@@ -56,8 +56,11 @@
             this.betrag = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.bn_save = new System.Windows.Forms.Button();
             this.bn_cancel = new System.Windows.Forms.Button();
+            this.gb3 = new System.Windows.Forms.GroupBox();
+            this.lv_buchungen = new System.Windows.Forms.ListView();
             this.gb1.SuspendLayout();
             this.gb2.SuspendLayout();
+            this.gb3.SuspendLayout();
             this.SuspendLayout();
             // 
             // gb1
@@ -308,19 +311,39 @@
             // 
             // bn_cancel
             // 
-            this.bn_cancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.bn_cancel.Location = new System.Drawing.Point(93, 185);
             this.bn_cancel.Name = "bn_cancel";
             this.bn_cancel.Size = new System.Drawing.Size(75, 23);
             this.bn_cancel.TabIndex = 3;
             this.bn_cancel.Text = "Abbrechen";
             this.bn_cancel.UseVisualStyleBackColor = true;
+            this.bn_cancel.Click += new System.EventHandler(this.bn_cancel_Click);
+            // 
+            // gb3
+            // 
+            this.gb3.Controls.Add(this.lv_buchungen);
+            this.gb3.Location = new System.Drawing.Point(560, 12);
+            this.gb3.Name = "gb3";
+            this.gb3.Size = new System.Drawing.Size(542, 482);
+            this.gb3.TabIndex = 15;
+            this.gb3.TabStop = false;
+            this.gb3.Text = "Buchungen";
+            // 
+            // lv_buchungen
+            // 
+            this.lv_buchungen.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lv_buchungen.Location = new System.Drawing.Point(3, 16);
+            this.lv_buchungen.Name = "lv_buchungen";
+            this.lv_buchungen.Size = new System.Drawing.Size(536, 463);
+            this.lv_buchungen.TabIndex = 0;
+            this.lv_buchungen.UseCompatibleStateImageBehavior = false;
             // 
             // RechnungDetail
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(566, 507);
+            this.ClientSize = new System.Drawing.Size(1117, 502);
+            this.Controls.Add(this.gb3);
             this.Controls.Add(this.bn_cancel);
             this.Controls.Add(this.gb2);
             this.Controls.Add(this.gb1);
@@ -332,6 +355,7 @@
             this.gb1.PerformLayout();
             this.gb2.ResumeLayout(false);
             this.gb2.PerformLayout();
+            this.gb3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -366,5 +390,7 @@
         private DataBinding.ErrorControl errorControl1;
         private DataBinding.ErrorControl errorControl5;
         private DataBinding.ErrorControl errorControl4;
+        private System.Windows.Forms.GroupBox gb3;
+        private System.Windows.Forms.ListView lv_buchungen;
     }
 }

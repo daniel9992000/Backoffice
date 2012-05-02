@@ -44,6 +44,7 @@ namespace Backoffice.Dialogs
             binder.BindTo_TextBox(tb_ort, k.Ort);
             binder.BindTo_TextBox(tb_telefon, k.Telefon);
             binder.BindTo_TextBox(rtb_bemerkungen, k.Bemerkungen);
+            binder.BindTo_ListView(lv_eingang, BL.getEingaenge(k.Kontaktid));
         }
 
         bool BindFrom()
@@ -74,7 +75,6 @@ namespace Backoffice.Dialogs
             {
                 BL.saveKontakt(k);
                 this.Close();
-                this.DialogResult = System.Windows.Forms.DialogResult.OK;
             }
         }
         private void KontaktDetail_Load(object sender, EventArgs e)
@@ -87,14 +87,16 @@ namespace Backoffice.Dialogs
             Save();
         }
 
-        private void gb3_Enter(object sender, EventArgs e)
+        private void lv_eingang_DoubleClick(object sender, EventArgs e)
         {
-
+            Dialogs.EingangDetail tmp = new EingangDetail((Eingang)lv_eingang.FocusedItem.Tag);
+            tmp.ShowDialog();
+            BindTo();
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        private void bncancel_Click(object sender, EventArgs e)
         {
-
+            this.Close();
         }
     }
 }

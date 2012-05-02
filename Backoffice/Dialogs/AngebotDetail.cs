@@ -70,13 +70,12 @@ namespace Backoffice.Dialogs
             {
                 BL.saveAngebot(a);
                 this.Close();
-                this.DialogResult = System.Windows.Forms.DialogResult.OK;
             }
         }
 
         private void bn_cancel_Click(object sender, EventArgs e)
         {
-
+            this.Close();
         }
 
         private void AngebotDetail_Load(object sender, EventArgs e)

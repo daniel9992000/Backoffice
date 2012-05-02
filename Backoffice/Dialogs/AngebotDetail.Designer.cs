@@ -29,6 +29,11 @@
         private void InitializeComponent()
         {
             this.gb1 = new System.Windows.Forms.GroupBox();
+            this.errorControl7 = new Backoffice.DataBinding.ErrorControl();
+            this.errorControl4 = new Backoffice.DataBinding.ErrorControl();
+            this.errorControl3 = new Backoffice.DataBinding.ErrorControl();
+            this.errorControl2 = new Backoffice.DataBinding.ErrorControl();
+            this.errorControl1 = new Backoffice.DataBinding.ErrorControl();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.tb_chance = new System.Windows.Forms.TextBox();
@@ -42,18 +47,13 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.gb2 = new System.Windows.Forms.GroupBox();
+            this.errorControl5 = new Backoffice.DataBinding.ErrorControl();
             this.cb_kunde = new System.Windows.Forms.ComboBox();
             this.gb3 = new System.Windows.Forms.GroupBox();
+            this.errorControl6 = new Backoffice.DataBinding.ErrorControl();
             this.cb_projekt = new System.Windows.Forms.ComboBox();
             this.bnsave = new System.Windows.Forms.Button();
             this.bncancel = new System.Windows.Forms.Button();
-            this.errorControl6 = new Backoffice.DataBinding.ErrorControl();
-            this.errorControl5 = new Backoffice.DataBinding.ErrorControl();
-            this.errorControl7 = new Backoffice.DataBinding.ErrorControl();
-            this.errorControl4 = new Backoffice.DataBinding.ErrorControl();
-            this.errorControl3 = new Backoffice.DataBinding.ErrorControl();
-            this.errorControl2 = new Backoffice.DataBinding.ErrorControl();
-            this.errorControl1 = new Backoffice.DataBinding.ErrorControl();
             this.gb1.SuspendLayout();
             this.gb2.SuspendLayout();
             this.gb3.SuspendLayout();
@@ -84,6 +84,46 @@
             this.gb1.TabIndex = 0;
             this.gb1.TabStop = false;
             this.gb1.Text = "Angebot";
+            // 
+            // errorControl7
+            // 
+            this.errorControl7.AutoSize = true;
+            this.errorControl7.Location = new System.Drawing.Point(287, 83);
+            this.errorControl7.Name = "errorControl7";
+            this.errorControl7.Size = new System.Drawing.Size(0, 13);
+            this.errorControl7.TabIndex = 17;
+            // 
+            // errorControl4
+            // 
+            this.errorControl4.AutoSize = true;
+            this.errorControl4.Location = new System.Drawing.Point(131, 161);
+            this.errorControl4.Name = "errorControl4";
+            this.errorControl4.Size = new System.Drawing.Size(0, 13);
+            this.errorControl4.TabIndex = 16;
+            // 
+            // errorControl3
+            // 
+            this.errorControl3.AutoSize = true;
+            this.errorControl3.Location = new System.Drawing.Point(182, 135);
+            this.errorControl3.Name = "errorControl3";
+            this.errorControl3.Size = new System.Drawing.Size(0, 13);
+            this.errorControl3.TabIndex = 15;
+            // 
+            // errorControl2
+            // 
+            this.errorControl2.AutoSize = true;
+            this.errorControl2.Location = new System.Drawing.Point(131, 109);
+            this.errorControl2.Name = "errorControl2";
+            this.errorControl2.Size = new System.Drawing.Size(0, 13);
+            this.errorControl2.TabIndex = 14;
+            // 
+            // errorControl1
+            // 
+            this.errorControl1.AutoSize = true;
+            this.errorControl1.Location = new System.Drawing.Point(214, 57);
+            this.errorControl1.Name = "errorControl1";
+            this.errorControl1.Size = new System.Drawing.Size(0, 13);
+            this.errorControl1.TabIndex = 13;
             // 
             // label6
             // 
@@ -193,6 +233,14 @@
             this.gb2.TabStop = false;
             this.gb2.Text = "Kunde";
             // 
+            // errorControl5
+            // 
+            this.errorControl5.AutoSize = true;
+            this.errorControl5.Location = new System.Drawing.Point(3, 54);
+            this.errorControl5.Name = "errorControl5";
+            this.errorControl5.Size = new System.Drawing.Size(0, 13);
+            this.errorControl5.TabIndex = 17;
+            // 
             // cb_kunde
             // 
             this.cb_kunde.FormattingEnabled = true;
@@ -211,6 +259,14 @@
             this.gb3.TabIndex = 4;
             this.gb3.TabStop = false;
             this.gb3.Text = "Projekt";
+            // 
+            // errorControl6
+            // 
+            this.errorControl6.AutoSize = true;
+            this.errorControl6.Location = new System.Drawing.Point(3, 54);
+            this.errorControl6.Name = "errorControl6";
+            this.errorControl6.Size = new System.Drawing.Size(0, 13);
+            this.errorControl6.TabIndex = 18;
             // 
             // cb_projekt
             // 
@@ -232,7 +288,6 @@
             // 
             // bncancel
             // 
-            this.bncancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.bncancel.Location = new System.Drawing.Point(93, 384);
             this.bncancel.Name = "bncancel";
             this.bncancel.Size = new System.Drawing.Size(75, 23);
@@ -241,67 +296,11 @@
             this.bncancel.UseVisualStyleBackColor = true;
             this.bncancel.Click += new System.EventHandler(this.bn_cancel_Click);
             // 
-            // errorControl6
-            // 
-            this.errorControl6.AutoSize = true;
-            this.errorControl6.Location = new System.Drawing.Point(3, 54);
-            this.errorControl6.Name = "errorControl6";
-            this.errorControl6.Size = new System.Drawing.Size(0, 13);
-            this.errorControl6.TabIndex = 18;
-            // 
-            // errorControl5
-            // 
-            this.errorControl5.AutoSize = true;
-            this.errorControl5.Location = new System.Drawing.Point(3, 54);
-            this.errorControl5.Name = "errorControl5";
-            this.errorControl5.Size = new System.Drawing.Size(0, 13);
-            this.errorControl5.TabIndex = 17;
-            // 
-            // errorControl7
-            // 
-            this.errorControl7.AutoSize = true;
-            this.errorControl7.Location = new System.Drawing.Point(287, 83);
-            this.errorControl7.Name = "errorControl7";
-            this.errorControl7.Size = new System.Drawing.Size(0, 13);
-            this.errorControl7.TabIndex = 17;
-            // 
-            // errorControl4
-            // 
-            this.errorControl4.AutoSize = true;
-            this.errorControl4.Location = new System.Drawing.Point(131, 161);
-            this.errorControl4.Name = "errorControl4";
-            this.errorControl4.Size = new System.Drawing.Size(0, 13);
-            this.errorControl4.TabIndex = 16;
-            // 
-            // errorControl3
-            // 
-            this.errorControl3.AutoSize = true;
-            this.errorControl3.Location = new System.Drawing.Point(182, 135);
-            this.errorControl3.Name = "errorControl3";
-            this.errorControl3.Size = new System.Drawing.Size(0, 13);
-            this.errorControl3.TabIndex = 15;
-            // 
-            // errorControl2
-            // 
-            this.errorControl2.AutoSize = true;
-            this.errorControl2.Location = new System.Drawing.Point(131, 109);
-            this.errorControl2.Name = "errorControl2";
-            this.errorControl2.Size = new System.Drawing.Size(0, 13);
-            this.errorControl2.TabIndex = 14;
-            // 
-            // errorControl1
-            // 
-            this.errorControl1.AutoSize = true;
-            this.errorControl1.Location = new System.Drawing.Point(214, 57);
-            this.errorControl1.Name = "errorControl1";
-            this.errorControl1.Size = new System.Drawing.Size(0, 13);
-            this.errorControl1.TabIndex = 13;
-            // 
             // AngebotDetail
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(461, 413);
+            this.ClientSize = new System.Drawing.Size(460, 413);
             this.Controls.Add(this.gb3);
             this.Controls.Add(this.gb2);
             this.Controls.Add(this.bncancel);

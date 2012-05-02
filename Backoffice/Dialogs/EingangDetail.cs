@@ -77,8 +77,12 @@ namespace Backoffice.Dialogs
             {
                 BL.saveEingang(r);
                 this.Close();
-                this.DialogResult = System.Windows.Forms.DialogResult.OK;
             }
+        }
+
+        private void bn_cancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

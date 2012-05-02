@@ -31,6 +31,7 @@ namespace Backoffice
             guiControls.Add(ucStundensatzAnzeigen1);
             guiControls.Add(ucEingangAnzeigen1);
             guiControls.Add(ucStundenEinlesenAnzeigen1);
+            guiControls.Add(ucBuchungenAnzeigen1);
 
             foreach (var item in guiControls)
             {
@@ -130,6 +131,11 @@ namespace Backoffice
         private void stundenEinlesenToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DisplayUserControl(ucStundenEinlesenAnzeigen1);
+        }
+
+        private void buchungenAnzeigenToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DisplayUserControl(ucBuchungenAnzeigen1);
         }
     }
 }

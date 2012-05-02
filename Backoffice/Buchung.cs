@@ -33,8 +33,6 @@ namespace Backoffice
             this.status = status;
         }
 
-
-
         #region Properties
         public int Buchungid
         {

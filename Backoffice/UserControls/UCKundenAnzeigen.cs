@@ -24,17 +24,15 @@ namespace Backoffice.UserControls
         void NewKunde()
         {
             var tmp = new Dialogs.KundeDetail();
-            if (tmp.ShowDialog() == DialogResult.OK)
-                BindTo();
+            tmp.ShowDialog();
+            BindTo();
         }
 
         void EditKunde(Kunde k)
         {
             var tmp = new Dialogs.KundeDetail(k);
-            if (tmp.ShowDialog() == DialogResult.OK)
-            {
-                BindTo();
-            }
+            tmp.ShowDialog();            
+            BindTo();            
         }
 
         void DeleteKunde(Kunde k)

@@ -64,9 +64,12 @@
             this.gb3 = new System.Windows.Forms.GroupBox();
             this.errorControl10 = new Backoffice.DataBinding.ErrorControl();
             this.rtb_bemerkungen = new System.Windows.Forms.RichTextBox();
+            this.gb4 = new System.Windows.Forms.GroupBox();
+            this.lv_eingang = new System.Windows.Forms.ListView();
             this.gb1.SuspendLayout();
             this.gb2.SuspendLayout();
             this.gb3.SuspendLayout();
+            this.gb4.SuspendLayout();
             this.SuspendLayout();
             // 
             // gb1
@@ -177,7 +180,6 @@
             this.label1.Size = new System.Drawing.Size(18, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "ID";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // bnsave
             // 
@@ -191,13 +193,13 @@
             // 
             // bncancel
             // 
-            this.bncancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.bncancel.Location = new System.Drawing.Point(84, 416);
             this.bncancel.Name = "bncancel";
             this.bncancel.Size = new System.Drawing.Size(75, 25);
             this.bncancel.TabIndex = 21;
             this.bncancel.Text = "Abbrechen";
             this.bncancel.UseVisualStyleBackColor = true;
+            this.bncancel.Click += new System.EventHandler(this.bncancel_Click);
             // 
             // gb2
             // 
@@ -380,16 +382,14 @@
             this.gb3.TabIndex = 4;
             this.gb3.TabStop = false;
             this.gb3.Text = "Bemerkungen";
-            this.gb3.Enter += new System.EventHandler(this.gb3_Enter);
             // 
             // errorControl10
             // 
             this.errorControl10.AutoSize = true;
             this.errorControl10.Location = new System.Drawing.Point(104, 0);
             this.errorControl10.Name = "errorControl10";
-            this.errorControl10.Size = new System.Drawing.Size(73, 13);
+            this.errorControl10.Size = new System.Drawing.Size(0, 13);
             this.errorControl10.TabIndex = 19;
-            this.errorControl10.Text = "errorControl10";
             // 
             // rtb_bemerkungen
             // 
@@ -400,11 +400,32 @@
             this.rtb_bemerkungen.TabIndex = 14;
             this.rtb_bemerkungen.Text = "";
             // 
+            // gb4
+            // 
+            this.gb4.Controls.Add(this.lv_eingang);
+            this.gb4.Location = new System.Drawing.Point(494, 222);
+            this.gb4.Name = "gb4";
+            this.gb4.Size = new System.Drawing.Size(394, 188);
+            this.gb4.TabIndex = 20;
+            this.gb4.TabStop = false;
+            this.gb4.Text = "Eingangsrechnungen";
+            // 
+            // lv_eingang
+            // 
+            this.lv_eingang.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lv_eingang.Location = new System.Drawing.Point(3, 16);
+            this.lv_eingang.Name = "lv_eingang";
+            this.lv_eingang.Size = new System.Drawing.Size(388, 169);
+            this.lv_eingang.TabIndex = 0;
+            this.lv_eingang.UseCompatibleStateImageBehavior = false;
+            this.lv_eingang.DoubleClick += new System.EventHandler(this.lv_eingang_DoubleClick);
+            // 
             // KontaktDetail
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(938, 451);
+            this.Controls.Add(this.gb4);
             this.Controls.Add(this.gb3);
             this.Controls.Add(this.gb2);
             this.Controls.Add(this.bncancel);
@@ -419,6 +440,7 @@
             this.gb2.PerformLayout();
             this.gb3.ResumeLayout(false);
             this.gb3.PerformLayout();
+            this.gb4.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -461,5 +483,7 @@
         private DataBinding.ErrorControl errorControl5;
         private DataBinding.ErrorControl errorControl4;
         private DataBinding.ErrorControl errorControl10;
+        private System.Windows.Forms.GroupBox gb4;
+        private System.Windows.Forms.ListView lv_eingang;
     }
 }
