@@ -66,14 +66,16 @@ namespace Backoffice
             zeilen.Add(new Rechnungszeile(4, "Testen", 1000.00, 1, 1, ObjectStates.Unmodified));
             zeilen.Add(new Rechnungszeile(5, "Design", 1000.00, 2, 2, ObjectStates.Unmodified));
 
-
             buchungen = new List<Buchung>();
             buchungen.Add(new Buchung(1,11000.00,"ausgang", DateTime.Now,1,ObjectStates.Unmodified));
             buchungen.Add(new Buchung(2,10000.00,"ausgang", DateTime.Now,1,ObjectStates.Unmodified));
             buchungen.Add(new Buchung(3,500.00,"ausgang", DateTime.Now, 2, ObjectStates.Unmodified));
 
             stunden = new List<Stunden>();
-            stunden.Add(new Stunden ("Projekt 1","Karl Huf",54,DateTime.Now));
+            stunden.Add(new Stunden("Projekt 1", "Karl Huf", 8, DateTime.Parse("30.03.2012")));
+            stunden.Add(new Stunden("Projekt 1", "Karl Huf", 8, DateTime.Parse("31.03.2012")));
+            stunden.Add(new Stunden("Projekt 1", "Karl Huf", 8, DateTime.Parse("01.04.2012")));
+            stunden.Add(new Stunden("Projekt 1", "Karl Huf", 10, DateTime.Parse("02.04.2012")));
         }
 
         public void buildconnection()
@@ -397,8 +399,6 @@ namespace Backoffice
 
         #endregion
 
-
-
         public List<Ausgang> getAusgangViewListByProjektId(int projektid)
         {
             List<Ausgang> tmp = new List<Ausgang>();
@@ -505,15 +505,12 @@ namespace Backoffice
             }
             return rlist;
         }
-        #endregion
-
-     
+        #endregion           
 
         public List<Rechnung> getRechnungViewList(int kundenid)
         {
             throw new NotImplementedException();
         }
-
 
         public List<Angebot> getAngebote()
         {
@@ -527,7 +524,6 @@ namespace Backoffice
             }
             return alist;
         }
-
 
         public List<Ausgang> getOffeneARechnungen()
         {
@@ -551,9 +547,6 @@ namespace Backoffice
             }
             return rlist;
         }
-
-
-
 
         public List<Eingang> getOffeneERechnungen() //noch richtig implementieren
         {
@@ -621,10 +614,6 @@ namespace Backoffice
         }
         #endregion
 
-
-        
-
-
         List<Stunden> IDAL.getStundenViewList(string projektname)
         {
             List<Stunden> slist = new List<Stunden>();
@@ -651,7 +640,6 @@ namespace Backoffice
             }
             return a;
         }
-
 
         public double getRechnungssumme(int rechnungid)
         {

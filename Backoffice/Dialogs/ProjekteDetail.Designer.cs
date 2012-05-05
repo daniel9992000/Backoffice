@@ -40,9 +40,12 @@
             this.lv_angebote = new System.Windows.Forms.ListView();
             this.gb3 = new System.Windows.Forms.GroupBox();
             this.lv_rechungen = new System.Windows.Forms.ListView();
+            this.gb4 = new System.Windows.Forms.GroupBox();
+            this.lv_stunden = new System.Windows.Forms.ListView();
             this.groupBox1.SuspendLayout();
             this.gb2.SuspendLayout();
             this.gb3.SuspendLayout();
+            this.gb4.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -162,11 +165,33 @@
             this.lv_rechungen.UseCompatibleStateImageBehavior = false;
             this.lv_rechungen.View = System.Windows.Forms.View.Details;
             // 
+            // gb4
+            // 
+            this.gb4.Controls.Add(this.lv_stunden);
+            this.gb4.Location = new System.Drawing.Point(460, 12);
+            this.gb4.Name = "gb4";
+            this.gb4.Padding = new System.Windows.Forms.Padding(5);
+            this.gb4.Size = new System.Drawing.Size(407, 430);
+            this.gb4.TabIndex = 4;
+            this.gb4.TabStop = false;
+            this.gb4.Text = "Stunden";
+            // 
+            // lv_stunden
+            // 
+            this.lv_stunden.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lv_stunden.Location = new System.Drawing.Point(5, 18);
+            this.lv_stunden.Name = "lv_stunden";
+            this.lv_stunden.Size = new System.Drawing.Size(397, 407);
+            this.lv_stunden.TabIndex = 0;
+            this.lv_stunden.UseCompatibleStateImageBehavior = false;
+            this.lv_stunden.View = System.Windows.Forms.View.Details;
+            // 
             // ProjekteDetail
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(466, 480);
+            this.ClientSize = new System.Drawing.Size(879, 480);
+            this.Controls.Add(this.gb4);
             this.Controls.Add(this.gb3);
             this.Controls.Add(this.gb2);
             this.Controls.Add(this.bn_cancel);
@@ -179,6 +204,7 @@
             this.groupBox1.PerformLayout();
             this.gb2.ResumeLayout(false);
             this.gb3.ResumeLayout(false);
+            this.gb4.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -197,5 +223,7 @@
         private System.Windows.Forms.ListView lv_angebote;
         private System.Windows.Forms.GroupBox gb3;
         private System.Windows.Forms.ListView lv_rechungen;
+        private System.Windows.Forms.GroupBox gb4;
+        private System.Windows.Forms.ListView lv_stunden;
     }
 }

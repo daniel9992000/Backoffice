@@ -323,6 +323,24 @@ namespace Backoffice.DataBinding
                    
                 }
             }
+            else if (typeof(IList<Stunden>).IsInstanceOfType(values))
+            {
+                lv.Columns.Add("Name", 100);
+                lv.Columns.Add("Mitarbeiter", 100);
+                lv.Columns.Add("Stunden", 60);
+                lv.Columns.Add("Datum", 100);
+
+                foreach (var item in values)
+                {
+                    var tmp = (Stunden)item;
+
+                    ListViewItem i = lv.Items.Add(tmp.Projektname);
+                    i.Tag = tmp;
+                    i.SubItems.Add(tmp.Mitarbeiter);
+                    i.SubItems.Add(tmp.Stundenanz.ToString());
+                    i.SubItems.Add(tmp.Datum.ToShortDateString());                   
+                }
+            }
         }
 
         public void BindTo_ComboBox(ComboBox cb, IList values, object o)

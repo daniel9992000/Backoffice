@@ -23,20 +23,13 @@ namespace Backoffice.Dialogs
         }
 
         void Bindlist()
-        {
-            lv_stunden.Items.Clear();
-            foreach (var tmp in BL.getStunden(cb_projekt.SelectedItem.ToString()))
-            {
-                ListViewItem i = lv_stunden.Items.Add(tmp.Projektname.ToString());
-                i.Tag = tmp;
-                i.SubItems.Add(tmp.Mitarbeiter);
-                i.SubItems.Add(tmp.Stundenanz.ToString());
-                i.SubItems.Add(tmp.Datum.ToShortDateString());
-            }
+        {            
+            DataBinding.Binder binder = new DataBinding.Binder();
+            binder.BindTo_ListView(lv_stunden, BL.getStunden(cb_projekt.SelectedItem.ToString()));
         }
 
         void BindTo()
-        {
+        {   
             bool hilf = false;
             cb_projekt.Items.Clear();
             foreach (var item in BL.getProjekte())
@@ -49,17 +42,8 @@ namespace Backoffice.Dialogs
                 }
                 
             }
-            
-            
-            lv_stunden.Items.Clear();
-            foreach (var tmp in BL.getStunden(cb_projekt.SelectedItem.ToString()))
-            {
-                ListViewItem i = lv_stunden.Items.Add(tmp.Projektname.ToString());
-                i.Tag = tmp;
-                i.SubItems.Add(tmp.Mitarbeiter);
-                i.SubItems.Add(tmp.Stundenanz.ToString());
-                i.SubItems.Add(tmp.Datum.ToShortDateString());
-            }
+
+            Bindlist();
         }
 
         private void bnnew_Click(object sender, EventArgs e)
