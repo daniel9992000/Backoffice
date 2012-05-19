@@ -37,6 +37,9 @@
     <Reference Include="itextsharp">
       <HintPath>..\itextsharp.dll</HintPath>
     </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="Npgsql">
       <HintPath>..\Npgsql.dll</HintPath>
     </Reference>
@@ -55,7 +58,9 @@
     <Compile Include="Angebot.cs" />
     <Compile Include="Ausgang.cs" />
     <Compile Include="BL.cs" />
+    <Compile Include="BLException.cs" />
     <Compile Include="Buchung.cs" />
+    <Compile Include="Buchungskategorie.cs" />
     <Compile Include="ColumnSorter.cs" />
     <Compile Include="CreatePdf.cs" />
     <Compile Include="DALException.cs" />
@@ -73,6 +78,12 @@
     </Compile>
     <Compile Include="Dialogs\AngebotDetail.Designer.cs">
       <DependentUpon>AngebotDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\BuchungDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\BuchungDetail.Designer.cs">
+      <DependentUpon>BuchungDetail.cs</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\EingangDetail.cs">
       <SubType>Form</SubType>
@@ -203,6 +214,9 @@
     </Compile>
     <EmbeddedResource Include="Dialogs\AngebotDetail.resx">
       <DependentUpon>AngebotDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\BuchungDetail.resx">
+      <DependentUpon>BuchungDetail.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\EingangDetail.resx">
       <DependentUpon>EingangDetail.cs</DependentUpon>

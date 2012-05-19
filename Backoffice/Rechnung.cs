@@ -19,6 +19,11 @@ namespace Backoffice
             this.bezeichnung = string.Empty;
         }
 
+        public override string ToString()
+        {
+            return this.bezeichnung;
+        }
+
         public int Rechnungid
         {
             get { return rechnungid; }

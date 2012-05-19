@@ -1111,5 +1111,15 @@ namespace Backoffice
         {
             throw new NotImplementedException();
         }
+
+        public List<Buchungskategorie> getBuchungsKategorien()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Buchungskategorie getBuchungsKategorie(int id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -61,6 +61,9 @@ namespace Backoffice
         void deleteBuchung(Buchung b);
         List<Buchung> getBuchungViewList();
         List<Buchung> getBuchungViewList(int rechnungid);
+        List<Buchungskategorie> getBuchungsKategorien();
+        Buchungskategorie getBuchungsKategorie(int id);
+
 
 
         //Auswertungen

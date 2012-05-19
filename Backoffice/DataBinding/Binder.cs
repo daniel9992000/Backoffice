@@ -132,7 +132,15 @@ namespace Backoffice.DataBinding
                 else if (selected is Kontakt)
                 {
                     result = ((Kontakt)selected).Kontaktid;
-                }  
+                }
+                else if (selected is Rechnung)
+                {
+                    result = ((Rechnung)selected).Rechnungid;
+                }
+                else if (selected is Buchungskategorie)
+                {
+                    result = ((Buchungskategorie)selected).Bkatid;
+                }
             }
 
             if (rule != null)
@@ -294,6 +302,8 @@ namespace Backoffice.DataBinding
                 lv.Columns.Add("ID", 25);
                 lv.Columns.Add("Datum", 120);
                 lv.Columns.Add("Betrag", 110, HorizontalAlignment.Right);
+                lv.Columns.Add("Rechnung", 140);
+                lv.Columns.Add("Kategorie", 100);
 
                 foreach (var item in values)
                 {
@@ -303,6 +313,8 @@ namespace Backoffice.DataBinding
                     i.Tag = tmp;
                     i.SubItems.Add(tmp.Datum.ToShortDateString());
                     i.SubItems.Add(tmp.Betrag.ToString("#0.00") + " Euro");
+                    i.SubItems.Add("");
+                    i.SubItems.Add(BL.getBuchungsKategorie(tmp.Kategorie).Bezeichung);
                 }
             }
             else if (typeof(IList<Projekt>).IsInstanceOfType(values))
@@ -390,6 +402,34 @@ namespace Backoffice.DataBinding
                     if (o is Eingang)
                     {
                         if (((Kontakt)item).Kontaktid == ((Eingang)o).Kontaktid)
+                        {
+                            cb.SelectedItem = item;
+                        }
+                    }
+                }
+            }
+            else if (typeof(IList<Rechnung>).IsInstanceOfType(values))
+            {
+                foreach (var item in values)
+                {
+                    cb.Items.Add(item);
+                    if (o is Buchung)
+                    {
+                        if (((Rechnung)item).Rechnungid == ((Buchung)o).Rechnungid)
+                        {
+                            cb.SelectedItem = item;
+                        }
+                    }
+                }
+            }
+            else if (typeof(IList<Buchungskategorie>).IsInstanceOfType(values))
+            {
+                foreach (var item in values)
+                {
+                    cb.Items.Add(item);
+                    if (o is Buchung)
+                    {
+                        if (((Buchungskategorie)item).Bkatid == ((Buchung)o).Kategorie)
                         {
                             cb.SelectedItem = item;
                         }

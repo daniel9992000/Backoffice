@@ -21,6 +21,7 @@ namespace Backoffice.UserControls
             DataBinding.Binder binder = new DataBinding.Binder();
             binder.BindTo_ListView(lv_kunden, BL.getKunden());
         }
+
         void NewKunde()
         {
             var tmp = new Dialogs.KundeDetail();
@@ -90,6 +91,11 @@ namespace Backoffice.UserControls
         private void lv_kunden_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void tb_search_TextChanged(object sender, EventArgs e)
+        {
+            BindTo();
         }
     }
 }

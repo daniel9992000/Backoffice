@@ -15,6 +15,7 @@ namespace Backoffice
         List<Eingang> eingaenge;
         List<Rechnungszeile> zeilen;
         List<Buchung> buchungen;
+        List<Buchungskategorie> kategorie;
         List<Stunden> stunden;
         int rechnungid = 0;
 
@@ -66,10 +67,16 @@ namespace Backoffice
             zeilen.Add(new Rechnungszeile(4, "Testen", 1000.00, 1, 1, ObjectStates.Unmodified));
             zeilen.Add(new Rechnungszeile(5, "Design", 1000.00, 2, 2, ObjectStates.Unmodified));
 
+            kategorie = new List<Buchungskategorie>();
+            kategorie.Add(new Buchungskategorie(1, "Einnahme"));
+            kategorie.Add(new Buchungskategorie(2, "Ausgabe"));
+            kategorie.Add(new Buchungskategorie(3, "SVA"));
+            kategorie.Add(new Buchungskategorie(4, "USt"));
+
             buchungen = new List<Buchung>();
-            buchungen.Add(new Buchung(1,11000.00,"ausgang", DateTime.Now,1,ObjectStates.Unmodified));
-            buchungen.Add(new Buchung(2,10000.00,"ausgang", DateTime.Now,1,ObjectStates.Unmodified));
-            buchungen.Add(new Buchung(3,500.00,"ausgang", DateTime.Now, 2, ObjectStates.Unmodified));
+            buchungen.Add(new Buchung(1,11000.00,1, DateTime.Now,1,ObjectStates.Unmodified));
+            buchungen.Add(new Buchung(2,10000.00,1, DateTime.Now,1,ObjectStates.Unmodified));
+            buchungen.Add(new Buchung(3,500.00,1, DateTime.Now, 2, ObjectStates.Unmodified));
 
             stunden = new List<Stunden>();
             stunden.Add(new Stunden("Projekt 1", "Karl Huf", 8, DateTime.Parse("30.03.2012")));
@@ -611,6 +618,21 @@ namespace Backoffice
                 }
             }
             return blist;
+        }
+
+        public List<Buchungskategorie> getBuchungsKategorien()
+        {
+            return kategorie;
+        }
+
+        public Buchungskategorie getBuchungsKategorie(int id)
+        {
+            foreach (var item in kategorie)
+            {
+                if (item.Bkatid == id)
+                    return item;
+            }
+            return new Buchungskategorie();
         }
         #endregion
 

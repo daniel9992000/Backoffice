@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using log4net;
+using log4net.Config;
 
 namespace Backoffice
 {
@@ -12,6 +14,13 @@ namespace Backoffice
 
     public class BL
     {
+        static readonly ILog log = LogManager.GetLogger(typeof(BL)); 
+       
+        public static void ConfigureLogger()
+        {
+            XmlConfigurator.Configure();
+        }
+
         #region Kunden
         public static List<Kunde> getKunden()
         {
@@ -19,10 +28,12 @@ namespace Backoffice
             try
             {
                 tmp = DALFactory.getDAL().getKundeViewList();
+                log.Info("Alle Kunden auslesen!");
             }
             catch (DALException ex)
             {
-                
+                log.Error("Fehler beim Auslesen der Kundendaten!", ex);
+                throw new BLException("Kundendaten konnten nicht auslesen werden!");
             }
             return tmp;
         }
@@ -33,10 +44,12 @@ namespace Backoffice
             try
             {
                 tmp = DALFactory.getDAL().getKunde(id);
+                log.Info("Kunde mit ID "+ id +" auslesen!");
             }
             catch (DALException ex)
             {
-
+                log.Error("Fehler beim Auslesen vom Kunden mit ID " + id, ex);
+                throw new BLException("Kunde konnte nicht ausgelesen werden!");
             }
             return tmp;
         }
@@ -46,10 +59,12 @@ namespace Backoffice
             try
             {
                 DALFactory.getDAL().saveKunde(k);
+                log.Info("Kunde mit ID " + k.Kundenid + " gespeichert!");
             }
             catch (DALException ex)
             {
-                
+                log.Error("Fehler beim Speicher des Kunden mit der ID " + k.Kundenid, ex);
+                throw new BLException("Kunde konnte nicht gepspeichert werden!");
             }            
         }
 
@@ -57,11 +72,26 @@ namespace Backoffice
         {
             try
             {
-                DALFactory.getDAL().deleteKunde(k);
+                if (DALFactory.getDAL().getAngebotViewList(k.Kundenid).Count > 0)
+                {
+                    log.Warn("Kunde mit ID " + k.Kundenid + " kann nicht gelöscht werden, da Angebote existieren, die zugeordnet sind!");
+                    throw new BLException("Kunde kann nicht gelöscht werden, da ihm Angebote zugeordnet sind!");
+                }
+                else if (DALFactory.getDAL().getAusgangViewList(k.Kundenid).Count > 0)
+                {
+                    log.Warn("Kunde mit ID " + k.Kundenid + " kann nicht gelöscht werden, da Ausgangsrechnungen existieren, die zugeordnet sind!");
+                    throw new BLException("Kunde kann nicht gelöscht werden, da ihm Ausgangsrechnungen zugeordnet sind!");
+                }
+                else
+                {
+                    DALFactory.getDAL().deleteKunde(k);
+                    log.Info("Kunde mit ID " + k.Kundenid + " gelöscht!");
+                }
             }
             catch (DALException ex)
             {
-
+                log.Error("Fehler beim Löschen des Kunden mit der ID " + k.Kundenid, ex);
+                throw new BLException("Kunde konnte nicht gelöscht werden!");
             }            
         }
 
@@ -75,10 +105,12 @@ namespace Backoffice
             try
             {
                 tmp = DALFactory.getDAL().getAngebotViewList();
+                log.Info("Alle Angebotsdaten auslesen!");
             }
             catch (DALException ex)
             {
-
+                log.Error("Alle Angebotsdaten konnten nicht ausgelesen werden!", ex);
+                throw new BLException("Angebotsdaten konnten nicht ausgelesen werden!");
             }
             return tmp;
         }
@@ -89,10 +121,12 @@ namespace Backoffice
             try
             {
                 tmp = DALFactory.getDAL().getAngebotViewList(kundenid);
+                log.Info("Angebote mit KundenID " + kundenid + " ausgelesen!");
             }
             catch (DALException ex)
             {
-               
+                log.Error("Angebote mit KundenID " + kundenid + " konnten nicht ausgelesen werden!", ex);
+                throw new BLException("Angebote konnten nicht ausgelesen werden!");
             }
             return tmp;
         }
@@ -103,35 +137,48 @@ namespace Backoffice
             try
             {
                 tmp = DALFactory.getDAL().getAngebotViewListByProjektId(projektid);
+                log.Info("Angebote mit ProjektID " + projektid + " ausgelesen!");
             }
             catch (DALException ex)
             {
-
+                log.Error("Angebote mit ProjektID " + projektid + " konnten nicht ausgelesen werden!", ex);
+                throw new BLException("Angebote konnten nicht ausgelesen werden!");
             }
             return tmp;
         }
 
         public static Angebot getAngebot(int angebotid)
         {
-            return DALFactory.getDAL().getAngebot(angebotid);
+            Angebot tmp = null;
+            try
+            {
+                tmp = DALFactory.getDAL().getAngebot(angebotid);
+                log.Info("Angebot mit ID " + angebotid + " ausgelesen!");
+            }
+            catch(DALException ex)
+            {
+                log.Error("Angebot mit ID " + angebotid + " konnte nicht ausgelesen werden!", ex);
+                throw new BLException("Angebot konnte nicht ausgelesen werden!");
+            }
+            return tmp;
         }
 
         public static void saveAngebot(Angebot a)
         {
             if (a.Chance < 0 || a.Chance > 100)
             {
-                throw new Exception("Angebot: Wert von Chance außerhalb der Grenzen!");
+                throw new BLException("Angebot: Wert von Chance außerhalb der Grenzen!");
             }
 
             try
-            {
-                
-
+            { 
                 DALFactory.getDAL().saveAngebot(a);
+                log.Info("Angebot mit ID " + a.Angebotid + " gespeichert!");
             }
             catch (DALException ex)
             {
-                
+                log.Error("Angebot mit ID " + a.Angebotid + " konnte nicht gespeichert werden!", ex);
+                throw new BLException("Angebot konnte nicht gespeichert werden!");
             }            
         }
 
@@ -140,10 +187,12 @@ namespace Backoffice
             try
             {
                 DALFactory.getDAL().deleteAngebot(a);
+                log.Info("Angebot mit ID " + a.Angebotid + " gelöscht!");
             }
             catch (DALException ex)
             {
-
+                log.Error("Angebot mit ID " + a.Angebotid + " konnte nicht gelöscht werden!", ex);
+                throw new BLException("Angebot konnte nicht gelöscht werden!");
             }            
         }        
         #endregion
@@ -244,6 +293,25 @@ namespace Backoffice
        
         #endregion
 
+        #region Rechungen
+        public static List<Rechnung> getRechnungen()
+        {
+            List<Rechnung> tmp = new List<Rechnung>();
+
+            foreach (var item in DALFactory.getDAL().getAusgangViewList())
+            {
+                tmp.Add(item);
+            }
+
+            foreach (var item in DALFactory.getDAL().getEingangViewList())
+            {
+                tmp.Add(item);
+            }
+
+            return tmp;
+        }
+        #endregion
+
         #region Ausgangsrechnungen
         public static void saveAusgang(Ausgang r)
         {
@@ -329,6 +397,16 @@ namespace Backoffice
         public static void deleteBuchung(Buchung b)
         {
             DALFactory.getDAL().deleteBuchung(b);
+        }
+
+        public static List<Buchungskategorie> getBuchungsKategorie()
+        {
+            return DALFactory.getDAL().getBuchungsKategorien();
+        }
+
+        public static Buchungskategorie getBuchungsKategorie(int id)
+        {
+            return DALFactory.getDAL().getBuchungsKategorie(id);
         }
         #endregion
 
