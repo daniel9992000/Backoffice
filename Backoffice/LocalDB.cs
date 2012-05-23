@@ -1161,5 +1161,11 @@ namespace Backoffice
         {
             throw new NotImplementedException();
         }
+
+
+        public Rechnung getRechung(int rechnungsid)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

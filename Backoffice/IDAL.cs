@@ -40,6 +40,9 @@ namespace Backoffice
         List<Kontakt> getKontaktViewList(string search);
         Kontakt getKontakt(int id);
 
+        //Rechung
+        Rechnung getRechung(int rechnungsid);
+
         //Ausgangsrechnungen
         void saveAusgang(Ausgang r);
         void deleteAusgang(Ausgang r);
@@ -52,7 +55,6 @@ namespace Backoffice
         void deleteEingang(Eingang r);
         List<Eingang> getEingangViewList();
         List<Eingang> getEingangViewList(int kontaktid);
-
 
         //Rechnungszeilen
         void saveRechnungszeile(Rechnungszeile r);

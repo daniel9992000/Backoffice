@@ -371,6 +371,25 @@ namespace Backoffice
         }
         #endregion
 
+        #region Rechungen
+        public Rechnung getRechung(int id)
+        {
+            foreach (var item in ausgaenge)
+            {
+                if (item.Rechnungid == id)
+                    return item;
+            }
+
+            foreach (var item in eingaenge)
+            {
+                if (item.Rechnungid == id)
+                    return item;
+            }
+
+            return null;
+        }
+        #endregion
+
         #region Ausgangsrechnungen
         public void saveAusgang(Ausgang r)
         {
@@ -414,6 +433,19 @@ namespace Backoffice
 
             return tmp;
         }
+
+        public List<Ausgang> getAusgangViewListByProjektId(int projektid)
+        {
+            List<Ausgang> tmp = new List<Ausgang>();
+
+            foreach (var item in ausgaenge)
+            {
+                if (item.Projektid == projektid)
+                    tmp.Add(item);
+            }
+
+            return tmp;
+        }   
         #endregion     
   
         #region Eingangsrechnungen
@@ -464,18 +496,7 @@ namespace Backoffice
 
         #endregion
 
-        public List<Ausgang> getAusgangViewListByProjektId(int projektid)
-        {
-            List<Ausgang> tmp = new List<Ausgang>();
-
-            foreach (var item in ausgaenge)
-            {
-                if (item.Projektid == projektid)
-                    tmp.Add(item);
-            }
-
-            return tmp;
-        }   
+        
     
         #region Rechnungszeile
         public void saveRechnungszeile(Rechnungszeile r)
@@ -742,5 +763,6 @@ namespace Backoffice
             }
             return anz;
         }
+
     }
 }

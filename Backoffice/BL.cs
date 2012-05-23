@@ -359,15 +359,40 @@ namespace Backoffice
         public static List<Rechnung> getRechnungen()
         {
             List<Rechnung> tmp = new List<Rechnung>();
-
-            foreach (var item in DALFactory.getDAL().getAusgangViewList())
+            try
             {
-                tmp.Add(item);
+                foreach (var item in DALFactory.getDAL().getAusgangViewList())
+                {
+                    tmp.Add(item);
+                }
+
+                foreach (var item in DALFactory.getDAL().getEingangViewList())
+                {
+                    tmp.Add(item);
+                }
+                log.Info("Alle Rechnungen ausgelesen!");
+            }
+            catch (DALException ex)
+            {
+                log.Error("Fehler beim Auslesen aller Rechnungen!", ex);
+                throw new BLException("Rechnungen konnten nicht ausgelesen werden!");
             }
 
-            foreach (var item in DALFactory.getDAL().getEingangViewList())
+            return tmp;
+        }
+
+        public static Rechnung getRechnung(int rechnungsid)
+        {
+            Rechnung tmp = null;
+            try
             {
-                tmp.Add(item);
+                tmp = DALFactory.getDAL().getRechung(rechnungsid);
+                log.Info("Rechnung mit ID " + rechnungsid + " ausgelesen!");
+            }
+            catch (DALException ex)
+            {
+                log.Error("Fehler beim Auslesen der Rechung mit ID " + rechnungsid, ex);
+                throw new BLException("Rechnung konnte nicht ausgelesen werden!");
             }
 
             return tmp;

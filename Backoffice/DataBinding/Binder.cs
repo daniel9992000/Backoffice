@@ -341,7 +341,7 @@ namespace Backoffice.DataBinding
                     i.Tag = tmp;
                     i.SubItems.Add(tmp.Datum.ToShortDateString());
                     i.SubItems.Add(tmp.Betrag.ToString("#0.00") + " Euro");
-                    i.SubItems.Add("");
+                    i.SubItems.Add(BL.getRechnung(tmp.Rechnungid).Bezeichnung);
                     i.SubItems.Add(BL.getBuchungsKategorie(tmp.Kategorie).Bezeichung);
                 }
             }
