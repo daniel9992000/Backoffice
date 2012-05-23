@@ -131,6 +131,22 @@ namespace Backoffice
             return tmp;
         }
 
+        public static List<Angebot> getAngebote(string search)
+        {
+            List<Angebot> tmp = null;
+            try
+            {
+                tmp = DALFactory.getDAL().getAngebotViewList(search);
+                log.Info("Angebote mit Suchbegriff " + search + " ausgelesen!");
+            }
+            catch (DALException ex)
+            {
+                log.Error("Fehler beim Auslesen der Angebote mit Suchbegriff " + search, ex);
+                throw new BLException("Angebote konnten nicht ausgelesen werden!");
+            }
+            return tmp;
+        }
+
         public static List<Angebot> getAngebote(int kundenid)
         {
             List<Angebot> tmp = null;

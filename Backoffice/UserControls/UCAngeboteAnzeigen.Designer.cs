@@ -39,6 +39,7 @@
             this.dauer = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.summe = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.chance = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.tb_search = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -55,6 +56,7 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.tb_search);
             this.splitContainer1.Panel1.Controls.Add(this.bn_delete);
             this.splitContainer1.Panel1.Controls.Add(this.bn_edit);
             this.splitContainer1.Panel1.Controls.Add(this.bn_new);
@@ -144,6 +146,14 @@
             // 
             this.chance.Text = "Chance";
             // 
+            // tb_search
+            // 
+            this.tb_search.Location = new System.Drawing.Point(246, 5);
+            this.tb_search.Name = "tb_search";
+            this.tb_search.Size = new System.Drawing.Size(188, 20);
+            this.tb_search.TabIndex = 3;
+            this.tb_search.TextChanged += new System.EventHandler(this.tb_search_TextChanged);
+            // 
             // UCAngeboteAnzeigen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -154,6 +164,7 @@
             this.Size = new System.Drawing.Size(791, 552);
             this.Load += new System.EventHandler(this.UCAngeboteAnzeigen_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
@@ -174,5 +185,6 @@
         private System.Windows.Forms.ColumnHeader summe;
         private System.Windows.Forms.ColumnHeader chance;
         private System.Windows.Forms.ColumnHeader titel;
+        private System.Windows.Forms.TextBox tb_search;
     }
 }

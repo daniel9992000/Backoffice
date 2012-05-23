@@ -1154,6 +1154,12 @@ namespace Backoffice
         public Buchungskategorie getBuchungsKategorie(int id)
         {
             throw new NotImplementedException();
-        }        
+        }
+
+
+        public List<Angebot> getAngebotViewList(string search)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

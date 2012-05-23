@@ -16,10 +16,17 @@ namespace Backoffice.UserControls
             InitializeComponent();
         }
 
-        void BindTo()
+        void BindTo(string search = "")
         {
             DataBinding.Binder binder = new DataBinding.Binder();
-            binder.BindTo_ListView(lv_angebote, BL.getAngebote());
+            if (search == "")
+            {
+                binder.BindTo_ListView(lv_angebote, BL.getAngebote());
+            }
+            else
+            {
+                binder.BindTo_ListView(lv_angebote, BL.getAngebote(search));
+            }
         }
 
         void NewAngebot()
@@ -67,6 +74,11 @@ namespace Backoffice.UserControls
         private void lv_angebote_DoubleClick(object sender, EventArgs e)
         {
             EditAngebot((Angebot)lv_angebote.FocusedItem.Tag);
+        }
+
+        private void tb_search_TextChanged(object sender, EventArgs e)
+        {
+            BindTo(tb_search.Text);
         }
     }
 }

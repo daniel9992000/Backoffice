@@ -42,6 +42,7 @@ namespace Backoffice
             angebote = new List<Angebot>();
             angebote.Add(new Angebot(1, "Angebot 1", 12000.00, DateTime.Parse("17.03.2012"), 200, 80, 1, 1, ObjectStates.Unmodified));
             angebote.Add(new Angebot(2, "Angebot 2", 25000.00, DateTime.Parse("17.03.2012"), 800, 95, 2, 2, ObjectStates.Unmodified));
+            angebote.Add(new Angebot(3, "Angebot 3", 10000.00, DateTime.Parse("18.04.2012"), 500, 70, 2, 2, ObjectStates.Unmodified));
 
             projekte = new List<Projekt>();
             projekte.Add(new Projekt(1, "Projekt 1", ObjectStates.Unmodified));
@@ -235,6 +236,25 @@ namespace Backoffice
         public List<Angebot> getAngebotViewList()
         {
             return angebote;
+        }
+        
+        public List<Angebot> getAngebotViewList(string search)
+        {
+            List<Angebot> tmp = new List<Angebot>();
+            search = search.ToLower();
+            foreach (var item in angebote)
+            {
+                if (item.Titel.ToLower().Contains(search) ||
+                    item.Summe.ToString().ToLower().Contains(search) ||
+                    item.Chance.ToString().ToLower().Contains(search) ||
+                    item.Datum.ToString().ToLower().Contains(search)
+                    )
+                {
+                    tmp.Add(item);
+                }
+            }
+
+            return tmp;
         }
 
         public List<Angebot> getAngebotViewList(int kundenid)
