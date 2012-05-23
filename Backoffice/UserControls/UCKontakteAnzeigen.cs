@@ -16,21 +16,16 @@ namespace Backoffice.UserControls
             InitializeComponent();
         }
 
-        void BindTo()
+        void BindTo(string search = "")
         {
-            lv_kontakte.Items.Clear();
-            foreach (var tmp in BL.getKontakte())
+            DataBinding.Binder binder = new DataBinding.Binder();
+            if (search == "")
             {
-                ListViewItem i = lv_kontakte.Items.Add(tmp.Kontaktid.ToString());
-                i.Tag = tmp;
-                i.SubItems.Add(tmp.Firmenname);
-                i.SubItems.Add(tmp.Vorname);
-                i.SubItems.Add(tmp.Nachname);
-                i.SubItems.Add(tmp.Email);
-                i.SubItems.Add(tmp.Adresse);
-                i.SubItems.Add(tmp.Hausnummer);
-                i.SubItems.Add(tmp.Plz);
-                i.SubItems.Add(tmp.Ort);
+                binder.BindTo_ListView(lv_kontakte, BL.getKontakte());
+            }
+            else
+            {
+                binder.BindTo_ListView(lv_kontakte, BL.getKontakte(search));
             }
         }
 
@@ -84,6 +79,11 @@ namespace Backoffice.UserControls
         private void UCKontakteAnzeigen_Load(object sender, EventArgs e)
         {
             BindTo();
+        }
+
+        private void tb_search_TextChanged(object sender, EventArgs e)
+        {
+            BindTo(tb_search.Text);
         }
     }
 }

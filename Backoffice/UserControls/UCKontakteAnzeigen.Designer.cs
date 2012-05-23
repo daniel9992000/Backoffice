@@ -42,6 +42,7 @@
             this.hausnummer = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.plz = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ort = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.tb_search = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -58,6 +59,7 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.tb_search);
             this.splitContainer1.Panel1.Controls.Add(this.bnedit);
             this.splitContainer1.Panel1.Controls.Add(this.bndelete);
             this.splitContainer1.Panel1.Controls.Add(this.bnnew);
@@ -65,16 +67,16 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.lv_kontakte);
-            this.splitContainer1.Size = new System.Drawing.Size(434, 328);
-            this.splitContainer1.SplitterDistance = 43;
+            this.splitContainer1.Size = new System.Drawing.Size(1003, 514);
+            this.splitContainer1.SplitterDistance = 33;
             this.splitContainer1.TabIndex = 0;
             // 
             // bnedit
             // 
-            this.bnedit.Location = new System.Drawing.Point(92, 8);
+            this.bnedit.Location = new System.Drawing.Point(89, 4);
             this.bnedit.Margin = new System.Windows.Forms.Padding(10);
             this.bnedit.Name = "bnedit";
-            this.bnedit.Size = new System.Drawing.Size(72, 25);
+            this.bnedit.Size = new System.Drawing.Size(72, 23);
             this.bnedit.TabIndex = 2;
             this.bnedit.Text = "Bearbeiten";
             this.bnedit.UseVisualStyleBackColor = true;
@@ -82,10 +84,10 @@
             // 
             // bndelete
             // 
-            this.bndelete.Location = new System.Drawing.Point(179, 8);
+            this.bndelete.Location = new System.Drawing.Point(168, 4);
             this.bndelete.Margin = new System.Windows.Forms.Padding(10);
             this.bndelete.Name = "bndelete";
-            this.bndelete.Size = new System.Drawing.Size(72, 25);
+            this.bndelete.Size = new System.Drawing.Size(72, 23);
             this.bndelete.TabIndex = 1;
             this.bndelete.Text = "Löschen";
             this.bndelete.UseVisualStyleBackColor = true;
@@ -93,10 +95,10 @@
             // 
             // bnnew
             // 
-            this.bnnew.Location = new System.Drawing.Point(11, 8);
+            this.bnnew.Location = new System.Drawing.Point(10, 4);
             this.bnnew.Margin = new System.Windows.Forms.Padding(10);
             this.bnnew.Name = "bnnew";
-            this.bnnew.Size = new System.Drawing.Size(72, 25);
+            this.bnnew.Size = new System.Drawing.Size(72, 23);
             this.bnnew.TabIndex = 0;
             this.bnnew.Text = "Neu";
             this.bnnew.UseVisualStyleBackColor = true;
@@ -120,7 +122,7 @@
             this.lv_kontakte.Location = new System.Drawing.Point(0, 0);
             this.lv_kontakte.Margin = new System.Windows.Forms.Padding(10);
             this.lv_kontakte.Name = "lv_kontakte";
-            this.lv_kontakte.Size = new System.Drawing.Size(434, 281);
+            this.lv_kontakte.Size = new System.Drawing.Size(1003, 477);
             this.lv_kontakte.TabIndex = 0;
             this.lv_kontakte.UseCompatibleStateImageBehavior = false;
             this.lv_kontakte.View = System.Windows.Forms.View.Details;
@@ -171,6 +173,14 @@
             this.ort.Text = "Ort";
             this.ort.Width = 100;
             // 
+            // tb_search
+            // 
+            this.tb_search.Location = new System.Drawing.Point(253, 6);
+            this.tb_search.Name = "tb_search";
+            this.tb_search.Size = new System.Drawing.Size(228, 20);
+            this.tb_search.TabIndex = 3;
+            this.tb_search.TextChanged += new System.EventHandler(this.tb_search_TextChanged);
+            // 
             // UCKontakteAnzeigen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -178,9 +188,10 @@
             this.Controls.Add(this.splitContainer1);
             this.Name = "UCKontakteAnzeigen";
             this.Padding = new System.Windows.Forms.Padding(10);
-            this.Size = new System.Drawing.Size(454, 348);
+            this.Size = new System.Drawing.Size(1023, 534);
             this.Load += new System.EventHandler(this.UCKontakteAnzeigen_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
@@ -204,5 +215,6 @@
         private System.Windows.Forms.ColumnHeader hausnummer;
         private System.Windows.Forms.ColumnHeader plz;
         private System.Windows.Forms.ColumnHeader ort;
+        private System.Windows.Forms.TextBox tb_search;
     }
 }

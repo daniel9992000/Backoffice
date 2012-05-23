@@ -247,6 +247,34 @@ namespace Backoffice.DataBinding
                     i.SubItems.Add(tmp.Ort);
                 }
             }
+            else if (typeof(IList<Kontakt>).IsInstanceOfType(values))
+            {
+                lv.Columns.Add("ID", 25);
+                lv.Columns.Add("Nachname", 100);
+                lv.Columns.Add("Vorname", 100);
+                lv.Columns.Add("Firmenname", 100);
+                lv.Columns.Add("Email", 160);
+                lv.Columns.Add("Adresse", 120);
+                lv.Columns.Add("Hausnummer", 60);
+                lv.Columns.Add("PLZ", 40);
+                lv.Columns.Add("Ort", 130);
+
+                foreach (var item in values)
+                {
+                    var tmp = (Kontakt)item;
+
+                    ListViewItem i = lv.Items.Add(tmp.Kontaktid.ToString());
+                    i.Tag = tmp;
+                    i.SubItems.Add(tmp.Nachname);
+                    i.SubItems.Add(tmp.Vorname);
+                    i.SubItems.Add(tmp.Firmenname);
+                    i.SubItems.Add(tmp.Email);
+                    i.SubItems.Add(tmp.Adresse);
+                    i.SubItems.Add(tmp.Hausnummer);
+                    i.SubItems.Add(tmp.Plz);
+                    i.SubItems.Add(tmp.Ort);
+                }
+            }
             else if (typeof(IList<Eingang>).IsInstanceOfType(values))
             {
                 lv.Columns.Add("ID", 25);

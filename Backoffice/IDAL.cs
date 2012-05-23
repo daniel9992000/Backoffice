@@ -14,6 +14,7 @@ namespace Backoffice
         void saveKunde(Kunde k);
         void deleteKunde(Kunde k);
         List<Kunde> getKundeViewList();
+        List<Kunde> getKundeViewList(string search);
         Kunde getKunde(int id);
 
         //Angebote
@@ -35,6 +36,7 @@ namespace Backoffice
         void saveKontakt(Kontakt k);
         void deleteKontakt(Kontakt k);
         List<Kontakt> getKontaktViewList();
+        List<Kontakt> getKontaktViewList(string search);
         Kontakt getKontakt(int id);
 
         //Ausgangsrechnungen

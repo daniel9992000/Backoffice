@@ -126,6 +126,24 @@ namespace Backoffice
             return kunden;
         }
 
+        public List<Kunde> getKundeViewList(string search)
+        {
+            search = search.ToLower();
+            List<Kunde> tmp = new List<Kunde>();
+            foreach (var item in kunden)
+            {
+                if (item.Vorname.ToLower().Contains(search) || 
+                    item.Nachname.ToLower().Contains(search) ||
+                    item.Email.ToLower().Contains(search) ||
+                    item.Adresse.ToLower().Contains(search) ||
+                    item.Ort.ToLower().Contains(search) ||
+                    item.Plz.ToLower().Contains(search))
+
+                    tmp.Add(item);
+            }
+            return tmp;
+        }
+
         public Kunde getKunde(int id)
         {
             foreach (var item in kunden)
@@ -298,6 +316,26 @@ namespace Backoffice
         public List<Kontakt> getKontaktViewList()
         {
             return kontakte;
+        }
+
+        public List<Kontakt> getKontaktViewList(string search)
+        {
+            List<Kontakt> tmp = new List<Kontakt>();
+            search = search.ToLower();
+            foreach (var item in kontakte)
+            {
+                if (item.Vorname.ToLower().Contains(search) ||
+                    item.Nachname.ToLower().Contains(search) ||
+                    item.Firmenname.ToLower().Contains(search) ||
+                    item.Email.ToLower().Contains(search) ||
+                    item.Ort.ToLower().Contains(search) ||
+                    item.Adresse.ToLower().Contains(search) ||
+                    item.Plz.ToLower().Contains(search))
+                {
+                    tmp.Add(item);
+                }
+            }
+            return tmp;
         }
 
         public Kontakt getKontakt(int id)

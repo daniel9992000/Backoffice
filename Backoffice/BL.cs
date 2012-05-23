@@ -38,6 +38,22 @@ namespace Backoffice
             return tmp;
         }
 
+        public static List<Kunde> getKunden(string search)
+        {
+            List<Kunde> tmp = null;
+            try
+            {
+                tmp = DALFactory.getDAL().getKundeViewList(search);
+                log.Info("Kunden mit Suchstring " + search + " auslesen!");
+            }
+            catch (DALException ex)
+            {
+                log.Error("Kundendaten mit Suchstring " + search + " konnten nicht auslesen werden!", ex);
+                throw new BLException("Kundendaten konnten nicht auslesen werden!");
+            }
+            return tmp;
+        }
+
         public static Kunde getKunde(int id)
         {
             Kunde tmp = null;
@@ -258,10 +274,28 @@ namespace Backoffice
             try
             {
                 tmp = DALFactory.getDAL().getKontaktViewList();
+                log.Info("Alle Kontaktdaten ausgelesen!");
             }
             catch (DALException ex)
             {
+                log.Error("Fehler beim Auslesen der Kontaktdaten!", ex);
+                throw new BLException("Kontaktdaten konnten nicht auslesen werden!");
+            }
+            return tmp;
+        }
 
+        public static List<Kontakt> getKontakte(string search)
+        {
+            List<Kontakt> tmp = null;
+            try
+            {
+                tmp = DALFactory.getDAL().getKontaktViewList(search);
+                log.Info("Kontakte mit Suchbegriff " + search + " ausgelesen!");
+            }
+            catch (DALException ex)
+            {
+                log.Error("Fehler beim Auslesen der Kontaktdaten mit Suchbegriff " + search + "!", ex);
+                throw new BLException("Kontaktdaten konnten nicht auslesen werden!");
             }
             return tmp;
         }
@@ -271,10 +305,12 @@ namespace Backoffice
             try
             {
                 DALFactory.getDAL().saveKontakt(k);
+                log.Info("Kontakt mit ID " + k.Kontaktid + " gespeichert!");
             }
             catch (DALException ex)
             {
-
+                log.Error("Kontakt mit ID " + k.Kontaktid + " konnte nicht gespeichert werden!", ex);
+                throw new BLException("Kontakt konnte nicht gespeichert werden!");
             }
         }
 
@@ -282,11 +318,21 @@ namespace Backoffice
         {
             try
             {
-                DALFactory.getDAL().deleteKontakt(k);
+                if (DALFactory.getDAL().getEingangViewList(k.Kontaktid).Count > 0)
+                {
+                    log.Warn("Kontakt mit ID " + k.Kontaktid + " kann nicht gelöscht werden, da Eingangsrechnungen existieren, die zugeordnet sind!");
+                    throw new BLException("Kontakt kann nicht gelöscht werden, da ihm Eingangsrechungen zugeordnet sind!");
+                }
+                else
+                {
+                    DALFactory.getDAL().deleteKontakt(k);
+                    log.Info("Kontakt mit ID " + k.Kontaktid + " gelöscht!");
+                }
             }
             catch (DALException ex)
             {
-
+                log.Error("Kontakt mit ID " + k.Kontaktid + " konnte nicht gelöscht werden!", ex);
+                throw new BLException("Kontakt konnte nicht gelöscht werden!");
             }
         }
 
@@ -364,17 +410,48 @@ namespace Backoffice
         #region Rechnungszeilen
         public static List<Rechnungszeile> getRechnungszeilen(int rechnungid)
         {
-            return DALFactory.getDAL().getRechnungszeilenViewList(rechnungid);
+            List<Rechnungszeile> tmp = new List<Rechnungszeile>();
+            try
+            {
+                tmp = DALFactory.getDAL().getRechnungszeilenViewList(rechnungid);
+                log.Info("Rechungszeilen der Rechnung mit ID " + rechnungid + " ausgelesen!");
+            }
+            catch (DALException ex)
+            {
+                log.Error("Fehler beim Auslesen der Rechnungszeilen der Rechnung mit ID " + rechnungid + "!", ex);
+                throw new BLException("Rechungszeilen konnten nicht ausgelesen werden!");
+            }
+            return tmp;
         }
 
         public static void saveRechnungszeile(Rechnungszeile r)
         {
-            DALFactory.getDAL().saveRechnungszeile(r);
+            try
+            {
+                DALFactory.getDAL().saveRechnungszeile(r);
+                log.Info("Rechnungszeile mit ID " + r.Reid + " gespeichert!");
+            }
+            catch (DALException ex)
+            {
+                log.Error("Fehler beim Speichern der Rechnungszeile mit ID " + r.Reid, ex);
+                throw new BLException("Rechnungszeile konnte nicht gespeichert werden!");
+            }
+           
         }
 
         public static void deleteRechnungszeile(Rechnungszeile r)
         {
-            DALFactory.getDAL().deleteRechnungszeile(r);
+            try
+            {
+                DALFactory.getDAL().deleteRechnungszeile(r);
+                log.Info("Rechnungszeile mit ID " + r.Reid + " gelöscht!");
+            }
+            catch (DALException ex)
+            {
+                 log.Error("Fehler beim Löschen der Rechnungszeile mit ID " + r.Reid, ex);
+                throw new BLException("Rechnungszeile konnte nicht gelöscht werden!");
+            }
+            
         }
         #endregion
 
