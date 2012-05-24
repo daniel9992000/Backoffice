@@ -148,6 +148,52 @@ namespace Backoffice
  
         }
 
+        public List<Kunde> getKundeViewList(string search)
+        {
+            buildconnection();
+            List<Kunde> klist = new List<Kunde>();
+            NpgsqlCommand comm = null;
+            NpgsqlDataReader reader = null;
+            try
+            {
+                string sql = @"Select distinct kundenid,vorname,nachname,email,adresse,
+                hausnummer,plz,ort,telefon,bemerkungen from kunden where vorname like %@search% or nachname like %@search% or email like %@search% or adresse like %@search% or ort like %@search%;";
+                comm = new NpgsqlCommand(sql, conn);
+                comm.Parameters.AddWithValue("@search", search);
+                comm.Prepare();
+                reader = comm.ExecuteReader();
+                while (reader.Read())
+                {
+                    Kunde k = new Kunde();
+                    k.Kundenid = reader.GetInt32(0);
+                    k.Vorname = reader.GetString(1).Trim();
+                    k.Nachname = reader.GetString(2).Trim();
+                    k.Email = reader.GetString(3).Trim();
+                    k.Adresse = reader.GetString(4).Trim();
+                    k.Hausnummer = reader.GetString(5).Trim();
+                    k.Plz = reader.GetString(6).Trim();
+                    k.Ort = reader.GetString(7).Trim();
+                    k.Telefon = reader.GetString(8).Trim();
+                    k.Bemerkungen = reader.GetString(9).Trim();
+                    k.Status = ObjectStates.Unmodified;
+                    klist.Add(k);
+                }
+
+            }
+            catch (NpgsqlException exp)
+            {
+                throw new DALException("DAL: Kundeliste konnte nicht aus der Datenbank geladen werden!", exp);
+            }
+            finally
+            {
+                reader.Close();
+                comm.Dispose();
+                conn.Close();
+            }
+
+            return klist;
+        }
+
         public Kunde getKunde(int id)
         {
             buildconnection();
@@ -633,9 +679,13 @@ namespace Backoffice
             return klist;
         }
 
+        public List<Kontakt> getKontaktViewList(string search)
+        {
+            throw new NotImplementedException();
+        }
+
         public Kontakt getKontakt(int id)
         {
-
             buildconnection();
             NpgsqlCommand comm = null;
             NpgsqlDataReader reader = null;
@@ -971,13 +1021,10 @@ namespace Backoffice
             throw new NotImplementedException();
         }
 
-
-
         double[] IDAL.getIstJahresumsatz()
         {
             throw new NotImplementedException();
         }
-
 
         public List<Ausgang> getEinnahmen(int month, int year)
         {
@@ -988,7 +1035,6 @@ namespace Backoffice
         {
             throw new NotImplementedException();
         }
-
 
         public List<Angebot> getAngebotViewList(int kundenid)
         {
@@ -1010,12 +1056,10 @@ namespace Backoffice
             throw new NotImplementedException();
         }
 
-
         public List<Angebot> getAngebote()
         {
             throw new NotImplementedException();
         }
-
 
         public List<Eingang> getOffeneERechnungen()
         {
@@ -1026,9 +1070,6 @@ namespace Backoffice
         {
             throw new NotImplementedException();
         }
-
-
-
 
         public void saveBuchung(Buchung b)
         {
@@ -1045,8 +1086,6 @@ namespace Backoffice
             throw new NotImplementedException();
         }
 
-
-
         public List<Stunden> getStundenViewList(string projektname)
         {
             throw new NotImplementedException();
@@ -1056,7 +1095,6 @@ namespace Backoffice
         { 
             throw new NotImplementedException();
         }
-
 
         public List<Angebot> getAngebotViewListByProjektId(int projektid)
         {
@@ -1068,7 +1106,6 @@ namespace Backoffice
             throw new NotImplementedException();
         }
 
-
         public Angebot getAngebot(int angebotid)
         {
             throw new NotImplementedException();
@@ -1078,7 +1115,6 @@ namespace Backoffice
         {
             throw new NotImplementedException();
         }
-
 
         void IDAL.saveEingang(Eingang r)
         {
@@ -1100,14 +1136,34 @@ namespace Backoffice
             throw new NotImplementedException();
         }
 
-
         public int getProjektStunden(string projektname)
         {
             throw new NotImplementedException();
         }
 
-
         public List<Buchung> getBuchungViewList()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Buchungskategorie> getBuchungsKategorien()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Buchungskategorie getBuchungsKategorie(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+
+        public List<Angebot> getAngebotViewList(string search)
+        {
+            throw new NotImplementedException();
+        }
+
+
+        public Rechnung getRechung(int rechnungsid)
         {
             throw new NotImplementedException();
         }

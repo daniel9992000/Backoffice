@@ -14,12 +14,14 @@ namespace Backoffice
         void saveKunde(Kunde k);
         void deleteKunde(Kunde k);
         List<Kunde> getKundeViewList();
+        List<Kunde> getKundeViewList(string search);
         Kunde getKunde(int id);
 
         //Angebote
         void saveAngebot(Angebot a);
         void deleteAngebot(Angebot a);
         List<Angebot> getAngebotViewList();
+        List<Angebot> getAngebotViewList(string search);
         List<Angebot> getAngebotViewList(int kundenid);
         List<Angebot> getAngebotViewListByProjektId(int projektid);
         Angebot getAngebot(int angebotid);
@@ -35,7 +37,11 @@ namespace Backoffice
         void saveKontakt(Kontakt k);
         void deleteKontakt(Kontakt k);
         List<Kontakt> getKontaktViewList();
+        List<Kontakt> getKontaktViewList(string search);
         Kontakt getKontakt(int id);
+
+        //Rechung
+        Rechnung getRechung(int rechnungsid);
 
         //Ausgangsrechnungen
         void saveAusgang(Ausgang r);
@@ -50,7 +56,6 @@ namespace Backoffice
         List<Eingang> getEingangViewList();
         List<Eingang> getEingangViewList(int kontaktid);
 
-
         //Rechnungszeilen
         void saveRechnungszeile(Rechnungszeile r);
         void deleteRechnungszeile(Rechnungszeile r);
@@ -61,6 +66,9 @@ namespace Backoffice
         void deleteBuchung(Buchung b);
         List<Buchung> getBuchungViewList();
         List<Buchung> getBuchungViewList(int rechnungid);
+        List<Buchungskategorie> getBuchungsKategorien();
+        Buchungskategorie getBuchungsKategorie(int id);
+
 
 
         //Auswertungen

@@ -99,6 +99,7 @@
             this.lv_buchungen.Size = new System.Drawing.Size(698, 394);
             this.lv_buchungen.TabIndex = 0;
             this.lv_buchungen.UseCompatibleStateImageBehavior = false;
+            this.lv_buchungen.DoubleClick += new System.EventHandler(this.lv_buchungen_DoubleClick);
             // 
             // UCBuchungenAnzeigen
             // 

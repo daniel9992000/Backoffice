@@ -9,7 +9,7 @@ namespace Backoffice
     {
         int buchungid;
         double betrag;
-        string kategorie;
+        int kategorie;
         DateTime datum;
         int rechnungid;
         ObjectStates status;
@@ -18,12 +18,12 @@ namespace Backoffice
         {
             this.buchungid = 0;
             this.betrag = 0;
-            this.kategorie = String.Empty;
+            this.kategorie = 0;
             this.datum = DateTime.Today;
             this.rechnungid = 0;           
         }
 
-        public Buchung(int buchungid, double betrag, string kategorie, DateTime datum, int rechnungid, ObjectStates status)
+        public Buchung(int buchungid, double betrag, int kategorie, DateTime datum, int rechnungid, ObjectStates status)
         {
             this.buchungid = buchungid;
             this.betrag = betrag;
@@ -52,24 +52,18 @@ namespace Backoffice
             }
         }
 
-        public string Kategorie
+        public int Kategorie
         {
             get { return kategorie; }
-            set {
-                if (!string.IsNullOrWhiteSpace(kategorie))
-                {
-                    if (kategorie.Equals(value))
-                    {
-                        kategorie = value;
-                        Status = ObjectStates.Modified;
-                    }
-                }
-                else
+            set
+            {
+                if (kategorie != value)
                 {
                     kategorie = value;
                     Status = ObjectStates.Modified;
                 }
             }
+                
         }
 
         public DateTime Datum

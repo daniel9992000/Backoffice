@@ -35,10 +35,9 @@ namespace Backoffice
 
             foreach (var item in guiControls)
             {
-                item.Hide();          
-            
+                item.Hide();
             }
-            
+            BL.ConfigureLogger();            
         }
 
         void DisplayUserControl(UserControl uc)

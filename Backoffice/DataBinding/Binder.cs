@@ -132,7 +132,15 @@ namespace Backoffice.DataBinding
                 else if (selected is Kontakt)
                 {
                     result = ((Kontakt)selected).Kontaktid;
-                }  
+                }
+                else if (selected is Rechnung)
+                {
+                    result = ((Rechnung)selected).Rechnungid;
+                }
+                else if (selected is Buchungskategorie)
+                {
+                    result = ((Buchungskategorie)selected).Bkatid;
+                }
             }
 
             if (rule != null)
@@ -239,6 +247,34 @@ namespace Backoffice.DataBinding
                     i.SubItems.Add(tmp.Ort);
                 }
             }
+            else if (typeof(IList<Kontakt>).IsInstanceOfType(values))
+            {
+                lv.Columns.Add("ID", 25);
+                lv.Columns.Add("Nachname", 100);
+                lv.Columns.Add("Vorname", 100);
+                lv.Columns.Add("Firmenname", 100);
+                lv.Columns.Add("Email", 160);
+                lv.Columns.Add("Adresse", 120);
+                lv.Columns.Add("Hausnummer", 60);
+                lv.Columns.Add("PLZ", 40);
+                lv.Columns.Add("Ort", 130);
+
+                foreach (var item in values)
+                {
+                    var tmp = (Kontakt)item;
+
+                    ListViewItem i = lv.Items.Add(tmp.Kontaktid.ToString());
+                    i.Tag = tmp;
+                    i.SubItems.Add(tmp.Nachname);
+                    i.SubItems.Add(tmp.Vorname);
+                    i.SubItems.Add(tmp.Firmenname);
+                    i.SubItems.Add(tmp.Email);
+                    i.SubItems.Add(tmp.Adresse);
+                    i.SubItems.Add(tmp.Hausnummer);
+                    i.SubItems.Add(tmp.Plz);
+                    i.SubItems.Add(tmp.Ort);
+                }
+            }
             else if (typeof(IList<Eingang>).IsInstanceOfType(values))
             {
                 lv.Columns.Add("ID", 25);
@@ -294,6 +330,8 @@ namespace Backoffice.DataBinding
                 lv.Columns.Add("ID", 25);
                 lv.Columns.Add("Datum", 120);
                 lv.Columns.Add("Betrag", 110, HorizontalAlignment.Right);
+                lv.Columns.Add("Rechnung", 140);
+                lv.Columns.Add("Kategorie", 100);
 
                 foreach (var item in values)
                 {
@@ -303,6 +341,8 @@ namespace Backoffice.DataBinding
                     i.Tag = tmp;
                     i.SubItems.Add(tmp.Datum.ToShortDateString());
                     i.SubItems.Add(tmp.Betrag.ToString("#0.00") + " Euro");
+                    i.SubItems.Add(BL.getRechnung(tmp.Rechnungid).Bezeichnung);
+                    i.SubItems.Add(BL.getBuchungsKategorie(tmp.Kategorie).Bezeichung);
                 }
             }
             else if (typeof(IList<Projekt>).IsInstanceOfType(values))
@@ -321,6 +361,24 @@ namespace Backoffice.DataBinding
                     i.SubItems.Add(tmp.Stunden.ToString());
 
                    
+                }
+            }
+            else if (typeof(IList<Stunden>).IsInstanceOfType(values))
+            {
+                lv.Columns.Add("Name", 100);
+                lv.Columns.Add("Mitarbeiter", 100);
+                lv.Columns.Add("Stunden", 60);
+                lv.Columns.Add("Datum", 100);
+
+                foreach (var item in values)
+                {
+                    var tmp = (Stunden)item;
+
+                    ListViewItem i = lv.Items.Add(tmp.Projektname);
+                    i.Tag = tmp;
+                    i.SubItems.Add(tmp.Mitarbeiter);
+                    i.SubItems.Add(tmp.Stundenanz.ToString());
+                    i.SubItems.Add(tmp.Datum.ToShortDateString());                   
                 }
             }
         }
@@ -372,6 +430,34 @@ namespace Backoffice.DataBinding
                     if (o is Eingang)
                     {
                         if (((Kontakt)item).Kontaktid == ((Eingang)o).Kontaktid)
+                        {
+                            cb.SelectedItem = item;
+                        }
+                    }
+                }
+            }
+            else if (typeof(IList<Rechnung>).IsInstanceOfType(values))
+            {
+                foreach (var item in values)
+                {
+                    cb.Items.Add(item);
+                    if (o is Buchung)
+                    {
+                        if (((Rechnung)item).Rechnungid == ((Buchung)o).Rechnungid)
+                        {
+                            cb.SelectedItem = item;
+                        }
+                    }
+                }
+            }
+            else if (typeof(IList<Buchungskategorie>).IsInstanceOfType(values))
+            {
+                foreach (var item in values)
+                {
+                    cb.Items.Add(item);
+                    if (o is Buchung)
+                    {
+                        if (((Buchungskategorie)item).Bkatid == ((Buchung)o).Kategorie)
                         {
                             cb.SelectedItem = item;
                         }

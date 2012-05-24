@@ -37,6 +37,7 @@ namespace Backoffice.Dialogs
             binder.BindTo_TextBox(tb_name, p.Name);
             binder.BindTo_ListView(lv_angebote, BL.getAngeboteByProjektId(p.Projektid));
             binder.BindTo_ListView(lv_rechungen, BL.getAusgaengeByProjektId(p.Projektid));
+            binder.BindTo_ListView(lv_stunden, BL.getStunden(p.Name));
         }
 
         bool BindFrom()

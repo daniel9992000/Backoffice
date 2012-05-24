@@ -37,11 +37,10 @@
     <Reference Include="itextsharp">
       <HintPath>..\itextsharp.dll</HintPath>
     </Reference>
-    <Reference Include="Mono.Security">
-      <HintPath>..\..\..\..\..\..\Software\Postgres\Npgsql2.0.11.93-bin-ms.net\Mono.Security.dll</HintPath>
+    <Reference Include="log4net">
+      <HintPath>..\log4net.dll</HintPath>
     </Reference>
-    <Reference Include="Npgsql, Version=2.0.11.93, Culture=neutral, PublicKeyToken=5d8b90d52f46fda7, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Npgsql">
       <HintPath>..\Npgsql.dll</HintPath>
     </Reference>
     <Reference Include="System" />
@@ -59,7 +58,9 @@
     <Compile Include="Angebot.cs" />
     <Compile Include="Ausgang.cs" />
     <Compile Include="BL.cs" />
+    <Compile Include="BLException.cs" />
     <Compile Include="Buchung.cs" />
+    <Compile Include="Buchungskategorie.cs" />
     <Compile Include="ColumnSorter.cs" />
     <Compile Include="CreatePdf.cs" />
     <Compile Include="DALException.cs" />
@@ -77,6 +78,12 @@
     </Compile>
     <Compile Include="Dialogs\AngebotDetail.Designer.cs">
       <DependentUpon>AngebotDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\BuchungDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\BuchungDetail.Designer.cs">
+      <DependentUpon>BuchungDetail.cs</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\EingangDetail.cs">
       <SubType>Form</SubType>
@@ -207,6 +214,9 @@
     </Compile>
     <EmbeddedResource Include="Dialogs\AngebotDetail.resx">
       <DependentUpon>AngebotDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\BuchungDetail.resx">
+      <DependentUpon>BuchungDetail.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\EingangDetail.resx">
       <DependentUpon>EingangDetail.cs</DependentUpon>
