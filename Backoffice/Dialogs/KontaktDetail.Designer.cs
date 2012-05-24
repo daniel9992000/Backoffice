@@ -431,7 +431,9 @@
             this.Controls.Add(this.bncancel);
             this.Controls.Add(this.bnsave);
             this.Controls.Add(this.gb1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "KontaktDetail";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "KontaktDetail";
             this.Load += new System.EventHandler(this.KontaktDetail_Load);
             this.gb1.ResumeLayout(false);

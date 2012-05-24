@@ -172,7 +172,9 @@
             this.Controls.Add(this.bn_cancel);
             this.Controls.Add(this.bn_save);
             this.Controls.Add(this.groupBox1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "ProjekteDetail";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ProjekteDetail";
             this.Load += new System.EventHandler(this.ProjekteDetail_Load_1);
             this.groupBox1.ResumeLayout(false);

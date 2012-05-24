@@ -31,6 +31,7 @@
             this.oFD = new System.Windows.Forms.OpenFileDialog();
             this.bn_cancel = new System.Windows.Forms.Button();
             this.gb1 = new System.Windows.Forms.GroupBox();
+            this.errorControl5 = new Backoffice.DataBinding.ErrorControl();
             this.label6 = new System.Windows.Forms.Label();
             this.tb_betrag = new System.Windows.Forms.TextBox();
             this.errorControl3 = new Backoffice.DataBinding.ErrorControl();
@@ -50,7 +51,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.tb_pfad = new System.Windows.Forms.TextBox();
             this.bnchooserech = new System.Windows.Forms.Button();
-            this.errorControl5 = new Backoffice.DataBinding.ErrorControl();
             this.gb1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -91,6 +91,14 @@
             this.gb1.TabIndex = 4;
             this.gb1.TabStop = false;
             this.gb1.Text = "Allgemein";
+            // 
+            // errorControl5
+            // 
+            this.errorControl5.AutoSize = true;
+            this.errorControl5.Location = new System.Drawing.Point(228, 52);
+            this.errorControl5.Name = "errorControl5";
+            this.errorControl5.Size = new System.Drawing.Size(0, 13);
+            this.errorControl5.TabIndex = 19;
             // 
             // label6
             // 
@@ -255,14 +263,6 @@
             this.bnchooserech.UseVisualStyleBackColor = true;
             this.bnchooserech.Click += new System.EventHandler(this.bnchooserech_Click);
             // 
-            // errorControl5
-            // 
-            this.errorControl5.AutoSize = true;
-            this.errorControl5.Location = new System.Drawing.Point(228, 52);
-            this.errorControl5.Name = "errorControl5";
-            this.errorControl5.Size = new System.Drawing.Size(0, 13);
-            this.errorControl5.TabIndex = 19;
-            // 
             // EingangDetail
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -272,7 +272,9 @@
             this.Controls.Add(this.bn_cancel);
             this.Controls.Add(this.gb1);
             this.Controls.Add(this.bn_save);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "EingangDetail";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "EingangDetail";
             this.Load += new System.EventHandler(this.EingangDetail_Load);
             this.gb1.ResumeLayout(false);
