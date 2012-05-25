@@ -46,7 +46,15 @@ namespace Backoffice.UserControls
 
         void DeleteKunde(Kunde k)
         {
-            BL.deleteKunde(k);
+            try
+            {
+                BL.deleteKunde(k);
+            }
+            catch (BLException ex)
+            {
+                MessageBox.Show(ex.Message, k.Nachname + " " + k.Vorname, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            
             BindTo();
         }
 

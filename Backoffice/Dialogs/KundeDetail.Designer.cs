@@ -62,17 +62,17 @@
             this.errorControl9 = new Backoffice.DataBinding.ErrorControl();
             this.rtb_bemerkungen = new System.Windows.Forms.RichTextBox();
             this.gb4 = new System.Windows.Forms.GroupBox();
+            this.bn_new_angebot = new System.Windows.Forms.Button();
             this.lv_angebote = new System.Windows.Forms.ListView();
             this.angebotid = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.titel = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.datum = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.gb5 = new System.Windows.Forms.GroupBox();
+            this.bn_new_rechnung = new System.Windows.Forms.Button();
             this.lv_rechnungen = new System.Windows.Forms.ListView();
             this.rechnungid = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.bezeichnung = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.datum1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.bn_new_angebot = new System.Windows.Forms.Button();
-            this.bn_new_rechnung = new System.Windows.Forms.Button();
             this.gb1.SuspendLayout();
             this.gb2.SuspendLayout();
             this.gb3.SuspendLayout();
@@ -394,6 +394,16 @@
             this.gb4.TabStop = false;
             this.gb4.Text = "Angebote";
             // 
+            // bn_new_angebot
+            // 
+            this.bn_new_angebot.Location = new System.Drawing.Point(5, 21);
+            this.bn_new_angebot.Name = "bn_new_angebot";
+            this.bn_new_angebot.Size = new System.Drawing.Size(100, 23);
+            this.bn_new_angebot.TabIndex = 1;
+            this.bn_new_angebot.Text = "Neues Angebot";
+            this.bn_new_angebot.UseVisualStyleBackColor = true;
+            this.bn_new_angebot.Click += new System.EventHandler(this.bn_new_angebot_Click);
+            // 
             // lv_angebote
             // 
             this.lv_angebote.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
@@ -438,6 +448,16 @@
             this.gb5.TabStop = false;
             this.gb5.Text = "Rechnungen";
             // 
+            // bn_new_rechnung
+            // 
+            this.bn_new_rechnung.Location = new System.Drawing.Point(5, 21);
+            this.bn_new_rechnung.Name = "bn_new_rechnung";
+            this.bn_new_rechnung.Size = new System.Drawing.Size(100, 23);
+            this.bn_new_rechnung.TabIndex = 2;
+            this.bn_new_rechnung.Text = "Neue Rechung";
+            this.bn_new_rechnung.UseVisualStyleBackColor = true;
+            this.bn_new_rechnung.Click += new System.EventHandler(this.bn_new_rechnung_Click);
+            // 
             // lv_rechnungen
             // 
             this.lv_rechnungen.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
@@ -470,26 +490,6 @@
             this.datum1.Text = "Datum";
             this.datum1.Width = 80;
             // 
-            // bn_new_angebot
-            // 
-            this.bn_new_angebot.Location = new System.Drawing.Point(5, 21);
-            this.bn_new_angebot.Name = "bn_new_angebot";
-            this.bn_new_angebot.Size = new System.Drawing.Size(100, 23);
-            this.bn_new_angebot.TabIndex = 1;
-            this.bn_new_angebot.Text = "Neues Angebot";
-            this.bn_new_angebot.UseVisualStyleBackColor = true;
-            this.bn_new_angebot.Click += new System.EventHandler(this.bn_new_angebot_Click);
-            // 
-            // bn_new_rechnung
-            // 
-            this.bn_new_rechnung.Location = new System.Drawing.Point(5, 21);
-            this.bn_new_rechnung.Name = "bn_new_rechnung";
-            this.bn_new_rechnung.Size = new System.Drawing.Size(100, 23);
-            this.bn_new_rechnung.TabIndex = 2;
-            this.bn_new_rechnung.Text = "Neue Rechung";
-            this.bn_new_rechnung.UseVisualStyleBackColor = true;
-            this.bn_new_rechnung.Click += new System.EventHandler(this.bn_new_rechnung_Click);
-            // 
             // KundeDetail
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -502,6 +502,7 @@
             this.Controls.Add(this.gb1);
             this.Controls.Add(this.bn_cancel);
             this.Controls.Add(this.bn_save);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "KundeDetail";
             this.Text = "Kundendaten";
             this.Load += new System.EventHandler(this.KundeDetail_Load);

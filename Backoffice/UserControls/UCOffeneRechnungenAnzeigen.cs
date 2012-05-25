@@ -57,7 +57,7 @@ namespace Backoffice.UserControls
             foreach (var tmp in BL.getoffeneEingangsRechnungen())
             {
                 ListViewItem i = lv_eingangr.Items.Add(tmp.Rechnungid.ToString());
-                i.Tag = tmp;
+                i.Tag = tmp;                
                 resumme = tmp.Betrag;
                 blist = BL.getBuchungen(tmp.Rechnungid);
                 foreach (var bitem in blist)
@@ -84,19 +84,10 @@ namespace Backoffice.UserControls
             {
                 ListViewItem i = lv_ausgangr.Items.Add(tmp.Rechnungid.ToString());
                 i.Tag = tmp;
-                resumme = 0;
-                bsumme = 0;
-                relist = BL.getRechnungszeilen(tmp.Rechnungid);
-                foreach (var item in relist)
-                {
-                    resumme += item.Betrag;
-                }
-                blist = BL.getBuchungen(tmp.Rechnungid);
-                foreach (var bitem in blist)
-                {
-                    bsumme += bitem.Betrag;
-                }
-                bsumme = resumme - bsumme;
+
+                resumme = BL.getRechnungssumme(tmp.Rechnungid);                
+                bsumme = BL.getOffeneSumme(tmp.Rechnungid);
+
                 i.SubItems.Add(resumme.ToString("#0.00"));
                 i.SubItems.Add(bsumme.ToString("#0.00"));
                 i.SubItems.Add(tmp.Datum.Value.ToShortDateString());

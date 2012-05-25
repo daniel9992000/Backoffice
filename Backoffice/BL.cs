@@ -195,6 +195,22 @@ namespace Backoffice
             return tmp;
         }
 
+        public static Angebot getAngebotByProjektId(int projektid)
+        {
+            var tmp = new Angebot();
+
+            try
+            {
+                tmp = DALFactory.getDAL().getAngebotByProjektId(projektid);
+            }
+            catch (DALException ex)
+            {
+                throw;
+            }
+
+            return tmp;
+        }
+
         public static void saveAngebot(Angebot a)
         {
             if (a.Chance < 0 || a.Chance > 100)
@@ -236,10 +252,12 @@ namespace Backoffice
             try
             {
                 tmp = DALFactory.getDAL().getProjektViewList();
+                log.Info("Alle Projekte ausgelesen!");
             }
             catch (DALException ex)
             {
-                
+                log.Error("Alle Projekte konnten nicht ausgelesen werden!", ex);
+                throw new BLException("Projekte konnten nicht ausgelesen werden!");
             }
             return tmp;
         }
@@ -249,10 +267,12 @@ namespace Backoffice
             try
             {                
                 DALFactory.getDAL().saveProjekt(p);
+                log.Info("Projekt mit ID " + p.Projektid + " gespeichert!");
             }
             catch (DALException ex)
             {
-               
+                log.Error("Projekt mit ID " + p.Projektid + " konnte nicht gespeichert!", ex);
+                throw new BLException("Projekt konnte nicht gespeichert werden!");
             }
         }
 
@@ -260,11 +280,23 @@ namespace Backoffice
         {
             try
             {
-                DALFactory.getDAL().deleteProjekt(p);
+                if (DALFactory.getDAL().getAusgangViewListByProjektId(p.Projektid).Count > 0)
+                {
+                    log.Warn("Projekt kann nicht gelöscht werden, da diesem Ausgangsrechnungen zugeordnet sind!");
+                    throw new BLException("Projekt kann nicht gelöscht werden, da diesem noch Ausgangsrechnungen zugeordnet sind!");
+                }
+                else
+                {
+                    DALFactory.getDAL().deleteProjekt(p);
+                    DALFactory.getDAL().deleteProjekt(p);
+                    log.Info("Projekt mit ID " + p.Projektid + " gelöscht!");
+                }
+                
             }
             catch (DALException ex)
             {
-
+                log.Error("Projekt mit ID " + p.Projektid + " konnte nicht gelöscht!", ex);
+                throw new BLException("Projekt konnte nicht gelöscht werden!");
             }
         }
 
@@ -274,10 +306,12 @@ namespace Backoffice
             try
             {
                 tmp = DALFactory.getDAL().getProjekt(id);
+                log.Info("Projekt mit ID " + id + " ausgelesen!");
             }
             catch (DALException ex)
             {
-                
+                log.Error("Projekt mit ID " + id + " konnte nicht ausgelesen werden!", ex);
+                throw new BLException("Projekt konnte nicht ausgelesen werden!");
             }
             return tmp;
         }
@@ -533,6 +567,20 @@ namespace Backoffice
         public static double getRechnungssumme(int rechnungid)
         {
             return DALFactory.getDAL().getRechnungssumme(rechnungid);
+        }
+
+        public static double getOffeneSumme(int rechnungsid)
+        {
+            double rsum = 0, bsum = 0;
+            var buchungen = new List<Buchung>();
+            buchungen = DALFactory.getDAL().getBuchungViewList(rechnungsid);
+            rsum = DALFactory.getDAL().getRechnungssumme(rechnungsid);
+            foreach (var item in buchungen)
+            {
+                bsum += item.Betrag;
+            }
+
+            return (rsum - bsum);
         }
 
         public static List<Angebot> getJahresumsatzangebote()

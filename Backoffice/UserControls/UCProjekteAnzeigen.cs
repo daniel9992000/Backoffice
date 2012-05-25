@@ -38,7 +38,14 @@ namespace Backoffice.UserControls
 
         void DeleteProjekt(Projekt p)
         {
-            BL.deleteProjekt(p);
+            try
+            {
+                BL.deleteProjekt(p);
+            }
+            catch (BLException ex)
+            {
+                MessageBox.Show(ex.Message, p.Name, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
             BindTo();
         }
 

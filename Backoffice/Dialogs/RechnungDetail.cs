@@ -39,11 +39,13 @@ namespace Backoffice.Dialogs
             binder.BindTo_TextBox(tb_kunde, BL.getKunde(r.Kundenid));
             binder.BindTo_DateTimePicker(dtp_datum, r.Datum.Value);
             binder.BindTo_ListView(lv_buchungen, BL.getBuchungen(r.Rechnungid));
+            binder.BindTo_TextBox(tb_offen, BL.getOffeneSumme(r.Rechnungid).ToString("#0.00") + " Euro");
         }
 
         void BindToZeilen()
         {
             binder.BindTo_ListView(lv_zeilen, BL.getRechnungszeilen(r.Rechnungid));
+            binder.BindTo_TextBox(tb_rechnungssumme, BL.getRechnungssumme(r.Rechnungid).ToString("#0.00") + " Euro");
         }
 
         bool BindFrom()
@@ -53,8 +55,8 @@ namespace Backoffice.Dialogs
             r.Datum = binder.BindFrom_DateTime(dtp_datum, errorControl2, null);
 
             if((r.Projektid = binder.BindFrom_ComboBox_Int(cb_projekt, errorControl3, new DataBinding.RequiredRule())) != 0)
-            {            
-                r.Kundenid = BL.getAngebot(r.Projektid).Kundenid;
+            {
+                r.Kundenid = BL.getAngebotByProjektId(r.Projektid).Kundenid;
             }
 
             if (created) r.Status = ObjectStates.New;
@@ -73,8 +75,7 @@ namespace Backoffice.Dialogs
             rz.Bezeichnung = binder.BindFrom_String(tb_rz_bezeichnung, errorControl4, new DataBinding.RequiredRule());
             rz.Betrag = binder.BindFrom_Double(tb_rz_wert, errorControl5, new DataBinding.PositiveRule());
             rz.Rechnungid = r.Rechnungid;
-            rz.Angebotid = BL.getAngebot(r.Projektid).Angebotid;
-            rz.Status = ObjectStates.New;
+            rz.Status = ObjectStates.New;           
 
             if (binder.HasErrors)
                 return false;
@@ -86,7 +87,10 @@ namespace Backoffice.Dialogs
         {
             BindTo();
             if (created)
+            {
                 gb2.Enabled = false;
+                gb3.Enabled = false;
+            }
             BindToZeilen();
         }
 
@@ -124,5 +128,22 @@ namespace Backoffice.Dialogs
         {
             this.Close();
         }
+
+        private void bn_new_buchung_Click(object sender, EventArgs e)
+        {
+            var tmp = new Dialogs.BuchungDetail();
+            tmp.ShowDialog();
+            BindTo();
+            BindToZeilen();
+        }
+
+        void lv_buchungen_DoubleClick(object sender, System.EventArgs e)
+        {
+            var tmp = new Dialogs.BuchungDetail((Buchung)lv_buchungen.FocusedItem.Tag);
+            tmp.ShowDialog();
+            BindTo();
+            BindToZeilen();
+        }
+
     }
 }

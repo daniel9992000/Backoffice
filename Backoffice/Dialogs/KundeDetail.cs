@@ -73,14 +73,26 @@ namespace Backoffice.Dialogs
         {
             if (BindFrom())
             {
-                BL.saveKunde(k);
-                this.Close();
+                try
+                {
+                    BL.saveKunde(k);
+                    this.Close();
+                }
+                catch (BLException ex)
+                {
+                    MessageBox.Show(ex.Message, k.Nachname + " " + k.Vorname, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
             }
         }
 
         private void KundeDetail_Load(object sender, EventArgs e)
         {
             BindTo();
+            if (created)
+            {
+                gb4.Enabled = false;
+                gb5.Enabled = false;
+            }
         }
 
         private void bn_save_Click(object sender, EventArgs e)
@@ -94,7 +106,7 @@ namespace Backoffice.Dialogs
         }
 
         private void lv_angebote_DoubleClick(object sender, EventArgs e)
-        {            
+        {           
             Dialogs.AngebotDetail tmp = new AngebotDetail((Angebot)lv_angebote.FocusedItem.Tag);
             tmp.ShowDialog();
             BindTo();

@@ -306,6 +306,7 @@
             this.Controls.Add(this.bncancel);
             this.Controls.Add(this.bnsave);
             this.Controls.Add(this.gb1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "AngebotDetail";
             this.Text = "AngebotDetail";
             this.Load += new System.EventHandler(this.AngebotDetail_Load);

@@ -62,11 +62,11 @@ namespace Backoffice
             rechnungid++;
 
             zeilen = new List<Rechnungszeile>();
-            zeilen.Add(new Rechnungszeile(1, "Spezifikation", 2000.00, 1, 1, ObjectStates.Unmodified));
-            zeilen.Add(new Rechnungszeile(2, "Design", 10000.00, 1, 1, ObjectStates.Unmodified));
-            zeilen.Add(new Rechnungszeile(3, "Implementierung", 8000.00, 1, 1, ObjectStates.Unmodified));
-            zeilen.Add(new Rechnungszeile(4, "Testen", 1000.00, 1, 1, ObjectStates.Unmodified));
-            zeilen.Add(new Rechnungszeile(5, "Design", 1000.00, 2, 2, ObjectStates.Unmodified));
+            zeilen.Add(new Rechnungszeile(1, "Spezifikation", 2000.00, 1, ObjectStates.Unmodified));
+            zeilen.Add(new Rechnungszeile(2, "Design", 10000.00, 1, ObjectStates.Unmodified));
+            zeilen.Add(new Rechnungszeile(3, "Implementierung", 8000.00, 1, ObjectStates.Unmodified));
+            zeilen.Add(new Rechnungszeile(4, "Testen", 1000.00, 1, ObjectStates.Unmodified));
+            zeilen.Add(new Rechnungszeile(5, "Design", 1000.00, 2, ObjectStates.Unmodified));
 
             kategorie = new List<Buchungskategorie>();
             kategorie.Add(new Buchungskategorie(1, "Einnahme"));
@@ -285,12 +285,12 @@ namespace Backoffice
             return tmp;
         }
 
-        public Angebot getAngebot(int? projektid)
+        public Angebot getAngebotByProjektId(int projektid)
         {
             Angebot a = new Angebot();
             foreach (var item in angebote)
             {
-                if (item.Projektid == projektid.Value)
+                if (item.Projektid == projektid)
                     a = item;
             }
             return a;
@@ -513,7 +513,6 @@ namespace Backoffice
                 zeilen[index].Reid = r.Reid;
                 zeilen[index].Betrag = r.Betrag;
                 zeilen[index].Bezeichnung = r.Bezeichnung;
-                zeilen[index].Angebotid = r.Angebotid;
                 zeilen[index].Rechnungid = r.Rechnungid;
                 zeilen[index].Status = ObjectStates.Unmodified;
             }
@@ -729,17 +728,6 @@ namespace Backoffice
         void IDAL.saveStunden(Stunden s)
         {
             stunden.Add(s);
-        }
-
-        Angebot IDAL.getAngebot(int? projektid)
-        {
-            Angebot a = new Angebot();
-            foreach (var item in angebote)
-            {
-                if (item.Projektid == projektid.Value)
-                    a = item;
-            }
-            return a;
         }
 
         public double getRechnungssumme(int rechnungid)

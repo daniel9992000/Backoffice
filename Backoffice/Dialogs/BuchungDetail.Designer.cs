@@ -218,7 +218,7 @@
             this.Controls.Add(this.bn_cancel);
             this.Controls.Add(this.bn_save);
             this.Controls.Add(this.gb1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "BuchungDetail";
             this.Text = "BuchungDetail";
             this.Load += new System.EventHandler(this.BuchungDetail_Load);
