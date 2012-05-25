@@ -399,6 +399,13 @@ namespace Backoffice.DataBinding
                             cb.SelectedItem = item;
                         }
                     }
+                    if (o is Ausgang)
+                    {
+                        if (((Kunde)item).Kundenid == ((Ausgang)o).Kundenid)
+                        {
+                            cb.SelectedItem = item;
+                        }
+                    }
                 }
             }
             else if (typeof(IList<Projekt>).IsInstanceOfType(values))

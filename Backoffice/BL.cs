@@ -262,6 +262,34 @@ namespace Backoffice
             return tmp;
         }
 
+        public static List<Projekt> getProjekte(int kundenid)
+        {
+            var projekte = new List<Projekt>();
+
+            if (kundenid != 0)
+            {
+                var angebote = DALFactory.getDAL().getAngebotViewList(kundenid);
+                foreach (var item in angebote)
+                {
+                    int? pid = item.Projektid;
+                    bool exist = false;
+                    foreach (var p in projekte)
+                    {
+                        if (pid.Value == p.Projektid)
+                        {
+                            exist = true;
+                            break;
+                        }
+                    }
+
+                    if (!exist)
+                        projekte.Add(BL.getProjekt(pid.Value));
+                }
+            }
+
+            return projekte;
+        }
+
         public static void saveProjekt(Projekt p)
         {
             try

@@ -56,6 +56,8 @@ namespace Backoffice
             rechnungid++;
             ausgaenge.Add(new Ausgang(2, "Ausgangsrechnung 2", DateTime.Parse("21.03.2012"), 1, 1, ObjectStates.Unmodified));
             rechnungid++;
+            ausgaenge.Add(new Ausgang(4, "Ausgangsrechnung 2", DateTime.Parse("21.04.2012"), 2, 2, ObjectStates.Unmodified));
+            rechnungid++;
 
             eingaenge = new List<Eingang>();
             eingaenge.Add(new Eingang(3, "Eingangsrechnung 1", DateTime.Parse("30.03.2012"), 888.98, "C:", 1, ObjectStates.Unmodified));

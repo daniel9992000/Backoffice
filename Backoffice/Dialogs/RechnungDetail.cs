@@ -32,11 +32,14 @@ namespace Backoffice.Dialogs
         }
 
         void BindTo()
-        {
-            binder.BindTo_ComboBox(cb_projekt, BL.getProjekte(), r);
+        {            
+            binder.BindTo_ComboBox(cb_kunden, BL.getKunden(), r);
+            if (cb_kunden.SelectedItem != null)
+            {
+                binder.BindTo_ComboBox(cb_projekt, BL.getProjekte(((Kunde)cb_kunden.SelectedItem).Kundenid), r);
+            }
             binder.BindTo_TextBox(tb_rechnungid, r.Rechnungid);
             binder.BindTo_TextBox(tb_bezeichnung, r.Bezeichnung);
-            binder.BindTo_TextBox(tb_kunde, BL.getKunde(r.Kundenid));
             binder.BindTo_DateTimePicker(dtp_datum, r.Datum.Value);
             binder.BindTo_ListView(lv_buchungen, BL.getBuchungen(r.Rechnungid));
             binder.BindTo_TextBox(tb_offen, BL.getOffeneSumme(r.Rechnungid).ToString("#0.00") + " Euro");
@@ -53,11 +56,8 @@ namespace Backoffice.Dialogs
             binder.StartBindFrom();
             r.Bezeichnung = binder.BindFrom_String(tb_bezeichnung, errorControl1, new DataBinding.RequiredRule());
             r.Datum = binder.BindFrom_DateTime(dtp_datum, errorControl2, null);
-
-            if((r.Projektid = binder.BindFrom_ComboBox_Int(cb_projekt, errorControl3, new DataBinding.RequiredRule())) != 0)
-            {
-                r.Kundenid = BL.getAngebotByProjektId(r.Projektid).Kundenid;
-            }
+            r.Kundenid = binder.BindFrom_ComboBox_Int(cb_kunden, errorControl6, new DataBinding.RequiredRule());
+            r.Projektid = binder.BindFrom_ComboBox_Int(cb_projekt, errorControl3, new DataBinding.RequiredRule());
 
             if (created) r.Status = ObjectStates.New;
 
@@ -143,6 +143,17 @@ namespace Backoffice.Dialogs
             tmp.ShowDialog();
             BindTo();
             BindToZeilen();
+        }
+
+        private void gb1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cb_kunden_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            binder.BindTo_ComboBox(cb_projekt, BL.getProjekte(((Kunde)cb_kunden.SelectedItem).Kundenid), r);
+            cb_projekt.Text = "";
         }
 
     }
