@@ -38,10 +38,10 @@
             this.plz = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ort = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.tb_search = new System.Windows.Forms.TextBox();
             this.bn_delete = new System.Windows.Forms.Button();
             this.bn_edit = new System.Windows.Forms.Button();
             this.bn_new = new System.Windows.Forms.Button();
-            this.tb_search = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -137,6 +137,14 @@
             this.splitContainer1.TabIndex = 1;
             this.splitContainer1.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.splitContainer1_SplitterMoved);
             // 
+            // tb_search
+            // 
+            this.tb_search.Location = new System.Drawing.Point(250, 5);
+            this.tb_search.Name = "tb_search";
+            this.tb_search.Size = new System.Drawing.Size(248, 20);
+            this.tb_search.TabIndex = 3;
+            this.tb_search.TextChanged += new System.EventHandler(this.tb_search_TextChanged);
+            // 
             // bn_delete
             // 
             this.bn_delete.Location = new System.Drawing.Point(165, 3);
@@ -167,14 +175,6 @@
             this.bn_new.UseVisualStyleBackColor = true;
             this.bn_new.Click += new System.EventHandler(this.bn_new_Click);
             // 
-            // tb_search
-            // 
-            this.tb_search.Location = new System.Drawing.Point(250, 5);
-            this.tb_search.Name = "tb_search";
-            this.tb_search.Size = new System.Drawing.Size(248, 20);
-            this.tb_search.TabIndex = 3;
-            this.tb_search.TextChanged += new System.EventHandler(this.tb_search_TextChanged);
-            // 
             // UCKundenAnzeigen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -184,6 +184,7 @@
             this.Padding = new System.Windows.Forms.Padding(10);
             this.Size = new System.Drawing.Size(752, 369);
             this.Load += new System.EventHandler(this.UCKundenAnzeigen_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.UCKundenAnzeigen_KeyDown);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);

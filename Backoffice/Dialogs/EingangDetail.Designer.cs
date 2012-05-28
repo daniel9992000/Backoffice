@@ -51,8 +51,14 @@
             this.label4 = new System.Windows.Forms.Label();
             this.tb_pfad = new System.Windows.Forms.TextBox();
             this.bnchooserech = new System.Windows.Forms.Button();
+            this.gb3 = new System.Windows.Forms.GroupBox();
+            this.bn_new_buchung = new System.Windows.Forms.Button();
+            this.lv_buchungen = new System.Windows.Forms.ListView();
+            this.bn_offen = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.gb1.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.gb3.SuspendLayout();
             this.SuspendLayout();
             // 
             // oFD
@@ -61,7 +67,7 @@
             // 
             // bn_cancel
             // 
-            this.bn_cancel.Location = new System.Drawing.Point(120, 218);
+            this.bn_cancel.Location = new System.Drawing.Point(93, 281);
             this.bn_cancel.Name = "bn_cancel";
             this.bn_cancel.Size = new System.Drawing.Size(75, 23);
             this.bn_cancel.TabIndex = 6;
@@ -85,17 +91,18 @@
             this.gb1.Controls.Add(this.dtp_datum);
             this.gb1.Controls.Add(this.tb_bezeichnung);
             this.gb1.Controls.Add(this.tb_rechnungid);
-            this.gb1.Location = new System.Drawing.Point(28, 35);
+            this.gb1.Location = new System.Drawing.Point(12, 12);
             this.gb1.Name = "gb1";
-            this.gb1.Size = new System.Drawing.Size(541, 157);
+            this.gb1.Size = new System.Drawing.Size(508, 157);
             this.gb1.TabIndex = 4;
             this.gb1.TabStop = false;
             this.gb1.Text = "Allgemein";
+            this.gb1.Enter += new System.EventHandler(this.gb1_Enter);
             // 
             // errorControl5
             // 
             this.errorControl5.AutoSize = true;
-            this.errorControl5.Location = new System.Drawing.Point(228, 52);
+            this.errorControl5.Location = new System.Drawing.Point(214, 49);
             this.errorControl5.Name = "errorControl5";
             this.errorControl5.Size = new System.Drawing.Size(0, 13);
             this.errorControl5.TabIndex = 19;
@@ -103,7 +110,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(32, 52);
+            this.label6.Location = new System.Drawing.Point(29, 52);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(38, 13);
             this.label6.TabIndex = 18;
@@ -119,7 +126,7 @@
             // errorControl3
             // 
             this.errorControl3.AutoSize = true;
-            this.errorControl3.Location = new System.Drawing.Point(344, 126);
+            this.errorControl3.Location = new System.Drawing.Point(322, 129);
             this.errorControl3.Name = "errorControl3";
             this.errorControl3.Size = new System.Drawing.Size(0, 13);
             this.errorControl3.TabIndex = 16;
@@ -127,7 +134,7 @@
             // errorControl2
             // 
             this.errorControl2.AutoSize = true;
-            this.errorControl2.Location = new System.Drawing.Point(344, 104);
+            this.errorControl2.Location = new System.Drawing.Point(322, 106);
             this.errorControl2.Name = "errorControl2";
             this.errorControl2.Size = new System.Drawing.Size(0, 13);
             this.errorControl2.TabIndex = 15;
@@ -135,7 +142,7 @@
             // errorControl1
             // 
             this.errorControl1.AutoSize = true;
-            this.errorControl1.Location = new System.Drawing.Point(294, 81);
+            this.errorControl1.Location = new System.Drawing.Point(276, 77);
             this.errorControl1.Name = "errorControl1";
             this.errorControl1.Size = new System.Drawing.Size(0, 13);
             this.errorControl1.TabIndex = 14;
@@ -169,7 +176,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(29, 81);
+            this.label2.Location = new System.Drawing.Point(29, 77);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(69, 13);
             this.label2.TabIndex = 4;
@@ -208,7 +215,7 @@
             // 
             // bn_save
             // 
-            this.bn_save.Location = new System.Drawing.Point(28, 218);
+            this.bn_save.Location = new System.Drawing.Point(12, 281);
             this.bn_save.Name = "bn_save";
             this.bn_save.Size = new System.Drawing.Size(75, 23);
             this.bn_save.TabIndex = 5;
@@ -222,9 +229,9 @@
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.tb_pfad);
             this.groupBox1.Controls.Add(this.bnchooserech);
-            this.groupBox1.Location = new System.Drawing.Point(28, 267);
+            this.groupBox1.Location = new System.Drawing.Point(12, 175);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(541, 100);
+            this.groupBox1.Size = new System.Drawing.Size(508, 100);
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Rechnung";
@@ -250,24 +257,74 @@
             // 
             this.tb_pfad.Location = new System.Drawing.Point(44, 46);
             this.tb_pfad.Name = "tb_pfad";
-            this.tb_pfad.Size = new System.Drawing.Size(391, 20);
+            this.tb_pfad.Size = new System.Drawing.Size(306, 20);
             this.tb_pfad.TabIndex = 1;
             // 
             // bnchooserech
             // 
-            this.bnchooserech.Location = new System.Drawing.Point(441, 34);
+            this.bnchooserech.Location = new System.Drawing.Point(356, 44);
             this.bnchooserech.Name = "bnchooserech";
-            this.bnchooserech.Size = new System.Drawing.Size(94, 42);
+            this.bnchooserech.Size = new System.Drawing.Size(119, 23);
             this.bnchooserech.TabIndex = 0;
             this.bnchooserech.Text = "Rechnung wählen";
             this.bnchooserech.UseVisualStyleBackColor = true;
             this.bnchooserech.Click += new System.EventHandler(this.bnchooserech_Click);
             // 
+            // gb3
+            // 
+            this.gb3.Controls.Add(this.label7);
+            this.gb3.Controls.Add(this.bn_offen);
+            this.gb3.Controls.Add(this.bn_new_buchung);
+            this.gb3.Controls.Add(this.lv_buchungen);
+            this.gb3.Location = new System.Drawing.Point(526, 12);
+            this.gb3.Name = "gb3";
+            this.gb3.Size = new System.Drawing.Size(477, 263);
+            this.gb3.TabIndex = 8;
+            this.gb3.TabStop = false;
+            this.gb3.Text = "Buchungen";
+            // 
+            // bn_new_buchung
+            // 
+            this.bn_new_buchung.Location = new System.Drawing.Point(3, 19);
+            this.bn_new_buchung.Name = "bn_new_buchung";
+            this.bn_new_buchung.Size = new System.Drawing.Size(91, 23);
+            this.bn_new_buchung.TabIndex = 1;
+            this.bn_new_buchung.Text = "Neue Buchung";
+            this.bn_new_buchung.UseVisualStyleBackColor = true;
+            this.bn_new_buchung.Click += new System.EventHandler(this.bn_new_buchung_Click);
+            // 
+            // lv_buchungen
+            // 
+            this.lv_buchungen.Location = new System.Drawing.Point(3, 48);
+            this.lv_buchungen.Name = "lv_buchungen";
+            this.lv_buchungen.Size = new System.Drawing.Size(471, 181);
+            this.lv_buchungen.TabIndex = 0;
+            this.lv_buchungen.UseCompatibleStateImageBehavior = false;
+            this.lv_buchungen.DoubleClick += new System.EventHandler(this.lv_buchungen_DoubleClick);
+            // 
+            // bn_offen
+            // 
+            this.bn_offen.Enabled = false;
+            this.bn_offen.Location = new System.Drawing.Point(351, 235);
+            this.bn_offen.Name = "bn_offen";
+            this.bn_offen.Size = new System.Drawing.Size(123, 20);
+            this.bn_offen.TabIndex = 2;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(215, 238);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(130, 13);
+            this.label7.TabIndex = 3;
+            this.label7.Text = "Offene Rechnungssumme";
+            // 
             // EingangDetail
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(647, 424);
+            this.ClientSize = new System.Drawing.Size(1015, 312);
+            this.Controls.Add(this.gb3);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.bn_cancel);
             this.Controls.Add(this.gb1);
@@ -280,6 +337,8 @@
             this.gb1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.gb3.ResumeLayout(false);
+            this.gb3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -309,5 +368,10 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox tb_betrag;
         private DataBinding.ErrorControl errorControl5;
+        private System.Windows.Forms.GroupBox gb3;
+        private System.Windows.Forms.Button bn_new_buchung;
+        private System.Windows.Forms.ListView lv_buchungen;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox bn_offen;
     }
 }

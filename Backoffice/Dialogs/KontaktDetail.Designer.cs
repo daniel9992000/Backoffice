@@ -66,6 +66,7 @@
             this.rtb_bemerkungen = new System.Windows.Forms.RichTextBox();
             this.gb4 = new System.Windows.Forms.GroupBox();
             this.lv_eingang = new System.Windows.Forms.ListView();
+            this.bn_new_rechnung = new System.Windows.Forms.Button();
             this.gb1.SuspendLayout();
             this.gb2.SuspendLayout();
             this.gb3.SuspendLayout();
@@ -402,6 +403,7 @@
             // 
             // gb4
             // 
+            this.gb4.Controls.Add(this.bn_new_rechnung);
             this.gb4.Controls.Add(this.lv_eingang);
             this.gb4.Location = new System.Drawing.Point(494, 222);
             this.gb4.Name = "gb4";
@@ -412,13 +414,23 @@
             // 
             // lv_eingang
             // 
-            this.lv_eingang.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lv_eingang.Location = new System.Drawing.Point(3, 16);
+            this.lv_eingang.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.lv_eingang.Location = new System.Drawing.Point(3, 48);
             this.lv_eingang.Name = "lv_eingang";
-            this.lv_eingang.Size = new System.Drawing.Size(388, 169);
+            this.lv_eingang.Size = new System.Drawing.Size(388, 137);
             this.lv_eingang.TabIndex = 0;
             this.lv_eingang.UseCompatibleStateImageBehavior = false;
             this.lv_eingang.DoubleClick += new System.EventHandler(this.lv_eingang_DoubleClick);
+            // 
+            // bn_new_rechnung
+            // 
+            this.bn_new_rechnung.Location = new System.Drawing.Point(3, 19);
+            this.bn_new_rechnung.Name = "bn_new_rechnung";
+            this.bn_new_rechnung.Size = new System.Drawing.Size(98, 23);
+            this.bn_new_rechnung.TabIndex = 1;
+            this.bn_new_rechnung.Text = "Neue Rechnung";
+            this.bn_new_rechnung.UseVisualStyleBackColor = true;
+            this.bn_new_rechnung.Click += new System.EventHandler(this.bn_new_rechnung_Click);
             // 
             // KontaktDetail
             // 
@@ -486,5 +498,6 @@
         private DataBinding.ErrorControl errorControl10;
         private System.Windows.Forms.GroupBox gb4;
         private System.Windows.Forms.ListView lv_eingang;
+        private System.Windows.Forms.Button bn_new_rechnung;
     }
 }

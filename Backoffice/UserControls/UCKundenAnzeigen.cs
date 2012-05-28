@@ -113,5 +113,10 @@ namespace Backoffice.UserControls
         {
             BindTo(tb_search.Text);
         }
+
+        private void UCKundenAnzeigen_KeyDown(object sender, KeyEventArgs e)
+        {
+            
+        }
     }
 }

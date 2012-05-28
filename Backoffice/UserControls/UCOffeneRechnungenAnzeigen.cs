@@ -56,6 +56,8 @@ namespace Backoffice.UserControls
             eingangsr.Add("Datum:");
             foreach (var tmp in BL.getoffeneEingangsRechnungen())
             {
+                resumme = 0;
+                bsumme = 0;
                 ListViewItem i = lv_eingangr.Items.Add(tmp.Rechnungid.ToString());
                 i.Tag = tmp;                
                 resumme = tmp.Betrag;

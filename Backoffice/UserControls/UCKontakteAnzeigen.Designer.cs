@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.tb_search = new System.Windows.Forms.TextBox();
             this.bnedit = new System.Windows.Forms.Button();
             this.bndelete = new System.Windows.Forms.Button();
             this.bnnew = new System.Windows.Forms.Button();
@@ -42,7 +43,6 @@
             this.hausnummer = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.plz = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ort = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.tb_search = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -70,6 +70,14 @@
             this.splitContainer1.Size = new System.Drawing.Size(1003, 514);
             this.splitContainer1.SplitterDistance = 33;
             this.splitContainer1.TabIndex = 0;
+            // 
+            // tb_search
+            // 
+            this.tb_search.Location = new System.Drawing.Point(253, 6);
+            this.tb_search.Name = "tb_search";
+            this.tb_search.Size = new System.Drawing.Size(228, 20);
+            this.tb_search.TabIndex = 3;
+            this.tb_search.TextChanged += new System.EventHandler(this.tb_search_TextChanged);
             // 
             // bnedit
             // 
@@ -172,14 +180,6 @@
             // 
             this.ort.Text = "Ort";
             this.ort.Width = 100;
-            // 
-            // tb_search
-            // 
-            this.tb_search.Location = new System.Drawing.Point(253, 6);
-            this.tb_search.Name = "tb_search";
-            this.tb_search.Size = new System.Drawing.Size(228, 20);
-            this.tb_search.TabIndex = 3;
-            this.tb_search.TextChanged += new System.EventHandler(this.tb_search_TextChanged);
             // 
             // UCKontakteAnzeigen
             // 

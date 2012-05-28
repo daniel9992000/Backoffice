@@ -15,6 +15,7 @@ namespace Backoffice.Dialogs
         Rechnungszeile rz = null;
         bool created = false;
         DataBinding.Binder binder;
+        List<string> values;
 
         public RechnungDetail()
         {
@@ -47,6 +48,12 @@ namespace Backoffice.Dialogs
 
         void BindToZeilen()
         {
+            values = new List<string>();
+            foreach (var item in BL.getRechnungszeilen(r.Rechnungid))
+            {
+                values.Add(item.Bezeichnung);
+                values.Add(item.Betrag.ToString("#0.00") + " Euro");
+            }
             binder.BindTo_ListView(lv_zeilen, BL.getRechnungszeilen(r.Rechnungid));
             binder.BindTo_TextBox(tb_rechnungssumme, BL.getRechnungssumme(r.Rechnungid).ToString("#0.00") + " Euro");
         }
@@ -154,6 +161,19 @@ namespace Backoffice.Dialogs
         {
             binder.BindTo_ComboBox(cb_projekt, BL.getProjekte(((Kunde)cb_kunden.SelectedItem).Kundenid), r);
             cb_projekt.Text = "";
+        }
+
+        private void bn_print_Click(object sender, EventArgs e)
+        {
+            sfd.FileName = r.Bezeichnung;
+            if (sfd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                CreatePdf pdf = new CreatePdf();
+                pdf.CreatePdfDocument(sfd.FileName);
+                pdf.AddHeader(r.Bezeichnung);
+                pdf.addTableRechnung(2, values, BL.getRechnungssumme(r.Rechnungid).ToString("#0.00") + " Euro");
+                pdf.ClosePdf();
+            }
         }
 
     }

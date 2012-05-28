@@ -328,10 +328,10 @@ namespace Backoffice.DataBinding
             else if (typeof(IList<Buchung>).IsInstanceOfType(values))
             {
                 lv.Columns.Add("ID", 25);
-                lv.Columns.Add("Datum", 120);
+                lv.Columns.Add("Datum", 90);
                 lv.Columns.Add("Betrag", 110, HorizontalAlignment.Right);
                 lv.Columns.Add("Rechnung", 140);
-                lv.Columns.Add("Kategorie", 100);
+                lv.Columns.Add("Kategorie", 80);
 
                 foreach (var item in values)
                 {

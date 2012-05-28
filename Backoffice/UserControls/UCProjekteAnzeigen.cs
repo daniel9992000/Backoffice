@@ -16,10 +16,17 @@ namespace Backoffice.UserControls
             InitializeComponent();
         }
 
-        void BindTo()
+        void BindTo(string search = "")
         {
             DataBinding.Binder binder = new DataBinding.Binder();
-            binder.BindTo_ListView(lv_projekte, BL.getProjekte());
+            if (search == "")
+            {
+                binder.BindTo_ListView(lv_projekte, BL.getProjekte());
+            }
+            else
+            {
+                binder.BindTo_ListView(lv_projekte, BL.getProjekte(search));
+            }
 
         }
         void NewProjekt()
@@ -83,6 +90,11 @@ namespace Backoffice.UserControls
         private void UCProjekteAnzeigen_Load_1(object sender, EventArgs e)
         {
             BindTo();
+        }
+
+        private void tb_search_TextChanged(object sender, EventArgs e)
+        {
+            BindTo(tb_search.Text);
         }
 
     }

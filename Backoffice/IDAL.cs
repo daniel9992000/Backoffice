@@ -31,6 +31,7 @@ namespace Backoffice
         void saveProjekt(Projekt p);
         void deleteProjekt(Projekt p);
         List<Projekt> getProjektViewList();
+        List<Projekt> getProjektViewList(string search);
         Projekt getProjekt(int id);
 
         //Kontakte

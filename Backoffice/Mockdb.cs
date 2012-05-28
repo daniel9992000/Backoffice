@@ -195,6 +195,22 @@ namespace Backoffice
             return tmp;
         }
 
+        public List<Projekt> getProjektViewList(string search)
+        {
+            search = search.ToLower();
+            List<Projekt> tmp = new List<Projekt>();
+            foreach (var item in projekte)
+            {
+                if(item.Name.ToLower().Contains(search))
+                {
+                    item.Stunden = getProjektStunden(item.Name);
+                    tmp.Add(item);
+                }
+            }
+
+            return tmp; 
+        }
+
         public Projekt getProjekt(int id)
         {
             foreach (var item in projekte)
@@ -753,6 +769,5 @@ namespace Backoffice
             }
             return anz;
         }
-
     }
 }

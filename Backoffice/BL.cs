@@ -262,6 +262,22 @@ namespace Backoffice
             return tmp;
         }
 
+        public static List<Projekt> getProjekte(string search)
+        {
+            List<Projekt> tmp = null;
+            try
+            {
+                tmp = DALFactory.getDAL().getProjektViewList(search);
+                log.Info("Projekte mit Suchbegriff " + search + " ausgelesen!");
+            }
+            catch (DALException ex)
+            {
+                log.Error("Projekte mit Suchbegriff " + search + " konnten nicht ausgelesen werden!", ex);
+                throw new BLException("Projekte konnten nicht ausgelesen werden!");
+            }
+            return tmp;
+        }
+
         public static List<Projekt> getProjekte(int kundenid)
         {
             var projekte = new List<Projekt>();
@@ -650,17 +666,49 @@ namespace Backoffice
         #region Stunden
         public static List<Stunden> getStunden(string projektname)
         {
-            return DALFactory.getDAL().getStundenViewList(projektname);
+            var tmp = new List<Stunden>();
+            try
+            {
+                tmp = DALFactory.getDAL().getStundenViewList(projektname);
+                log.Info("Alle Stunden vom Projekt " + projektname + " ausgelesen!");
+            }
+            catch (DALException ex)
+            {
+                log.Error("Fehler beim Auslesen der Stunden vom Projekt " + projektname, ex);
+                throw new BLException("Stunden konnten nicht ausgelesen werden!");
+            }
+            return tmp;
         }
 
         public static void saveStunde(Stunden s)
         {
-            DALFactory.getDAL().saveStunden(s);
+            try
+            {
+                DALFactory.getDAL().saveStunden(s);
+                log.Info("Stunden für Projekt " + s.Projektname + " gespeichert!");
+            }
+            catch (DALException ex)
+            {
+                log.Error("Fehler beim Speichern der Stunden für Projekt " + s.Projektname, ex);
+                throw new BLException("Stunden konnten nicht gespeichert werden!");
+            }
+            
         }
 
         public static int getProjektStunden(string projektname)
         {
-            return DALFactory.getDAL().getProjektStunden(projektname);
+            int tmp = 0;
+            try
+            {
+                tmp = DALFactory.getDAL().getProjektStunden(projektname);
+                log.Info("Stundden für Projekt " + projektname + " ausgelesen!");
+            }
+            catch (DALException ex)
+            {
+                log.Error("Fehler beim Auslesen der Stunden für Projekt " + projektname, ex);
+                throw new BLException("Stunden konnten nicht ausgelesen werden!");
+            }
+            return tmp;
         }
         #endregion
     }

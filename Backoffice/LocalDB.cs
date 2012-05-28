@@ -332,6 +332,11 @@ namespace Backoffice
             return plist;
         }
 
+        public List<Projekt> getProjektViewList(string search)
+        {
+            throw new NotImplementedException();
+        }
+
         public Projekt getProjekt(int id)
         {
             buildconnection();

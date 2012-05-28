@@ -64,6 +64,37 @@ namespace Backoffice
             sheadline.Alignment = 0;
             pdf.Add(sheadline);
         }
+
+        public void addTableRechnung(int anzcol, List<string> values, string summe)
+        {
+            PdfPTable table = new PdfPTable(anzcol);
+            
+            table.TotalWidth = 500f;
+            table.LockedWidth = true;
+            table.SpacingAfter = 10f;
+            table.SpacingBefore = 30f;
+            table.DefaultCell.Padding = 5f;            
+
+            int i = 1;
+            foreach (var item in values)
+            {
+                PdfPCell cell = new PdfPCell(new Phrase(item));
+                cell.Padding = 5f;
+                if ((i % 2) == 0)
+                {
+                    
+                    cell.HorizontalAlignment = 2;
+                }
+                table.AddCell(cell);
+                i++;
+            }
+            PdfPCell sum = new PdfPCell(new Phrase(summe));
+            sum.Colspan = anzcol;
+            sum.HorizontalAlignment = 2;
+            sum.Padding = 5f;
+            table.AddCell(sum);
+            pdf.Add(table);
+        }
         
         public void addTable(int anzcol, string tableheader, List<string> values)
         {
