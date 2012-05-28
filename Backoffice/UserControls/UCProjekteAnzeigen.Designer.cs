@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.tb_search = new System.Windows.Forms.TextBox();
             this.bn_delete = new System.Windows.Forms.Button();
             this.bn_edit = new System.Windows.Forms.Button();
             this.bn_new = new System.Windows.Forms.Button();
@@ -53,6 +54,7 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.tb_search);
             this.splitContainer1.Panel1.Controls.Add(this.bn_delete);
             this.splitContainer1.Panel1.Controls.Add(this.bn_edit);
             this.splitContainer1.Panel1.Controls.Add(this.bn_new);
@@ -60,15 +62,23 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.lv_projekte);
-            this.splitContainer1.Size = new System.Drawing.Size(384, 375);
+            this.splitContainer1.Size = new System.Drawing.Size(537, 375);
             this.splitContainer1.SplitterDistance = 33;
             this.splitContainer1.TabIndex = 1;
             // 
+            // tb_search
+            // 
+            this.tb_search.Location = new System.Drawing.Point(250, 7);
+            this.tb_search.Name = "tb_search";
+            this.tb_search.Size = new System.Drawing.Size(221, 20);
+            this.tb_search.TabIndex = 3;
+            this.tb_search.TextChanged += new System.EventHandler(this.tb_search_TextChanged);
+            // 
             // bn_delete
             // 
-            this.bn_delete.Location = new System.Drawing.Point(191, 3);
+            this.bn_delete.Location = new System.Drawing.Point(169, 5);
             this.bn_delete.Name = "bn_delete";
-            this.bn_delete.Size = new System.Drawing.Size(75, 27);
+            this.bn_delete.Size = new System.Drawing.Size(75, 23);
             this.bn_delete.TabIndex = 2;
             this.bn_delete.Text = "Löschen";
             this.bn_delete.UseVisualStyleBackColor = true;
@@ -76,9 +86,9 @@
             // 
             // bn_edit
             // 
-            this.bn_edit.Location = new System.Drawing.Point(98, 3);
+            this.bn_edit.Location = new System.Drawing.Point(88, 5);
             this.bn_edit.Name = "bn_edit";
-            this.bn_edit.Size = new System.Drawing.Size(75, 27);
+            this.bn_edit.Size = new System.Drawing.Size(75, 23);
             this.bn_edit.TabIndex = 1;
             this.bn_edit.Text = "Bearbeiten";
             this.bn_edit.UseVisualStyleBackColor = true;
@@ -86,9 +96,9 @@
             // 
             // bn_new
             // 
-            this.bn_new.Location = new System.Drawing.Point(3, 3);
+            this.bn_new.Location = new System.Drawing.Point(3, 5);
             this.bn_new.Name = "bn_new";
-            this.bn_new.Size = new System.Drawing.Size(79, 27);
+            this.bn_new.Size = new System.Drawing.Size(79, 23);
             this.bn_new.TabIndex = 0;
             this.bn_new.Text = "Neu";
             this.bn_new.UseVisualStyleBackColor = true;
@@ -106,7 +116,7 @@
             this.lv_projekte.Location = new System.Drawing.Point(0, 0);
             this.lv_projekte.Margin = new System.Windows.Forms.Padding(10);
             this.lv_projekte.Name = "lv_projekte";
-            this.lv_projekte.Size = new System.Drawing.Size(384, 338);
+            this.lv_projekte.Size = new System.Drawing.Size(537, 338);
             this.lv_projekte.TabIndex = 0;
             this.lv_projekte.UseCompatibleStateImageBehavior = false;
             this.lv_projekte.View = System.Windows.Forms.View.Details;
@@ -133,9 +143,10 @@
             this.Controls.Add(this.splitContainer1);
             this.Name = "UCProjekteAnzeigen";
             this.Padding = new System.Windows.Forms.Padding(10);
-            this.Size = new System.Drawing.Size(404, 395);
+            this.Size = new System.Drawing.Size(557, 395);
             this.Load += new System.EventHandler(this.UCProjekteAnzeigen_Load_1);
             this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
@@ -153,5 +164,6 @@
         private System.Windows.Forms.ColumnHeader ID;
         private System.Windows.Forms.ColumnHeader Projektname;
         private System.Windows.Forms.ColumnHeader stunden;
+        private System.Windows.Forms.TextBox tb_search;
     }
 }

@@ -56,17 +56,19 @@ namespace Backoffice
             rechnungid++;
             ausgaenge.Add(new Ausgang(2, "Ausgangsrechnung 2", DateTime.Parse("21.03.2012"), 1, 1, ObjectStates.Unmodified));
             rechnungid++;
+            ausgaenge.Add(new Ausgang(4, "Ausgangsrechnung 2", DateTime.Parse("21.04.2012"), 2, 2, ObjectStates.Unmodified));
+            rechnungid++;
 
             eingaenge = new List<Eingang>();
             eingaenge.Add(new Eingang(3, "Eingangsrechnung 1", DateTime.Parse("30.03.2012"), 888.98, "C:", 1, ObjectStates.Unmodified));
             rechnungid++;
 
             zeilen = new List<Rechnungszeile>();
-            zeilen.Add(new Rechnungszeile(1, "Spezifikation", 2000.00, 1, 1, ObjectStates.Unmodified));
-            zeilen.Add(new Rechnungszeile(2, "Design", 10000.00, 1, 1, ObjectStates.Unmodified));
-            zeilen.Add(new Rechnungszeile(3, "Implementierung", 8000.00, 1, 1, ObjectStates.Unmodified));
-            zeilen.Add(new Rechnungszeile(4, "Testen", 1000.00, 1, 1, ObjectStates.Unmodified));
-            zeilen.Add(new Rechnungszeile(5, "Design", 1000.00, 2, 2, ObjectStates.Unmodified));
+            zeilen.Add(new Rechnungszeile(1, "Spezifikation", 2000.00, 1, ObjectStates.Unmodified));
+            zeilen.Add(new Rechnungszeile(2, "Design", 10000.00, 1, ObjectStates.Unmodified));
+            zeilen.Add(new Rechnungszeile(3, "Implementierung", 8000.00, 1, ObjectStates.Unmodified));
+            zeilen.Add(new Rechnungszeile(4, "Testen", 1000.00, 1, ObjectStates.Unmodified));
+            zeilen.Add(new Rechnungszeile(5, "Design", 1000.00, 2, ObjectStates.Unmodified));
 
             kategorie = new List<Buchungskategorie>();
             kategorie.Add(new Buchungskategorie(1, "Einnahme"));
@@ -193,6 +195,22 @@ namespace Backoffice
             return tmp;
         }
 
+        public List<Projekt> getProjektViewList(string search)
+        {
+            search = search.ToLower();
+            List<Projekt> tmp = new List<Projekt>();
+            foreach (var item in projekte)
+            {
+                if(item.Name.ToLower().Contains(search))
+                {
+                    item.Stunden = getProjektStunden(item.Name);
+                    tmp.Add(item);
+                }
+            }
+
+            return tmp; 
+        }
+
         public Projekt getProjekt(int id)
         {
             foreach (var item in projekte)
@@ -285,12 +303,12 @@ namespace Backoffice
             return tmp;
         }
 
-        public Angebot getAngebot(int? projektid)
+        public Angebot getAngebotByProjektId(int projektid)
         {
             Angebot a = new Angebot();
             foreach (var item in angebote)
             {
-                if (item.Projektid == projektid.Value)
+                if (item.Projektid == projektid)
                     a = item;
             }
             return a;
@@ -513,7 +531,6 @@ namespace Backoffice
                 zeilen[index].Reid = r.Reid;
                 zeilen[index].Betrag = r.Betrag;
                 zeilen[index].Bezeichnung = r.Bezeichnung;
-                zeilen[index].Angebotid = r.Angebotid;
                 zeilen[index].Rechnungid = r.Rechnungid;
                 zeilen[index].Status = ObjectStates.Unmodified;
             }
@@ -731,8 +748,6 @@ namespace Backoffice
             stunden.Add(s);
         }
 
-       
-
         public double getRechnungssumme(int rechnungid)
         {
             double summe = 0;
@@ -754,6 +769,5 @@ namespace Backoffice
             }
             return anz;
         }
-
     }
 }

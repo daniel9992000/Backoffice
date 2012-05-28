@@ -98,5 +98,12 @@ namespace Backoffice.Dialogs
         {
             this.Close();
         }
+
+        private void bn_new_rechnung_Click(object sender, EventArgs e)
+        {
+            Dialogs.EingangDetail tmp = new EingangDetail();
+            tmp.ShowDialog();
+            BindTo();
+        }
     }
 }

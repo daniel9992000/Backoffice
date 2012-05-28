@@ -502,9 +502,8 @@
             this.Controls.Add(this.gb1);
             this.Controls.Add(this.bn_cancel);
             this.Controls.Add(this.bn_save);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "KundeDetail";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Kundendaten";
             this.Load += new System.EventHandler(this.KundeDetail_Load);
             this.gb1.ResumeLayout(false);

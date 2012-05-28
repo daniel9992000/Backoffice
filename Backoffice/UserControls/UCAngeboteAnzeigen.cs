@@ -45,7 +45,15 @@ namespace Backoffice.UserControls
 
         void DeleteAngebot(Angebot a)
         {
-            BL.deleteAngebot(a);
+            try
+            {
+                BL.deleteAngebot(a);
+            }
+            catch (BLException ex)
+            {
+                MessageBox.Show(ex.Message, a.Titel, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            
             BindTo();
         }
 

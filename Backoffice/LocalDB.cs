@@ -332,6 +332,11 @@ namespace Backoffice
             return plist;
         }
 
+        public List<Projekt> getProjektViewList(string search)
+        {
+            throw new NotImplementedException();
+        }
+
         public Projekt getProjekt(int id)
         {
             buildconnection();
@@ -534,7 +539,7 @@ namespace Backoffice
 
             return alist;
         }
-        public Angebot getProjektAngebot(int? projektid)
+        public Angebot getAngebotByProjektId(int projektid)
         {
             buildconnection();
             NpgsqlCommand comm = null;
@@ -1001,22 +1006,21 @@ namespace Backoffice
                 string sql = "";
                 if (r.Status == ObjectStates.New)
                 {
-                    sql = @"Insert into rechnungszeilen (bezeichnung, betrag,angebotid,rechnungid) 
-                            values (@bezeichnung, @betrag,@angebotid, @rechnungid)";
+                    sql = @"Insert into rechnungszeilen (bezeichnung, betrag,rechnungid) 
+                            values (@bezeichnung, @betrag,@rechnungid)";
                     comm = new NpgsqlCommand(sql, conn);
                   
                 }
                 else if (r.Status == ObjectStates.Modified)
                 {
                     sql = @"Update rechnungszeilen set bezeichnung = @bezeichnung, betrag = @betrag, 
-                    angebotid = @angebotid, rechnungid = @rechnungid where reid = @reid";
+                    rechnungid = @rechnungid where reid = @reid";
                     comm = new NpgsqlCommand(sql, conn);
                     comm.Parameters.AddWithValue("@reid", r.Reid);
            
                 }
                 comm.Parameters.AddWithValue("@bezeichnung", r.Bezeichnung);
                 comm.Parameters.AddWithValue("@betrag", r.Betrag);
-                comm.Parameters.AddWithValue("@angebotid", r.Angebotid);
                 comm.Parameters.AddWithValue("@rechnungid", r.Rechnungid);
 
                 comm.Prepare();
@@ -1076,7 +1080,6 @@ namespace Backoffice
                     r.Reid = reader.GetInt32(0);
                     r.Bezeichnung = reader.GetString(1).Trim();
                     r.Betrag = reader.GetDouble(2);
-                    r.Angebotid = reader.ReadNullableInt(3);
                     r.Rechnungid = reader.ReadNullableInt(4);
                     rlist.Add(r);
                 }

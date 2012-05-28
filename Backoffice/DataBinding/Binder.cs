@@ -328,10 +328,10 @@ namespace Backoffice.DataBinding
             else if (typeof(IList<Buchung>).IsInstanceOfType(values))
             {
                 lv.Columns.Add("ID", 25);
-                lv.Columns.Add("Datum", 120);
+                lv.Columns.Add("Datum", 90);
                 lv.Columns.Add("Betrag", 110, HorizontalAlignment.Right);
                 lv.Columns.Add("Rechnung", 140);
-                lv.Columns.Add("Kategorie", 100);
+                lv.Columns.Add("Kategorie", 80);
 
                 foreach (var item in values)
                 {
@@ -395,6 +395,13 @@ namespace Backoffice.DataBinding
                     if (o is Angebot)
                     {
                         if (((Kunde)item).Kundenid == ((Angebot)o).Kundenid)
+                        {
+                            cb.SelectedItem = item;
+                        }
+                    }
+                    if (o is Ausgang)
+                    {
+                        if (((Kunde)item).Kundenid == ((Ausgang)o).Kundenid)
                         {
                             cb.SelectedItem = item;
                         }

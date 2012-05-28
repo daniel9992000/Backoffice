@@ -46,7 +46,15 @@ namespace Backoffice.UserControls
 
         void DeleteKunde(Kunde k)
         {
-            BL.deleteKunde(k);
+            try
+            {
+                BL.deleteKunde(k);
+            }
+            catch (BLException ex)
+            {
+                MessageBox.Show(ex.Message, k.Nachname + " " + k.Vorname, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            
             BindTo();
         }
 
@@ -104,6 +112,11 @@ namespace Backoffice.UserControls
         private void tb_search_TextChanged(object sender, EventArgs e)
         {
             BindTo(tb_search.Text);
+        }
+
+        private void UCKundenAnzeigen_KeyDown(object sender, KeyEventArgs e)
+        {
+            
         }
     }
 }

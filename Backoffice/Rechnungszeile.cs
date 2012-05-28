@@ -10,7 +10,6 @@ namespace Backoffice
         int reid;
         string bezeichnung;
         double betrag;
-        int? angebotid;
         int? rechnungid;
         ObjectStates status;
 
@@ -19,17 +18,15 @@ namespace Backoffice
             this.reid = 0;
             this.bezeichnung = string.Empty;
             this.betrag = 0;
-            this.angebotid = 0;
             this.rechnungid = 0;
         }
 
-        public Rechnungszeile(int reid, string bezeichnung, double betrag, int angebotid, int rechnungid, ObjectStates status)
+        public Rechnungszeile(int reid, string bezeichnung, double betrag, int rechnungid, ObjectStates status)
         {
             this.reid = reid;
             this.rechnungid = rechnungid;
             this.betrag = betrag;
             this.bezeichnung = bezeichnung;
-            this.angebotid = angebotid;
             this.status = status;
         }
 
@@ -76,19 +73,6 @@ namespace Backoffice
                 if (betrag != value)
                 {
                     betrag = value;
-                    status = ObjectStates.Modified;
-                }
-            }
-        }
-
-        public int? Angebotid
-        {
-            get { return angebotid; }
-            set
-            {
-                if (angebotid != value)
-                {
-                    angebotid = value;
                     status = ObjectStates.Modified;
                 }
             }
