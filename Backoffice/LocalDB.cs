@@ -367,6 +367,20 @@ namespace Backoffice
             return p;
         }
 
+        public List<Stunden> getStundenViewList(string projektname)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void saveStunden(Stunden s)
+        {
+            throw new NotImplementedException();
+        }
+        public int getProjektStunden(string projektname)
+        {
+            throw new NotImplementedException();
+        }
+
         #endregion
 
         #region Angebot
@@ -562,6 +576,72 @@ namespace Backoffice
             }
         }
 
+        public List<Angebot> getAngebotViewList(int kundenid)
+        {
+            buildconnection();
+            List<Angebot> alist = new List<Angebot>();
+            NpgsqlCommand comm = null;
+            NpgsqlDataReader reader = null;
+            try
+            {
+
+                string sql = @"Select angebotid, summe, datum, dauer, chance, 
+                kundenid, projektid, titel from angebote where kundenid = @kundenid;";
+                comm = new NpgsqlCommand(sql, conn);
+
+                comm.Parameters.AddWithValue("@kundenid", kundenid);
+                reader = comm.ExecuteReader();
+                while (reader.Read())
+                {
+                    Angebot a = new Angebot();
+                    a.Angebotid = reader.GetInt32(0);
+                    a.Summe = reader.GetDouble(1);
+                    a.Datum = reader.GetDateTime(2);
+                    a.Dauer = reader.GetInt32(3);
+                    a.Chance = reader.GetInt32(4);
+                    a.Kundenid = reader.GetInt32(5);
+                    a.Projektid = reader.ReadNullableInt(6);
+                    a.Titel = reader.GetString(7).Trim();
+                    a.Status = ObjectStates.Unmodified;
+                    alist.Add(a);
+                }
+                return alist;
+
+            }
+            catch (NpgsqlException exp)
+            {
+                throw new DALException("DAL: Angebot konnte nicht gefunden werden!", exp);
+            }
+            finally
+            {
+                comm.Dispose();
+                conn.Close();
+                reader.Close();
+            }
+        }
+
+        public List<Angebot> getAngebotViewList(int? projektid)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Angebot getAngebot(int? projektid)
+        {
+            throw new NotImplementedException();
+        }
+        public List<Angebot> getAngebote()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Angebot getAngebot(int angebotid)
+        {
+            throw new NotImplementedException();
+        }
+        public List<Angebot> getAngebotViewListByProjektId(int projektid)
+        {
+            throw new NotImplementedException();
+        }
         #endregion
 
         #region Kontakt
@@ -889,23 +969,26 @@ namespace Backoffice
 
         #region Eingangsrechnungen
 
-        void saveEingang(Eingang r)
+        public void saveEingang(Eingang r)
         {
             throw new NotImplementedException();
         }
-        void deleteEingang(Eingang r)
+        public void deleteEingang(Eingang r)
         {
             throw new NotImplementedException();
         }
-        List<Eingang> getEingangViewList()
+        public List<Eingang> getEingangViewList()
         {
             throw new NotImplementedException();
         }
-        List<Eingang> getEingangViewList(int kontaktid)
+        public List<Eingang> getEingangViewList(int kontaktid)
         {
             throw new NotImplementedException();
         }
-
+        public List<Rechnung> getRechnungViewList(int kundenid)
+        {
+            throw new NotImplementedException();
+        }
         #endregion
 
         #region Rechnungszeile
@@ -1014,14 +1097,13 @@ namespace Backoffice
         }
         #endregion
 
-
-
+        #region Auswertungen
         public List<Angebot> getJahresumsatzViewList()
         {
             throw new NotImplementedException();
         }
 
-        double[] IDAL.getIstJahresumsatz()
+        public double[] getIstJahresumsatz()
         {
             throw new NotImplementedException();
         }
@@ -1036,30 +1118,6 @@ namespace Backoffice
             throw new NotImplementedException();
         }
 
-        public List<Angebot> getAngebotViewList(int kundenid)
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<Angebot> getAngebotViewList(int? projektid)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Angebot getAngebot(int? projektid)
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<Rechnung> getRechnungViewList(int kundenid)
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<Angebot> getAngebote()
-        {
-            throw new NotImplementedException();
-        }
 
         public List<Eingang> getOffeneERechnungen()
         {
@@ -1070,6 +1128,9 @@ namespace Backoffice
         {
             throw new NotImplementedException();
         }
+        #endregion
+
+        #region Buchungen
 
         public void saveBuchung(Buchung b)
         {
@@ -1085,62 +1146,6 @@ namespace Backoffice
         {
             throw new NotImplementedException();
         }
-
-        public List<Stunden> getStundenViewList(string projektname)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void saveStunden(Stunden s)
-        { 
-            throw new NotImplementedException();
-        }
-
-        public List<Angebot> getAngebotViewListByProjektId(int projektid)
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<Ausgang> getAusgangViewListByProjektId(int projektid)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Angebot getAngebot(int angebotid)
-        {
-            throw new NotImplementedException();
-        }
-
-        public double getRechnungssumme(int rechnungid)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IDAL.saveEingang(Eingang r)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IDAL.deleteEingang(Eingang r)
-        {
-            throw new NotImplementedException();
-        }
-
-        List<Eingang> IDAL.getEingangViewList()
-        {
-            throw new NotImplementedException();
-        }
-
-        List<Eingang> IDAL.getEingangViewList(int kontaktid)
-        {
-            throw new NotImplementedException();
-        }
-
-        public int getProjektStunden(string projektname)
-        {
-            throw new NotImplementedException();
-        }
-
         public List<Buchung> getBuchungViewList()
         {
             throw new NotImplementedException();
@@ -1156,6 +1161,28 @@ namespace Backoffice
             throw new NotImplementedException();
         }
 
+
+        #endregion 
+
+       
+
+       
+
+        public List<Ausgang> getAusgangViewListByProjektId(int projektid)
+        {
+            throw new NotImplementedException();
+        }
+
+       
+
+        public double getRechnungssumme(int rechnungid)
+        {
+            throw new NotImplementedException();
+        }
+
+       
+
+      
 
         public List<Angebot> getAngebotViewList(string search)
         {

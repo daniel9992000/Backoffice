@@ -450,7 +450,7 @@ namespace Backoffice
   
         #region Eingangsrechnungen
 
-        void IDAL.saveEingang(Eingang r)
+        public void saveEingang(Eingang r)
         {
             if (r.Status == ObjectStates.New)
             {
@@ -471,17 +471,17 @@ namespace Backoffice
             }
         }
 
-        void IDAL.deleteEingang(Eingang r)
+        public void deleteEingang(Eingang r)
         {
             eingaenge.Remove(r);
         }
 
-        List<Eingang> IDAL.getEingangViewList()
+        public List<Eingang> getEingangViewList()
         {
             return eingaenge;
         }
 
-        List<Eingang> IDAL.getEingangViewList(int kontaktid)
+        public List<Eingang> getEingangViewList(int kontaktid)
         {
             List<Eingang> tmp = new List<Eingang>();
 
@@ -715,7 +715,7 @@ namespace Backoffice
         }
         #endregion
 
-        List<Stunden> IDAL.getStundenViewList(string projektname)
+        public List<Stunden> getStundenViewList(string projektname)
         {
             List<Stunden> slist = new List<Stunden>();
             foreach (var item in stunden)
@@ -726,21 +726,12 @@ namespace Backoffice
             return slist;
         }
 
-        void IDAL.saveStunden(Stunden s)
+        public void saveStunden(Stunden s)
         {
             stunden.Add(s);
         }
 
-        Angebot IDAL.getAngebot(int? projektid)
-        {
-            Angebot a = new Angebot();
-            foreach (var item in angebote)
-            {
-                if (item.Projektid == projektid.Value)
-                    a = item;
-            }
-            return a;
-        }
+       
 
         public double getRechnungssumme(int rechnungid)
         {
