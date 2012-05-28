@@ -608,12 +608,7 @@ namespace Backoffice
             }
             return rlist;
         }
-        #endregion           
-
-        public List<Rechnung> getRechnungViewList(int kundenid)
-        {
-            throw new NotImplementedException();
-        }
+        #endregion                   
 
         public List<Angebot> getAngebote()
         {

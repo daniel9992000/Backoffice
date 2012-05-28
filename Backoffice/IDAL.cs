@@ -70,8 +70,6 @@ namespace Backoffice
         List<Buchungskategorie> getBuchungsKategorien();
         Buchungskategorie getBuchungsKategorie(int id);
 
-
-
         //Auswertungen
         double getRechnungssumme(int rechnungid);
         List<Angebot> getJahresumsatzViewList();

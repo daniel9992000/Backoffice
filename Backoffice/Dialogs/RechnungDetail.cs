@@ -152,11 +152,6 @@ namespace Backoffice.Dialogs
             BindToZeilen();
         }
 
-        private void gb1_Enter(object sender, EventArgs e)
-        {
-
-        }
-
         private void cb_kunden_SelectedIndexChanged(object sender, EventArgs e)
         {
             binder.BindTo_ComboBox(cb_projekt, BL.getProjekte(((Kunde)cb_kunden.SelectedItem).Kundenid), r);
@@ -170,7 +165,7 @@ namespace Backoffice.Dialogs
             {
                 CreatePdf pdf = new CreatePdf();
                 pdf.CreatePdfDocument(sfd.FileName);
-                pdf.AddHeader(r.Bezeichnung);
+                pdf.AddHeader(r.Bezeichnung);                
                 pdf.addTableRechnung(2, values, BL.getRechnungssumme(r.Rechnungid).ToString("#0.00") + " Euro");
                 pdf.ClosePdf();
             }
