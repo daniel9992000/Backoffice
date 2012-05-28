@@ -55,12 +55,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Angebot.cs" />
-    <Compile Include="Ausgang.cs" />
+    <Compile Include="Entities\Angebot.cs" />
+    <Compile Include="Entities\Ausgang.cs" />
     <Compile Include="BL.cs" />
     <Compile Include="BLException.cs" />
-    <Compile Include="Buchung.cs" />
-    <Compile Include="Buchungskategorie.cs" />
+    <Compile Include="Entities\Buchung.cs" />
+    <Compile Include="Entities\Buchungskategorie.cs" />
     <Compile Include="ColumnSorter.cs" />
     <Compile Include="CreatePdf.cs" />
     <Compile Include="DALException.cs" />
@@ -127,7 +127,7 @@
     <Compile Include="UserControls\UCStundenEinlesenAnzeigen.Designer.cs">
       <DependentUpon>UCStundenEinlesenAnzeigen.cs</DependentUpon>
     </Compile>
-    <Compile Include="Eingang.cs" />
+    <Compile Include="Entities\Eingang.cs" />
     <Compile Include="StundenEinlesen.cs" />
     <Compile Include="Stunden.cs" />
     <Compile Include="UserControls\UCEingangAnzeigen.cs">
@@ -143,8 +143,8 @@
       <DependentUpon>UCOffeneProjekteAnzeigen.cs</DependentUpon>
     </Compile>
     <Compile Include="IDAL.cs" />
-    <Compile Include="Kontakt.cs" />
-    <Compile Include="Kunde.cs" />
+    <Compile Include="Entities\Kontakt.cs" />
+    <Compile Include="Entities\Kunde.cs" />
     <Compile Include="LocalDB.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
@@ -154,10 +154,10 @@
     </Compile>
     <Compile Include="Mockdb.cs" />
     <Compile Include="Program.cs" />
-    <Compile Include="Projekt.cs" />
+    <Compile Include="Entities\Projekt.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Rechnung.cs" />
-    <Compile Include="Rechnungszeile.cs" />
+    <Compile Include="Entities\Rechnung.cs" />
+    <Compile Include="Entities\Rechnungszeile.cs" />
     <Compile Include="UserControls\UCAngeboteAnzeigen.cs">
       <SubType>UserControl</SubType>
     </Compile>
