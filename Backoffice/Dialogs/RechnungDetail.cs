@@ -105,8 +105,11 @@ namespace Backoffice.Dialogs
         {
             if (BindFrom())
             {
-                BL.saveAusgang(r);
-                this.Close();
+                if (r.Status != ObjectStates.Unmodified)
+                {
+                    BL.saveAusgang(r);
+                    this.Close();
+                }
             }
         }
 

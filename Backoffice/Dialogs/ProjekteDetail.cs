@@ -57,8 +57,11 @@ namespace Backoffice.Dialogs
         {
             if (BindFrom())
             {
-                BL.saveProjekt(p);
-                this.Close();
+                if (p.Status != ObjectStates.Unmodified)
+                {
+                    BL.saveProjekt(p);
+                    this.Close();
+                }
             }
         }
         

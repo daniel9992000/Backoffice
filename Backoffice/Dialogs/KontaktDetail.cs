@@ -73,8 +73,11 @@ namespace Backoffice.Dialogs
         {
             if (BindFrom())
             {
-                BL.saveKontakt(k);
-                this.Close();
+                if (k.Status != ObjectStates.Unmodified)
+                {
+                    BL.saveKontakt(k);
+                    this.Close();
+                }
             }
         }
         private void KontaktDetail_Load(object sender, EventArgs e)

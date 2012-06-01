@@ -68,8 +68,12 @@ namespace Backoffice.Dialogs
         {
             if (BindFrom())
             {
-                BL.saveAngebot(a);
-                this.Close();
+                if (a.Status != ObjectStates.Unmodified)
+                { 
+                    BL.saveAngebot(a);
+                    this.Close();
+                }
+               
             }
         }
 
