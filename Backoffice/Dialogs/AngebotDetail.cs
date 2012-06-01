@@ -70,8 +70,11 @@ namespace Backoffice.Dialogs
             {
                 try
                 {
-                    BL.saveAngebot(a);
-                    this.Close();
+                    if (a.Status != ObjectStates.Unmodified)
+                    {
+                        BL.saveAngebot(a);
+                        this.Close();
+                    }            
                 }
                 catch (BLException ex)
                 {
