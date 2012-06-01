@@ -48,6 +48,23 @@ namespace Backoffice
             pdf.Add(p);
         }
 
+        public void addKundenname(string sheader)
+        {
+            Font myfont = getsmallheaderFont();
+            Paragraph sheadline = new Paragraph(sheader, myfont);
+            sheadline.Leading = 40;
+            sheadline.Alignment = 2;
+            pdf.Add(sheadline);
+        }
+
+        public void addKundenanschrift(string text)
+        {
+            Paragraph p = new Paragraph(text);
+            p.Leading = 20;
+            p.Alignment = 2;
+            pdf.Add(p);
+        }
+
         public void AddHeader(string header)
         {
             Font myfont = getheaderFont();

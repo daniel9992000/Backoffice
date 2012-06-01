@@ -216,11 +216,11 @@ namespace Backoffice
                     k.Nachname = reader.GetString(2).Trim();
                     k.Email = reader.GetString(3).Trim();
                     k.Adresse = reader.GetString(4).Trim();
-                    k.Hausnummer = reader.GetString(4).Trim();
-                    k.Plz = reader.GetString(5).Trim();
-                    k.Ort = reader.GetString(6).Trim();
-                    k.Telefon = reader.GetString(7).Trim();
-                    k.Bemerkungen = reader.GetString(8).Trim();
+                    k.Hausnummer = reader.GetString(5).Trim();
+                    k.Plz = reader.GetString(6).Trim();
+                    k.Ort = reader.GetString(7).Trim();
+                    k.Telefon = reader.GetString(8).Trim();
+                    k.Bemerkungen = reader.GetString(9).Trim();
                     k.Status = ObjectStates.Unmodified;
                 }
                return k;
@@ -1379,7 +1379,7 @@ namespace Backoffice
                 {
                     sqlbuch = @"Insert into buchungen (betrag,katid, datum) 
                             values (@betrag, @katid, @datum)";
-                    sqlbuch = @"Insert into rechnungen_buchungen (rechnungid, buchungid) 
+                    sqlrechbuch = @"Insert into rechnungen_buchungen (rechnungid, buchungid) 
                             values (@rechnungid, currval('buchungen_buchungid_seq'))";
                 
                     commbuch = new NpgsqlCommand(sqlbuch, conn);
@@ -1464,8 +1464,8 @@ namespace Backoffice
                     b.Buchungid = reader.GetInt32(0);
                     b.Betrag = reader.GetDouble(1);
                     b.Kategorie = reader.GetInt32(2);
-                    b.Datum = reader.GetDateTime(4);
-                    b.Rechnungid = reader.GetInt32(5);
+                    b.Datum = reader.GetDateTime(3);
+                    b.Rechnungid = reader.GetInt32(4);
                     blist.Add(b);
                 }
             }
@@ -1501,8 +1501,8 @@ namespace Backoffice
                     b.Buchungid = reader.GetInt32(0);
                     b.Betrag = reader.GetDouble(1);
                     b.Kategorie = reader.GetInt32(2);
-                    b.Datum = reader.GetDateTime(4);
-                    b.Rechnungid = reader.GetInt32(5);
+                    b.Datum = reader.GetDateTime(3);
+                    b.Rechnungid = reader.GetInt32(4);
                     blist.Add(b);
                 }
             }
@@ -1555,7 +1555,33 @@ namespace Backoffice
 
         public Buchungskategorie getBuchungsKategorie(int id)
         {
-            throw new NotImplementedException();
+            buildconnection();
+            Buchungskategorie bkat = new Buchungskategorie();
+            NpgsqlCommand comm = null;
+            NpgsqlDataReader reader = null;
+            try
+            {
+                string sql = @"Select k.katid, k.bezeichnung from kategorie k";
+                comm = new NpgsqlCommand(sql, conn);
+                reader = comm.ExecuteReader();
+                while (reader.Read())
+                {       
+                    bkat.Bkatid = reader.GetInt32(0);
+                    bkat.Bezeichung = reader.GetString(1).Trim();  
+                }
+            }
+            catch (NpgsqlException exp)
+            {
+                throw new DALException("DAL: Buchungskategorie konnte nicht aus der Datenbank geladen werden!", exp);
+            }
+            finally
+            {
+                reader.Close();
+                comm.Dispose();
+                conn.Close();
+            }
+
+            return bkat;
         }
 
 
@@ -1623,7 +1649,56 @@ namespace Backoffice
 
         public Rechnung getRechung(int rechnungsid)
         {
-            throw new NotImplementedException();
+            buildconnection();
+            Rechnung r = new Rechnung();
+            NpgsqlCommand comm = null;
+            NpgsqlDataReader reader = null;
+            try
+            {
+                string sql = @"Select r.rechnungid, a.projektid, a.kundenid, r.datum, r.bezeichnung
+                from rechnungen r, ausgang a where r.rechnungid = a.rechnungid and r.rechnungid = @rechnungid";
+                comm = new NpgsqlCommand(sql, conn);
+                comm.Parameters.AddWithValue("@rechnungid", rechnungsid);
+                reader = comm.ExecuteReader();
+                while (reader.Read())
+                {
+                    Ausgang a = new Ausgang();
+                    a.Rechnungid = reader.GetInt32(0);
+                    a.Projektid = reader.GetInt32(1);
+                    a.Kundenid = reader.GetInt32(2);
+                    a.Datum = reader.ReadNullableDateTime(3);
+                    a.Bezeichnung = reader.GetString(4);
+                    return a;
+                }
+
+                sql = @"Select r.rechnungid, e.kontaktid, e.betrag, e.path, r.datum, r.bezeichnung
+                from rechnungen r, eingang e where r.rechnungid = e.rechnungid and r.rechnungid = @rechnungid";
+                comm = new NpgsqlCommand(sql, conn);
+                comm.Parameters.AddWithValue("@rechnungid", rechnungsid);
+                reader = comm.ExecuteReader();
+                while (reader.Read())
+                {
+                    Eingang e = new Eingang();
+                    e.Rechnungid = reader.GetInt32(0);
+                    e.Kontaktid = reader.GetInt32(1);
+                    e.Betrag = reader.GetDouble(2);
+                    e.Path = reader.GetString(3);
+                    e.Datum = reader.ReadNullableDateTime(4);
+                    e.Bezeichnung = reader.GetString(5);
+                    return e;
+                }
+            }
+            catch (NpgsqlException exp)
+            {
+                throw new DALException("DAL: Rechnung konnte nicht aus der Datenbank geladen werden!", exp);
+            }
+            finally
+            {
+                reader.Close();
+                comm.Dispose();
+                conn.Close();
+            }
+            return null;
         }
     }
 }

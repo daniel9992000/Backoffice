@@ -180,9 +180,19 @@ namespace Backoffice.Dialogs
             sfd.FileName = r.Bezeichnung;
             if (sfd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
+                Kunde k = new Kunde();
+                k = BL.getKunde(r.Kundenid);
                 CreatePdf pdf = new CreatePdf();
                 pdf.CreatePdfDocument(sfd.FileName);
-                pdf.AddHeader(r.Bezeichnung);                
+                pdf.AddHeader(r.Bezeichnung);
+                pdf.addKundenname(k.Vorname + " " + k.Nachname);
+                pdf.addKundenanschrift("Email: " + k.Email);
+                if (!k.Adresse.Equals(String.Empty) && !k.Hausnummer.Equals(String.Empty))
+                    pdf.addKundenanschrift (k.Adresse + " " + k.Hausnummer);
+                if (!k.Plz.Equals(String.Empty) && !k.Ort.Equals(String.Empty))
+                    pdf.addKundenanschrift (k.Plz + " " +  k.Ort);
+                if (!k.Telefon.Equals(String.Empty))
+                    pdf.addKundenanschrift ("Tel.: " + k.Telefon);
                 pdf.addTableRechnung(2, values, BL.getRechnungssumme(r.Rechnungid).ToString("#0.00") + " Euro");
                 pdf.ClosePdf();
             }
