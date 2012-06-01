@@ -62,8 +62,8 @@ namespace Backoffice.Dialogs
                     if (p.Status != ObjectStates.Unmodified)
                     {
                         BL.saveProjekt(p);
-                        this.Close();
                     }
+                    this.Close();
                 }
                 catch (BLException ex)
                 {

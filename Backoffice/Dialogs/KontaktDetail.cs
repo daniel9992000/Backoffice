@@ -78,8 +78,8 @@ namespace Backoffice.Dialogs
                     if (k.Status != ObjectStates.Unmodified)
                     {
                         BL.saveKontakt(k);
-                        this.Close();
                     }
+                    this.Close();
                 }
                 catch (BLException ex)
                 {

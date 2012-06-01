@@ -110,8 +110,8 @@ namespace Backoffice.Dialogs
                     if (r.Status != ObjectStates.Unmodified)
                     {
                         BL.saveAusgang(r);
-                        this.Close();
                     }
+                    this.Close();
                 }
                 catch (BLException ex)
                 {

@@ -62,8 +62,8 @@ namespace Backoffice.Dialogs
                 if (b.Status != ObjectStates.Unmodified)
                 {
                     BL.saveBuchung(b);
-                    this.Close();
-                } 
+                }
+                this.Close();
             }
         }
 

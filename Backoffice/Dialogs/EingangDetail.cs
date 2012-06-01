@@ -80,8 +80,8 @@ namespace Backoffice.Dialogs
                 if (r.Status != ObjectStates.Unmodified)
                 {
                     BL.saveEingang(r);
-                    this.Close();
-                } 
+                }
+                this.Close();
             }
         }
 

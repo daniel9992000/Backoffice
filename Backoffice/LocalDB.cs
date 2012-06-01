@@ -1093,7 +1093,7 @@ namespace Backoffice
                 {
                     sqlein = @"Update eingang set kontaktid = @kontaktid, betrag = @betrag, path = @path 
                             where rechnungid = @rechnungid";
-                    sqlrech = @"Update rechnung set bezeichnung = @bezeichnung, datum = @datum
+                    sqlrech = @"Update rechnungen set bezeichnung = @bezeichnung, datum = @datum
                             where rechnungid = @rechnungid";
                     commein = new NpgsqlCommand(sqlein, conn);
                     commrech = new NpgsqlCommand(sqlrech, conn);
