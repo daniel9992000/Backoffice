@@ -433,7 +433,9 @@
             this.Controls.Add(this.gb1);
             this.Controls.Add(this.bn_save);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.MaximizeBox = false;
             this.Name = "RechnungDetail";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "RechnungDetail";
             this.Load += new System.EventHandler(this.RechnungDetail_Load);
             this.gb1.ResumeLayout(false);

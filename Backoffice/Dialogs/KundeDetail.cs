@@ -132,5 +132,23 @@ namespace Backoffice.Dialogs
             tmp.ShowDialog();
             BindTo();
         }
+
+        private void bn_delete_angebot_Click(object sender, EventArgs e)
+        {
+            if (lv_angebote.SelectedItems.Count == 1)
+            {
+                try
+                {
+                    BL.deleteAngebot((Angebot)lv_angebote.FocusedItem.Tag);
+                }
+                catch (BLException ex)
+                {
+
+                    MessageBox.Show(ex.Message, ((Angebot)lv_angebote.FocusedItem.Tag).Titel, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                
+            }
+            BindTo();
+        }
     }
 }

@@ -213,15 +213,25 @@ namespace Backoffice
 
         public static void saveAngebot(Angebot a)
         {
-            if (a.Chance < 0 || a.Chance > 100)
-            {
-                throw new BLException("Angebot: Wert von Chance außerhalb der Grenzen!");
-            }
-
             try
-            { 
-                DALFactory.getDAL().saveAngebot(a);
-                log.Info("Angebot mit ID " + a.Angebotid + " gespeichert!");
+            {
+                if (a.Chance < 0 || a.Chance > 100)
+                {
+                    log.Warn("Wert von Chance außerhalb der Grenzen!");
+                    throw new BLException("Angebot: Wert von Chance außerhalb der Grenzen!");
+                }
+                var tmpang = DALFactory.getDAL().getAngebot(a.Angebotid);
+
+                if (DALFactory.getDAL().getAngebotViewListByProjektId(tmpang.Projektid.Value).Count <= 1 && a.Status == ObjectStates.Modified)
+                {
+                    log.Warn("Angebot mit ID " + a.Angebotid + " kann nicht gespeichert werden, da ein Projekt sonst kein Angebot hat");
+                    throw new BLException("Angebot kann nicht gespeichert werden, da ein Projekt sonst kein Angebot hat!");
+                }
+                else
+                {
+                    DALFactory.getDAL().saveAngebot(a);
+                    log.Info("Angebot mit ID " + a.Angebotid + " gespeichert!");
+                }
             }
             catch (DALException ex)
             {
@@ -232,10 +242,24 @@ namespace Backoffice
 
         public static void deleteAngebot(Angebot a)
         {
+            var tmp = new List<Angebot>();
             try
             {
-                DALFactory.getDAL().deleteAngebot(a);
-                log.Info("Angebot mit ID " + a.Angebotid + " gelöscht!");
+                if (a.Projektid != null)
+                {
+                    tmp = DALFactory.getDAL().getAngebotViewListByProjektId(a.Projektid.Value);
+                }                
+
+                if (tmp.Count == 1)
+                {
+                    log.Warn("Angebot mit ID " + a.Angebotid + " kann nicht gelöscht werden, da das Projekt mit ID " + a.Projektid.Value + " sonst kein Angebot zugeordnet hat!");
+                    throw new BLException("Angebot kann nicht gelöscht werden, da das Projekt " + DALFactory.getDAL().getProjekt(a.Projektid.Value).Name + " sonst kein Angebot mehr zugeordnet hat!");
+                }
+                else
+                {
+                    DALFactory.getDAL().deleteAngebot(a);
+                    log.Info("Angebot mit ID " + a.Angebotid + " gelöscht!");
+                }
             }
             catch (DALException ex)
             {
@@ -299,7 +323,12 @@ namespace Backoffice
                     }
 
                     if (!exist)
-                        projekte.Add(BL.getProjekt(pid.Value));
+                    {
+                        if (pid != null)
+                        {
+                            projekte.Add(BL.getProjekt(pid.Value));
+                        }
+                    }
                 }
             }
 

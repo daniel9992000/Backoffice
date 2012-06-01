@@ -76,36 +76,32 @@
             this.errorControl4.AutoSize = true;
             this.errorControl4.Location = new System.Drawing.Point(275, 128);
             this.errorControl4.Name = "errorControl4";
-            this.errorControl4.Size = new System.Drawing.Size(67, 13);
+            this.errorControl4.Size = new System.Drawing.Size(0, 13);
             this.errorControl4.TabIndex = 17;
-            this.errorControl4.Text = "errorControl4";
             // 
             // errorControl3
             // 
             this.errorControl3.AutoSize = true;
             this.errorControl3.Location = new System.Drawing.Point(322, 101);
             this.errorControl3.Name = "errorControl3";
-            this.errorControl3.Size = new System.Drawing.Size(67, 13);
+            this.errorControl3.Size = new System.Drawing.Size(0, 13);
             this.errorControl3.TabIndex = 16;
-            this.errorControl3.Text = "errorControl3";
             // 
             // errorControl2
             // 
             this.errorControl2.AutoSize = true;
             this.errorControl2.Location = new System.Drawing.Point(322, 74);
             this.errorControl2.Name = "errorControl2";
-            this.errorControl2.Size = new System.Drawing.Size(67, 13);
+            this.errorControl2.Size = new System.Drawing.Size(0, 13);
             this.errorControl2.TabIndex = 15;
-            this.errorControl2.Text = "errorControl2";
             // 
             // errorControl1
             // 
             this.errorControl1.AutoSize = true;
             this.errorControl1.Location = new System.Drawing.Point(322, 48);
             this.errorControl1.Name = "errorControl1";
-            this.errorControl1.Size = new System.Drawing.Size(67, 13);
+            this.errorControl1.Size = new System.Drawing.Size(0, 13);
             this.errorControl1.TabIndex = 14;
-            this.errorControl1.Text = "errorControl1";
             // 
             // label4
             // 
@@ -171,9 +167,9 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(29, 22);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(71, 13);
+            this.label1.Size = new System.Drawing.Size(18, 13);
             this.label1.TabIndex = 3;
-            this.label1.Text = "Rechnung ID";
+            this.label1.Text = "ID";
             // 
             // dtp_datum
             // 
@@ -219,7 +215,9 @@
             this.Controls.Add(this.bn_save);
             this.Controls.Add(this.gb1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.MaximizeBox = false;
             this.Name = "BuchungDetail";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "BuchungDetail";
             this.Load += new System.EventHandler(this.BuchungDetail_Load);
             this.gb1.ResumeLayout(false);

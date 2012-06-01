@@ -105,8 +105,15 @@ namespace Backoffice.Dialogs
         {
             if (BindFrom())
             {
-                BL.saveAusgang(r);
-                this.Close();
+                try
+                {
+                    BL.saveAusgang(r);
+                    this.Close();
+                }
+                catch (BLException ex)
+                {
+                    MessageBox.Show(ex.Message, r.Bezeichnung, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
             }
         }
 
@@ -114,8 +121,15 @@ namespace Backoffice.Dialogs
         {
             if (BindFromZeilen())
             {
-                BL.saveRechnungszeile(rz);
-                BindToZeilen();
+                try
+                {                    
+                    BL.saveRechnungszeile(rz);
+                    BindToZeilen();
+                }
+                catch (BLException ex)
+                {
+                    MessageBox.Show(ex.Message, r.Bezeichnung, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
             }
         }
 

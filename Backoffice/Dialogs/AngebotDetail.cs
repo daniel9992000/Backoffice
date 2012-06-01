@@ -68,8 +68,16 @@ namespace Backoffice.Dialogs
         {
             if (BindFrom())
             {
-                BL.saveAngebot(a);
-                this.Close();
+                try
+                {
+                    BL.saveAngebot(a);
+                    this.Close();
+                }
+                catch (BLException ex)
+                {
+                    MessageBox.Show(ex.Message, a.Titel, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                
             }
         }
 

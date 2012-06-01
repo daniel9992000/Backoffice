@@ -191,6 +191,7 @@ namespace Backoffice.DataBinding
                 lv.Columns.Add("Dauer", 40);
                 lv.Columns.Add("Summe", 110, HorizontalAlignment.Right);
                 lv.Columns.Add("Chance", 40);
+                lv.Columns.Add("Projekt", 100);
 
                 foreach (var item in values)
                 {
@@ -203,6 +204,14 @@ namespace Backoffice.DataBinding
                     i.SubItems.Add(tmp.Dauer.ToString());
                     i.SubItems.Add(tmp.Summe.ToString("#0.00") + " Euro");
                     i.SubItems.Add(tmp.Chance.ToString() + "%");
+                    if (tmp.Projektid != null)
+                    {
+                        i.SubItems.Add(BL.getProjekt(tmp.Projektid.Value).ToString());
+                    }
+                    else
+                    {
+                        i.SubItems.Add("kein Projekt");
+                    }
                 }
             }
             else if (typeof(IList<Ausgang>).IsInstanceOfType(values))

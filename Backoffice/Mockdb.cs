@@ -253,7 +253,12 @@ namespace Backoffice
 
         public List<Angebot> getAngebotViewList()
         {
-            return angebote;
+            var tmp = new List<Angebot>();
+            foreach (var item in angebote)
+            {
+                tmp.Add(item);
+            }
+            return tmp;
         }
         
         public List<Angebot> getAngebotViewList(string search)
@@ -316,13 +321,17 @@ namespace Backoffice
         }
 
         public Angebot getAngebot(int angebotid)
-        {            
+        {
+            var tmp = new Angebot();
             foreach (var item in angebote)
             {
                 if (item.Angebotid == angebotid)
-                    return item;
+                {
+                    tmp = item;
+                    break;
+                }
             }
-            return new Angebot();
+            return tmp;
         }
         #endregion
 

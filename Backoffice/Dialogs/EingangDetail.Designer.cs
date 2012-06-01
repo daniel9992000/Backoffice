@@ -52,10 +52,10 @@
             this.tb_pfad = new System.Windows.Forms.TextBox();
             this.bnchooserech = new System.Windows.Forms.Button();
             this.gb3 = new System.Windows.Forms.GroupBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.bn_offen = new System.Windows.Forms.TextBox();
             this.bn_new_buchung = new System.Windows.Forms.Button();
             this.lv_buchungen = new System.Windows.Forms.ListView();
-            this.bn_offen = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
             this.gb1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.gb3.SuspendLayout();
@@ -283,6 +283,23 @@
             this.gb3.TabStop = false;
             this.gb3.Text = "Buchungen";
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(215, 238);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(130, 13);
+            this.label7.TabIndex = 3;
+            this.label7.Text = "Offene Rechnungssumme";
+            // 
+            // bn_offen
+            // 
+            this.bn_offen.Enabled = false;
+            this.bn_offen.Location = new System.Drawing.Point(351, 235);
+            this.bn_offen.Name = "bn_offen";
+            this.bn_offen.Size = new System.Drawing.Size(123, 20);
+            this.bn_offen.TabIndex = 2;
+            // 
             // bn_new_buchung
             // 
             this.bn_new_buchung.Location = new System.Drawing.Point(3, 19);
@@ -302,23 +319,6 @@
             this.lv_buchungen.UseCompatibleStateImageBehavior = false;
             this.lv_buchungen.DoubleClick += new System.EventHandler(this.lv_buchungen_DoubleClick);
             // 
-            // bn_offen
-            // 
-            this.bn_offen.Enabled = false;
-            this.bn_offen.Location = new System.Drawing.Point(351, 235);
-            this.bn_offen.Name = "bn_offen";
-            this.bn_offen.Size = new System.Drawing.Size(123, 20);
-            this.bn_offen.TabIndex = 2;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(215, 238);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(130, 13);
-            this.label7.TabIndex = 3;
-            this.label7.Text = "Offene Rechnungssumme";
-            // 
             // EingangDetail
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -330,7 +330,9 @@
             this.Controls.Add(this.gb1);
             this.Controls.Add(this.bn_save);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.MaximizeBox = false;
             this.Name = "EingangDetail";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "EingangDetail";
             this.Load += new System.EventHandler(this.EingangDetail_Load);
             this.gb1.ResumeLayout(false);

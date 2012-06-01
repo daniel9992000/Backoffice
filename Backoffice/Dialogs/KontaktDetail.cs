@@ -73,8 +73,15 @@ namespace Backoffice.Dialogs
         {
             if (BindFrom())
             {
-                BL.saveKontakt(k);
-                this.Close();
+                try
+                {
+                    BL.saveKontakt(k);
+                    this.Close();
+                }
+                catch (BLException ex)
+                {
+                    MessageBox.Show(ex.Message, k.Firmenname, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
             }
         }
         private void KontaktDetail_Load(object sender, EventArgs e)
