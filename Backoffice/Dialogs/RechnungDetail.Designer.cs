@@ -29,8 +29,12 @@
         private void InitializeComponent()
         {
             this.gb1 = new System.Windows.Forms.GroupBox();
+            this.errorControl6 = new Backoffice.DataBinding.ErrorControl();
             this.label4 = new System.Windows.Forms.Label();
             this.cb_kunden = new System.Windows.Forms.ComboBox();
+            this.errorControl3 = new Backoffice.DataBinding.ErrorControl();
+            this.errorControl2 = new Backoffice.DataBinding.ErrorControl();
+            this.errorControl1 = new Backoffice.DataBinding.ErrorControl();
             this.label5 = new System.Windows.Forms.Label();
             this.cb_projekt = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -42,6 +46,8 @@
             this.gb2 = new System.Windows.Forms.GroupBox();
             this.tb_rechnungssumme = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
+            this.errorControl5 = new Backoffice.DataBinding.ErrorControl();
+            this.errorControl4 = new Backoffice.DataBinding.ErrorControl();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.bn_add = new System.Windows.Forms.Button();
@@ -60,12 +66,6 @@
             this.lv_buchungen = new System.Windows.Forms.ListView();
             this.bn_print = new System.Windows.Forms.Button();
             this.sfd = new System.Windows.Forms.SaveFileDialog();
-            this.errorControl5 = new Backoffice.DataBinding.ErrorControl();
-            this.errorControl4 = new Backoffice.DataBinding.ErrorControl();
-            this.errorControl6 = new Backoffice.DataBinding.ErrorControl();
-            this.errorControl3 = new Backoffice.DataBinding.ErrorControl();
-            this.errorControl2 = new Backoffice.DataBinding.ErrorControl();
-            this.errorControl1 = new Backoffice.DataBinding.ErrorControl();
             this.gb1.SuspendLayout();
             this.gb2.SuspendLayout();
             this.gb3.SuspendLayout();
@@ -93,7 +93,14 @@
             this.gb1.TabIndex = 0;
             this.gb1.TabStop = false;
             this.gb1.Text = "Allgemein";
-            this.gb1.Enter += new System.EventHandler(this.gb1_Enter);
+            // 
+            // errorControl6
+            // 
+            this.errorControl6.AutoSize = true;
+            this.errorControl6.Location = new System.Drawing.Point(321, 100);
+            this.errorControl6.Name = "errorControl6";
+            this.errorControl6.Size = new System.Drawing.Size(0, 13);
+            this.errorControl6.TabIndex = 16;
             // 
             // label4
             // 
@@ -112,6 +119,30 @@
             this.cb_kunden.Size = new System.Drawing.Size(200, 21);
             this.cb_kunden.TabIndex = 14;
             this.cb_kunden.SelectedIndexChanged += new System.EventHandler(this.cb_kunden_SelectedIndexChanged);
+            // 
+            // errorControl3
+            // 
+            this.errorControl3.AutoSize = true;
+            this.errorControl3.Location = new System.Drawing.Point(321, 129);
+            this.errorControl3.Name = "errorControl3";
+            this.errorControl3.Size = new System.Drawing.Size(0, 13);
+            this.errorControl3.TabIndex = 13;
+            // 
+            // errorControl2
+            // 
+            this.errorControl2.AutoSize = true;
+            this.errorControl2.Location = new System.Drawing.Point(322, 77);
+            this.errorControl2.Name = "errorControl2";
+            this.errorControl2.Size = new System.Drawing.Size(0, 13);
+            this.errorControl2.TabIndex = 12;
+            // 
+            // errorControl1
+            // 
+            this.errorControl1.AutoSize = true;
+            this.errorControl1.Location = new System.Drawing.Point(222, 48);
+            this.errorControl1.Name = "errorControl1";
+            this.errorControl1.Size = new System.Drawing.Size(0, 13);
+            this.errorControl1.TabIndex = 11;
             // 
             // label5
             // 
@@ -215,6 +246,22 @@
             this.label8.Size = new System.Drawing.Size(95, 13);
             this.label8.TabIndex = 15;
             this.label8.Text = "Rechnungssumme";
+            // 
+            // errorControl5
+            // 
+            this.errorControl5.AutoSize = true;
+            this.errorControl5.Location = new System.Drawing.Point(281, 75);
+            this.errorControl5.Name = "errorControl5";
+            this.errorControl5.Size = new System.Drawing.Size(0, 13);
+            this.errorControl5.TabIndex = 14;
+            // 
+            // errorControl4
+            // 
+            this.errorControl4.AutoSize = true;
+            this.errorControl4.Location = new System.Drawing.Point(6, 75);
+            this.errorControl4.Name = "errorControl4";
+            this.errorControl4.Size = new System.Drawing.Size(0, 13);
+            this.errorControl4.TabIndex = 13;
             // 
             // label7
             // 
@@ -366,61 +413,13 @@
             this.bn_print.Name = "bn_print";
             this.bn_print.Size = new System.Drawing.Size(75, 23);
             this.bn_print.TabIndex = 16;
-            this.bn_print.Text = "Drucken";
+            this.bn_print.Text = "PDF";
             this.bn_print.UseVisualStyleBackColor = true;
             this.bn_print.Click += new System.EventHandler(this.bn_print_Click);
             // 
             // sfd
             // 
             this.sfd.Filter = "PDF|*.pdf";
-            // 
-            // errorControl5
-            // 
-            this.errorControl5.AutoSize = true;
-            this.errorControl5.Location = new System.Drawing.Point(281, 75);
-            this.errorControl5.Name = "errorControl5";
-            this.errorControl5.Size = new System.Drawing.Size(0, 13);
-            this.errorControl5.TabIndex = 14;
-            // 
-            // errorControl4
-            // 
-            this.errorControl4.AutoSize = true;
-            this.errorControl4.Location = new System.Drawing.Point(6, 75);
-            this.errorControl4.Name = "errorControl4";
-            this.errorControl4.Size = new System.Drawing.Size(0, 13);
-            this.errorControl4.TabIndex = 13;
-            // 
-            // errorControl6
-            // 
-            this.errorControl6.AutoSize = true;
-            this.errorControl6.Location = new System.Drawing.Point(321, 100);
-            this.errorControl6.Name = "errorControl6";
-            this.errorControl6.Size = new System.Drawing.Size(0, 13);
-            this.errorControl6.TabIndex = 16;
-            // 
-            // errorControl3
-            // 
-            this.errorControl3.AutoSize = true;
-            this.errorControl3.Location = new System.Drawing.Point(321, 129);
-            this.errorControl3.Name = "errorControl3";
-            this.errorControl3.Size = new System.Drawing.Size(0, 13);
-            this.errorControl3.TabIndex = 13;
-            // 
-            // errorControl2
-            // 
-            this.errorControl2.AutoSize = true;
-            this.errorControl2.Location = new System.Drawing.Point(322, 77);
-            this.errorControl2.Name = "errorControl2";
-            this.errorControl2.Size = new System.Drawing.Size(0, 13);
-            this.errorControl2.TabIndex = 12;
-            // 
-            // errorControl1
-            // 
-            this.errorControl1.AutoSize = true;
-            this.errorControl1.Location = new System.Drawing.Point(222, 48);
-            this.errorControl1.Name = "errorControl1";
-            this.errorControl1.Size = new System.Drawing.Size(0, 13);
-            this.errorControl1.TabIndex = 11;
             // 
             // RechnungDetail
             // 
@@ -434,7 +433,9 @@
             this.Controls.Add(this.gb1);
             this.Controls.Add(this.bn_save);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.MaximizeBox = false;
             this.Name = "RechnungDetail";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "RechnungDetail";
             this.Load += new System.EventHandler(this.RechnungDetail_Load);
             this.gb1.ResumeLayout(false);

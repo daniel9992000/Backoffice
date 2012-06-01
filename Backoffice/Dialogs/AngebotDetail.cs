@@ -32,9 +32,9 @@ namespace Backoffice.Dialogs
 
         void BindTo()
         {
-            binder.BindTo_ComboBox(cb_kunde, BL.getKunden(), a);
+            binder.BindTo_ComboBox(cb_kunde, BL.getKunden(), a);            
+            binder.BindTo_ComboBox(cb_projekt, BL.getProjekte(), a);
             cb_projekt.Items.Add(string.Empty);
-            binder.BindTo_ComboBox(cb_projekt, BL.getProjekte(), a); 
             binder.BindTo_TextBox(tb_angebotid, a.Angebotid);
             binder.BindTo_TextBox(tb_titel, a.Titel);
             binder.BindTo_TextBox(tb_dauer, a.Dauer);
@@ -68,12 +68,16 @@ namespace Backoffice.Dialogs
         {
             if (BindFrom())
             {
-                if (a.Status != ObjectStates.Unmodified)
-                { 
+                try
+                {
                     BL.saveAngebot(a);
                     this.Close();
                 }
-               
+                catch (BLException ex)
+                {
+                    MessageBox.Show(ex.Message, a.Titel, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                
             }
         }
 

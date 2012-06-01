@@ -65,8 +65,8 @@
             this.errorControl10 = new Backoffice.DataBinding.ErrorControl();
             this.rtb_bemerkungen = new System.Windows.Forms.RichTextBox();
             this.gb4 = new System.Windows.Forms.GroupBox();
-            this.lv_eingang = new System.Windows.Forms.ListView();
             this.bn_new_rechnung = new System.Windows.Forms.Button();
+            this.lv_eingang = new System.Windows.Forms.ListView();
             this.gb1.SuspendLayout();
             this.gb2.SuspendLayout();
             this.gb3.SuspendLayout();
@@ -412,16 +412,6 @@
             this.gb4.TabStop = false;
             this.gb4.Text = "Eingangsrechnungen";
             // 
-            // lv_eingang
-            // 
-            this.lv_eingang.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.lv_eingang.Location = new System.Drawing.Point(3, 48);
-            this.lv_eingang.Name = "lv_eingang";
-            this.lv_eingang.Size = new System.Drawing.Size(388, 137);
-            this.lv_eingang.TabIndex = 0;
-            this.lv_eingang.UseCompatibleStateImageBehavior = false;
-            this.lv_eingang.DoubleClick += new System.EventHandler(this.lv_eingang_DoubleClick);
-            // 
             // bn_new_rechnung
             // 
             this.bn_new_rechnung.Location = new System.Drawing.Point(3, 19);
@@ -431,6 +421,16 @@
             this.bn_new_rechnung.Text = "Neue Rechnung";
             this.bn_new_rechnung.UseVisualStyleBackColor = true;
             this.bn_new_rechnung.Click += new System.EventHandler(this.bn_new_rechnung_Click);
+            // 
+            // lv_eingang
+            // 
+            this.lv_eingang.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.lv_eingang.Location = new System.Drawing.Point(3, 48);
+            this.lv_eingang.Name = "lv_eingang";
+            this.lv_eingang.Size = new System.Drawing.Size(388, 137);
+            this.lv_eingang.TabIndex = 0;
+            this.lv_eingang.UseCompatibleStateImageBehavior = false;
+            this.lv_eingang.DoubleClick += new System.EventHandler(this.lv_eingang_DoubleClick);
             // 
             // KontaktDetail
             // 
@@ -444,7 +444,9 @@
             this.Controls.Add(this.bnsave);
             this.Controls.Add(this.gb1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.MaximizeBox = false;
             this.Name = "KontaktDetail";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "KontaktDetail";
             this.Load += new System.EventHandler(this.KontaktDetail_Load);
             this.gb1.ResumeLayout(false);

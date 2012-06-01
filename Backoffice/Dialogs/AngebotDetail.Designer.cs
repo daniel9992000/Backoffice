@@ -307,7 +307,9 @@
             this.Controls.Add(this.bnsave);
             this.Controls.Add(this.gb1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.MaximizeBox = false;
             this.Name = "AngebotDetail";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AngebotDetail";
             this.Load += new System.EventHandler(this.AngebotDetail_Load);
             this.gb1.ResumeLayout(false);

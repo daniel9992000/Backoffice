@@ -57,10 +57,14 @@ namespace Backoffice.Dialogs
         {
             if (BindFrom())
             {
-                if (p.Status != ObjectStates.Unmodified)
+                try
                 {
                     BL.saveProjekt(p);
                     this.Close();
+                }
+                catch (BLException ex)
+                {
+                    MessageBox.Show(ex.Message, p.Name, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
         }

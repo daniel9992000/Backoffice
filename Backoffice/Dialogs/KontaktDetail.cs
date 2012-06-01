@@ -73,10 +73,14 @@ namespace Backoffice.Dialogs
         {
             if (BindFrom())
             {
-                if (k.Status != ObjectStates.Unmodified)
+                try
                 {
                     BL.saveKontakt(k);
                     this.Close();
+                }
+                catch (BLException ex)
+                {
+                    MessageBox.Show(ex.Message, k.Firmenname, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
         }
