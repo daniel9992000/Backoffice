@@ -1125,7 +1125,22 @@ namespace Backoffice
             NpgsqlCommand comm = null;
             try
             {
-                string sql = "Delete from rechnungen where rechnungid = @rechnungid";
+                string sql = "Delete from rechnungen_buchungen where rechnungid = @rechnungid";
+                comm = new NpgsqlCommand(sql, conn);
+                comm.Parameters.AddWithValue("@rechnungid", r.Rechnungid);
+                comm.Prepare();
+                comm.ExecuteNonQuery();
+                sql = "Delete from rechnungszeilen where rechnungid = @rechnungid";
+                comm = new NpgsqlCommand(sql, conn);
+                comm.Parameters.AddWithValue("@rechnungid", r.Rechnungid);
+                comm.Prepare();
+                comm.ExecuteNonQuery();
+                sql = "Delete from ausgang where rechnungid = @rechnungid";
+                comm = new NpgsqlCommand(sql, conn);
+                comm.Parameters.AddWithValue("@rechnungid", r.Rechnungid);
+                comm.Prepare();
+                comm.ExecuteNonQuery();
+                sql = "Delete from rechnungen where rechnungid = @rechnungid";
                 comm = new NpgsqlCommand(sql, conn);
                 comm.Parameters.AddWithValue("@rechnungid", r.Rechnungid);
                 comm.Prepare();
@@ -1842,7 +1857,12 @@ namespace Backoffice
             NpgsqlCommand comm = null;
             try
             {
-                string sql = "Delete from buchungen where buchungid = @buchungid";
+                string sql = "Delete from rechnungen_buchungen where buchungid = @buchungid";
+                comm = new NpgsqlCommand(sql, conn);
+                comm.Parameters.AddWithValue("@buchungid", b.Buchungid);
+                comm.Prepare();
+                comm.ExecuteNonQuery();
+                sql = "Delete from buchungen where buchungid = @buchungid";
                 comm = new NpgsqlCommand(sql, conn);
                 comm.Parameters.AddWithValue("@buchungid", b.Buchungid);
                 comm.Prepare();
