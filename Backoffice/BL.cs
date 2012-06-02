@@ -222,7 +222,7 @@ namespace Backoffice
                 }
                 var tmpang = DALFactory.getDAL().getAngebot(a.Angebotid);
 
-                if (DALFactory.getDAL().getAngebotViewListByProjektId(tmpang.Projektid.Value).Count <= 1 && a.Status == ObjectStates.Modified)
+                if (DALFactory.getDAL().getAngebotViewListByProjektId(tmpang.Projektid.Value).Count <= 1 && a.Status == ObjectStates.Modified && tmpang.Projektid != a.Projektid)
                 {
                     log.Warn("Angebot mit ID " + a.Angebotid + " kann nicht gespeichert werden, da ein Projekt sonst kein Angebot hat");
                     throw new BLException("Angebot kann nicht gespeichert werden, da ein Projekt sonst kein Angebot hat!");

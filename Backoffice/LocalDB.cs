@@ -157,8 +157,8 @@ namespace Backoffice
             NpgsqlDataReader reader = null;
             try
             {
-                string sql = @"Select distinct kundenid,vorname,nachname,email,adresse,
-                hausnummer,plz,ort,telefon,bemerkungen from kunden where vorname like %@search% or nachname like %@search% or email like %@search% or adresse like %@search% or ort like %@search%;";
+                string sql = @"Select Distinct kundenid,vorname,nachname,email,adresse,
+                hausnummer,plz,ort,telefon,bemerkungen from kunden where vorname ~* @search or nachname ~* @search or email ~* @search or adresse ~* @search or ort ~* @search;";
                 comm = new NpgsqlCommand(sql, conn);
                 comm.Parameters.AddWithValue("@search", search);
                 comm.Prepare();
@@ -183,7 +183,7 @@ namespace Backoffice
             }
             catch (NpgsqlException exp)
             {
-                throw new DALException("DAL: Kundeliste konnte nicht aus der Datenbank geladen werden!", exp);
+                throw new DALException("DAL: Gesuchter Kunde konnte nicht aus der Datenbank geladen werden!", exp);
             }
             finally
             {
@@ -335,7 +335,39 @@ namespace Backoffice
 
         public List<Projekt> getProjektViewList(string search)
         {
-            throw new NotImplementedException();
+            buildconnection();
+            List<Projekt> plist = new List<Projekt>();
+            NpgsqlCommand comm = null;
+            NpgsqlDataReader reader = null;
+            try
+            {
+                string sql = @"Select distinct projektid, name from projekte
+                where name ~* @search;";
+                comm = new NpgsqlCommand(sql, conn);
+                comm.Parameters.AddWithValue("@search", search);
+                reader = comm.ExecuteReader();
+                while (reader.Read())
+                {
+                    Projekt p = new Projekt();
+                    p.Projektid = reader.GetInt32(0);
+                    p.Name = reader.GetString(1).Trim();
+                    p.Status = ObjectStates.Unmodified;
+                    plist.Add(p);
+                }
+
+            }
+            catch (NpgsqlException exp)
+            {
+                throw new DALException("DAL: Gesuchtes Projekt konnte aus der Datenbank nicht geladen werden!", exp);
+            }
+            finally
+            {
+                reader.Close();
+                comm.Dispose();
+                conn.Close();
+            }
+
+            return plist;
         }
 
         public Projekt getProjekt(int id)
@@ -698,12 +730,88 @@ namespace Backoffice
         }
         public List<Angebot> getAngebote()
         {
-            throw new NotImplementedException();
+            buildconnection();
+            List<Angebot> alist = new List<Angebot>();
+            NpgsqlCommand comm = null;
+            NpgsqlDataReader reader = null;
+            try
+            {
+                string sql = "Select angebotid,summe,datum,dauer,chance,kundenid,projektid,titel from angebote;";
+                comm = new NpgsqlCommand(sql, conn);
+                reader = comm.ExecuteReader();
+                while (reader.Read())
+                {
+                    Angebot a = new Angebot();
+                    a.Angebotid = reader.GetInt32(0);
+                    a.Summe = reader.GetDouble(1);
+                    a.Datum = reader.GetDateTime(2);
+                    a.Dauer = reader.GetInt32(3);
+                    a.Chance = reader.GetInt32(4);
+                    a.Kundenid = reader.GetInt32(5);
+                    a.Projektid = reader.ReadNullableInt(6);
+                    a.Titel = reader.GetString(7).Trim();
+                    a.Status = ObjectStates.Unmodified;
+                    if (a.Chance > 0 && !a.Projektid.HasValue)
+                    {
+                        alist.Add(a);
+                    }
+                }
+
+            }
+            catch (NpgsqlException exp)
+            {
+                throw new DALException("DAL: Angebotliste konnte aus der Datenbank nicht geladen werden!", exp);
+            }
+            finally
+            {
+                reader.Close();
+                comm.Dispose();
+                conn.Close();
+            }
+
+            return alist;
         }
 
         public Angebot getAngebot(int angebotid)
         {
-            throw new NotImplementedException();
+            buildconnection();
+            Angebot a = new Angebot();
+            NpgsqlCommand comm = null;
+            NpgsqlDataReader reader = null;
+            try
+            {
+
+                string sql = @"Select angebotid, summe, datum, dauer, chance, 
+                kundenid, projektid, titel from angebote where angebotid = @angebotid;";
+                comm = new NpgsqlCommand(sql, conn);
+
+                comm.Parameters.AddWithValue("@angebotid", angebotid);
+                reader = comm.ExecuteReader();
+                while (reader.Read())
+                {
+                    a.Angebotid = reader.GetInt32(0);
+                    a.Summe = reader.GetDouble(1);
+                    a.Datum = reader.GetDateTime(2);
+                    a.Dauer = reader.GetInt32(3);
+                    a.Chance = reader.GetInt32(4);
+                    a.Kundenid = reader.GetInt32(5);
+                    a.Projektid = reader.ReadNullableInt(6);
+                    a.Titel = reader.GetString(7).Trim();
+                    a.Status = ObjectStates.Unmodified;
+                }
+                return a;
+
+            }
+            catch (NpgsqlException exp)
+            {
+                throw new DALException("DAL: Angebot konnte nicht gefunden werden!", exp);
+            }
+            finally
+            {
+                comm.Dispose();
+                conn.Close();
+                reader.Close();
+            }
         }
         public List<Angebot> getAngebotViewListByProjektId(int projektid)
         {
@@ -867,7 +975,49 @@ namespace Backoffice
 
         public List<Kontakt> getKontaktViewList(string search)
         {
-            throw new NotImplementedException();
+            buildconnection();
+            List<Kontakt> klist = new List<Kontakt>();
+            NpgsqlCommand comm = null;
+            NpgsqlDataReader reader = null;
+            try
+            {
+                string sql = @"Select Distinct kontaktid, firmenname, vorname,nachname, email,adresse,hausnummer,
+                plz, ort, telefon, bemerkungen from kontakte where firmenname ~* @search or vorname ~* @search 
+                or nachname ~* @search or adresse ~* @search or ort ~* @search;";
+                comm = new NpgsqlCommand(sql, conn);
+                comm.Parameters.AddWithValue("@search", search);
+                reader = comm.ExecuteReader();
+                while (reader.Read())
+                {
+                    Kontakt k = new Kontakt();
+                    k.Kontaktid = reader.GetInt32(0);
+                    k.Firmenname = reader.GetString(1).Trim();
+                    k.Vorname = reader.GetString(2).Trim();
+                    k.Nachname = reader.GetString(3).Trim();
+                    k.Email = reader.GetString(4).Trim();
+                    k.Adresse = reader.GetString(5).Trim();
+                    k.Hausnummer = reader.GetString(6).Trim();
+                    k.Plz = reader.GetString(7).Trim();
+                    k.Ort = reader.GetString(8).Trim();
+                    k.Telefon = reader.GetString(9).Trim();
+                    k.Bemerkungen = reader.GetString(10).Trim();
+                    k.Status = ObjectStates.Unmodified;
+                    klist.Add(k);
+                }
+
+            }
+            catch (NpgsqlException exp)
+            {
+                throw new DALException("DAL: Gesucher Kontakt konnte nicht aus der Datenbank geladen werden!", exp);
+            }
+            finally
+            {
+                reader.Close();
+                comm.Dispose();
+                conn.Close();
+            }
+
+            return klist;
         }
 
         public Kontakt getKontakt(int id)
@@ -1044,6 +1194,46 @@ namespace Backoffice
                 comm = new NpgsqlCommand(sql, conn);
 
                 comm.Parameters.AddWithValue("@kundenid", kundenid);
+                reader = comm.ExecuteReader();
+                while (reader.Read())
+                {
+                    Ausgang r = new Ausgang();
+                    r.Rechnungid = reader.GetInt32(0);
+                    r.Projektid = reader.GetInt32(1);
+                    r.Kundenid = reader.GetInt32(2);
+                    r.Datum = reader.ReadNullableDateTime(3);
+                    r.Bezeichnung = reader.GetString(4).Trim();
+                    rlist.Add(r);
+                }
+                return rlist;
+
+            }
+            catch (NpgsqlException exp)
+            {
+                throw new DALException("DAL: Rechnungsliste konnte nicht gefunden werden!", exp);
+            }
+            finally
+            {
+                comm.Dispose();
+                conn.Close();
+                reader.Close();
+            }
+        }
+
+        public List<Ausgang> getAusgangViewListByProjektId(int projektid)
+        {
+            buildconnection();
+            NpgsqlCommand comm = null;
+            NpgsqlDataReader reader = null;
+            List<Ausgang> rlist = new List<Ausgang>();
+            try
+            {
+
+                string sql = @"Select a.rechnungid, a.projektid, a.kundenid, r.datum,r.bezeichnung
+                from ausgang a, rechnungen r where a.rechnungid = r.rechnungid and projektid = @projektid;";
+                comm = new NpgsqlCommand(sql, conn);
+
+                comm.Parameters.AddWithValue("@projektid", projektid);
                 reader = comm.ExecuteReader();
                 while (reader.Read())
                 {
@@ -1336,33 +1526,258 @@ namespace Backoffice
         #region Auswertungen
         public List<Angebot> getJahresumsatzViewList()
         {
-            throw new NotImplementedException();
+            List<Angebot> alist = new List<Angebot>();
+            buildconnection();
+            NpgsqlCommand comm = null;
+            NpgsqlDataReader reader = null;
+            try
+            {
+                string sql = "Select angebotid,summe,datum,dauer,chance,kundenid,projektid,titel from angebote;";
+                comm = new NpgsqlCommand(sql, conn);
+                reader = comm.ExecuteReader();
+                while (reader.Read())
+                {
+                    Angebot a = new Angebot();
+                    a.Angebotid = reader.GetInt32(0);
+                    a.Summe = reader.GetDouble(1);
+                    a.Datum = reader.GetDateTime(2);
+                    a.Dauer = reader.GetInt32(3);
+                    a.Chance = reader.GetInt32(4);
+                    a.Kundenid = reader.GetInt32(5);
+                    a.Projektid = reader.ReadNullableInt(6);
+                    a.Titel = reader.GetString(7).Trim();
+                    a.Status = ObjectStates.Unmodified;
+                    if (a.Datum.Year == DateTime.Now.Year && a.Chance > 0)
+                    {
+                        alist.Add(a);
+                    }
+                }
+
+            }
+            catch (NpgsqlException exp)
+            {
+                throw new DALException("DAL: Angebotliste konnte aus der Datenbank nicht geladen werden!", exp);
+            }
+            finally
+            {
+                reader.Close();
+                comm.Dispose();
+                conn.Close();
+            }
+            return alist;
         }
 
         public double[] getIstJahresumsatz()
         {
-            throw new NotImplementedException();
+            double[] werte = new double[2] { 0, 0 };
+
+            buildconnection();
+            List<Angebot> alist = new List<Angebot>();
+            NpgsqlCommand comm = null;
+            NpgsqlDataReader reader = null;
+            try
+            {
+                string sql = "Select summe,datum,chance from angebote;";
+                comm = new NpgsqlCommand(sql, conn);
+                reader = comm.ExecuteReader();
+                while (reader.Read())
+                {
+                    if (reader.GetDateTime(1).Year == DateTime.Now.Year && reader.GetInt32(2) > 0)
+                    {
+                        werte[0]++;
+                        werte[1] += reader.GetDouble(0);
+                    }
+                }
+
+            }
+            catch (NpgsqlException exp)
+            {
+                throw new DALException("DAL: Jahresumsat konnte aus der Datenbank nicht geladen werden!", exp);
+            }
+            finally
+            {
+                reader.Close();
+                comm.Dispose();
+                conn.Close();
+            }
+            return werte;
         }
 
         public List<Ausgang> getEinnahmen(int month, int year)
         {
-            throw new NotImplementedException();
+            buildconnection();
+            List<Ausgang> rlist = new List<Ausgang>();
+            NpgsqlCommand comm = null;
+            NpgsqlDataReader reader = null;
+            try
+            {
+                string sql = @"Select r.rechnungid, a.projektid, a.kundenid, r.datum,r.bezeichnung from ausgang a, rechnungen r
+                where a.rechnungid = r.rechnungid;";
+                comm = new NpgsqlCommand(sql, conn);
+                reader = comm.ExecuteReader();
+                while (reader.Read())
+                {
+                    Ausgang r = new Ausgang();
+                    r.Rechnungid = reader.GetInt32(0);
+                    r.Projektid = reader.GetInt32(1);
+                    r.Kundenid = reader.GetInt32(2);
+                    r.Datum = reader.ReadNullableDateTime(3);
+                    r.Bezeichnung = reader.GetString(4).Trim();
+                    if ((r.Datum.Value.Year) == year && (r.Datum.Value.Month == month))
+                    {
+                        rlist.Add(r);
+                    }
+                }
+            }
+            catch (NpgsqlException exp)
+            {
+                throw new DALException("DAL: Einnahmen konnte nicht aus der Datenbank geladen werden!", exp);
+            }
+            finally
+            {
+                reader.Close();
+                comm.Dispose();
+                conn.Close();
+            }
+
+            return rlist;
         }
 
         public List<Eingang> getAusgaben(int month, int year)
         {
-            throw new NotImplementedException();
+            buildconnection();
+            List<Eingang> rlist = new List<Eingang>();
+            NpgsqlCommand comm = null;
+            NpgsqlDataReader reader = null;
+            try
+            {
+                string sql = @"Select r.rechnungid, e.kontaktid, e.betrag, r.datum,r.bezeichnung, e.path from eingang e, rechnungen r
+                where e.rechnungid = r.rechnungid;";
+                comm = new NpgsqlCommand(sql, conn);
+                reader = comm.ExecuteReader();
+                while (reader.Read())
+                {
+                    Eingang r = new Eingang();
+                    r.Rechnungid = reader.GetInt32(0);
+                    r.Kontaktid = reader.GetInt32(1);
+                    r.Betrag = reader.GetDouble(2);
+                    r.Datum = reader.ReadNullableDateTime(3);
+                    r.Bezeichnung = reader.GetString(4).Trim();
+                    r.Path = reader.GetString(5).Trim();
+                    if ((r.Datum.Value.Year) == year && (r.Datum.Value.Month == month))
+                    {
+                        rlist.Add(r);
+                    }
+                }
+            }
+            catch (NpgsqlException exp)
+            {
+                throw new DALException("DAL: Ausgaben konnte nicht aus der Datenbank geladen werden!", exp);
+            }
+            finally
+            {
+                reader.Close();
+                comm.Dispose();
+                conn.Close();
+            }
+            return rlist;
         }
 
 
         public List<Eingang> getOffeneERechnungen()
         {
-            throw new NotImplementedException();
+            buildconnection();
+            List<Eingang> rlist = new List<Eingang>();
+            double summerezeile, summebuchung;
+            NpgsqlCommand comm = null;
+            NpgsqlDataReader reader = null;
+            try
+            {
+                string sql = @"Select r.rechnungid, e.kontaktid, e.betrag, r.datum,r.bezeichnung, e.path from eingang e, rechnungen r
+                where e.rechnungid = r.rechnungid;";
+                comm = new NpgsqlCommand(sql, conn);
+                reader = comm.ExecuteReader();
+                while (reader.Read())
+                {
+                    Eingang r = new Eingang();
+                    r.Rechnungid = reader.GetInt32(0);
+                    r.Kontaktid = reader.GetInt32(1);
+                    r.Betrag = reader.GetDouble(2);
+                    r.Datum = reader.ReadNullableDateTime(3);
+                    r.Bezeichnung = reader.GetString(4).Trim();
+                    r.Path = reader.GetString(5).Trim();
+
+                    summebuchung = summerezeile = 0;
+                    List<Buchung> blist = getBuchungViewList(r.Rechnungid);
+                    foreach (var buchung in blist)
+                    {
+                        summebuchung += buchung.Betrag;
+                    }
+                    if (summebuchung != summerezeile)
+                        rlist.Add(r);
+                }
+            }
+            catch (NpgsqlException exp)
+            {
+                throw new DALException("DAL: Offene Eingangsrechnungen konnten nicht aus der Datenbank geladen werden!", exp);
+            }
+            finally
+            {
+                reader.Close();
+                comm.Dispose();
+                conn.Close();
+            }
+            return rlist;
         }
 
         public List<Ausgang> getOffeneARechnungen()
         {
-            throw new NotImplementedException();
+            buildconnection();
+            List<Ausgang> rlist = new List<Ausgang>();
+            double summerezeile, summebuchung;
+            NpgsqlCommand comm = null;
+            NpgsqlDataReader reader = null;
+            try
+            {
+                string sql = @"Select r.rechnungid, a.projektid, a.kundenid, r.datum,r.bezeichnung from ausgang a, rechnungen r
+                where a.rechnungid = r.rechnungid;";
+                comm = new NpgsqlCommand(sql, conn);
+                reader = comm.ExecuteReader();
+                while (reader.Read())
+                {
+                    Ausgang r = new Ausgang();
+                    r.Rechnungid = reader.GetInt32(0);
+                    r.Projektid = reader.GetInt32(1);
+                    r.Kundenid = reader.GetInt32(2);
+                    r.Datum = reader.ReadNullableDateTime(3);
+                    r.Bezeichnung = reader.GetString(4).Trim();
+
+                    summerezeile = summebuchung = 0;
+                    List<Rechnungszeile> zeilen = getRechnungszeilenViewList(r.Rechnungid);
+                    foreach (var rzeile in zeilen)
+                    {
+                        summerezeile += rzeile.Betrag;
+                    }
+                    List<Buchung> buchungen = getBuchungViewList(r.Rechnungid);
+                    foreach (var buchung in buchungen)
+                    {
+                        summebuchung += buchung.Betrag;
+                    }
+                    if (summebuchung != summerezeile)
+                        rlist.Add(r);
+                }
+            }
+            catch (NpgsqlException exp)
+            {
+                throw new DALException("DAL: Offene Ausgangsrechnungen konnten nicht aus der Datenbank geladen werden!", exp);
+            }
+            finally
+            {
+                comm.Dispose();
+                reader.Close();
+                conn.Close();
+            }
+            return rlist;
         }
         #endregion
 
@@ -1591,10 +2006,7 @@ namespace Backoffice
 
        
 
-        public List<Ausgang> getAusgangViewListByProjektId(int projektid)
-        {
-            throw new NotImplementedException();
-        }
+       
 
        
 
@@ -1643,7 +2055,45 @@ namespace Backoffice
 
         public List<Angebot> getAngebotViewList(string search)
         {
-            throw new NotImplementedException();
+            buildconnection();
+            List<Angebot> alist = new List<Angebot>();
+            NpgsqlCommand comm = null;
+            NpgsqlDataReader reader = null;
+            try
+            {
+                string sql = @"Select distinct angebotid,summe,datum,dauer,chance,kundenid,projektid,titel from angebote
+                where titel ~* @search ;";
+                comm = new NpgsqlCommand(sql, conn);
+                comm.Parameters.AddWithValue("@search", search);
+                reader = comm.ExecuteReader();
+                while (reader.Read())
+                {
+                    Angebot a = new Angebot();
+                    a.Angebotid = reader.GetInt32(0);
+                    a.Summe = reader.GetDouble(1);
+                    a.Datum = reader.GetDateTime(2);
+                    a.Dauer = reader.GetInt32(3);
+                    a.Chance = reader.GetInt32(4);
+                    a.Kundenid = reader.GetInt32(5);
+                    a.Projektid = reader.ReadNullableInt(6);
+                    a.Titel = reader.GetString(7).Trim();
+                    a.Status = ObjectStates.Unmodified;
+                    alist.Add(a);
+                }
+
+            }
+            catch (NpgsqlException exp)
+            {
+                throw new DALException("DAL: Gesuchtes Angebot konnte aus der Datenbank nicht geladen werden!", exp);
+            }
+            finally
+            {
+                reader.Close();
+                comm.Dispose();
+                conn.Close();
+            }
+
+            return alist;
         }
 
 
