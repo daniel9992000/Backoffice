@@ -47,7 +47,7 @@ namespace Backoffice
                 item.Hide();
                 if (item == uc)
                 {
-                    item.Show();
+                    item.Show();                    
                 }
             }
         }

@@ -511,50 +511,173 @@ namespace Backoffice
 
         #region Ausgangsrechnungen
         public static void saveAusgang(Ausgang r)
-        {
-            DALFactory.getDAL().saveAusgang(r);
+        {            
+            try
+            {
+                DALFactory.getDAL().saveAusgang(r);
+                log.Info("Ausgangsrechnung mit ID " + r.Rechnungid + " gespeichert!");
+            }
+            catch (DALException ex)
+            {
+                log.Error("Fehler beim Speichern der Ausgangsrechnung mit ID " + r.Rechnungid, ex);
+                throw new BLException("Ausgangsrechnung konnte nicht gespeichert werden!");
+            }
         }
 
         public static void deleteAusgang(Ausgang r)
-        {
-            DALFactory.getDAL().deleteAusgang(r);
+        {            
+            try
+            {
+                DALFactory.getDAL().deleteAusgang(r);
+                log.Info("Ausgangsrechnung mit ID " + r.Rechnungid + " gelöscht!");
+            }
+            catch (DALException ex)
+            {
+                log.Error("Fehler beim Löschen der Ausgangsrechnung mit ID " + r.Rechnungid, ex);
+                throw new BLException("Ausgangsrechnung konnte nicht gelöscht werden!");
+            }
         }
 
         public static List<Ausgang> getAusgaenge()
         {
-            return DALFactory.getDAL().getAusgangViewList();
+            var tmp = new List<Ausgang>();
+            try
+            {
+                tmp = DALFactory.getDAL().getAusgangViewList();
+                log.Info("Alle Ausgangsrechnungen ausgelesen!");
+            }
+            catch (BLException ex)
+            {
+                log.Error("Fehler beim Auslesen der Ausgangsrechnungen", ex);
+                throw new BLException("Ausgangsrechnungen konnten nicht ausgelesen werden!");
+            }
+            return tmp;
+        }
+
+        public static List<Ausgang> getAusgaenge(string search)
+        {
+            var tmp = new List<Ausgang>();
+            try
+            {
+                tmp = DALFactory.getDAL().getAusgangViewList(search);
+                log.Info("Ausgangsrechnungen mit Suchbegriff " + search + " ausgelesen!");
+            }
+            catch (BLException ex)
+            {
+                log.Error("Fehler beim Auslesen der Ausgangsrechnungen mit Suchbegriff " + search, ex);
+                throw new BLException("Ausgangsrechnungen konnten nicht ausgelesen werden!");
+            }
+            return tmp;
         }
 
         public static List<Ausgang> getAusgaenge(int kundenid)
         {
-            return DALFactory.getDAL().getAusgangViewList(kundenid);
+            var tmp = new List<Ausgang>();
+            try
+            {
+                tmp = DALFactory.getDAL().getAusgangViewList(kundenid);
+                log.Info("Ausgangsrechnungen mit Kunden ID " + kundenid + " ausgelesen!");
+            }
+            catch (BLException ex)
+            {
+                log.Error("Fehler beim Auslesen der Ausgangsrechnungen mit Kunden ID " + kundenid, ex);
+                throw new BLException("Ausgangsrechnungen konnten nicht ausgelesen werden!");
+            }
+            return tmp;
         }
 
         public static List<Ausgang> getAusgaengeByProjektId(int projektid)
         {
-            return DALFactory.getDAL().getAusgangViewList(projektid);
+            var tmp = new List<Ausgang>();
+            try
+            {
+                tmp = DALFactory.getDAL().getAusgangViewList(projektid);
+                log.Info("Ausgangsrechnungen mit Projekt ID " + projektid + " ausgelesen!");
+            }
+            catch (BLException ex)
+            {
+                log.Error("Fehler beim Auslesen der Ausgangsrechnungen mit Projekt ID " + projektid, ex);
+                throw new BLException("Ausgangsrechnungen konnten nicht ausgelesen werden!");
+            }
+            return tmp;
         }
         #endregion
 
         #region Eingangsrechnungen
         public static void saveEingang(Eingang r)
-        {
-            DALFactory.getDAL().saveEingang(r);
+        {            
+            try
+            {
+                DALFactory.getDAL().saveEingang(r);
+                log.Info("Eingangsrechnung mit ID " + r.Rechnungid + " gespeichert!");
+            }
+            catch (DALException ex)
+            {
+                log.Error("Fehler beim Speichern der Eingangsrechnung mit ID " + r.Rechnungid, ex);
+                throw new BLException("Eingangsrechnung konnte nicht gespeichert werden!");
+            }
         }
 
         public static void deleteEingang(Eingang r)
-        {
-            DALFactory.getDAL().deleteEingang(r);
+        {            
+            try
+            {
+                DALFactory.getDAL().deleteEingang(r);
+                log.Info("Eingangsrechnung mit ID " + r.Rechnungid + " gelöscht!");
+            }
+            catch (DALException ex)
+            {
+                log.Error("Fehler beim Löschen der Eingangsrechnung mit ID " + r.Rechnungid, ex);
+                throw new BLException("Eingangsrechnung konnte nicht gelöscht werden!");
+            }
         }
 
         public static List<Eingang> getEingaenge()
         {
-            return DALFactory.getDAL().getEingangViewList();
+            var tmp = new List<Eingang>();
+            try
+            {
+                tmp = DALFactory.getDAL().getEingangViewList();
+                log.Info("Alle Eingangsrechnungen ausgelesen!");
+            }
+            catch (BLException ex)
+            {
+                log.Error("Fehler beim Auslesen der Eingangsrechnungen", ex);
+                throw new BLException("Eingangsrechnungen konnten nicht ausgelesen werden!");
+            }
+            return tmp;
+        }
+
+        public static List<Eingang> getEingaenge(string search)
+        {
+            var tmp = new List<Eingang>();
+            try
+            {
+                tmp = DALFactory.getDAL().getEingangViewList(search);
+                log.Info("Alle Eingangsrechnungen mit Suchbegriff " + search + " ausgelesen!");
+            }
+            catch (BLException ex)
+            {
+                log.Error("Fehler beim Auslesen der Eingangsrechnungen mit Suchbegriff " + search, ex);
+                throw new BLException("Eingangsrechnungen konnten nicht ausgelesen werden!");
+            }
+            return tmp;
         }
 
         public static List<Eingang> getEingaenge(int kontaktid)
         {
-            return DALFactory.getDAL().getEingangViewList(kontaktid);
+            var tmp = new List<Eingang>();
+            try
+            {
+                tmp = DALFactory.getDAL().getEingangViewList(kontaktid);
+                log.Info("Alle Eingangsrechnungen mit Kontakt ID " + kontaktid + " ausgelesen!");
+            }
+            catch (BLException ex)
+            {
+                log.Error("Fehler beim Auslesen der Eingangsrechnungen mit Kontakt ID " + kontaktid, ex);
+                throw new BLException("Eingangsrechnungen konnten nicht ausgelesen werden!");
+            }
+            return tmp;
         }
         #endregion
 

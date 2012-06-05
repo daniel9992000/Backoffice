@@ -22,6 +22,12 @@ namespace Backoffice.UserControls
             binder.BindTo_ListView(lv_rechnungen, BL.getAusgaenge());
         }
 
+        void BindTo(string search)
+        {
+            DataBinding.Binder binder = new DataBinding.Binder();
+            binder.BindTo_ListView(lv_rechnungen, BL.getAusgaenge(search));
+        }
+
         void EditRechnung(Ausgang r)
         {
             Dialogs.RechnungDetail tmp = new Dialogs.RechnungDetail(r);
@@ -71,6 +77,11 @@ namespace Backoffice.UserControls
         private void lv_rechnungen_DoubleClick(object sender, EventArgs e)
         {
             EditRechnung((Ausgang)lv_rechnungen.FocusedItem.Tag);
+        }
+
+        private void tb_search_TextChanged(object sender, EventArgs e)
+        {
+            BindTo(tb_search.Text);
         }
     }
 }
