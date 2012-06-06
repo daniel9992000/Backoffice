@@ -21,6 +21,13 @@ namespace Backoffice.UserControls
             DataBinding.Binder binder = new DataBinding.Binder();
             binder.BindTo_ListView(lv_eingang, BL.getEingaenge());           
         }
+
+        void BindTo(string search)
+        {
+            DataBinding.Binder binder = new DataBinding.Binder();
+            binder.BindTo_ListView(lv_eingang, BL.getEingaenge(search));
+        }
+
         private void UCEingangAnzeigen_Load(object sender, EventArgs e)
         {
             BindTo();
@@ -70,6 +77,11 @@ namespace Backoffice.UserControls
         private void lv_eingang_DoubleClick(object sender, EventArgs e)
         {
             EditRechnung((Eingang)lv_eingang.FocusedItem.Tag);
+        }
+
+        private void tb_search_TextChanged(object sender, EventArgs e)
+        {
+            BindTo(tb_search.Text);
         }
     }
 }

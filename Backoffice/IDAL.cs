@@ -48,6 +48,7 @@ namespace Backoffice
         void saveAusgang(Ausgang r);
         void deleteAusgang(Ausgang r);
         List<Ausgang> getAusgangViewList();
+        List<Ausgang> getAusgangViewList(string search);
         List<Ausgang> getAusgangViewList(int kundenid);
         List<Ausgang> getAusgangViewListByProjektId(int projektid);
 
@@ -55,6 +56,7 @@ namespace Backoffice
         void saveEingang(Eingang r);
         void deleteEingang(Eingang r);
         List<Eingang> getEingangViewList();
+        List<Eingang> getEingangViewList(string search);
         List<Eingang> getEingangViewList(int kontaktid);
 
         //Rechnungszeilen

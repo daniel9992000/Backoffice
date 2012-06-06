@@ -448,6 +448,20 @@ namespace Backoffice
             return ausgaenge;
         }
 
+        public List<Ausgang> getAusgangViewList(string search)
+        {
+            search = search.ToLower();
+            var tmp = new List<Ausgang>();
+            foreach (var item in ausgaenge)
+            {
+                if (item.Bezeichnung.ToLower().Contains(search) || item.Datum.Value.ToShortDateString().Contains(search))
+                {
+                    tmp.Add(item);
+                }
+            }
+            return tmp;
+        }
+
         public List<Ausgang> getAusgangViewList(int kundenid)
         {
             List<Ausgang> tmp = new List<Ausgang>();
@@ -506,6 +520,20 @@ namespace Backoffice
         public List<Eingang> getEingangViewList()
         {
             return eingaenge;
+        }
+
+        public List<Eingang> getEingangViewList(string search)
+        {
+            search = search.ToLower();
+            var tmp = new List<Eingang>();
+            foreach (var item in eingaenge)
+            {
+                if (item.Bezeichnung.ToLower().Contains(search) || item.Datum.Value.ToShortDateString().Contains(search))
+                {
+                    tmp.Add(item);
+                }
+            }
+            return tmp;
         }
 
         public List<Eingang> getEingangViewList(int kontaktid)

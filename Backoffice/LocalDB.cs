@@ -590,7 +590,6 @@ namespace Backoffice
             return alist;
         }
 
-
         public List<Angebot> getKundenAngebote(int kundenid)
         {
             buildconnection();
@@ -1156,7 +1155,7 @@ namespace Backoffice
                 comm.Dispose();
                 conn.Close();
             }
-        }
+        }        
 
         public List<Ausgang> getAusgangViewList()
         {
@@ -1169,6 +1168,44 @@ namespace Backoffice
                 string sql = @"Select r.rechnungid, a.projektid, a.kundenid, r.datum,r.bezeichnung from ausgang a, rechnungen r
                 where a.rechnungid = r.rechnungid;";
                 comm = new NpgsqlCommand(sql, conn);
+                reader = comm.ExecuteReader();
+                while (reader.Read())
+                {
+                    Ausgang r = new Ausgang();
+                    r.Rechnungid = reader.GetInt32(0);
+                    r.Projektid = reader.GetInt32(1);
+                    r.Kundenid = reader.GetInt32(2);
+                    r.Datum = reader.ReadNullableDateTime(3);
+                    r.Bezeichnung = reader.GetString(4).Trim();
+                    rlist.Add(r);
+                }
+            }
+            catch (NpgsqlException exp)
+            {
+                throw new DALException("DAL: Rechnungsliste konnte nicht aus der Datenbank geladen werden!", exp);
+            }
+            finally
+            {
+                reader.Close();
+                comm.Dispose();
+                conn.Close();
+            }
+
+            return rlist;
+        }
+
+        public List<Ausgang> getAusgangViewList(string search)
+        {
+            buildconnection();
+            List<Ausgang> rlist = new List<Ausgang>();
+            NpgsqlCommand comm = null;
+            NpgsqlDataReader reader = null;
+            try
+            {
+                string sql = @"Select Distinct r.rechnungid, a.projektid, a.kundenid, r.datum,r.bezeichnung from ausgang a, rechnungen r
+                where a.rechnungid = r.rechnungid and (r.bezeichnung ~* @search or r.datum ~* @search) ;";
+                comm = new NpgsqlCommand(sql, conn);
+                comm.Parameters.AddWithValue("@search", search);
                 reader = comm.ExecuteReader();
                 while (reader.Read())
                 {
@@ -1390,6 +1427,46 @@ namespace Backoffice
 
             return rlist;
         }
+
+        public List<Eingang> getEingangViewList(string search)
+        {
+            buildconnection();
+            List<Eingang> rlist = new List<Eingang>();
+            NpgsqlCommand comm = null;
+            NpgsqlDataReader reader = null;
+            try
+            {
+                string sql = @"Select Distinct r.rechnungid, e.kontaktid, e.betrag, r.datum,r.bezeichnung, e.path from eingang e, rechnungen r
+                where e.rechnungid = r.rechnungid and (r.bezeichnung ~* @searchor r.datum ~* @search);";
+                comm = new NpgsqlCommand(sql, conn);
+                comm.Parameters.AddWithValue("@search", search);
+                reader = comm.ExecuteReader();
+                while (reader.Read())
+                {
+                    Eingang r = new Eingang();
+                    r.Rechnungid = reader.GetInt32(0);
+                    r.Kontaktid = reader.GetInt32(1);
+                    r.Betrag = reader.GetDouble(2);
+                    r.Datum = reader.ReadNullableDateTime(3);
+                    r.Bezeichnung = reader.GetString(4).Trim();
+                    r.Path = reader.GetString(5).Trim();
+                    rlist.Add(r);
+                }
+            }
+            catch (NpgsqlException exp)
+            {
+                throw new DALException("DAL: Rechnungsliste konnte nicht aus der Datenbank geladen werden!", exp);
+            }
+            finally
+            {
+                reader.Close();
+                comm.Dispose();
+                conn.Close();
+            }
+
+            return rlist;
+        }
+
         public List<Eingang> getEingangViewList(int kontaktid)
         {
             buildconnection();
@@ -2022,14 +2099,6 @@ namespace Backoffice
 
         #endregion 
 
-       
-
-       
-
-       
-
-       
-
         public double getRechnungssumme(int rechnungid)
         {
             buildconnection();
@@ -2068,10 +2137,6 @@ namespace Backoffice
                 value = resumme.Value;
             return value;
         }
-
-       
-
-      
 
         public List<Angebot> getAngebotViewList(string search)
         {
@@ -2115,7 +2180,6 @@ namespace Backoffice
 
             return alist;
         }
-
 
         public Rechnung getRechung(int rechnungsid)
         {
@@ -2170,5 +2234,6 @@ namespace Backoffice
             }
             return null;
         }
+
     }
 }
