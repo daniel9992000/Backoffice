@@ -2137,7 +2137,7 @@ namespace Backoffice
                     a.Projektid = reader.GetInt32(1);
                     a.Kundenid = reader.GetInt32(2);
                     a.Datum = reader.ReadNullableDateTime(3);
-                    a.Bezeichnung = reader.GetString(4);
+                    a.Bezeichnung = reader.GetString(4).Trim();
                     return a;
                 }
 
@@ -2154,7 +2154,7 @@ namespace Backoffice
                     e.Betrag = reader.GetDouble(2);
                     e.Path = reader.GetString(3);
                     e.Datum = reader.ReadNullableDateTime(4);
-                    e.Bezeichnung = reader.GetString(5);
+                    e.Bezeichnung = reader.GetString(5).Trim();
                     return e;
                 }
             }

@@ -40,6 +40,9 @@
     <Reference Include="log4net">
       <HintPath>..\log4net.dll</HintPath>
     </Reference>
+    <Reference Include="Mono.Security">
+      <HintPath>..\..\..\..\..\..\Software\Softwareengineering\Postgres\Npgsql2.0.11.93-bin-ms.net\Mono.Security.dll</HintPath>
+    </Reference>
     <Reference Include="Npgsql">
       <HintPath>..\Npgsql.dll</HintPath>
     </Reference>

@@ -221,17 +221,26 @@ namespace Backoffice
                     throw new BLException("Angebot: Wert von Chance außerhalb der Grenzen!");
                 }
                 var tmpang = DALFactory.getDAL().getAngebot(a.Angebotid);
-                if (!tmpang.Projektid.HasValue)
-                    tmpang.Projektid = a.Projektid;
-                if (DALFactory.getDAL().getAngebotViewListByProjektId(tmpang.Projektid.Value).Count <= 1 && a.Status == ObjectStates.Modified && tmpang.Projektid.Value != a.Projektid)
-                {
-                    log.Warn("Angebot mit ID " + a.Angebotid + " kann nicht gespeichert werden, da ein Projekt sonst kein Angebot hat");
-                    throw new BLException("Angebot kann nicht gespeichert werden, da ein Projekt sonst kein Angebot hat!");
-                }
-                else
+          
+                if (!a.Projektid.HasValue)
                 {
                     DALFactory.getDAL().saveAngebot(a);
                     log.Info("Angebot mit ID " + a.Angebotid + " gespeichert!");
+                }
+                else
+                {
+                    if (!tmpang.Projektid.HasValue)
+                        tmpang.Projektid = a.Projektid;
+                    if (DALFactory.getDAL().getAngebotViewListByProjektId(tmpang.Projektid.Value).Count <= 1 && a.Status == ObjectStates.Modified && tmpang.Projektid != a.Projektid)
+                    {
+                        log.Warn("Angebot mit ID " + a.Angebotid + " kann nicht gespeichert werden, da ein Projekt sonst kein Angebot hat");
+                        throw new BLException("Angebot kann nicht gespeichert werden, da ein Projekt sonst kein Angebot hat!");
+                    }
+                    else
+                    {
+                        DALFactory.getDAL().saveAngebot(a);
+                        log.Info("Angebot mit ID " + a.Angebotid + " gespeichert!");
+                    }
                 }
             }
             catch (DALException ex)

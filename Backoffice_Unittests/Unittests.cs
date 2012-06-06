@@ -10,6 +10,7 @@ namespace Backoffice_Unittests
     [TestFixture]
     public class Unittests
     {
+        #region Kunde
         [Test]
         public void TestAddKunde()
         {
@@ -66,6 +67,7 @@ namespace Backoffice_Unittests
             Assert.That(BL.getKunde(index).Telefon, Is.EqualTo(String.Empty));
             Assert.That(BL.getKunde(index).Bemerkungen, Is.EqualTo(String.Empty));
             Assert.That(BL.getKunde(index).Status, Is.EqualTo(ObjectStates.Modified));
+            BL.deleteKunde(k);
         }
 
         [Test]
@@ -78,6 +80,7 @@ namespace Backoffice_Unittests
             Assert.That(BL.getKunde(index).Nachname, Is.EqualTo("487!,"));
             Assert.That(BL.getKunde(index).Email, Is.EqualTo("587=!-"));
             Assert.That(BL.getKunde(index).Status, Is.EqualTo(ObjectStates.Modified));
+            BL.deleteKunde(k);
         }
 
         [Test]
@@ -91,7 +94,9 @@ namespace Backoffice_Unittests
             Assert.That(BL.getKunden().Last(), Is.Not.EqualTo(k));
 
         }
+        #endregion
 
+        #region Kontakt
         [Test]
         public void TestAddKontakt()
         {
@@ -151,6 +156,7 @@ namespace Backoffice_Unittests
             Assert.That(BL.getKontakte().ElementAt(index - 1).Telefon, Is.EqualTo(String.Empty));
             Assert.That(BL.getKontakte().ElementAt(index - 1).Bemerkungen, Is.EqualTo(String.Empty));
             Assert.That(BL.getKontakte().ElementAt(index - 1).Status, Is.EqualTo(ObjectStates.Unmodified));
+            BL.deleteKontakt(k);
         }
 
         [Test]
@@ -158,13 +164,14 @@ namespace Backoffice_Unittests
         {
             Kontakt k = new Kontakt(89999, "ö54848", "487!,", "587=!-", "a.b@aon.at" ,ObjectStates.New);
             BL.saveKontakt(k);
-            int index = BL.getKunden().Count;
+            int index = BL.getKontakte().Count -1 ;
             Assert.That(BL.getKontakte().ElementAt(index).Kontaktid, Is.EqualTo(index + 1));
             Assert.That(BL.getKontakte().ElementAt(index).Vorname, Is.EqualTo("ö54848"));
             Assert.That(BL.getKontakte().ElementAt(index).Nachname, Is.EqualTo("487!,"));
             Assert.That(BL.getKontakte().ElementAt(index).Firmenname, Is.EqualTo("587=!-"));
             Assert.That(BL.getKontakte().ElementAt(index).Email, Is.EqualTo("a.b@aon.at"));
             Assert.That(BL.getKunde(index).Status, Is.EqualTo(ObjectStates.Unmodified));
+            BL.deleteKontakt(k);
         }
 
         [Test]
@@ -178,7 +185,10 @@ namespace Backoffice_Unittests
             Assert.That(BL.getKontakte().Last(), Is.Not.EqualTo(k));
 
         }
+        #endregion
 
+
+        #region Angebot
         [Test]
         public void TestAddAngebot()
         {
@@ -216,7 +226,9 @@ namespace Backoffice_Unittests
             Assert.That(BL.getAngebote().Count, Is.EqualTo(oldlength - 1));
             Assert.That(BL.getAngebote().Last(), Is.Not.EqualTo(a));
         }
+        #endregion
 
+        #region Projekt
         [Test]
         public void TestAddProjekt()
         {
@@ -242,7 +254,10 @@ namespace Backoffice_Unittests
             Assert.That(BL.getProjekte().Count, Is.EqualTo(oldlength -1));
             Assert.That(BL.getProjekte().Last(), Is.Not.EqualTo(p));
         }
+        #endregion
 
+
+        #region Eingang
         [Test]
         public void TestAddEingang()
         {
@@ -269,7 +284,9 @@ namespace Backoffice_Unittests
             Assert.That(BL.getEingaenge().Count, Is.EqualTo(oldlength -1));
             Assert.That(BL.getEingaenge().Last(), Is.Not.EqualTo(r));
         }
+        #endregion
 
+        #region Ausgang
         [Test]
         public void TestAddAusgang()
         {
@@ -285,7 +302,7 @@ namespace Backoffice_Unittests
         }
 
         [Test]
-        public void DeleteAusgang()
+        public void TestDeleteAusgang()
         {
             Ausgang a = new Ausgang();
             int oldlength = BL.getAusgaenge().Count();
@@ -294,5 +311,68 @@ namespace Backoffice_Unittests
             Assert.That(BL.getAusgaenge().Count, Is.EqualTo(oldlength - 1));
             Assert.That(BL.getAusgaenge().Last(), Is.Not.EqualTo(a));
         }
+        #endregion
+
+        #region Buchung
+        [Test]
+        public void TestAddBuchung()
+        {
+            Buchung b = new Buchung();
+            int oldlength = BL.getBuchungen().Count();
+            b.Betrag = 656;
+            b.Datum = DateTime.Parse("2012-4-4");
+            b.Kategorie = 1;
+            b.Rechnungid = 3;
+            b.Status = ObjectStates.New;
+            BL.saveBuchung(b);
+            Assert.That(BL.getBuchungen().Count, Is.EqualTo(oldlength + 1));
+            Assert.That(BL.getBuchungen().ElementAt(oldlength).Betrag, Is.EqualTo(656));
+            Assert.That(BL.getBuchungen().ElementAt(oldlength).Datum, Is.EqualTo(DateTime.Parse("2012-4-4")));
+            Assert.That(BL.getBuchungen().ElementAt(oldlength).Kategorie, Is.EqualTo(1));
+            Assert.That(BL.getBuchungen().ElementAt(oldlength).Rechnungid, Is.EqualTo(3));
+            Assert.That(BL.getBuchungen().ElementAt(oldlength).Status, Is.EqualTo(ObjectStates.Unmodified));
+        }
+
+        [Test]
+        public void TestDeleteBuchung()
+        {
+            Buchung b = new Buchung();
+            int oldlength = BL.getBuchungen().Count();
+            b = BL.getBuchungen().Last();
+            BL.deleteBuchung(b);
+            Assert.That(BL.getBuchungen().Count, Is.EqualTo(oldlength - 1));
+            Assert.That(BL.getBuchungen().Last(), Is.Not.EqualTo(b));
+        }
+        #endregion
+
+        #region Rechnungszeilen
+        [Test]
+        public void TestAddRechnungszeilen()
+        {
+            Rechnungszeile rezeile = new Rechnungszeile();
+            int oldlength = BL.getRechnungszeilen(8).Count();
+            rezeile.Betrag = 656;
+            rezeile.Bezeichnung = "Zeile1";
+            rezeile.Rechnungid = 8;
+            rezeile.Status = ObjectStates.New;
+            BL.saveRechnungszeile(rezeile);
+            Assert.That(BL.getRechnungszeilen(8).Count, Is.EqualTo(oldlength + 1));
+            Assert.That(BL.getRechnungszeilen(8).First().Betrag, Is.EqualTo(656));
+            Assert.That(BL.getRechnungszeilen(8).First().Bezeichnung, Is.EqualTo("Zeile1"));
+            Assert.That(BL.getRechnungszeilen(8).First().Status, Is.EqualTo(ObjectStates.Modified));
+        }
+
+        [Test]
+        public void TestDeleteRechnungsZeilen()
+        {
+            Rechnungszeile rezeile = new Rechnungszeile();
+            int oldlength = BL.getRechnungszeilen(8).Count();
+            rezeile = BL.getRechnungszeilen(8).Last();
+            BL.deleteRechnungszeile(rezeile);
+            Assert.That(BL.getRechnungszeilen(8).Count, Is.EqualTo(oldlength - 1));
+            Assert.That(BL.getRechnungszeilen(8), Is.Not.EqualTo(rezeile));
+        }
+        #endregion
+        
     }
 }
