@@ -42,6 +42,7 @@
             this.rechnungenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rechnungenAnzeigenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.eingangsrechnungenAnzeigenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.buchungenAnzeigenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.berichteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.prognostizierterJahresumsatToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aktuelleEinnahmenAusgabenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -62,7 +63,6 @@
             this.ucProjekteAnzeigen1 = new Backoffice.UserControls.UCProjekteAnzeigen();
             this.uc_kundenAnzeigen = new Backoffice.UserControls.UCKundenAnzeigen();
             this.ucStundenEinlesenAnzeigen1 = new Backoffice.Dialogs.UCStundenEinlesenAnzeigen();
-            this.buchungenAnzeigenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ucBuchungenAnzeigen1 = new Backoffice.UserControls.UCBuchungenAnzeigen();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -175,6 +175,13 @@
             this.eingangsrechnungenAnzeigenToolStripMenuItem.Size = new System.Drawing.Size(240, 22);
             this.eingangsrechnungenAnzeigenToolStripMenuItem.Text = "Eingangsrechnungen anzeigen";
             this.eingangsrechnungenAnzeigenToolStripMenuItem.Click += new System.EventHandler(this.eingangsrechnungenAnzeigenToolStripMenuItem_Click);
+            // 
+            // buchungenAnzeigenToolStripMenuItem
+            // 
+            this.buchungenAnzeigenToolStripMenuItem.Name = "buchungenAnzeigenToolStripMenuItem";
+            this.buchungenAnzeigenToolStripMenuItem.Size = new System.Drawing.Size(240, 22);
+            this.buchungenAnzeigenToolStripMenuItem.Text = "Buchungen anzeigen";
+            this.buchungenAnzeigenToolStripMenuItem.Click += new System.EventHandler(this.buchungenAnzeigenToolStripMenuItem_Click);
             // 
             // berichteToolStripMenuItem
             // 
@@ -347,13 +354,6 @@
             this.ucStundenEinlesenAnzeigen1.Size = new System.Drawing.Size(933, 491);
             this.ucStundenEinlesenAnzeigen1.TabIndex = 13;
             // 
-            // buchungenAnzeigenToolStripMenuItem
-            // 
-            this.buchungenAnzeigenToolStripMenuItem.Name = "buchungenAnzeigenToolStripMenuItem";
-            this.buchungenAnzeigenToolStripMenuItem.Size = new System.Drawing.Size(240, 22);
-            this.buchungenAnzeigenToolStripMenuItem.Text = "Buchungen anzeigen";
-            this.buchungenAnzeigenToolStripMenuItem.Click += new System.EventHandler(this.buchungenAnzeigenToolStripMenuItem_Click);
-            // 
             // ucBuchungenAnzeigen1
             // 
             this.ucBuchungenAnzeigen1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -383,6 +383,7 @@
             this.Controls.Add(this.menuStrip1);
             this.Name = "MainForm";
             this.Text = "Backoffice";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);

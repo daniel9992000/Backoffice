@@ -37,9 +37,6 @@
     <Reference Include="itextsharp">
       <HintPath>..\itextsharp.dll</HintPath>
     </Reference>
-    <Reference Include="log4net">
-      <HintPath>..\log4net.dll</HintPath>
-    </Reference>
     <Reference Include="Mono.Security">
       <HintPath>..\..\..\..\..\..\Software\Softwareengineering\Postgres\Npgsql2.0.11.93-bin-ms.net\Mono.Security.dll</HintPath>
     </Reference>
@@ -118,6 +115,11 @@
     <Compile Include="Dialogs\RechnungDetail.Designer.cs">
       <DependentUpon>RechnungDetail.cs</DependentUpon>
     </Compile>
+    <Compile Include="Logging\AppenderManager.cs" />
+    <Compile Include="Logging\ConsoleAppender.cs" />
+    <Compile Include="Logging\FileAppender.cs" />
+    <Compile Include="Logging\IAppender.cs" />
+    <Compile Include="Logging\Logger.cs" />
     <Compile Include="UserControls\UCBuchungenAnzeigen.cs">
       <SubType>UserControl</SubType>
     </Compile>
