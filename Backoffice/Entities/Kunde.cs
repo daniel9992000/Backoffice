@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Backoffice
 {
-    public class Kunde
+    public class Kunde 
     {
         int kundenid;
         string vorname;
