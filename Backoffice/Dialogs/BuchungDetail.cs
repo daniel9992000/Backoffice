@@ -44,7 +44,7 @@ namespace Backoffice.Dialogs
             binder.StartBindFrom();
 
             b.Datum = binder.BindFrom_DateTime(dtp_datum, errorControl1, new DataBinding.RequiredRule());
-            b.Betrag = binder.BindFrom_Int(tb_betrag, errorControl4, new DataBinding.PositiveRule());
+            b.Betrag = binder.BindFrom_Double(tb_betrag, errorControl4, new DataBinding.PositiveRule());
             b.Rechnungid = binder.BindFrom_ComboBox_Int(cb_rechnung, errorControl2, new DataBinding.RequiredRule());
             b.Kategorie = binder.BindFrom_ComboBox_Int(cb_kategorie, errorControl3, new DataBinding.RequiredRule());
 

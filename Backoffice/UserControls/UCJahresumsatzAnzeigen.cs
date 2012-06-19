@@ -35,6 +35,8 @@ namespace Backoffice.UserControls
 
             binder.BindTo_TextBox(tbianzang, double.Parse(werte[0].ToString("#0.00")));
             binder.BindTo_TextBox(tbisumang, double.Parse(werte[1].ToString("#0.00")));
+
+            werte = BL.calcPrognose(werte);
             binder.BindTo_TextBox(tbanzangebote, double.Parse(werte[0].ToString("#0.00")));
             binder.BindTo_TextBox(tbsumangebote, double.Parse(werte[1].ToString("#0.00")));
             

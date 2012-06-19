@@ -314,6 +314,7 @@ namespace Backoffice
                     Projekt p = new Projekt();
                     p.Projektid = reader.GetInt32(0);
                     p.Name = reader.GetString(1).Trim();
+                    p.Stunden = getProjektStunden(p.Name);
                     p.Status = ObjectStates.Unmodified;
                     plist.Add(p);
                 }
@@ -351,6 +352,7 @@ namespace Backoffice
                     Projekt p = new Projekt();
                     p.Projektid = reader.GetInt32(0);
                     p.Name = reader.GetString(1).Trim();
+                    p.Stunden = getProjektStunden(p.Name);
                     p.Status = ObjectStates.Unmodified;
                     plist.Add(p);
                 }
@@ -477,7 +479,30 @@ namespace Backoffice
         }
         public int getProjektStunden(string projektname)
         {
-            throw new NotImplementedException();
+            buildconnection();
+            NpgsqlCommand comm = null;
+            int stunden = 0;
+            try
+            {
+
+                string sql = @"Select coalesce(sum(stundenanz),0) from stunden
+                where projektname = @projektname;";
+                comm = new NpgsqlCommand(sql, conn);
+                comm.Parameters.AddWithValue("@projektname", projektname);
+                stunden = Convert.ToInt32(comm.ExecuteScalar());
+               
+                return stunden;
+
+            }
+            catch (NpgsqlException exp)
+            {
+                throw new DALException("DAL: Stunden konnten nicht gefunden werden!", exp);
+            }
+            finally
+            {
+                comm.Dispose();
+                conn.Close();
+            }
         }
 
         #endregion
@@ -1896,7 +1921,7 @@ namespace Backoffice
                 {
                     sqlbuch = @"Update buchungen set betrag = @betrag, katid = @katid, datum = @datum
                             where buchungid = @buchungid";
-                    sqlrechbuch = @"Update rechnungen_buchungen set rechungid = @rechnungid
+                    sqlrechbuch = @"Update rechnungen_buchungen set rechnungid = @rechnungid
                             where buchungid = @buchungid";
                     commbuch = new NpgsqlCommand(sqlbuch, conn);
                     commrechbuch = new NpgsqlCommand(sqlrechbuch, conn);
@@ -2073,8 +2098,9 @@ namespace Backoffice
             NpgsqlDataReader reader = null;
             try
             {
-                string sql = @"Select k.katid, k.bezeichnung from kategorie k";
+                string sql = @"Select k.katid, k.bezeichnung from kategorie k where k.katid = @katid";
                 comm = new NpgsqlCommand(sql, conn);
+                comm.Parameters.AddWithValue("@katid", id);
                 reader = comm.ExecuteReader();
                 while (reader.Read())
                 {       

@@ -875,5 +875,18 @@ namespace Backoffice
             return tmp;
         }
         #endregion
+
+        public static double[] calcPrognose(double[] werte)
+        {
+            double faktor = 0;
+            if (DateTime.IsLeapYear(DateTime.Now.Year))
+                faktor = 366;
+            else
+                faktor = 365;
+            faktor = faktor / DateTime.Now.DayOfYear;
+            werte[0] = werte[0] * faktor;
+            werte[1] = werte[1] * faktor;
+            return werte;
+        }
     }
 }
