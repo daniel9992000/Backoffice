@@ -18,6 +18,7 @@ namespace Backoffice
         public MainForm()
         {
             InitializeComponent();
+            Logging.Logger.Info("Backoffice gestartet");
             guiControls = new List<UserControl>();
             guiControls.Add(uc_kundenAnzeigen);
             guiControls.Add(ucProjekteAnzeigen1);
@@ -33,11 +34,12 @@ namespace Backoffice
             guiControls.Add(ucStundenEinlesenAnzeigen1);
             guiControls.Add(ucBuchungenAnzeigen1);
 
+            
             foreach (var item in guiControls)
             {
                 item.Hide();
             }
-            BL.ConfigureLogger();            
+            Logging.Logger.Info("Alle UserControls versteckt");
         }
 
         void DisplayUserControl(UserControl uc)
@@ -135,6 +137,11 @@ namespace Backoffice
         private void buchungenAnzeigenToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DisplayUserControl(ucBuchungenAnzeigen1);
+        }
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Logging.Logger.Info("Backoffice geschlossen");
         }
     }
 }
