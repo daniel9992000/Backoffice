@@ -18,7 +18,7 @@
       <Value Profile="(Default)">EPU_SWE2</Value>
     </Setting>
     <Setting Name="DataSource" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Postgres</Value>
+      <Value Profile="(Default)">Mockdb</Value>
     </Setting>
     <Setting Name="Appenders" Type="System.Collections.Specialized.StringCollection" Scope="User">
       <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;

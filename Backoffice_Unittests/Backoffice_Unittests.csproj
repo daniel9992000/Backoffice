@@ -41,7 +41,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Unittests.cs" />
+    <Compile Include="AngebotUnittests.cs" />
+    <Compile Include="AusgangsrechnungUnittests.cs" />
+    <Compile Include="BuchungUnittests.cs" />
+    <Compile Include="EingangsrechnungUnittests.cs" />
+    <Compile Include="KontaktUnittests.cs" />
+    <Compile Include="Kunde_Unittests.cs" />
+    <Compile Include="ProjektUnittests.cs" />
+    <Compile Include="RechnungszeileUnittest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

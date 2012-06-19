@@ -85,7 +85,7 @@ namespace Backoffice.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Postgres")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Mockdb")]
         public string DataSource {
             get {
                 return ((string)(this["DataSource"]));
